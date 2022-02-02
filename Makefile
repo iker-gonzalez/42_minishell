@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC = test.c \
+SRC =	main.c \
 
 PWD = ~/.brew/opt/readline
 RLFLAGS =   -I $(PWD)/include\
@@ -9,11 +9,16 @@ RLFLAGS =   -I $(PWD)/include\
 
 CFLAGS = -Wall -Wextra -Werror
 
+LIB = Libft/libft.a
+
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CFLAGS) $(RLFLAGS) $^ -I $(SRC) -o $(NAME)
+	@$(MAKE) -s -C ./Libft
+	@$(MAKE) -s -C ./Libft bonus
+	@ echo "libft compiled 🔋"
+	@$(CC) $(CFLAGS) $(RLFLAGS) $(LIB) $^ -I $(SRC) -o $(NAME)
 	@ echo "minishell compiled ☘︎"
 
 %.o: %.c  $(SRC) $(SRCS)
@@ -25,7 +30,10 @@ clean:
 fclean:
 	@rm -rf minishell
 	@rm -rf	minishell.dSYM
+	@rm -rf libft/libft.a
+	@rm -rf libft/*.o
 	@rm -rf .DStore
+	@echo "libft cleaned🤘🏻"
 	@echo "minishell cleaned🤘🏻"
 
 re: fclean all
