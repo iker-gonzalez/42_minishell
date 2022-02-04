@@ -7,10 +7,23 @@
 #include <readline/history.h>
 #include "libft/libft.h"
 
-typedef struct s_utils
+typedef struct s_ind_process
 {
-	int lock;
-}				t_utils;
+	int	pid;
+	int	fd[2];
+
+}				t_ind_process;
+
+
+typedef struct s_process
+{
+	char			**process;
+	char			*prompt;
+	char			*line_read;
+	int				cmd;
+	t_ind_process *ind_process;
+
+}				t_process;
 
 
 #endif
