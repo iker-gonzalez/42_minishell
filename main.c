@@ -1,16 +1,5 @@
 #include "minishell.h"
 
-int ft_find_next_quotation(char *str, int i)
-{
-	while (str[i])
-	{
-		if (str[i] == 34 || str[i] == 39)
-			break ;
-		i++;
-	}
-	return i;
-}
-
 char *ft_strcat(char *dst, const char *src)
 {
 	unsigned int	i;
@@ -28,7 +17,7 @@ char *ft_strcat(char *dst, const char *src)
 	return(dst);
 }
 
-void	set_up_shell(t_process *processes)
+void	set_up_shell(t_proc *proc)
 {
 	char *user;
 	char *logo;
@@ -37,67 +26,80 @@ void	set_up_shell(t_process *processes)
 	user = getenv("USER");
 	logo = "\033[38;2;243;134;48mpapa$hell 🐚\033[0m";
 	length = ft_strlen(user) + ft_strlen(logo) + 1;
-	processes->prompt = malloc(sizeof (char) * length + 1);
-	processes->prompt = ft_strcat(ft_strcat(ft_strcat(processes->prompt, user),"@"),logo);
+	proc->prompt = malloc(sizeof (char) * length + 1);
+	proc->prompt = ft_strcat(ft_strcat(ft_strcat(proc->prompt, user),"@"),logo);
 }
 
-void	ft_parse_process(char *process, t_process *processes)
-{
-
-
-}
-
-void	ft_read_input(t_process *processes)
+void	ft_tokenizer(char *process, t_proc *proc)
 {
 	int	i;
 
-	processes->line_read = readline(processes->prompt);
-	add_history(processes->line_read);
 	i = 0;
-	ft_memset(&processes, 0, sizeof(t_process));
-	processes->cmd = 1;
-	while (processes->line_read[i])
+	proc->tokens = ft_split(process, ' ');
+}
+
+void	ft_read_input(t_proc *proc)
+{
+	int	i;
+
+	proc->line_read = readline(proc->prompt);
+	add_history(proc->line_read);
+	i = 0;
+	//ft_memset(proc, 0, sizeof(t_proc));
+	proc->cmd = 1;
+	while (proc->line_read[i])
 	{
-		if (processes->line_read[i] == '|')
-			processes->cmd++;
+		//i += ft_find_next_quotation(proc->line_read, i);
+		if (proc->line_read[i] == '|')
+			proc->cmd++;
 		i++;
 	}
-	if (processes->cmd > 1)
+	if (proc->cmd > 1)
 	{
-		processes->process = ft_split(processes->line_read, '|');
+		proc->process = ft_split(proc->line_read, '|');
 		i = 0;
-		while(processes->process[i])
+		while(proc->process[i])
 		{
-			ft_parse_process(processes->process[i], processes);
+			ft_tokenizer(proc->process[i], proc);
 			i++;
 		}
 	}
 	else
-		ft_parse_process(processes->line_read, processes);
+		ft_tokenizer(proc->line_read, proc);
 }
 
-int	ft_loop(t_process *processes)
+int	ft_loop(t_proc *proc)
 {
 	int i;
 
 	while (1)
 	{
-		ft_read_input(processes->prompt);
+		ft_read_input(proc);
 		i = 0;
 	}
 	return(0);
 }
-
-int main (int argc, char **envp)
+/*
+void ft_execute_command(void)
 {
-	t_process processes;
+	char *cmd;
+	char *str;
+	char **arg;
+	char *env;
+	
+	cmd = "/bin/ls";
+	str = "ls -l";
+	arg = ft_split(str, ' ');
+	env = NULL;
+	execve(cmd, arg, &env);
+}
+*/
+int main (void)
+{
+	t_proc proc;
 
-	/*execve("usr/bin/wc", arg, envp);
-	char *str = "wc file.txt";
-	char **arg = ft_split(str, ' ');
-	argc = access("/usr/bin/wc", F_OK);
-	printf("%d", argc);*/
-	set_up_shell(&processes);
-	ft_loop(&processes);
+	//ft_execute_command();
+	set_up_shell(&proc);
+	ft_loop(&proc);
 	return(0);
 }

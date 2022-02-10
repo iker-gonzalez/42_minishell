@@ -6,12 +6,34 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 19:26:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2021/07/12 19:26:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:49:59 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
+/*
+int ft_find_next_quotation(char const *str, int i)
+{
+	int quotation;
 
+	quotation = 0;
+	while (str[i])
+	{
+		if (str[i] == 34 || str[i] == 39)
+		{
+			quotation = 1;
+			break ;
+		}
+		i++;
+	}
+	if (quotation)
+	{
+		printf("i: %d\n", i);
+		return i;
+	}
+	return 0;
+}
+*/
 static int	ft_div_counter(char const *s, char c)
 {
 	int	i;
@@ -23,6 +45,7 @@ static int	ft_div_counter(char const *s, char c)
 	i = 0;
 	while (i < (int)ft_strlen(s))
 	{
+		//i += ft_find_next_quotation(s, i);
 		if (s[i] == c && s[i + 1] != c && s[i + 1])
 			counter++;
 		i++;
@@ -83,7 +106,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (i <= (int)ft_strlen(s) && ft_div_counter(s, c))
+	while (i <= (int)ft_strlen(s) /*&& ft_div_counter(s, c)*/)
 	{
 		if (ft_check_lim((char *)s, c, i))
 		{
