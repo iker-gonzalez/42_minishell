@@ -7,26 +7,23 @@
 #include <readline/history.h>
 #include "libft/libft.h"
 
-typedef struct s_ind_process
-{
-	int	pid;
-	int	fd[2];
-
-}				t_ind_process;
-
-
 typedef struct s_proc
 {
-	char			**process;
-	char			**tokens;
-	char			*prompt;
-	char			*line_read;
-	int				cmd;
-	int				quotation;
-
-	//t_ind_process *ind_process;
-
+	char	**process;
+	char	*prompt;
+	char	*line_read;
+	int		cmd;
+	int		quotation;
 }				t_proc;
+
+typedef struct s_iproc
+{
+	int		pid;
+	int		fd[2];
+	char	**tokens;
+	char	*path;
+	t_proc 	*proc;
+}			t_iproc;
 
 int ft_find_next_quotation(char const *str, int i);
 

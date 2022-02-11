@@ -32,10 +32,11 @@ void	set_up_shell(t_proc *proc)
 
 void	ft_tokenizer(char *process, t_proc *proc)
 {
-	int	i;
 
-	i = 0;
-	proc->tokens = ft_split(process, ' ');
+	t_iproc iproc;
+
+	iproc.proc = proc;
+	iproc.tokens = ft_split(process, ' ');
 }
 
 void	ft_read_input(t_proc *proc)
@@ -68,13 +69,48 @@ void	ft_read_input(t_proc *proc)
 		ft_tokenizer(proc->line_read, proc);
 }
 
-int	ft_loop(t_proc *proc)
+void	ft_get_paths(char *path, t_iproc *iproc)
+{
+	char	**paths;
+	int		i;
+
+	i = 0;
+	paths = ft_split(path, ':');
+	//paths[ft_get_nbr_words(path, ':')] = NULL;
+	//free(path);
+	while (paths[i])
+	{
+		path = ft_strjoin(paths[i], "/");
+		free(paths[i]);
+		paths[i] = path;
+		path = ft_strjoin(paths[i], iproc->tokens[0]);
+		free(paths[i]);
+		paths[i] = path;
+		if (access(paths[i], F_OK) == 0)
+			iproc->path = paths[i];
+		i++;
+	}
+}
+
+int ft_execute(t_iproc *iproc)
+{
+	char *path;
+	//ft_builtins();
+	iproc = NULL;
+	path = getenv("PATH");
+	ft_get_paths(path, iproc);
+	printf("%s\n", iproc->path);
+	return (0);
+}
+
+int	ft_loop(t_proc *proc, t_iproc *iproc)
 {
 	int i;
 
 	while (1)
 	{
 		ft_read_input(proc);
+		ft_execute(iproc);
 		i = 0;
 	}
 	return(0);
@@ -97,9 +133,10 @@ void ft_execute_command(void)
 int main (void)
 {
 	t_proc proc;
+	t_iproc iproc;
 
 	//ft_execute_command();
 	set_up_shell(&proc);
-	ft_loop(&proc);
+	ft_loop(&proc, &iproc);
 	return(0);
 }
