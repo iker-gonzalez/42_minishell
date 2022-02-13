@@ -1,41 +1,43 @@
 NAME = minishell
+FLAGS = -Wall -Wextra -Werror -Wno-maybe-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter
+SANITIZE = -fsanitize=address
+VALGRIND = -g -Og -std=gnu99
+READLINE = -lreadline
+INC = -I%.h -I$(LIB_DIR)%.h
 
-SRC =	main.c \
+SRC_NAME =	main.c	\
+		ft_cmd_exist.c	\
 
-PWD = ~/.brew/opt/readline
-RLFLAGS =   -I $(PWD)/include\
-            -lreadline\
-            -L $(PWD)/lib\
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ = $(addprefix $(OBJ_DIR),$(OBJ_NAME))
 
-CFLAGS = -Wall -Wextra -Werror
-
-LIB = Libft/libft.a
-
+LIB_DIR = ./libft/
+#SRC_DIR = ./src/
+OBJ_DIR = ./obj/
 
 all: $(NAME)
 
-$(NAME): $(SRC)
-	@$(MAKE) -s -C ./Libft
-	@$(MAKE) -s -C ./Libft bonus
-	@ echo "libft compiled 🔋"
-	@$(CC) $(CFLAGS) $(RLFLAGS) $(LIB) $^ -I $(SRC) -o $(NAME)
-	@ echo "minishell compiled ☘︎"
+$(NAME): $(OBJ)
+	@make -C $(LIB_DIR) --silent
+	@gcc $(FLAGS) $(SANITIZE) -o $(NAME) $(OBJ) -L $(LIB_DIR) -lft $(READLINE)
+	@echo "##### minishell compiling finished! #####"
 
-%.o: %.c  $(SRC) $(SRCS)
-	@$(CC) $(CFLAGS) -I $(PWD)/lib -I$(SRC) -c $< -o $@ -I $(PWD)/include
+$(OBJ_DIR)%.o: %.c
+	@mkdir -p $(OBJ_DIR)
+	@echo "##### Creating" [ $@ ] " #####"
+	@gcc $(FLAGS) $(SANITIZE) -o $@ -c $< $(INC) $(READLINE)
 
 clean:
-	@rm -rf minishell
+	@make -C $(LIB_DIR) clean  --silent
+	@rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
+	@echo "##### Removed object files #####"
 
-fclean:
-	@rm -rf minishell
-	@rm -rf	minishell.dSYM
-	@rm -rf libft/libft.a
-	@rm -rf libft/*.o
-	@rm -rf .DStore
-	@echo "libft cleaned🤘🏻"
-	@echo "minishell cleaned🤘🏻"
+fclean: clean
+	@make -C $(LIB_DIR) fclean  --silent
+	@rm -f $(NAME)
+	@echo "##### Removed binary files #####"
 
 re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY: all clean fclean re
