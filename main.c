@@ -1,52 +1,50 @@
 #include "minishell.h"
-
-char *ft_strcat(char *dst, const char *src)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	i = ft_strlen(dst);
-	j = 0;
-	while (src[j])
-	{
-		dst[i] = src[j];
-		i++;
-		j++;
-	}
-	dst[i] = '\0';
-	return(dst);
-}
+#include <readline/readline.h>
+#include <readline/history.h>
 
 void	set_up_shell(t_proc *proc)
 {
-	char *user;
-	char *logo;
-	size_t	length;
+	char	*user;
+	char	*logo;
 
 	user = getenv("USER");
-	logo = "\033[38;2;243;134;48mpapa$hell 🐚\033[0m";
-	length = ft_strlen(user) + ft_strlen(logo) + 1;
-	proc->prompt = malloc(sizeof (char) * length + 1);
-	proc->prompt = ft_strcat(ft_strcat(ft_strcat(proc->prompt, user),"@"),logo);
+	logo = "papa$hell 🐚";
+	proc->prompt = ft_strjoin(user, logo);
+	ft_format_paths(proc);
 }
 
-void	ft_tokenizer(char *process, t_proc *proc)
+void	ft_format_paths(t_proc *proc)
 {
+	char	*path;
+	char	**paths;
+	int	i;
 
-	t_iproc iproc;
-
-	iproc.proc = proc;
-	iproc.tokens = ft_split(process, ' ');
+	i = 0;
+	path = getenv("PATH");
+	paths = ft_split(path, ':');
+	while (paths[i])
+	{
+		path = ft_strjoin(paths[i], "/");
+		free(paths[i]);
+		paths[i] = path;
+		proc->paths[i] = paths[i]; 
+		i++;
+	}
 }
 
-void	ft_read_input(t_proc *proc)
+void	ft_tokenizer(char *process, t_proc *proc, t_iproc *iproc)
+{
+	iproc->proc = proc;
+	iproc->tokens = ft_split(process, ' ');
+}
+
+void	ft_read_input(t_proc *proc, t_iproc *iproc)
 {
 	int	i;
 
 	proc->line_read = readline(proc->prompt);
 	add_history(proc->line_read);
 	i = 0;
-	//ft_memset(proc, 0, sizeof(t_proc));
 	proc->cmd = 1;
 	while (proc->line_read[i])
 	{
@@ -61,45 +59,36 @@ void	ft_read_input(t_proc *proc)
 		i = 0;
 		while(proc->process[i])
 		{
-			ft_tokenizer(proc->process[i], proc);
+			ft_tokenizer(proc->process[i], proc, iproc);
 			i++;
 		}
 	}
 	else
-		ft_tokenizer(proc->line_read, proc);
+		ft_tokenizer(proc->line_read, proc, iproc);
 }
 
-void	ft_get_paths(char *path, t_iproc *iproc)
+void ft_find_path(t_proc *proc, t_iproc *iproc)
 {
-	char	**paths;
-	int		i;
+	int	i;
 
 	i = 0;
-	paths = ft_split(path, ':');
-	//paths[ft_get_nbr_words(path, ':')] = NULL;
-	//free(path);
-	while (paths[i])
+	while (iproc->tokens[i])
 	{
-		path = ft_strjoin(paths[i], "/");
-		free(paths[i]);
-		paths[i] = path;
-		path = ft_strjoin(paths[i], iproc->tokens[0]);
-		free(paths[i]);
-		paths[i] = path;
-		if (access(paths[i], F_OK) == 0)
-			iproc->path = paths[i];
+		printf("TOKEN %d: %s\n", i, iproc->tokens[i]);
+		i++;
+	}
+	i = 0;
+	while(proc->paths[i])
+	{
+		printf("PATH %d: %s\n", i, proc->paths[i]);
 		i++;
 	}
 }
 
-int ft_execute(t_iproc *iproc)
+int ft_execute(t_proc *proc, t_iproc *iproc)
 {
-	char *path;
 	//ft_builtins();
-	iproc = NULL;
-	path = getenv("PATH");
-	ft_get_paths(path, iproc);
-	printf("%s\n", iproc->path);
+	ft_find_path(proc, iproc);
 	return (0);
 }
 
@@ -109,8 +98,8 @@ int	ft_loop(t_proc *proc, t_iproc *iproc)
 
 	while (1)
 	{
-		ft_read_input(proc);
-		ft_execute(iproc);
+		ft_read_input(proc, iproc);
+		ft_execute(proc, iproc);
 		i = 0;
 	}
 	return(0);
