@@ -1,37 +1,44 @@
 NAME = minishell
 
 SRC =	main.c \
+		ft_execute.c \
+		set_up.c \
+		ft_read_input.c \
+
+
+OBJ = $(SRC:.c=.o)
 
 PWD = ~/.brew/opt/readline
 RLFLAGS =   -I $(PWD)/include\
             -lreadline\
             -L $(PWD)/lib\
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 LIB = Libft/libft.a
 
 
 all: $(NAME)
 
-$(NAME): $(SRC)
+$(NAME): $(OBJ)
 	@$(MAKE) -s -C ./Libft
 	@$(MAKE) -s -C ./Libft bonus
 	@ echo "libft compiled 🔋"
-	@$(CC) $(CFLAGS) $(RLFLAGS) $(LIB) $^ -I $(SRC) -o $(NAME)
+	@$(CC) $(CFLAGS) $(RLFLAGS) $(LIB) $(OBJ) -o $(NAME)
 	@ echo "minishell compiled ☘︎"
 
-%.o: %.c  $(SRC) $(SRCS)
-	@$(CC) $(CFLAGS) -I $(PWD)/lib -I$(SRC) -c $< -o $@ -I $(PWD)/include
+%.o: %.c 
+	$(CC) $(CFLAGS) -I $(PWD)/lib -c $< -o $@ -I $(PWD)/include
 
 clean:
 	@rm -rf minishell
 
-fclean:
+fclean: clean
 	@rm -rf minishell
 	@rm -rf	minishell.dSYM
 	@rm -rf libft/libft.a
 	@rm -rf libft/*.o
+	@rm -rf *.o
 	@rm -rf .DStore
 	@echo "libft cleaned🤘🏻"
 	@echo "minishell cleaned🤘🏻"
