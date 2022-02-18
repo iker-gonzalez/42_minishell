@@ -1,4 +1,5 @@
 #include "minishell.h"
+<<<<<<< HEAD
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -127,5 +128,26 @@ int main (void)
 	//ft_execute_command();
 	set_up_shell(&proc);
 	ft_loop(&proc, &iproc);
+=======
+
+int	ft_loop(t_proc *proc)
+{
+
+	while (1)
+	{
+		ft_read_input(proc);
+		//ft_execute(iproc);
+	}
+	return(0);
+}
+
+
+int main (void)
+{
+	t_proc proc;
+
+	set_up_shell(&proc);
+	ft_loop(&proc);
+>>>>>>> 6fdc0a008a65d2c80de142cbaf39b79e11b838bd
 	return(0);
 }

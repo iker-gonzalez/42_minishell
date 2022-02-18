@@ -13,7 +13,11 @@
 NAME = libft.a
 
 CC = gcc
+<<<<<<< HEAD
 CFLAGS = -Wall -Wextra -Werror -Wno-maybe-uninitialized -Wno-unused-but-set-variable
+=======
+CFLAGS = -Wall -Wextra -Werror
+>>>>>>> 6fdc0a008a65d2c80de142cbaf39b79e11b838bd
 AR = ar rcs
 RM = rm -f
 
