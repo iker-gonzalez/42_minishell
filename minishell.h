@@ -24,6 +24,8 @@ typedef struct s_proc
 	int		cmd_count;
 	int		cmd_found;
 	int		*quoted;
+	int		sinqle_quotes;
+	int		double_quotes;
 	t_iproc	*iproc;
 }				t_proc;
 

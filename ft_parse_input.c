@@ -7,6 +7,7 @@ char ft_iam_double(t_proc *proc, int i)
         else if (proc->line_read[i] == 39)
             proc->quoted[i] == 10;
         
+        
     }
 
 
@@ -42,7 +43,10 @@ char    *ft_is_quoted(t_proc *proc)
 
 void    ft_parse_input(t_proc *proc)
 {
-    proc->line_read = ft_is_quoted(proc);
+    ft_count_quotation_marks(proc);
+    printf("Number of single quotes: %d\n", proc->single_quotes);
+    printf("Number of double quotes: %d\n", proc->double_quotes);
+    //proc->line_read = ft_is_quoted(proc);
 }
 
 
