@@ -17,28 +17,6 @@ void	ft_tokenizer(char *process, t_proc *proc, int processid)
 
 void	ft_read_input(t_proc *proc)
 {
-	int	i;
-
 	proc->line_read = readline(proc->prompt);
 	add_history(proc->line_read);
-	i = 0;
-	proc->cmd_count = 1;
-	while (proc->line_read[i])
-	{
-		if (proc->line_read[i] == '|')
-			proc->cmd_count++;
-		i++;
-	}
-	if (proc->cmd_count > 1)
-	{
-		proc->process = ft_split(proc->line_read, '|');
-		i = 0;
-		while(proc->process[i])
-		{
-			ft_tokenizer(proc->process[i], proc, i);
-			i++;
-		}
-	}
-	else
-		ft_tokenizer(proc->line_read, proc, 0);
-}
+}	
