@@ -4,7 +4,8 @@ SRC =	main.c \
 		ft_execute.c \
 		set_up.c \
 		ft_read_input.c \
-
+		ft_parse_input.c \
+		ft_create_list.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -16,7 +17,6 @@ RLFLAGS =   -I $(PWD)/include\
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 LIB = Libft/libft.a
-
 
 all: $(NAME)
 

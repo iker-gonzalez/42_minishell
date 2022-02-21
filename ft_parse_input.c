@@ -1,73 +1,28 @@
-char ft_iam_double(t_proc *proc, int i)
+#include "minishell.h"
+
+void ft_gen_lst(t_proc *proc)
 {
-    while(proc->line_read[i])
-    {
-        if (pro->line_read[i] == 34)
-            proc->quoted[i] == 11;
-        else if (proc->line_read[i] == 39)
-            proc->quoted[i] == 10;
-        
-        
-    }
+    int i;
 
-
-
-}
-
-
-char    *ft_is_quoted(t_proc *proc)
-{
-    char    *ret;
-    int     i;
-
+    proc->lst = malloc(sizeof(t_node) * proc->cmd_count);
+    ft_memset((proc->lst), 0, sizeof(t_node *));
     i = 0;
-    while (proc->line_read[i])
+    while (proc->tokens[i])
     {
-        while (proc->line_read[i] != 34 || proc->line_read[i] != 39 || NOquoted)
-        {
-            proc->quoted[i] = 10;
-            ret[i] = proc->line_read[i];
-            i++;
-        }
-        if (proc->line_read[i] == 34)
-        {
-            proc->quoted[i] = 11;
-            ft_iam_double(proc, i + 1);
-        }
-        else if (proc->line_read[i] == 39)
-            ft_iam_single(proc, i);
-
+        ft_add_node_back(proc->lst, ft_new_node(proc->tokens[i]));
+        i++;
     }
-    return (ret);
 }
 
 void    ft_parse_input(t_proc *proc)
 {
-    ft_count_quotation_marks(proc);
-    printf("Number of single quotes: %d\n", proc->single_quotes);
-    printf("Number of double quotes: %d\n", proc->double_quotes);
-    //proc->line_read = ft_is_quoted(proc);
-}
+    int i;
 
-
-/*
-proc->cmd_count = 1;
-while (proc->line_read[i])
-{
-    if (proc->line_read[i] == '|')
-		proc->cmd_count++;
-}
-if (proc->cmd_count > 1)
-{
-    proc->process = ft_split(proc->line_read, '|');
+    proc->tokens = ft_split(proc->line_read, ' ');
     i = 0;
-    while(proc->process[i])
-    {
-	    ft_tokenizer(proc->process[i], proc, i);
-	    i++;
-    }
-else
-    ft_tokenizer(proc->line_read, proc, 0);
-*/
-
-    
+    while (proc->tokens[i])
+        i++;
+    proc->cmd_count = i;
+    ft_gen_lst(proc);
+    print_list(proc->lst);
+}

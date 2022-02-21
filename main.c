@@ -17,6 +17,7 @@ int main (void)
 {
 	t_proc proc;
 
+	ft_memset(&proc, 0, sizeof(t_proc));
 	set_up_shell(&proc);
 	ft_loop(&proc);
 	return(0);

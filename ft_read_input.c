@@ -1,5 +1,5 @@
 #include "minishell.h"
-
+/*
 void	ft_tokenizer(char *process, t_proc *proc, int processid)
 {
 	t_iproc iproc;
@@ -14,7 +14,7 @@ void	ft_tokenizer(char *process, t_proc *proc, int processid)
 		i++;
 	}
 }
-
+*/
 void	ft_read_input(t_proc *proc)
 {
 	proc->line_read = readline(proc->prompt);

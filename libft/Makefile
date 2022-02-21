@@ -3,21 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+         #
+#    By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/12 14:19:09 by ikgonzal          #+#    #+#              #
-#    Updated: 2021/07/16 16:13:01 by ikgonzal         ###   ########.fr        #
+#    Updated: 2022/02/21 10:49:32 by ikgonzal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 CC = gcc
-<<<<<<< HEAD
-CFLAGS = -Wall -Wextra -Werror -Wno-maybe-uninitialized -Wno-unused-but-set-variable
-=======
 CFLAGS = -Wall -Wextra -Werror
->>>>>>> 6fdc0a008a65d2c80de142cbaf39b79e11b838bd
 AR = ar rcs
 RM = rm -f
 
