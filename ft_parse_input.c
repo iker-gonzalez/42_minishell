@@ -1,44 +1,52 @@
 #include "minishell.h"
-/*
-void    ft_parselist(t_proc *proc, t_node *lst, char c, int *mod)
+
+int    ft_findchar(t_node *node, char c)
 {
     int i;
 
     i = 0;
-    while (lst->content[i])
+    while(node->content[i])
     {
-        if (lst->content[i] == c)
-        {
-            if (proc->quote_count == 0)
-                *mod = 1;
-            else if (proc->quote_count %2 == 0)
-                lst->next->double_quoted = 0;
-            proc->quote_count++;
-        }
+        if ((node->content[i]) == c)
+            return (1);
         i++;
     }
+    return (0);
 }
-*/
 
-void    ft_parse_input(t_proc *proc)
+
+void    ft_parse_quotes(t_proc *proc, char c)
 {
-    int i;
-   // t_node *head;
+    int lock;
+    t_node *head;
 
-    proc->tokens = ft_split(proc->line_read, ' ');
-    i = 0;
-    while (proc->tokens[i])
-        i++;
-    proc->cmd_count = i;
-    ft_gen_lst(proc);
-    /*
     head = (*proc->lst);
-    while ((*proc->lst))
+    lock = 0;
+    while (*proc->lst)
     {
-        //ft_parselist((*proc->lst), 34, &((*proc->lst)->double_quoted));
+        if (ft_findchar(*proc->lst, c))
+        {
+            (*proc->lst)->double_quoted = 1;
+            if (lock == 0)
+                (*proc->lst) = (*proc->lst)->next;
+            lock = 1;
+            while (!ft_findchar((*proc->lst), c))
+            {
+                (*proc->lst)->double_quoted = 1;
+                (*proc->lst) = (*proc->lst)->next;
+            }
+            (*proc->lst)->double_quoted = 1;
+        }
         (*proc->lst) = (*proc->lst)->next;
     }
     (*proc->lst) = head;
+}
+
+
+void    ft_parse_input(t_proc *proc)
+{
+    ft_gen_lst(proc);
+    ft_parse_quotes(proc, 34);
+    ft_parse_quotes(proc, 39);
     print_list(proc->lst);
-    */
 }

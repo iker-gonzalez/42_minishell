@@ -15,8 +15,6 @@ void	count_quotations(t_proc *proc)
 			proc->squote_count++;
 		i++;
 	}
-	printf("single: %d\n", proc->squote_count);
-	printf("double: %d\n", proc->dquote_count);
 }
 
 void	ft_read_input(t_proc *proc)
