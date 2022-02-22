@@ -43,10 +43,8 @@ t_node	*ft_new_node(char *content);
 void	print_list (t_node **lst);
 void	ft_parse_input(t_proc *proc);
 void	ft_gen_lst(t_proc *proc);
-
-
-
-
+void	count_quotations(t_proc *proc);
+int    	ft_findchar(t_node *node, char c);
 
 
 #endif

@@ -22,6 +22,11 @@ void ft_gen_lst(t_proc *proc)
 {
     int i;
 
+    proc->tokens = ft_split(proc->line_read, ' ');
+    i = 0;
+    while (proc->tokens[i])
+        i++;
+	proc->cmd_count = i;
     proc->lst = malloc(sizeof(t_node) * proc->cmd_count);
     ft_memset((proc->lst), 0, sizeof(t_node *));
     i = 0;
