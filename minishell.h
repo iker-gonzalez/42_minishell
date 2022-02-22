@@ -6,14 +6,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "libft/libft.h"
-/*
-typedef struct s_iproc
-{
-	int		pid;
-	int		fd[2];
-	char	*path;
-}			t_iproc;
-*/
+
 typedef struct s_node
 {
 	char			*content;
@@ -28,16 +21,14 @@ typedef struct s_node
 
 typedef struct s_proc
 {
-	char	**process;
 	char	**tokens;
 	char	**paths;
 	char	*prompt;
 	char	*line_read;
 	int		cmd_count;
-	int		cmd_found;
-	int		*quoted;
-	int		sinqle_quotes;
-	int		double_quotes;
+	//int	cmd_found;
+	int		squote_count;
+	int		dquote_count;
 	t_node	**lst;
 }				t_proc;
 
@@ -50,7 +41,9 @@ void	ft_read_input(t_proc *proc);
 void	ft_add_node_back(t_node **node, t_node *new);
 t_node	*ft_new_node(char *content);
 void	print_list (t_node **lst);
-void    ft_parse_input(t_proc *proc);
+void	ft_parse_input(t_proc *proc);
+void	ft_gen_lst(t_proc *proc);
+
 
 
 

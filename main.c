@@ -7,11 +7,9 @@ int	ft_loop(t_proc *proc)
 	{
 		ft_read_input(proc);
 		ft_parse_input(proc);
-		//ft_execute(iproc);
 	}
 	return(0);
 }
-
 
 int main (void)
 {

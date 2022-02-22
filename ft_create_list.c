@@ -11,10 +11,25 @@ void print_list (t_node **lst)
 		printf("pipe: %d\n", (*lst)->pipe);
 		printf("dollar: %d\n", (*lst)->dollar);
 		printf("redirection: %d\n", (*lst)->redirection);
-		//printf("previous: %s\n", (*lst)->previous->content);
-		//printf("next: %s\n", (*lst)->next->content);
+		printf("previous: %p\n", (*lst)->previous);
+		printf("next: %p\n", (*lst)->next);
 		printf("==============================\n");
+		*lst = (*lst)->next;
 	}
+}
+
+void ft_gen_lst(t_proc *proc)
+{
+    int i;
+
+    proc->lst = malloc(sizeof(t_node) * proc->cmd_count);
+    ft_memset((proc->lst), 0, sizeof(t_node *));
+    i = 0;
+    while (proc->tokens[i])
+    {
+        ft_add_node_back(proc->lst, ft_new_node(proc->tokens[i]));
+        i++;
+    }
 }
 
 t_node	*ft_new_node(char *content)

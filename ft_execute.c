@@ -1,5 +1,5 @@
 #include "minishell.h"
-
+/*
 void ft_execute_command(t_proc *proc, char *route, int processid)
 {
 	char **arg;
@@ -30,3 +30,4 @@ void	ft_cmd_exist(t_proc *proc, char *token, int processid)
 		i++;
 	}
 }
+*/
