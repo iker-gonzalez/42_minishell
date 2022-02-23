@@ -32,7 +32,7 @@ void ft_gen_lst(t_proc *proc)
     i = 0;
     while (proc->tokens[i])
     {
-        ft_add_node_back(proc->lst, ft_new_node(proc->tokens[i]));
+        ft_add_node_back(proc, proc->lst, ft_new_node(proc->tokens[i]));
         i++;
     }
 }
@@ -49,19 +49,16 @@ t_node	*ft_new_node(char *content)
 	return (ret);
 }
 
-void	ft_add_node_back(t_node **node, t_node *new)
+void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new)
 {
-	t_node *head;
-
-	head = NULL;
 	if (*node)
 	{
-		head = *node;
+		proc->head = *node;
 		while((*node)->next)
 			(*node) = (*node)->next;
 		new->previous = *node;
 		(*node)->next = new;
-		(*node) = head;
+		(*node) = proc->head;
 	}
 	else
 		(*node) = new;
