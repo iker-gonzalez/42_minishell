@@ -14,6 +14,7 @@ typedef struct s_node
 	int				double_quoted;
 	int				pipe;
 	int				dollar;
+	int				dollar_exit;
 	int				red_in;
 	int				red_in_append;
 	int				red_out;

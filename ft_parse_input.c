@@ -21,10 +21,22 @@ int    ft_findchar(t_node *node, char c)
 
 void    ft_parse_dollar(t_proc *proc)
 {
+    int i;
+
     while (*proc->lst)
     {
-        if ((*proc->lst)->content[0] == '$')
-            (*proc->lst)->dollar = 1;
+        i = 0;
+        while ((*proc->lst)->content[i])
+        {
+            if ((*proc->lst)->content[i] == '$')
+            {
+                if ((*proc->lst)->content[i + 1] == '?')
+                    (*proc->lst)->dollar_exit = 1;
+                else
+                    (*proc->lst)->dollar = 1;
+            }
+            i++;
+        }
         (*proc->lst) = (*proc->lst)->next;
     }
     (*proc->lst) = proc->head;

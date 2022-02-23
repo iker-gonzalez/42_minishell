@@ -10,6 +10,7 @@ void print_list (t_node **lst)
 		printf("double_quoted: %d\n", (*lst)->double_quoted);
 		printf("pipe: %d\n", (*lst)->pipe);
 		printf("dollar: %d\n", (*lst)->dollar);
+		printf("dollar_exit: %d\n", (*lst)->dollar_exit);
 		printf("red_in: %d\n", (*lst)->red_in);
 		printf("red_in_append: %d\n", (*lst)->red_in_append);
 		printf("red_out: %d\n", (*lst)->red_out);
