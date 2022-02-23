@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:44:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/23 13:35:41 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/02/23 13:41:06 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void    ft_parse_red_in(t_proc *proc)
 		i = 0;
 		while ((*proc->lst)->content[i])
 		{
-			if ((*proc->lst)->content[i] == '>')
+			if ((*proc->lst)->content[i] == '<')
 			{
-				if ((*proc->lst)->content[i + 1] == '>')
+				if ((*proc->lst)->content[i + 1] == '<')
 				{
 					(*proc->lst)->red_in_append = 1;
 					i++;
@@ -65,9 +65,9 @@ void    ft_parse_red_out(t_proc *proc)
 		i = 0;
 		while ((*proc->lst)->content[i])
 		{
-			if ((*proc->lst)->content[i] == '<')
+			if ((*proc->lst)->content[i] == '>')
 			{
-				if ((*proc->lst)->content[i + 1] == '<')
+				if ((*proc->lst)->content[i + 1] == '>')
 				{
 					(*proc->lst)->red_out_del = 1;
 					i++;
