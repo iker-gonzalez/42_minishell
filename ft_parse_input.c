@@ -91,5 +91,8 @@ void    ft_parse_input(t_proc *proc)
     ft_parse_dquotes(proc, 34);
     ft_parse_squotes(proc, 39);
     ft_parse_dollar(proc);
+    ft_parse_pipe(proc);
+    ft_parse_red_in(proc);
+    ft_parse_red_out(proc);
     print_list(proc->lst);
 }
