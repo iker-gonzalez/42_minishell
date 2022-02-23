@@ -3,18 +3,20 @@
 int    ft_findchar(t_node *node, char c)
 {
     int i;
+    int k;
 
     i = 0;
+    k = 0;
     if (node)
     {
         while(node->content[i])
         {
             if ((node->content[i]) == c)
-                return (1);
+                k++;
             i++;
         }
     }
-    return (0);
+    return (k);
 }
 
 void    ft_parse_dollar(t_proc *proc)
@@ -38,7 +40,7 @@ void    ft_parse_dquotes(t_proc *proc, char c)
         if (ft_findchar(*proc->lst, c))
         {
             (*proc->lst)->double_quoted = 1;
-            if (lock == 0 && (*proc->lst)->next)
+            if (lock == 0 && (*proc->lst)->next && (ft_findchar((*proc->lst), c) %2) != 0)
                 (*proc->lst) = (*proc->lst)->next;
             lock = 1;
             while (!ft_findchar((*proc->lst), c) && (*proc->lst)->next)
@@ -65,7 +67,7 @@ void    ft_parse_squotes(t_proc *proc, char c)
         if (ft_findchar(*proc->lst, c))
         {
             (*proc->lst)->single_quoted = 1;
-            if (lock == 0 && (*proc->lst)->next)
+            if (lock == 0 && (*proc->lst)->next && (ft_findchar((*proc->lst), c) %2) != 0)
                 (*proc->lst) = (*proc->lst)->next;
             lock = 1;
             while (!ft_findchar((*proc->lst), c) && (*proc->lst)->next)
