@@ -27,7 +27,7 @@ void    ft_parse_quotes(t_proc *proc, char c)
         if (ft_findchar(*proc->lst, c))
         {
             (*proc->lst)->double_quoted = 1;
-            if (lock == 0)
+            if (lock == 0 && (*proc->lst)->next)
                 (*proc->lst) = (*proc->lst)->next;
             lock = 1;
             while (!ft_findchar((*proc->lst), c))
@@ -35,6 +35,7 @@ void    ft_parse_quotes(t_proc *proc, char c)
                 (*proc->lst)->double_quoted = 1;
                 (*proc->lst) = (*proc->lst)->next;
             }
+            lock = 0;
             (*proc->lst)->double_quoted = 1;
         }
         (*proc->lst) = (*proc->lst)->next;
