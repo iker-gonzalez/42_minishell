@@ -10,7 +10,11 @@ void print_list (t_node **lst)
 		printf("double_quoted: %d\n", (*lst)->double_quoted);
 		printf("pipe: %d\n", (*lst)->pipe);
 		printf("dollar: %d\n", (*lst)->dollar);
-		printf("redirection: %d\n", (*lst)->redirection);
+		printf("dollar_exit: %d\n", (*lst)->dollar_exit);
+		printf("red_in: %d\n", (*lst)->red_in);
+		printf("red_in_append: %d\n", (*lst)->red_in_append);
+		printf("red_out: %d\n", (*lst)->red_out);
+		printf("red_out_del: %d\n", (*lst)->red_out_del);
 		printf("previous: %p\n", (*lst)->previous);
 		printf("next: %p\n", (*lst)->next);
 		printf("==============================\n");
@@ -20,21 +24,22 @@ void print_list (t_node **lst)
 
 void ft_gen_lst(t_proc *proc)
 {
-    int i;
+	int i;
 
-    proc->tokens = ft_split(proc->line_read, ' ');
-    i = 0;
-    while (proc->tokens[i])
-        i++;
+	proc->tokens = ft_split(proc->line_read, ' ');
+	i = 0;
+	while (proc->tokens[i])
+		i++;
 	proc->cmd_count = i;
-    proc->lst = malloc(sizeof(t_node) * proc->cmd_count);
-    ft_memset((proc->lst), 0, sizeof(t_node *));
-    i = 0;
-    while (proc->tokens[i])
-    {
-        ft_add_node_back(proc, proc->lst, ft_new_node(proc->tokens[i]));
-        i++;
-    }
+	proc->lst = malloc(sizeof(t_node) * proc->cmd_count);
+	ft_memset((proc->lst), 0, sizeof(t_node *));
+	i = 0;
+	while (proc->tokens[i])
+	{
+		ft_add_node_back(proc->lst, ft_new_node(proc->tokens[i]));
+		i++;
+	}
+	proc->head = (*proc->lst);
 }
 
 t_node	*ft_new_node(char *content)
@@ -49,16 +54,18 @@ t_node	*ft_new_node(char *content)
 	return (ret);
 }
 
-void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new)
+void	ft_add_node_back(t_node **node, t_node *new)
 {
+	t_node *head;
+
 	if (*node)
 	{
-		proc->head = *node;
+		head = *node;
 		while((*node)->next)
 			(*node) = (*node)->next;
 		new->previous = *node;
 		(*node)->next = new;
-		(*node) = proc->head;
+		(*node) = head;
 	}
 	else
 		(*node) = new;
