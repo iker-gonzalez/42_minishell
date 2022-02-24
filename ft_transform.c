@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/24 13:20:17 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:10:46 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	ft_transform_input(t_proc *proc)
 {
     ft_lstiter(proc, ft_rmv_squotes);
     ft_lstiter(proc, ft_rmv_dquotes);
+	ft_lstiter(proc, ft_rmv_dollar);
 	ft_test(proc);
     print_list(proc->lst);
 	ft_print_line(proc->line_expanded);

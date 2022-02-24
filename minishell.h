@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
+/*   Updated: 2022/02/24 14:03:59 by ikgonzal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -61,6 +73,7 @@ void	ft_rmv_squotes(t_node *node);
 void	ft_transform_input(t_proc *proc);
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
-
+void	ft_rmv_dollar(t_node *node);
+int		ft_count_char(t_node *node, char c);
 
 #endif
