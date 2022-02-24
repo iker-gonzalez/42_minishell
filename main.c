@@ -7,6 +7,7 @@ int	ft_loop(t_proc *proc)
 	{
 		ft_read_input(proc);
 		ft_parse_input(proc);
+		ft_transform_input(proc);
 	}
 	return(0);
 }

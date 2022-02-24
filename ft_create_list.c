@@ -7,6 +7,7 @@ void print_list (t_node **lst)
 	{
 		printf("content: %s\n", (*lst)->content);
 		printf("exp_content: %s\n", (*lst)->exp_content);
+		printf("is_empty: %d\n", (*lst)->is_empty);
 		printf("single_quoted: %d\n", (*lst)->single_quoted);
 		printf("double_quoted: %d\n", (*lst)->double_quoted);
 		printf("pipe: %d\n", (*lst)->pipe);
@@ -18,7 +19,6 @@ void print_list (t_node **lst)
 		printf("red_out_del: %d\n", (*lst)->red_out_del);
 		printf("previous: %p\n", (*lst)->previous);
 		printf("next: %p\n", (*lst)->next);
-		printf("test: %d\n", (*lst)->test);
 		printf("==============================\n");
 		*lst = (*lst)->next;
 	}
@@ -32,8 +32,8 @@ void ft_gen_lst(t_proc *proc)
 	i = 0;
 	while (proc->tokens[i])
 		i++;
-	proc->cmd_count = i;
-	proc->lst = malloc(sizeof(t_node) * proc->cmd_count);
+	proc->node_count = i;
+	proc->lst = malloc(sizeof(t_node) * proc->node_count);
 	ft_memset((proc->lst), 0, sizeof(t_node *));
 	i = 0;
 	while (proc->tokens[i])

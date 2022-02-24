@@ -11,6 +11,7 @@ typedef struct s_node
 {
 	char			*content;
 	char			*exp_content;
+	int				is_empty;
 	int				single_quoted;
 	int				double_quoted;
 	int				pipe;
@@ -20,7 +21,6 @@ typedef struct s_node
 	int				red_in_append;
 	int				red_out;
 	int				red_out_del;
-	int				test;
 	struct s_node	*previous;
 	struct s_node	*next;
 }					t_node;
@@ -31,7 +31,8 @@ typedef struct s_proc
 	char	**paths;
 	char	*prompt;
 	char	*line_read;
-	int		cmd_count;
+	char	**line_expanded;
+	int		node_count;
 	//int	cmd_found;
 	int		squote_count;
 	int		dquote_count;
@@ -57,5 +58,9 @@ void    ft_parse_red_out(t_proc *proc);
 void    ft_parse_red_in(t_proc *proc);
 void	ft_lstiter(t_proc *proc, void (*f)(t_node *));
 void	ft_rmv_squotes(t_node *node);
+void	ft_transform_input(t_proc *proc);
+void	ft_test(t_proc *proc);
+void	ft_print_line(char **line);
+
 
 #endif

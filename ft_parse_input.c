@@ -106,6 +106,4 @@ void    ft_parse_input(t_proc *proc)
     ft_parse_pipe(proc);
     ft_parse_red_in(proc);
     ft_parse_red_out(proc);
-    ft_lstiter(proc, ft_rmv_squotes);
-    print_list(proc->lst);
 }
