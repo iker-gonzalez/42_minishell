@@ -10,6 +10,7 @@
 typedef struct s_node
 {
 	char			*content;
+	char			*exp_content;
 	int				single_quoted;
 	int				double_quoted;
 	int				pipe;
@@ -19,9 +20,10 @@ typedef struct s_node
 	int				red_in_append;
 	int				red_out;
 	int				red_out_del;
+	int				test;
 	struct s_node	*previous;
 	struct s_node	*next;
-} 					t_node;
+}					t_node;
 
 typedef struct s_proc
 {
@@ -53,6 +55,7 @@ int    	ft_findchar(t_node *node, char c);
 void    ft_parse_pipe(t_proc *proc);
 void    ft_parse_red_out(t_proc *proc);
 void    ft_parse_red_in(t_proc *proc);
-
+void	ft_lstiter(t_proc *proc, void (*f)(t_node *));
+void	ft_rmv_squotes(t_node *node);
 
 #endif
