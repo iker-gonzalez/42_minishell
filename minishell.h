@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
+/*   Updated: 2022/02/24 14:03:59 by ikgonzal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -10,6 +22,8 @@
 typedef struct s_node
 {
 	char			*content;
+	char			*exp_content;
+	int				is_empty;
 	int				single_quoted;
 	int				double_quoted;
 	int				pipe;
@@ -21,7 +35,7 @@ typedef struct s_node
 	int				red_out_del;
 	struct s_node	*previous;
 	struct s_node	*next;
-} 					t_node;
+}					t_node;
 
 typedef struct s_proc
 {
@@ -29,7 +43,8 @@ typedef struct s_proc
 	char	**paths;
 	char	*prompt;
 	char	*line_read;
-	int		cmd_count;
+	char	**line_expanded;
+	int		node_count;
 	//int	cmd_found;
 	int		squote_count;
 	int		dquote_count;
@@ -53,6 +68,12 @@ int    	ft_findchar(t_node *node, char c);
 void    ft_parse_pipe(t_proc *proc);
 void    ft_parse_red_out(t_proc *proc);
 void    ft_parse_red_in(t_proc *proc);
-
+void	ft_lstiter(t_proc *proc, void (*f)(t_node *));
+void	ft_rmv_squotes(t_node *node);
+void	ft_transform_input(t_proc *proc);
+void	ft_test(t_proc *proc);
+void	ft_print_line(char **line);
+void	ft_rmv_dollar(t_node *node);
+int		ft_count_char(t_node *node, char c);
 
 #endif

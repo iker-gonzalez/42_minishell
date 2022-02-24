@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_transform2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/24 13:31:07 by ikgonzal         ###   ########.fr       */
+/*   Created: 2022/02/24 13:37:59 by ikgonzal          #+#    #+#             */
+/*   Updated: 2022/02/24 14:02:05 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_loop(t_proc *proc)
+void	ft_rmv_dollar(t_node *node)
 {
+	int	i;
+	int	k;
 
-	while (1)
+	if ((ft_count_char(node, 36)) == 1)
 	{
-		ft_read_input(proc);
-		ft_parse_input(proc);
-		ft_transform_input(proc);
+		node->exp_content = malloc(sizeof(char) * ft_strlen(node->content));
+		i = 0;
+		k = 0;
+		while (node->content[i++] != 36)
+			node->exp_content[i] = node->content[i];
+		if(!node->single_quoted)
+		{
+			i++;
+			node->exp_content[i] = node->content[i];
+		}
 	}
-	return(0);
-}
-
-int main (void)
-{
-	t_proc proc;
-
-	ft_memset(&proc, 0, sizeof(t_proc));
-	set_up_shell(&proc);
-	ft_loop(&proc);
-	return(0);
 }

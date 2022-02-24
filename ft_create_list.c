@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_create_list.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
+/*   Updated: 2022/02/24 13:31:49 by ikgonzal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #include <string.h>
 
@@ -6,6 +18,8 @@ void print_list (t_node **lst)
 	while (*lst)
 	{
 		printf("content: %s\n", (*lst)->content);
+		printf("exp_content: %s\n", (*lst)->exp_content);
+		printf("is_empty: %d\n", (*lst)->is_empty);
 		printf("single_quoted: %d\n", (*lst)->single_quoted);
 		printf("double_quoted: %d\n", (*lst)->double_quoted);
 		printf("pipe: %d\n", (*lst)->pipe);
@@ -30,8 +44,8 @@ void ft_gen_lst(t_proc *proc)
 	i = 0;
 	while (proc->tokens[i])
 		i++;
-	proc->cmd_count = i;
-	proc->lst = malloc(sizeof(t_node) * proc->cmd_count);
+	proc->node_count = i;
+	proc->lst = malloc(sizeof(t_node) * proc->node_count);
 	ft_memset((proc->lst), 0, sizeof(t_node *));
 	i = 0;
 	while (proc->tokens[i])
