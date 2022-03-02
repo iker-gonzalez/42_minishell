@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:44:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/23 13:41:06 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:15:21 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,52 @@ void    ft_parse_red_out(t_proc *proc)
 		(*proc->lst) = (*proc->lst)->next;
 	}
 	(*proc->lst) = proc->head;
+}
+
+int ft_quotes_together(t_node *node)
+{
+
+    int i;
+    int ret;
+
+    i = 0;
+    ret = 0;
+    while (node->content[i])
+    {   
+        if (node->content[i] == 34 && node->content[i + 1] == 39)
+            ret = 1;
+        else if (node->content[i] == 39 && node->content[i + 1] == 34)
+            ret = 1;
+        i++;
+    }
+    return (ret);
+}
+
+void    ft_parse_tquotes(t_proc *proc)
+{
+    int i;
+    int lock;
+
+    lock = 0;
+    while (*proc->lst)
+    {
+        i = 0;
+        if (ft_quotes_together((*proc->lst)))
+        {
+            (*proc->lst)->triple_quoted = 1;
+            if (lock == 0 && (*proc->lst)->next)
+                (*proc->lst) = (*proc->lst)->next;
+            lock = 1;
+            while((!ft_quotes_together((*proc->lst)) && (*proc->lst)->next))
+            {
+                (*proc->lst)->triple_quoted = 1;
+                (*proc->lst) = (*proc->lst)->next;
+            }
+            lock = 0;
+            if (ft_quotes_together((*proc->lst)))
+                (*proc->lst)->triple_quoted = 1;
+        }
+        (*proc->lst) = (*proc->lst)->next;
+    }
+    (*proc->lst) = proc->head;
 }

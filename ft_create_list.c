@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/24 13:31:49 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:18:13 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void print_list (t_node **lst)
 		printf("is_empty: %d\n", (*lst)->is_empty);
 		printf("single_quoted: %d\n", (*lst)->single_quoted);
 		printf("double_quoted: %d\n", (*lst)->double_quoted);
+		printf("triple_quoted: %d\n", (*lst)->triple_quoted);
 		printf("pipe: %d\n", (*lst)->pipe);
 		printf("dollar: %d\n", (*lst)->dollar);
 		printf("dollar_exit: %d\n", (*lst)->dollar_exit);

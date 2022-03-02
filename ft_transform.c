@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/24 14:10:46 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:13:22 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	ft_rmv_squotes(t_node *node)
 			i++;
 		}
 		else 
-			node->exp_content[k++] = node->content[i];
-		i++;
+			node->exp_content[k++] = node->content[i++];
 	}
 	node->exp_content[k] = '\0';
 	node->content = node->exp_content;

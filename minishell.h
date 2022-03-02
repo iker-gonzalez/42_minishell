@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/24 14:03:59 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:16:51 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_node
 	int				is_empty;
 	int				single_quoted;
 	int				double_quoted;
+	int				triple_quoted;
 	int				pipe;
 	int				dollar;
 	int				dollar_exit;
@@ -75,5 +76,8 @@ void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
 void	ft_rmv_dollar(t_node *node);
 int		ft_count_char(t_node *node, char c);
+int 	ft_quotes_together(t_node *node);
+void    ft_parse_tquotes(t_proc *proc);
+
 
 #endif
