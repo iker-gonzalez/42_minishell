@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 19:26:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/10 16:49:59 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/03 08:40:06 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (i <= (int)ft_strlen(s) /*&& ft_div_counter(s, c)*/)
+	while (i <= (int)ft_strlen(s) && ft_div_counter(s, c))
 	{
 		if (ft_check_lim((char *)s, c, i))
 		{
