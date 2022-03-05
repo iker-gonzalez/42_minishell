@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:39 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/03 09:26:27 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:07:31 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void    ft_parse_input(t_proc *proc)
     ft_gen_lst(proc);
     ft_parse_squotes(proc, 39);
     ft_parse_dquotes(proc, 34);
-    ft_parse_tquotes(proc);
+	ft_parse_tquotes(proc);
     ft_parse_dollar(proc);
     ft_parse_pipe(proc);
     ft_parse_red_in(proc);

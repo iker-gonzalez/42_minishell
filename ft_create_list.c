@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/02 19:18:13 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/05 11:58:36 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void print_list (t_node **lst)
 	{
 		printf("content: %s\n", (*lst)->content);
 		printf("exp_content: %s\n", (*lst)->exp_content);
+		printf("exp_len: %d\n", (*lst)->exp_len);
 		printf("is_empty: %d\n", (*lst)->is_empty);
 		printf("single_quoted: %d\n", (*lst)->single_quoted);
 		printf("double_quoted: %d\n", (*lst)->double_quoted);

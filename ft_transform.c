@@ -6,109 +6,72 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/04 14:08:33 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:03:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		ft_count_char(t_node *node, char c)
+void	ft_set_switch (t_proc *proc, char c)
 {
-	int	i;
-	int	k;
+	if (c == 39 && (!proc->single_quote))
+		proc->single_quote = 1;
+	else if (c == 39 && proc->single_quote)
+		proc->single_quote = 0;
+	else if (c == 34 && (!proc->double_quote))
+		proc->double_quote = 1;
+	else if (c == 34 && proc->double_quote)
+		proc->double_quote = 0;
+}
+
+int	ft_quote_switch(t_proc *proc, int i)
+{
+	while ((*proc->lst)->content[i])
+	{
+		ft_set_switch(proc, (*proc->lst)->content[i]);
+		if ((*proc->lst)->content[i] == 39 && (!(proc->double_quote)))
+			i++;
+		else if ((*proc->lst)->content[i] == 34 && (!(proc->single_quote)))
+			i++;
+		else
+			(*proc->lst)->exp_content[(*proc->lst)->exp_len++] = (*proc->lst)->content[i++];
+	}
+	return (i);
+}
+
+void    ft_rmv_quotes(t_proc *proc)
+{
+    int i;
+	int k;
 
 	i = 0;
 	k = 0;
-	while (node->content[i])
-	{
-		if (c == 39)
-		{
-			if(node->content[i] == 39 && !node->double_quoted)
-				k++;
-		}
-		else if (c == 34)
-		{
-			if(node->content[i] == 34 && !node->single_quoted)
-				k++;
-		}
-		i++;
-	}
-	return (k);
+    (*proc->lst)->exp_content = malloc(sizeof(char) * ft_strlen((*proc->lst)->content) + 1);
+	while ((*proc->lst)->content[i])
+    {
+		if ((*proc->lst)->content[i] == 34 || (*proc->lst)->content[i] == 39)
+			i = ft_quote_switch(proc, i);
+		else
+			(*proc->lst)->exp_content[(*proc->lst)->exp_len++] = (*proc->lst)->content[i++];
+    }
+	(*proc->lst)->exp_content[(*proc->lst)->exp_len] = '\0';
 }
 
-void	ft_rmv_squotes(t_node *node)
-{
-	int	i;
-	int	k;
-
-	if (node->single_quoted && !node->triple_quoted)
-	{
-		k = ft_count_char(node, 39);
-		node->exp_content = malloc(sizeof(char) * ft_strlen(node->content) - k + 1);
-		i = 0;
-		k = 0;
-		while (node->content[i] && !node->triple_quoted)
-		{
-			if(node->content[i] == 39 && !node->double_quoted)
-			{
-				if(ft_strlen(node->content) == 1)
-					node->is_empty = 1;
-				i++;
-			}
-			else 
-				node->exp_content[k++] = node->content[i++];
-		}
-		node->exp_content[k] = '\0';
-		node->content = node->exp_content;
-	}
-}
-
-void	ft_rmv_dquotes(t_node *node)
-{
-	int	i;
-	int	k;
-
-	if (node->double_quoted && !node->triple_quoted)
-	{
-		k = ft_count_char(node, 34);
-		node->exp_content = malloc(sizeof(char) * ft_strlen(node->content) - k + 1);
-		i = 0;
-		k = 0;
-		while (node->content[i])
-		{
-			if(node->content[i] == 34 && !node->single_quoted)
-			{
-				if(ft_strlen(node->content) == 1)
-					node->is_empty = 1;
-				i++;
-			}
-			else
-				node->exp_content[k++] = node->content[i++];
-		}
-		node->exp_content[k] = '\0';
-		node->content = node->exp_content;
-	}
-}
-
-void	ft_lstiter(t_proc *proc, void (*f)(t_node *))
+void	ft_lstiter(t_proc *proc, void (*f)(t_proc *))
 {
 	if (!f)
 		return ;
 	while ((*proc->lst))
 	{
-		f((*proc->lst));
+		f((proc));
 		(*proc->lst) = (*proc->lst)->next;
 	}
-	(*proc->lst) = proc->head; 
+	(*proc->lst) = proc->head;
 }
 
 void	ft_transform_input(t_proc *proc)
 {
-    ft_lstiter(proc, ft_rmv_squotes);
-    ft_lstiter(proc, ft_rmv_dquotes);
-	ft_lstiter(proc, ft_rmv_snode_tquotes);
+	ft_lstiter(proc, ft_rmv_quotes);
 	//ft_lstiter(proc, ft_rmv_dollar);
-	//ft_test(proc);
     print_list(proc->lst);
-	//ft_print_line(proc->line_expanded);
 }
