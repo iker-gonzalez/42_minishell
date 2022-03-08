@@ -34,4 +34,16 @@ void	ft_read_input(t_proc *proc)
 	proc->line_read = readline(proc->prompt);
 	add_history(proc->line_read);
 	count_quotations(proc);
-}	
+}
+
+void	ft_lstiter(t_proc *proc, void (*f)(t_proc *))
+{
+	if (!f)
+		return ;
+	while ((*proc->lst))
+	{
+		f((proc));
+		(*proc->lst) = (*proc->lst)->next;
+	}
+	(*proc->lst) = proc->head;
+}

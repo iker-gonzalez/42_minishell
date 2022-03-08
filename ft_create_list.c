@@ -13,17 +13,17 @@
 #include "minishell.h"
 #include <string.h>
 
-void print_list (t_node **lst)
+void print_list (t_proc *proc, t_node **lst)
 {
+	proc = NULL;
 	while (*lst)
 	{
-		printf("content: %s\n", (*lst)->content);
+		printf("\ncontent: %s\n", (*lst)->content);
 		printf("exp_content: %s\n", (*lst)->exp_content);
 		printf("exp_len: %d\n", (*lst)->exp_len);
 		printf("is_empty: %d\n", (*lst)->is_empty);
 		printf("single_quoted: %d\n", (*lst)->single_quoted);
 		printf("double_quoted: %d\n", (*lst)->double_quoted);
-		printf("triple_quoted: %d\n", (*lst)->triple_quoted);
 		printf("pipe: %d\n", (*lst)->pipe);
 		printf("dollar: %d\n", (*lst)->dollar);
 		printf("dollar_exit: %d\n", (*lst)->dollar_exit);

@@ -11,24 +11,25 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-void	ft_rmv_dollar(t_node *node)
-{
-	int	i;
-	int	k;
 
-	if ((ft_count_char(node, 36)) == 1)
+
+void	ft_trm_dollar(t_node *node, int *i)
+{
+	char *str;
+	char *env;
+	int k;
+
+	k = 0;
+	str = malloc(sizeof(char) * ft_strlen(node->content) + 1);
+	while (node->content[*i])
 	{
-		node->exp_content = malloc(sizeof(char) * ft_strlen(node->content));
-		i = 0;
-		k = 0;
-		while (node->content[i++] != 36)
-			node->exp_content[i] = node->content[i];
-		if(!node->single_quoted)
-		{
-			i++;
-			node->exp_content[i] = node->content[i];
-		}
+		if (node->content[*i] != 20 && node->content[*i] != 36 
+			&& node->content[*i] != 45 && node->content[*i] != 34 && node->content[*i] != 39)
+			str[k++] = node->content[*i];
+		*i += 1;
 	}
+	str[k] = '\0';
+	printf("str: %s\n", str);
+	env = getenv(str);
+	printf("%s", env);
 }
-*/

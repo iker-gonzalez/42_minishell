@@ -65,15 +65,13 @@ void	ft_execute_command(t_proc *proc, char *route, int processid);
 
 ///// Read input ///////
 void	ft_read_input(t_proc *proc);
+void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 
 ///// Create linked list ////
 t_node	*ft_new_node(char *content);
 void	ft_add_node_back(t_node **node, t_node *new);
 void	ft_gen_lst(t_proc *proc);
-void	print_list (t_node **lst);
-
-///// Iterate nodes ///////
-void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
+void print_list (t_proc *proc, t_node **lst);
 
 ///// Parse input /////
 void	ft_parse_input(t_proc *proc);
@@ -86,7 +84,8 @@ void    ft_parse_red_in(t_proc *proc);
 
 ////// Transform input /////
 void	ft_transform_input(t_proc *proc);
-void    ft_rmv_quotes(t_proc *proc);
+void	ft_trm_quotes(t_proc *proc);
+void	ft_trm_dollar(t_node *node, int *i);
 
 
 void	ft_test(t_proc *proc);
