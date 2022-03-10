@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/10 09:49:16 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:23:45 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,14 @@ void	ft_expand_dollar(t_node *node, int *i)
 
 	k = 0;
 	str = malloc(sizeof(char) * ft_strlen(node->content) + 1);
-	if (!(ft_isalpha(node->exp_content[*i])))
-		node->exp_content[0] = '\0';
+	node->exp_content[node->exp_len] = '\0';
 	while (ft_isalpha(node->content[*i]))
 	{
 		str[k++] = node->content[*i];
 		*i += 1;
 	}
 	str[k] = '\0';
-	printf("str: %s\n", str);
 	env = getenv(str);
-	printf("%s\n", env);
 	if (env && node->exp_content)
 		node->exp_content = ft_strjoin(node->exp_content, env);
 	node->exp_len = ft_strlen(node->exp_content);
@@ -50,15 +47,19 @@ void	ft_set_switch (t_proc *proc, char c)
 		proc->double_quote = 0;
 }
 
-void	ft_check_metha(t_proc *proc, char c, int *i)
+void	ft_check_metha(t_proc *proc, char c)
 {
-	if (c == 36 && (!proc->single_quote))
-	{
-		*i += 1;
-		ft_expand_dollar((*proc->lst), i);
-	}
-}
+	static int k;
 
+	if (c == 124)
+	{
+		if ((!proc->single_quote) && (!proc->double_quote))
+			proc->pipe_exp[k++] = 1;
+		else
+			proc->pipe_exp[k++] = 2;
+	}
+
+}
 
 void	ft_trm_quotes(t_proc *proc)
 {
@@ -69,8 +70,12 @@ void	ft_trm_quotes(t_proc *proc)
 	while ((*proc->lst)->content[i])
 	{
 		ft_set_switch(proc, (*proc->lst)->content[i]);
-		if ((*proc->lst)->content[i] == 36)
-			ft_check_metha(proc, (*proc->lst)->content[i], &i);
+		ft_check_metha(proc, (*proc->lst)->content[i]);
+		if ((*proc->lst)->content[i] == 36 && ((!proc->single_quote) || proc->quote_scope == 4))
+		{
+			i += 1;
+			ft_expand_dollar((*proc->lst), &i);
+		}
 		else if ((*proc->lst)->content[i] == 39 && (!(proc->double_quote)))
 			i++;
 		else if ((*proc->lst)->content[i] == 39 && proc->quote_scope == 2)
@@ -89,6 +94,6 @@ void	ft_transform_input(t_proc *proc)
 {
 	ft_determine_scope(proc);
 	ft_lstiter(proc, ft_trm_quotes);
-	//ft_lstiter(proc, ft_rmv_dollar);
-    print_list(proc->lst);
+	ft_print_pipe_exp(proc);
+    ft_lstiter(proc, print_list);
 }

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/10 07:51:59 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:16:33 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_proc
 	char	**line_expanded;
 	int		node_count;
 	//int	cmd_found;
+	int		pipe_count;
+	int		*pipe_exp;
 	int		squote_count;
 	int		dquote_count;
 	int		quote_scope;
@@ -70,7 +72,7 @@ void	ft_read_input(t_proc *proc);
 t_node	*ft_new_node(char *content);
 void	ft_add_node_back(t_node **node, t_node *new);
 void	ft_gen_lst(t_proc *proc);
-void	print_list (t_node **lst);
+void print_list (t_proc *proc);
 
 ///// Iterate nodes ///////
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
@@ -86,7 +88,7 @@ void    ft_parse_red_in(t_proc *proc);
 void	ft_determine_scope(t_proc *proc);
 int		ft_determine(char *line_read, int i);
 
-
+void check_leaks();
 ////// Transform input /////
 void	ft_transform_input(t_proc *proc);
 void	ft_trm_quotes(t_proc *proc);
@@ -94,6 +96,12 @@ void	ft_trm_quotes(t_proc *proc);
 
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
+
+//////// Free ////////////////
+void	ft_free_nodes(t_proc *proc);
+
+
+void	ft_print_pipe_exp(t_proc *proc);
 
 
 #endif

@@ -3,39 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/05 11:58:36 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:02:57 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <string.h>
 
-void print_list (t_node **lst)
+void print_list (t_proc *proc)
 {
-	while (*lst)
-	{
-		printf("content: %s\n", (*lst)->content);
-		printf("exp_content: %s\n", (*lst)->exp_content);
-		printf("exp_len: %d\n", (*lst)->exp_len);
-		printf("is_empty: %d\n", (*lst)->is_empty);
-		printf("single_quoted: %d\n", (*lst)->single_quoted);
-		printf("double_quoted: %d\n", (*lst)->double_quoted);
-		printf("triple_quoted: %d\n", (*lst)->triple_quoted);
-		printf("pipe: %d\n", (*lst)->pipe);
-		printf("dollar: %d\n", (*lst)->dollar);
-		printf("dollar_exit: %d\n", (*lst)->dollar_exit);
-		printf("red_in: %d\n", (*lst)->red_in);
-		printf("red_in_append: %d\n", (*lst)->red_in_append);
-		printf("red_out: %d\n", (*lst)->red_out);
-		printf("red_out_del: %d\n", (*lst)->red_out_del);
-		printf("previous: %p\n", (*lst)->previous);
-		printf("next: %p\n", (*lst)->next);
+		printf("content: %s\n", (*proc->lst)->content);
+		printf("exp_content: %s\n", (*proc->lst)->exp_content);
+		printf("exp_len: %d\n", (*proc->lst)->exp_len);
+		printf("is_empty: %d\n", (*proc->lst)->is_empty);
+		printf("single_quoted: %d\n", (*proc->lst)->single_quoted);
+		printf("double_quoted: %d\n", (*proc->lst)->double_quoted);
+		printf("triple_quoted: %d\n", (*proc->lst)->triple_quoted);
+		printf("pipe: %d\n", (*proc->lst)->pipe);
+		printf("dollar: %d\n", (*proc->lst)->dollar);
+		printf("dollar_exit: %d\n", (*proc->lst)->dollar_exit);
+		printf("red_in: %d\n", (*proc->lst)->red_in);
+		printf("red_in_append: %d\n", (*proc->lst)->red_in_append);
+		printf("red_out: %d\n", (*proc->lst)->red_out);
+		printf("red_out_del: %d\n", (*proc->lst)->red_out_del);
+		printf("previous: %p\n", (*proc->lst)->previous);
+		printf("next: %p\n", (*proc->lst)->next);
 		printf("==============================\n");
-		*lst = (*lst)->next;
+}
+
+void	ft_print_pipe_exp(t_proc *proc)
+{
+	int i;
+
+	i = 0;
+	printf("PIPE_EXP:");
+	while (proc->pipe_exp[i])
+	{
+		printf(" %d", proc->pipe_exp[i]);
+		i++;
 	}
+	printf("\n");
 }
 
 void ft_gen_lst(t_proc *proc)

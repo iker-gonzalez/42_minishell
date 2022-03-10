@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:39 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/05 14:07:31 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:24:41 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,22 @@ void    ft_parse_squotes(t_proc *proc, char c)
     (*proc->lst) = proc->head;
 }
 
+void    ft_count_pipes(t_proc *proc)
+{
+    int i;
+    
+    i = 0;
+    proc->pipe_count = 0;
+    while (proc->line_read[i])
+    {
+        if (proc->line_read[i] == 124)
+            proc->pipe_count++;
+        i++;
+    }
+    printf("pipe_count: %d\n", proc->pipe_count);
+    proc->pipe_exp = malloc(sizeof(int) * proc->pipe_count);
+    ft_bzero(proc->pipe_exp, proc->pipe_count);
+}
 
 void    ft_parse_input(t_proc *proc)
 {
@@ -119,4 +135,5 @@ void    ft_parse_input(t_proc *proc)
     ft_parse_pipe(proc);
     ft_parse_red_in(proc);
     ft_parse_red_out(proc);
+    ft_count_pipes(proc);
 }
