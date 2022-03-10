@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/05 14:07:18 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/10 07:51:59 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,13 @@ int    	ft_findchar(t_node *node, char c);
 void    ft_parse_pipe(t_proc *proc);
 void    ft_parse_red_out(t_proc *proc);
 void    ft_parse_red_in(t_proc *proc);
+void	ft_determine_scope(t_proc *proc);
+int		ft_determine(char *line_read, int i);
+
 
 ////// Transform input /////
 void	ft_transform_input(t_proc *proc);
-void    ft_rmv_quotes(t_proc *proc);
+void	ft_trm_quotes(t_proc *proc);
 
 
 void	ft_test(t_proc *proc);
