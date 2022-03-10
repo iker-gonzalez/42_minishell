@@ -6,103 +6,91 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/24 14:10:46 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/10 09:49:16 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <string.h>
 
-int		ft_count_char(t_node *node, char c)
+void	ft_expand_dollar(t_node *node, int *i)
 {
-	int	i;
-	int	k;
+	char *str;
+	char *env;
+	int k;
 
-	i = 0;
 	k = 0;
-	while (node->content[i])
+	str = malloc(sizeof(char) * ft_strlen(node->content) + 1);
+	if (!(ft_isalpha(node->exp_content[*i])))
+		node->exp_content[0] = '\0';
+	else
+		node->exp_content[node->exp_len] = '\0';
+	while (ft_isalpha(node->content[*i]))
 	{
-		if (c == 39)
-		{
-			if(node->content[i] == 39 && !node->double_quoted)
-				k++;
-		}
-		else if (c == 34)
-		{
-			if(node->content[i] == 34 && !node->single_quoted)
-				k++;
-		}
-		i++;
+		str[k++] = node->content[*i];
+		*i += 1;
 	}
-	return (k);
+	str[k] = '\0';
+	printf("str: %s\n", str);
+	env = getenv(str);
+	printf("%s\n", env);
+	if (env && node->exp_content)
+		node->exp_content = ft_strjoin(node->exp_content, env);
+	node->exp_len = ft_strlen(node->exp_content);
+	free (str);
 }
 
-void	ft_rmv_squotes(t_node *node)
+void	ft_set_switch (t_proc *proc, char c)
 {
-	int	i;
-	int	k;
-
-	k = ft_count_char(node, 39);
-	node->exp_content = malloc(sizeof(char) * ft_strlen(node->content) - k + 1);
-	i = 0;
-	k = 0;
-	while (node->content[i])
-	{
-		if(node->content[i] == 39 && !node->double_quoted)
-		{
-			if(ft_strlen(node->content) == 1)
-				node->is_empty = 1;
-			i++;
-		}
-		else 
-			node->exp_content[k++] = node->content[i];
-		i++;
-	}
-	node->exp_content[k] = '\0';
-	node->content = node->exp_content;
+	if (c == 39 && (!proc->single_quote))
+		proc->single_quote = 1;
+	else if (c == 39 && proc->single_quote)
+		proc->single_quote = 0;
+	else if (c == 34 && (!proc->double_quote))
+		proc->double_quote = 1;
+	else if (c == 34 && proc->double_quote)
+		proc->double_quote = 0;
 }
 
-void	ft_rmv_dquotes(t_node *node)
+void	ft_check_metha(t_proc *proc, char c, int *i)
 {
-	int	i;
-	int	k;
-
-	k = ft_count_char(node, 34);
-	node->exp_content = malloc(sizeof(char) * ft_strlen(node->content) - k + 1);
-	i = 0;
-	k = 0;
-	while (node->content[i])
+	if (c == 36 && (!proc->single_quote))
 	{
-		if(node->content[i] == 34 && !node->single_quoted)
-		{
-			if(ft_strlen(node->content) == 1)
-				node->is_empty = 1;
+		*i += 1;
+		ft_expand_dollar((*proc->lst), i);
+	}
+}
+
+
+void	ft_trm_quotes(t_proc *proc)
+{
+	int i;
+
+	(*proc->lst)->exp_content = malloc(sizeof(char) * ft_strlen((*proc->lst)->content) + 1);
+	i = 0;
+	while ((*proc->lst)->content[i])
+	{
+		ft_set_switch(proc, (*proc->lst)->content[i]);
+		if ((*proc->lst)->content[i] == 36)
+			ft_check_metha(proc, (*proc->lst)->content[i], &i);
+		else if ((*proc->lst)->content[i] == 39 && (!(proc->double_quote)))
 			i++;
-		}
+		else if ((*proc->lst)->content[i] == 39 && proc->quote_scope == 2)
+			i++;
+		else if ((*proc->lst)->content[i] == 34 && (!(proc->single_quote)))
+			i++;
+		else if ((*proc->lst)->content[i] == 34 && proc->quote_scope == 4)
+			i++;
 		else
-			node->exp_content[k++] = node->content[i++];
+			(*proc->lst)->exp_content[(*proc->lst)->exp_len++] = (*proc->lst)->content[i++];
 	}
-	node->exp_content[k] = '\0';
-	node->content = node->exp_content;
-}
-
-void	ft_lstiter(t_proc *proc, void (*f)(t_node *))
-{
-	if (!f)
-		return ;
-	while ((*proc->lst))
-	{
-		f((*proc->lst));
-		(*proc->lst) = (*proc->lst)->next;
-	}
-	(*proc->lst) = proc->head; 
+	(*proc->lst)->exp_content[(*proc->lst)->exp_len] = '\0';
 }
 
 void	ft_transform_input(t_proc *proc)
 {
-    ft_lstiter(proc, ft_rmv_squotes);
-    ft_lstiter(proc, ft_rmv_dquotes);
-	ft_lstiter(proc, ft_rmv_dollar);
-	ft_test(proc);
+	ft_determine_scope(proc);
+	ft_lstiter(proc, ft_trm_quotes);
+	//ft_lstiter(proc, ft_rmv_dollar);
     print_list(proc->lst);
-	ft_print_line(proc->line_expanded);
 }

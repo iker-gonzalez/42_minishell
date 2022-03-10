@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/24 14:03:59 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/10 07:51:59 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ typedef struct s_node
 {
 	char			*content;
 	char			*exp_content;
+	int				exp_len;
 	int				is_empty;
 	int				single_quoted;
 	int				double_quoted;
+	int				triple_quoted;
 	int				pipe;
 	int				dollar;
 	int				dollar_exit;
@@ -48,32 +50,54 @@ typedef struct s_proc
 	//int	cmd_found;
 	int		squote_count;
 	int		dquote_count;
+	int		quote_scope;
+	int		single_quote;
+	int		double_quote;
 	t_node	*head;
 	t_node	**lst;
 }				t_proc;
 
+//// Set up ////
 void	set_up_shell(t_proc *proc);
 void	ft_format_paths(t_proc *proc);
 void	ft_cmd_exist(t_proc *proc, char *token, int processid);
 void	ft_execute_command(t_proc *proc, char *route, int processid);
-void	ft_tokenizer(char *process, t_proc *proc, int processid);
+
+///// Read input ///////
 void	ft_read_input(t_proc *proc);
-void	ft_add_node_back(t_node **node, t_node *new);
+
+///// Create linked list ////
 t_node	*ft_new_node(char *content);
-void	print_list (t_node **lst);
-void	ft_parse_input(t_proc *proc);
+void	ft_add_node_back(t_node **node, t_node *new);
 void	ft_gen_lst(t_proc *proc);
+void	print_list (t_node **lst);
+
+///// Iterate nodes ///////
+void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
+
+///// Parse input /////
+void	ft_parse_input(t_proc *proc);
+void    ft_parse_tquotes(t_proc *proc);
 void	count_quotations(t_proc *proc);
 int    	ft_findchar(t_node *node, char c);
 void    ft_parse_pipe(t_proc *proc);
 void    ft_parse_red_out(t_proc *proc);
 void    ft_parse_red_in(t_proc *proc);
-void	ft_lstiter(t_proc *proc, void (*f)(t_node *));
-void	ft_rmv_squotes(t_node *node);
+void	ft_determine_scope(t_proc *proc);
+int		ft_determine(char *line_read, int i);
+
+
+////// Transform input /////
 void	ft_transform_input(t_proc *proc);
+void	ft_trm_quotes(t_proc *proc);
+
+
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
-void	ft_rmv_dollar(t_node *node);
-int		ft_count_char(t_node *node, char c);
+
+
+/////  Free All Data ///////
+void	ft_free_proc(t_proc *proc);
+void	ft_free_double_char(char **str);
 
 #endif

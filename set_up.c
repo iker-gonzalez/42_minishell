@@ -23,7 +23,7 @@ void	ft_format_paths(t_proc *proc)
 	i = 0;
 	while (paths[i])
 		i++;
-	proc->paths = malloc(sizeof (char *) * i);
+	proc->paths = malloc(sizeof (char *) * (i + 1));
 	i = 0;
 	while (paths[i])
 	{
@@ -33,6 +33,7 @@ void	ft_format_paths(t_proc *proc)
 		proc->paths[i] = paths[i]; 
 		i++;
 	}
+	proc->paths[i] = NULL;
 }
 
 void	set_up_shell(t_proc *proc)
