@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/10 12:50:06 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/11 22:35:33 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	ft_loop(t_proc *proc)
 		if (!ft_strncmp(proc->line_read, "exit", 4))
 			exit (0);
 		ft_parse_input(proc);
-		ft_transform_input(proc);
-		ft_lstiter(proc, ft_free_nodes);
+		ft_expand_input(proc);
 	}
 	return(0);
 }

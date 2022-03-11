@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/10 14:02:57 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:05:57 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void print_list (t_proc *proc)
 		printf("content: %s\n", (*proc->lst)->content);
 		printf("exp_content: %s\n", (*proc->lst)->exp_content);
 		printf("exp_len: %d\n", (*proc->lst)->exp_len);
-		printf("is_empty: %d\n", (*proc->lst)->is_empty);
-		printf("single_quoted: %d\n", (*proc->lst)->single_quoted);
+		//printf("is_empty: %d\n", (*proc->lst)->is_empty);
+		/*printf("single_quoted: %d\n", (*proc->lst)->single_quoted);
 		printf("double_quoted: %d\n", (*proc->lst)->double_quoted);
 		printf("triple_quoted: %d\n", (*proc->lst)->triple_quoted);
 		printf("pipe: %d\n", (*proc->lst)->pipe);
@@ -28,24 +28,11 @@ void print_list (t_proc *proc)
 		printf("red_in: %d\n", (*proc->lst)->red_in);
 		printf("red_in_append: %d\n", (*proc->lst)->red_in_append);
 		printf("red_out: %d\n", (*proc->lst)->red_out);
-		printf("red_out_del: %d\n", (*proc->lst)->red_out_del);
-		printf("previous: %p\n", (*proc->lst)->previous);
-		printf("next: %p\n", (*proc->lst)->next);
+		printf("red_out_del: %d\n", (*proc->lst)->red_out_del);*/
+		//printf("previous: %p\n", (*proc->lst)->previous);
+		//printf("next: %p\n", (*proc->lst)->next);
+		proc = NULL;
 		printf("==============================\n");
-}
-
-void	ft_print_pipe_exp(t_proc *proc)
-{
-	int i;
-
-	i = 0;
-	printf("PIPE_EXP:");
-	while (proc->pipe_exp[i])
-	{
-		printf(" %d", proc->pipe_exp[i]);
-		i++;
-	}
-	printf("\n");
 }
 
 void ft_gen_lst(t_proc *proc)
