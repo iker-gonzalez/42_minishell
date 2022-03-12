@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:39 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 14:13:46 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/12 17:29:32 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,27 @@ void    ft_parse_red_out(t_proc *proc)
     printf("red_out_del_count: %d\n", proc->red_out_del_count);
 }
 
+void    ft_parse_spaces(t_proc *proc)
+{
+    int i;
+
+    i = 0;
+    proc->space_count = 0;
+    proc->space_arr_len = 0;
+    while(proc->line_read[i])
+    {
+        if (proc->line_read[i] == 32)
+            proc->space_count++;
+        i++;
+    }
+    if (proc->space_count)
+        proc->space_arr = malloc (sizeof(int) * proc->space_count);
+}
+
 void    ft_parse_input(t_proc *proc)
 {
     ft_parse_pipes(proc);
     ft_parse_red_in(proc);
     ft_parse_red_out(proc);
+    ft_parse_spaces(proc);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 14:18:57 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/12 18:52:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,19 @@ typedef struct s_proc
 	char	**tokens;
 	char	**paths;
 	char	*prompt;
+	int		process_count;
 	//////// line /////////
 	char	*line_read;
 	char	*line_expanded;
 	int		line_exp_len;
+	////// quotes ///////////
+	int		quote_scope;
+	int		single_quote;
+	int		double_quote;
+	////// spaces /////////
+	int		*space_arr;
+	int		space_arr_len;
+	int		space_count;
 	//////// pipes ////////
 	int		*pipe_arr;
 	int		pipe_arr_len;
@@ -56,10 +65,6 @@ typedef struct s_proc
 	int		*red_out_del_arr;
 	int		red_out_del_arr_len;
 	int		red_out_del_count;
-	////// quotes ///////////
-	int		quote_scope;
-	int		single_quote;
-	int		double_quote;
 	////// other ///////////
 	int		dollar;
 	int		lock;
@@ -101,7 +106,11 @@ void	ft_expand_dollar(t_proc *proc, int *i);
 void	ft_expand_pipe(t_proc *proc, char c);
 void	ft_expand_red_in(t_proc *proc, char c, int *i);
 void	ft_expand_red_out(t_proc *proc, char c, int *i);
+void	ft_expand_spaces(t_proc *proc, char c);
 
+////// Tokenizer ////////
+void	ft_tokenizer(t_proc *proc);
+void    ft_process_count(t_proc *proc);
 
 
 ///////// Test //////////////

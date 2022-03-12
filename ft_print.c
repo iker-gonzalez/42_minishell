@@ -48,4 +48,12 @@ void    ft_print_val(t_proc *proc)
 		i++;
 	}
 	printf("\n");
+	printf("EXP SPACES: ");
+	i = 0;
+	while (i < proc->space_count)
+	{
+		printf("%d", proc->space_arr[i]);
+		i++;
+	}
+	printf("\n");
 }

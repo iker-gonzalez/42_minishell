@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 14:18:43 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/12 17:46:30 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ void	ft_expand_line_read(t_proc *proc)
 	while (proc->line_read[i])
 	{
 		ft_set_quotes(proc, proc->line_read[i]);
+		ft_expand_spaces(proc, proc->line_read[i]);
+		ft_expand_pipe(proc, proc->line_read[i]);
 		ft_expand_red_in(proc, proc->line_read[i], &i);
 		ft_expand_red_out(proc, proc->line_read[i], &i);
-		ft_expand_pipe(proc, proc->line_read[i]);
 		if (proc->line_read[i] == 36 && ((!proc->single_quote) || proc->quote_scope == 4) && ++i)
 			ft_expand_dollar(proc, &i);
 		else
@@ -100,11 +101,14 @@ void	ft_expand_input(t_proc *proc)
 	proc->red_in_app_arr_len = 0;
 	proc->red_out_del_arr_len = 0;
 	proc->red_out_arr_len = 0;
+	proc->space_arr_len = 0;
 	ft_quote_pref_open(proc);
 	proc->lock = 0;
 	ft_expand_line_read(proc);
 	proc->lock = 1;
 	ft_expand_line_read(proc);
+	ft_tokenizer(proc);
 	ft_print_val(proc);
 	proc->line_exp_len = 0;
+	
 }
