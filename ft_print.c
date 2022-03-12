@@ -32,4 +32,20 @@ void    ft_print_val(t_proc *proc)
 		i++;
 	}
 	printf("\n");
+	printf("EXP RED_OUT: ");
+	i = 0;
+	while (i < proc->red_out_count)
+	{
+		printf("%d", proc->red_out_arr[i]);
+		i++;
+	}
+	printf("\n");
+	printf("EXP RED_OUT_DEL: ");
+	i = 0;
+	while (i < proc->red_out_del_count)
+	{
+		printf("%d", proc->red_out_del_arr[i]);
+		i++;
+	}
+	printf("\n");
 }

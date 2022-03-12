@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/11 17:05:57 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/12 13:44:23 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void print_list (t_proc *proc)
 		printf("exp_content: %s\n", (*proc->lst)->exp_content);
 		printf("exp_len: %d\n", (*proc->lst)->exp_len);
 		//printf("is_empty: %d\n", (*proc->lst)->is_empty);
-		/*printf("single_quoted: %d\n", (*proc->lst)->single_quoted);
+		printf("single_quoted: %d\n", (*proc->lst)->single_quoted);
 		printf("double_quoted: %d\n", (*proc->lst)->double_quoted);
 		printf("triple_quoted: %d\n", (*proc->lst)->triple_quoted);
 		printf("pipe: %d\n", (*proc->lst)->pipe);

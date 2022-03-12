@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 13:27:32 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:18:43 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,6 @@ void	ft_check_quotes (t_proc *proc, char c, int *i)
 	}
 }
 
-void	ft_close_arrays (t_proc *proc)
-{
-	if (proc->lock && proc->line_expanded)
-		proc->line_expanded[proc->line_exp_len] = '\0';
-	//if (proc->lock && proc->red_in_arr)
-	//	proc->red_in_arr[proc->red_in_arr_len] = '\0';
-	
-}
-
-
 void	ft_expand_line_read(t_proc *proc)
 {
 	int i;
@@ -92,13 +82,15 @@ void	ft_expand_line_read(t_proc *proc)
 	{
 		ft_set_quotes(proc, proc->line_read[i]);
 		ft_expand_red_in(proc, proc->line_read[i], &i);
+		ft_expand_red_out(proc, proc->line_read[i], &i);
 		ft_expand_pipe(proc, proc->line_read[i]);
 		if (proc->line_read[i] == 36 && ((!proc->single_quote) || proc->quote_scope == 4) && ++i)
 			ft_expand_dollar(proc, &i);
 		else
 			ft_check_quotes(proc, proc->line_read[i], &i);
 	}
-	ft_close_arrays(proc);
+	if (proc->lock && proc->line_expanded)
+		proc->line_expanded[proc->line_exp_len] = '\0';
 }
 
 void	ft_expand_input(t_proc *proc)
@@ -106,6 +98,8 @@ void	ft_expand_input(t_proc *proc)
 	proc->pipe_arr_len = 0;
 	proc->red_in_arr_len = 0;
 	proc->red_in_app_arr_len = 0;
+	proc->red_out_del_arr_len = 0;
+	proc->red_out_arr_len = 0;
 	ft_quote_pref_open(proc);
 	proc->lock = 0;
 	ft_expand_line_read(proc);

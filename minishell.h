@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 11:24:26 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:18:57 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ typedef struct s_proc
 	////// red out /////////
 	int		*red_out_arr;
 	int		red_out_arr_len;
+	int		red_out_count;
 	////// red out del ///////
 	int		*red_out_del_arr;
 	int		red_out_del_arr_len;
+	int		red_out_del_count;
 	////// quotes ///////////
 	int		quote_scope;
 	int		single_quote;
@@ -98,6 +100,8 @@ void	ft_expand_line_read(t_proc *proc);
 void	ft_expand_dollar(t_proc *proc, int *i);
 void	ft_expand_pipe(t_proc *proc, char c);
 void	ft_expand_red_in(t_proc *proc, char c, int *i);
+void	ft_expand_red_out(t_proc *proc, char c, int *i);
+
 
 
 ///////// Test //////////////
