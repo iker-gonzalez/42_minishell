@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/11 19:16:55 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/12 11:24:26 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,34 @@ typedef struct s_proc
 	char	**tokens;
 	char	**paths;
 	char	*prompt;
+	//////// line /////////
 	char	*line_read;
-	int		lock;
 	char	*line_expanded;
 	int		line_exp_len;
+	//////// pipes ////////
 	int		*pipe_arr;
 	int		pipe_arr_len;
+	/////// red in ////////
 	int		*red_in_arr;
 	int		red_in_arr_len;
+	int		red_in_count;
+	/////// red in app /////
 	int		*red_in_app_arr;
 	int		red_in_app_arr_len;
+	int		red_in_app_count;
+	////// red out /////////
 	int		*red_out_arr;
 	int		red_out_arr_len;
+	////// red out del ///////
 	int		*red_out_del_arr;
 	int		red_out_del_arr_len;
+	////// quotes ///////////
 	int		quote_scope;
 	int		single_quote;
 	int		double_quote;
+	////// other ///////////
 	int		dollar;
+	int		lock;
 	//t_node	*head;
 	//t_node	**lst;
 }				t_proc;
@@ -86,6 +96,9 @@ int    	ft_findchar(char *line, char c);
 void	ft_expand_input(t_proc *proc);
 void	ft_expand_line_read(t_proc *proc);
 void	ft_expand_dollar(t_proc *proc, int *i);
+void	ft_expand_pipe(t_proc *proc, char c);
+void	ft_expand_red_in(t_proc *proc, char c, int *i);
+
 
 ///////// Test //////////////
 void	ft_test(t_proc *proc);
