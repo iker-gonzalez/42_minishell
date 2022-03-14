@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 19:39:14 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:55:53 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ typedef struct s_node
 */
 typedef struct s_proc
 {
+	char	**process;
 	char	**tokens;
 	char	**paths;
 	char	*prompt;
 	int		process_count;
+	int		token_count;
 	//////// line /////////
 	char	*line_read;
 	char	*line_expanded;
@@ -106,12 +108,16 @@ void	ft_expand_dollar(t_proc *proc, int *i);
 void	ft_expand_pipe(t_proc *proc, char c);
 void	ft_expand_red_in(t_proc *proc, char c, int *i);
 void	ft_expand_red_out(t_proc *proc, char c, int *i);
-void	ft_expand_spaces(t_proc *proc, char c);
+void	ft_expand_spaces(t_proc *proc, char c, int *i);
 
 ////// Tokenizer ////////
 void    ft_process_count(t_proc *proc);
-void    ft_mem_tokenizer(t_proc *proc);
-void    ft_tokenizer(t_proc *proc);
+void    ft_mem_proceniser(t_proc *proc);
+void    ft_proceniser(t_proc *proc);
+void	ft_count_tokens(t_proc *proc, char *process);
+void	ft_arrange_input(t_proc *proc);
+
+
 
 ///////// Test //////////////
 void	ft_test(t_proc *proc);

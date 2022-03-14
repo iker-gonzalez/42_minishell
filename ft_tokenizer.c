@@ -3,87 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 17:40:25 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 20:18:22 by ikgonzal         ###   ########.fr       */
+/*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
+/*   Updated: 2022/03/14 19:51:02 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    ft_process_count(t_proc *proc)
+void	ft_count_tokens(t_proc *proc, char *process)
 {
-    int i;
+	int i;
 
-    i = 0;
-    proc->process_count = 0;
-    while (i < proc->pipe_arr_len)
-    {
-        if (proc->pipe_arr[i] == 1)
-            proc->process_count++;
-        i++;
-    }
-    proc->process_count++;
-    printf("process count: %d\n", proc->process_count);
+	i = 0;
+	proc->token_count = 1;
+	while (process[i])
+	{
+		if (process[i] == 32 && proc->space_arr[proc->space_arr_len++] == 2)
+		{
+			proc->token_count++;
+		}
+		i++;
+	}
+	printf("Token count: %d\n", proc->token_count);
 }
 
-void    ft_mem_tokenizer(t_proc *proc)
+void	ft_arrange_input(t_proc *proc)
 {
-    int row;
-    int col;
-    int j;
-    int i;
-    
-    proc->pipe_arr_len = 0;
-    proc->space_arr_len = 0;
-    proc->tokens = (char **)malloc(sizeof(char *) * (proc->process_count + 1));
-    row = 0;
-    i = 0;
-    while (row < proc->process_count)
-    {
-        col = 0;
-        j = 0;
-        while (proc->line_expanded[i])
-        {
-            if (proc->line_expanded[i] == 124 && proc->pipe_arr[proc->pipe_arr_len++] == 1 && ++i)
-                break ;
-            //else if (proc->line_expanded[i] == 32 && proc->space_arr[proc->space_arr_len++] == 1)
-            //    j++;
-            col++;
-            i++;
-        }
-        printf("proc %d: space allocated %d\n", row, (col - j + 1));
-        proc->tokens[row] = malloc(sizeof(char) * (col - j + 1));
-        row++;
-    }
+	int i;
+
+	i = 0;
+	proc->space_arr_len = 0;
+	while (i < proc->process_count)
+	{
+		ft_count_tokens(proc, proc->process[i]);
+		proc->space_arr_len += 2;
+		i++;
+	}
 }
-
-void    ft_tokenizer(t_proc *proc)
-{
-    int row;
-    int col;
-    int i;
-    
-    proc->pipe_arr_len = 0;
-    proc->space_arr_len = 0;
-    row = 0;
-    i = 0;
-    while (row < proc->process_count)
-    {
-        col = 0;
-        while (proc->line_expanded[i])
-        {
-            if (proc->line_expanded[i] == 124 && proc->pipe_arr[proc->pipe_arr_len++] == 1 && ++i)
-                break ;
-            //else if (proc->line_expanded[i] == 32 && proc->space_arr[proc->space_arr_len++] == 1)
-                //i++;
-            else
-                proc->tokens[row][col++] = proc->line_expanded[i++];
-        }
-        proc->tokens[row][col] = '\0';
-        row++;
-    }
-}
-
-

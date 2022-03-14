@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:20:11 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 17:40:13 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:33:42 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,21 @@ void	ft_expand_red_out(t_proc *proc, char c, int *i)
 	}
 }
 
-void	ft_expand_spaces(t_proc *proc, char c)
+void	ft_expand_spaces(t_proc *proc, char c, int *i)
 {
 	if (proc->lock && c == 32)
 	{
-		if ((!proc->single_quote) && (!proc->double_quote))
+		if (*i - 1 >= 0 && (!proc->single_quote) && (!proc->double_quote) 
+		&& proc->line_read[*i - 1] != 32 && proc->line_read[*i - 1] != 124 
+		&& proc->line_read[*i + 1] != 124 && proc->line_read[*i + 1]
+		&& proc->line_read[*i + 1] != 32)
+			proc->space_arr[proc->space_arr_len++] = 2;
+		else if (proc->line_read[*i + 1] == 32)
+			proc->space_arr[proc->space_arr_len++] = 1;
+		else if ((!proc->single_quote) && (!proc->double_quote))
 			proc->space_arr[proc->space_arr_len++] = 1;
 		else
-			proc->space_arr[proc->space_arr_len++] = 2;
+			proc->space_arr[proc->space_arr_len++] = 3;
 	}
 }
 

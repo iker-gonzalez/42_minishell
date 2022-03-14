@@ -6,13 +6,13 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 13:44:23 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:13:44 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <string.h>
-
+/*
 void print_list (t_proc *proc)
 {
 		printf("content: %s\n", (*proc->lst)->content);
@@ -28,13 +28,13 @@ void print_list (t_proc *proc)
 		printf("red_in: %d\n", (*proc->lst)->red_in);
 		printf("red_in_append: %d\n", (*proc->lst)->red_in_append);
 		printf("red_out: %d\n", (*proc->lst)->red_out);
-		printf("red_out_del: %d\n", (*proc->lst)->red_out_del);*/
+		printf("red_out_del: %d\n", (*proc->lst)->red_out_del);
 		//printf("previous: %p\n", (*proc->lst)->previous);
 		//printf("next: %p\n", (*proc->lst)->next);
 		proc = NULL;
 		printf("==============================\n");
 }
-
+*/
 void ft_gen_lst(t_proc *proc)
 {
 	int i;
@@ -55,7 +55,7 @@ void ft_gen_lst(t_proc *proc)
 	proc->head = (*proc->lst);
 }
 
-t_node	*ft_new_node(char *content)
+t_node	*ft_new_node(char **args)
 {
 	t_node *ret;
 
@@ -63,7 +63,7 @@ t_node	*ft_new_node(char *content)
 	memset(ret, 0, sizeof(t_node));
 	if (!ret)
 		return NULL;
-	ret->content = content;
+	ret->args = args;
 	return (ret);
 }
 

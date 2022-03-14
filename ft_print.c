@@ -65,9 +65,9 @@ void    ft_print_val(t_proc *proc)
 		printf("Process %d\n", row);
 		printf("=============\n");
 		col = 0;
-		while (proc->tokens[row][col])
+		while (proc->process[row][col])
 		{
-			printf("%c", proc->tokens[row][col]);
+			printf("%c", proc->process[row][col]);
 			col++;
 		}
 		printf("\n");

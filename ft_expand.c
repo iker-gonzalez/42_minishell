@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 19:45:32 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:30:24 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_check_quotes (t_proc *proc, char c, int *i)
 	else if (c == 34 && proc->quote_scope == 4)
 		*i+= 1;
 	//else if (c == 32 && (!(proc->single_quote)) && (!(proc->double_quote)))
-	//	*i+= 1;	
+		//*i+= 1;	
 	else
 	{
 		if (proc->lock)
@@ -81,7 +81,7 @@ void	ft_expand_line_read(t_proc *proc)
 	while (proc->line_read[i])
 	{
 		ft_set_quotes(proc, proc->line_read[i]);
-		ft_expand_spaces(proc, proc->line_read[i]);
+		ft_expand_spaces(proc, proc->line_read[i], &i);
 		ft_expand_pipe(proc, proc->line_read[i]);
 		ft_expand_red_in(proc, proc->line_read[i], &i);
 		ft_expand_red_out(proc, proc->line_read[i], &i);
@@ -108,8 +108,8 @@ void	ft_expand_input(t_proc *proc)
 	proc->lock = 1;
 	ft_expand_line_read(proc);
 	ft_process_count(proc);
-	ft_mem_tokenizer(proc);
-	ft_tokenizer(proc);
+	ft_mem_proceniser(proc);
+	ft_proceniser(proc);
 	ft_print_val(proc);
 	proc->line_exp_len = 0;
 	
