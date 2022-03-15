@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/14 18:55:53 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/15 12:33:15 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_node
 {
 	char			*content;
 	char			*exp_content;
+	int				exp_len;
 	int				is_empty;
 	struct s_node	*previous;
 	struct s_node	*next;
@@ -129,6 +130,5 @@ void	ft_free_nodes(t_proc *proc);
 
 
 void	ft_print_pipe_exp(t_proc *proc);
-
 
 #endif
