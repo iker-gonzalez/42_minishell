@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/14 18:30:24 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/15 11:48:03 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void	ft_expand_input(t_proc *proc)
 	ft_process_count(proc);
 	ft_mem_proceniser(proc);
 	ft_proceniser(proc);
-	ft_print_val(proc);
+	//ft_print_val(proc);
 	proc->line_exp_len = 0;
-	
 }

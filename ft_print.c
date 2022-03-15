@@ -74,3 +74,26 @@ void    ft_print_val(t_proc *proc)
 		row++;
 	}
 }
+
+
+
+void print_list (t_proc *proc)
+{
+		int i;
+		int k;
+
+		i = 0;
+		while ((*proc->lst)->args && (*proc->lst)->args[i])
+		{
+			k = 0;
+			printf ("token %d:\n", i);
+			while ((*proc->lst)->args[i][k])
+			{
+				printf("%c", (*proc->lst)->args[i][k]);
+				k++;
+			}
+			i++;
+			printf("\n");
+		}
+		printf("==============================\n");
+}

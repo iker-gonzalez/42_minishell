@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/14 18:55:53 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/15 11:31:56 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "libft/libft.h"
-/*
+
 typedef struct s_node
 {
-	char			*content;
-	char			*exp_content;
-	int				is_empty;
+	char			**args;
+	//int				is_empty;
 	struct s_node	*previous;
 	struct s_node	*next;
 }					t_node;
-*/
+
 typedef struct s_proc
 {
 	char	**process;
@@ -70,8 +69,8 @@ typedef struct s_proc
 	////// other ///////////
 	int		dollar;
 	int		lock;
-	//t_node	*head;
-	//t_node	**lst;
+	t_node	*head;
+	t_node	**lst;
 }				t_proc;
 
 //// Set up ////
@@ -83,14 +82,14 @@ void	ft_execute_command(t_proc *proc, char *route, int processid);
 ///// Read input ///////
 void	ft_read_input(t_proc *proc);
 
-/*
+
 ///// Linked list ////
-t_node	*ft_new_node(char *content);
+t_node	*ft_new_node(char **args);
 void	ft_add_node_back(t_node **node, t_node *new);
 void	ft_gen_lst(t_proc *proc);
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 void 	print_list (t_proc *proc);
-*/
+
 
 ///// Parse input /////
 void	ft_parse_input(t_proc *proc);
