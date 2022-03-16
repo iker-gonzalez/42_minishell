@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/15 11:31:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:08:59 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ typedef struct s_proc
 	int		double_quote;
 	////// spaces /////////
 	int		*space_arr;
+	int		*exp_sp_arr;
+	int		exp_sp_arr_len;
 	int		space_arr_len;
 	int		space_count;
+	int		exp_space_count;
 	//////// pipes ////////
 	int		*pipe_arr;
 	int		pipe_arr_len;
@@ -127,7 +130,8 @@ void    ft_print_val(t_proc *proc);
 void	ft_free_nodes(t_proc *proc);
 
 
-void	ft_print_pipe_exp(t_proc *proc);
+void	ft_exp_sp_arr(t_proc *proc);
+void	ft_tokenizer33(t_proc *proc);
 
 
 #endif

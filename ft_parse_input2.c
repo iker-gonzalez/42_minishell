@@ -6,11 +6,17 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:10:57 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/11 18:19:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/16 11:39:23 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// These two functions are used to determine the preference of quotes.
+// If proc->quote_scope = 4, preference for double quotes.
+// If proc->quote_scope = 2, preference for single quotes.
+// If proc->quote_scope != 4 && !=2, preference is not applicable.
+
 
 int	ft_quote_pref_close(char *line_read, int i)
 {
@@ -42,21 +48,4 @@ void	ft_quote_pref_open(t_proc *proc)
 		proc->quote_scope = 2 + (ft_quote_pref_close(proc->line_read, i));
 }
 
-int    ft_findchar(char *line, char c)
-{
-    int i;
-    int k;
-
-    i = 0;
-    k = 0;
-    if (line[i])
-    {
-        while(line[i])
-        {
-            if ((line[i]) == c)
-                k++;
-            i++;
-        }
-    }
-    return (k);
-}
+// 

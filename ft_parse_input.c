@@ -6,12 +6,13 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:39 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/12 17:29:32 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/16 11:37:25 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Counts number of pipes and creates an array of ints with the a size equal to number of pipes.
 void    ft_parse_pipes(t_proc *proc)
 {
     int i;
@@ -31,6 +32,7 @@ void    ft_parse_pipes(t_proc *proc)
         proc->pipe_arr = malloc(sizeof(int) * pipe_count);
 }
 
+// Counts number of red_ins and creates an array of ints with the a size equal to number of red_ins.
 void    ft_parse_red_in(t_proc *proc)
 {
     int i;
@@ -57,6 +59,7 @@ void    ft_parse_red_in(t_proc *proc)
     	proc->red_in_app_arr = malloc (sizeof(int) * proc->red_in_app_count + sizeof(int));
 }
 
+// Counts number of red_outs and creates an array of ints with the a size equal to number of red_outs.
 void    ft_parse_red_out(t_proc *proc)
 {
     int i;
@@ -81,10 +84,9 @@ void    ft_parse_red_out(t_proc *proc)
         proc->red_out_arr = malloc(sizeof(int) * proc->red_out_count);
     if (proc->red_out_del_count)
         proc->red_out_del_arr = malloc (sizeof(int) * proc->red_out_del_count);
-    printf("red_out_count: %d\n", proc->red_out_count);
-    printf("red_out_del_count: %d\n", proc->red_out_del_count);
 }
 
+// Counts number of spaces and creates an array of ints with the a size equal to number of spaces.
 void    ft_parse_spaces(t_proc *proc)
 {
     int i;

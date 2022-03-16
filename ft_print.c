@@ -2,13 +2,13 @@
 
 void    ft_print_val(t_proc *proc)
 {
-	int pipe_count;
+//	int pipe_count;
 	int i;
 	int row;
 	int col;
 
     printf("LINE_EXP: %s\n", proc->line_expanded);
-    printf("EXP_LEN: %d\n", proc->line_exp_len);
+/*    printf("EXP_LEN: %d\n", proc->line_exp_len);
 	pipe_count = ft_findchar(proc->line_read, 124);
 	i = 0;
 	printf("EXP PIPES: ");
@@ -49,12 +49,20 @@ void    ft_print_val(t_proc *proc)
 		printf("%d", proc->red_out_del_arr[i]);
 		i++;
 	}
-	printf("\n");
+	printf("\n");*/
 	printf("EXP SPACES: ");
 	i = 0;
 	while (i < proc->space_count)
 	{
 		printf("%d", proc->space_arr[i]);
+		i++;
+	}
+	printf("\n");
+	printf("EXP EXP SPACES: ");
+	i = 0;
+	while (i < proc->exp_sp_arr_len)
+	{
+		printf("%d", proc->exp_sp_arr[i]);
 		i++;
 	}
 	printf("\n");
