@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/16 16:38:36 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/17 14:17:31 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,7 @@ int	ft_count_row(t_proc *proc, char *process)
 	{
 		if (process[i] == 32 && proc->exp_sp_arr[proc->exp_sp_arr_len++] == 2)
 			count_y++;
-		
 	}
-	printf("count_y: %d\n", count_y);
 	return(count_y);
 }
 
@@ -164,7 +162,6 @@ char	**ft_split_sp(t_proc *proc, char *process)
 {
 	char **args;
 	int row;
-	//int col;
 	int i;
 	int row_len;
 	int col_len;
@@ -177,50 +174,25 @@ char	**ft_split_sp(t_proc *proc, char *process)
 	col_len = 0;
 	proc->exp_sp_arr_len = 0;
 	i = 0;
-	printf("row_len: %d\n", row_len);
 	k = 0;
 	while (row < row_len)
 	{
 		col = 0;
 		col_len = ft_count_col(proc, process, &i);
 		args[row] =  malloc(sizeof(char) * col_len + 1);
-		printf("token %d:\n", row);
 		while (col < col_len)
 		{
 			args[row][col] = process[k];
-			printf("%c", args[row][col]);
 			k++;
 			col++;
 		}
 		k++;
-		printf("\n");
 		args[row][col] = '\0';
 		row++;
 	}
-	printf("\n");
+	args[row] = NULL;
 	return(args);
 }
-/*
-void	ft_print_args(char **args)
-{
-	int row;
-	int col;
-
-	row = 0;
-	while (args[row])
-	{
-		col = 0;
-		while(args[row][col])
-		{
-			printf("%c", args[row][col]);
-			col++;
-		}
-		printf(" ");
-		row++;
-	}
-	printf("\n");
-}
-*/
 
 
 void	ft_make_it(t_proc *proc)
@@ -230,15 +202,17 @@ void	ft_make_it(t_proc *proc)
 
 	i = 0;
 	proc->exp_sp_arr_len = 0;
+	proc->lst = malloc(sizeof(t_node) * proc->process_count);
+	ft_memset((proc->lst), 0, sizeof(t_node *));
 	while (i < proc->process_count)
 	{
 		args = ft_split_sp(proc, proc->process[i]);
-		//ft_print_args(args);
-		/*ft_gen_lst(proc);
-		if (i < proc->process_count)
-			proc->space_arr_len += 2;*/
+		proc->exp_sp_arr_len = 0;
+		ft_add_node_back(proc->lst, ft_new_node(args));
+		//ft_gen_lst(proc, args, row_len);
 		i++;
 	}
+	ft_lstiter(proc, print_list);
 }
 
 

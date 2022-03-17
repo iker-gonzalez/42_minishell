@@ -3,36 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/16 11:40:24 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:57:16 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <string.h>
 
-void ft_gen_lst(t_proc *proc)
+void ft_gen_lst(t_proc *proc, char **args, int row_len)
 {
-	int i;
-	char **args;
 
 	/*proc->tokens = ft_split(proc->line_read, ' ');
 	i = 0;
 	while (proc->tokens[i])
 		i++;
 	proc->node_count = i;*/
-	proc->lst = malloc(sizeof(t_node) * proc->token_count);
+	proc->lst = malloc(sizeof(t_node) * row_len);
 	ft_memset((proc->lst), 0, sizeof(t_node *));
-	i = 0;
-	while (i < proc->process_count)
-	{
-		args = ft_split(proc->process[i], ' ');
-		ft_add_node_back(proc->lst, ft_new_node(args));
-		i++;
-	}
-	proc->head = (*proc->lst);
+	ft_add_node_back(proc->lst, ft_new_node(args));
 }
 
 t_node	*ft_new_node(char **args)
