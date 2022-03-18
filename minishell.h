@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/05 14:07:18 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/17 12:43:23 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,57 @@
 
 typedef struct s_node
 {
-	char			*content;
-	char			*exp_content;
-	int				exp_len;
-	int				is_empty;
-	int				single_quoted;
-	int				double_quoted;
-	int				triple_quoted;
-	int				pipe;
-	int				dollar;
-	int				dollar_exit;
-	int				red_in;
-	int				red_in_append;
-	int				red_out;
-	int				red_out_del;
+	char			**args;
+	//int				is_empty;
 	struct s_node	*previous;
 	struct s_node	*next;
 }					t_node;
 
 typedef struct s_proc
 {
+	char	**process;
 	char	**tokens;
 	char	**paths;
 	char	*prompt;
+	int		process_count;
+	int		token_count;
+	//////// line /////////
 	char	*line_read;
-	char	**line_expanded;
-	int		node_count;
-	//int	cmd_found;
-	int		squote_count;
-	int		dquote_count;
+	char	*line_expanded;
+	int		line_exp_len;
+	////// quotes ///////////
 	int		quote_scope;
 	int		single_quote;
 	int		double_quote;
+	////// spaces /////////
+	int		*space_arr;
+	int		*exp_sp_arr;
+	int		exp_sp_arr_len;
+	int		space_arr_len;
+	int		space_count;
+	int		exp_space_count;
+	//////// pipes ////////
+	int		*pipe_arr;
+	int		pipe_arr_len;
+	/////// red in ////////
+	int		*red_in_arr;
+	int		red_in_arr_len;
+	int		red_in_count;
+	/////// red in app /////
+	int		*red_in_app_arr;
+	int		red_in_app_arr_len;
+	int		red_in_app_count;
+	////// red out /////////
+	int		*red_out_arr;
+	int		red_out_arr_len;
+	int		red_out_count;
+	////// red out del ///////
+	int		*red_out_del_arr;
+	int		red_out_del_arr_len;
+	int		red_out_del_count;
+	////// other ///////////
+	int		dollar;
+	int		lock;
 	t_node	*head;
 	t_node	**lst;
 }				t_proc;
@@ -67,29 +86,68 @@ void	ft_execute_command(t_proc *proc, char *route, int processid);
 void	ft_read_input(t_proc *proc);
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 
+<<<<<<< HEAD
 ///// Create linked list ////
 t_node	*ft_new_node(char *content);
 void	ft_add_node_back(t_node **node, t_node *new);
 void	ft_gen_lst(t_proc *proc);
 void print_list (t_proc *proc, t_node **lst);
+=======
+
+///// Linked list ////
+t_node	*ft_new_node(char **args);
+void	ft_add_node_back(t_node **node, t_node *new);
+void ft_gen_lst(t_proc *proc, char **args, int row_len);
+void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
+void 	print_list (t_proc *proc);
+
+>>>>>>> 88c7958b177c3fedae2aab8179644746951e65a8
 
 ///// Parse input /////
 void	ft_parse_input(t_proc *proc);
-void    ft_parse_tquotes(t_proc *proc);
-void	count_quotations(t_proc *proc);
-int    	ft_findchar(t_node *node, char c);
-void    ft_parse_pipe(t_proc *proc);
-void    ft_parse_red_out(t_proc *proc);
-void    ft_parse_red_in(t_proc *proc);
+int		ft_quote_pref_close(char *line_read, int i);
+void	ft_quote_pref_open(t_proc *proc);
+void    ft_count_pipes(t_proc *proc);
+void    ft_count_redirections(t_proc *proc);
+int    	ft_findchar(char *line, char c);
 
+
+////// Expand input /////
+void	ft_expand_input(t_proc *proc);
+void	ft_expand_line_read(t_proc *proc);
+void	ft_expand_dollar(t_proc *proc, int *i);
+void	ft_expand_pipe(t_proc *proc, char c);
+void	ft_expand_red_in(t_proc *proc, char c, int *i);
+void	ft_expand_red_out(t_proc *proc, char c, int *i);
+void	ft_expand_spaces(t_proc *proc, char c, int *i);
+
+<<<<<<< HEAD
 ////// Transform input /////
 void	ft_transform_input(t_proc *proc);
 void	ft_trm_quotes(t_proc *proc);
 void	ft_trm_dollar(t_node *node, int *i);
+=======
+////// Tokenizer ////////
+void    ft_process_count(t_proc *proc);
+void    ft_mem_proceniser(t_proc *proc);
+void    ft_proceniser(t_proc *proc);
+void	ft_count_tokens(t_proc *proc, char *process);
+void	ft_arrange_input(t_proc *proc);
+>>>>>>> 88c7958b177c3fedae2aab8179644746951e65a8
 
 
+
+///////// Test //////////////
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
+void    ft_print_val(t_proc *proc);
+
+//////// Free ////////////////
+void	ft_free_nodes(t_proc *proc);
+
+
+void	ft_exp_sp_arr(t_proc *proc);
+void	ft_tokenizer33(t_proc *proc);
 
 
 #endif

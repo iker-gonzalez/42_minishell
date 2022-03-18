@@ -3,37 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 19:26:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/03 08:40:06 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:29:00 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-/*
-int ft_find_next_quotation(char const *str, int i)
-{
-	int quotation;
 
-	quotation = 0;
-	while (str[i])
-	{
-		if (str[i] == 34 || str[i] == 39)
-		{
-			quotation = 1;
-			break ;
-		}
-		i++;
-	}
-	if (quotation)
-	{
-		printf("i: %d\n", i);
-		return i;
-	}
-	return 0;
-}
-*/
 static int	ft_div_counter(char const *s, char c)
 {
 	int	i;
@@ -45,7 +23,6 @@ static int	ft_div_counter(char const *s, char c)
 	i = 0;
 	while (i < (int)ft_strlen(s))
 	{
-		//i += ft_find_next_quotation(s, i);
 		if (s[i] == c && s[i + 1] != c && s[i + 1])
 			counter++;
 		i++;
