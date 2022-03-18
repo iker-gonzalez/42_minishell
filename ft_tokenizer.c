@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/18 10:48:17 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/18 10:59:46 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ int	ft_count_col(t_proc *proc, char *process, int *i, int *sp_len)
 }
 
 
-char	**ft_split_sp(t_proc *proc, char *process, int *sp_len)
+char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k)
 {
 	char **args;
 	int row;
@@ -178,7 +178,6 @@ char	**ft_split_sp(t_proc *proc, char *process, int *sp_len)
 	int row_len;
 	int col_len;
 	int col;
-	static int k;
 	int tmp;
 
 	tmp = *sp_len;
@@ -188,7 +187,7 @@ char	**ft_split_sp(t_proc *proc, char *process, int *sp_len)
 	row = 0;
 	col_len = 0;
 	i = 0;
-	k = 0;
+	*k = 0;
 	while (row < row_len)
 	{
 		col = 0;
@@ -196,11 +195,11 @@ char	**ft_split_sp(t_proc *proc, char *process, int *sp_len)
 		args[row] =  malloc(sizeof(char) * col_len + 1);
 		while (col < col_len)
 		{
-			args[row][col] = process[k];
-			k++;
+			args[row][col] = process[*k];
+			*k +=1;
 			col++;
 		}
-		k++;
+		*k +=1;
 		args[row][col] = '\0';
 		row++;
 	}
@@ -214,15 +213,17 @@ void	ft_make_it(t_proc *proc)
 	int i;
 	char **args;
 	int sp_len;
+	int k;
 
 	i = 0;
+	k = 0;
 	sp_len = 0;
 	//proc->exp_sp_arr_len = 0;
 	proc->lst = malloc(sizeof(t_node) * proc->process_count);
 	ft_memset((proc->lst), 0, sizeof(t_node *));
 	while (i < proc->process_count)
 	{
-		args = ft_split_sp(proc, proc->process[i], &sp_len);
+		args = ft_split_sp(proc, proc->process[i], &sp_len, &k);
 		//proc->exp_sp_arr_len = 0;
 		ft_add_node_back(proc->lst, ft_new_node(args));
 		//ft_gen_lst(proc, args, row_len);
