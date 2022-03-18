@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:20:11 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/14 19:33:42 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/15 10:40:02 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,9 @@ void	ft_expand_spaces(t_proc *proc, char c, int *i)
 	{
 		if (*i - 1 >= 0 && (!proc->single_quote) && (!proc->double_quote) 
 		&& proc->line_read[*i - 1] != 32 && proc->line_read[*i - 1] != 124 
-		&& proc->line_read[*i + 1] != 124 && proc->line_read[*i + 1]
-		&& proc->line_read[*i + 1] != 32)
+		&& proc->line_read[*i + 1] != 124 && proc->line_read[*i + 1])
 			proc->space_arr[proc->space_arr_len++] = 2;
-		else if (proc->line_read[*i + 1] == 32)
+		else if (proc->line_read[*i + 1] == 32 && (!proc->single_quote) && (!proc->double_quote))
 			proc->space_arr[proc->space_arr_len++] = 1;
 		else if ((!proc->single_quote) && (!proc->double_quote))
 			proc->space_arr[proc->space_arr_len++] = 1;

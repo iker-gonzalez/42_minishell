@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/15 12:33:15 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/18 12:26:08 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,15 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "libft/libft.h"
-/*
+
 typedef struct s_node
 {
-	char			*content;
-	char			*exp_content;
-	int				exp_len;
-	int				is_empty;
+	char			**args;
+	//int				is_empty;
 	struct s_node	*previous;
 	struct s_node	*next;
 }					t_node;
-*/
+
 typedef struct s_proc
 {
 	char	**process;
@@ -47,8 +45,11 @@ typedef struct s_proc
 	int		double_quote;
 	////// spaces /////////
 	int		*space_arr;
+	int		*exp_sp_arr;
+	int		exp_sp_arr_len;
 	int		space_arr_len;
 	int		space_count;
+	int		exp_space_count;
 	//////// pipes ////////
 	int		*pipe_arr;
 	int		pipe_arr_len;
@@ -71,8 +72,8 @@ typedef struct s_proc
 	////// other ///////////
 	int		dollar;
 	int		lock;
-	//t_node	*head;
-	//t_node	**lst;
+	t_node	*head;
+	t_node	**lst;
 }				t_proc;
 
 //// Set up ////
@@ -84,14 +85,14 @@ void	ft_execute_command(t_proc *proc, char *route, int processid);
 ///// Read input ///////
 void	ft_read_input(t_proc *proc);
 
-/*
+
 ///// Linked list ////
-t_node	*ft_new_node(char *content);
+t_node	*ft_new_node(char **args);
 void	ft_add_node_back(t_node **node, t_node *new);
-void	ft_gen_lst(t_proc *proc);
+void ft_gen_lst(t_proc *proc, char **args, int row_len);
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 void 	print_list (t_proc *proc);
-*/
+
 
 ///// Parse input /////
 void	ft_parse_input(t_proc *proc);
@@ -129,6 +130,7 @@ void    ft_print_val(t_proc *proc);
 void	ft_free_nodes(t_proc *proc);
 
 
-void	ft_print_pipe_exp(t_proc *proc);
+void	ft_exp_sp_arr(t_proc *proc);
+void	ft_tokenizer33(t_proc *proc);
 
 #endif
