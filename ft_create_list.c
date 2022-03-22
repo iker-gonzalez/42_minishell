@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/22 11:02:58 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/22 20:06:30 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 t_node	*ft_new_node(char **args)
 {
 	t_node *ret;
-
+	
 	ret = malloc(sizeof (t_node));
 	memset(ret, 0, sizeof(t_node));
 	if (!ret)
@@ -25,18 +25,18 @@ t_node	*ft_new_node(char **args)
 	return (ret);
 }
 
-void	ft_add_node_back(t_node **node, t_node *new)
+void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new)
 {
-	t_node *head;
+	//t_node *head;
 
 	if (*node)
 	{
-		head = *node;
+		proc->head = *node;
 		while((*node)->next)
 			(*node) = (*node)->next;
 		new->previous = *node;
 		(*node)->next = new;
-		(*node) = head;
+		(*node) = proc->head;
 	}
 	else
 		(*node) = new;

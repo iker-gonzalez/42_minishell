@@ -88,6 +88,7 @@ void print_args (t_proc *proc)
 		int i;
 		int k;
 
+	proc->head = (*proc->lst);
 	while ((*proc->lst))
 	{
 		i = 0;
@@ -106,4 +107,5 @@ void print_args (t_proc *proc)
 		printf("==============================\n");
 		(*proc->lst) = (*proc->lst)->next;
 	}
+	(*proc->lst) = proc->head;
 }

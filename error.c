@@ -3,25 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/22 13:07:54 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:25:39 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-int ft_check_redirections(char *line_read, char c)
+
+int ft_check_redirections(char *line, char c)
 {
     int i;
 
-    while (line_read[i])
+	i = 0;
+    while (line[i])
     {
-        if (line_read[i])
+        if (line[i+1] && line[i+1] == c && line[i+2] && line[i+2] == c)
+		{
+			ft_putstr_fd("papa$hell:", 2);
+			ft_putstr_fd(" Syntax error, redirections \n", 2);
+			return (1);
+		}
+	i++;
     }
+	return (0);
 }
-*/
+
 int ft_check_unclosed_quotes(char *line_read, char c)
 {
     int i;
@@ -99,4 +107,8 @@ void    ft_check_errors(t_proc *proc)
         exit (2);
     if (ft_check_unclosed_quotes(proc->line_read, 39))
         exit (2);
+	if (ft_check_redirections(proc->line_read, 60))
+		exit (2);
+	if (ft_check_redirections(proc->line_read, 62))
+		exit (2);
 }

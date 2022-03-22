@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/22 09:56:16 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/22 20:29:37 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct s_node
 {
 	char			**args;
-	//int				is_empty;
+	//int			is_empty;
 	struct s_node	*previous;
 	struct s_node	*next;
 }					t_node;
@@ -30,7 +30,6 @@ typedef struct s_node
 typedef struct s_proc
 {
 	char	**process;
-	char	**tokens;
 	char	**paths;
 	char	*prompt;
 	int		process_count;
@@ -90,7 +89,7 @@ void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 
 ///// Linked list ////
 t_node	*ft_new_node(char **args);
-void	ft_add_node_back(t_node **node, t_node *new);
+void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new);
 void	ft_gen_lst(t_proc *proc, char **args, int row_len);
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 void 	print_args (t_proc *proc);
@@ -117,7 +116,6 @@ void    ft_process_count(t_proc *proc);
 void    ft_mem_proceniser(t_proc *proc);
 void    ft_proceniser(t_proc *proc);
 
-
 ///// Tokenizer /////////
 void	ft_tokenizer(t_proc *proc);
 char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k);
@@ -129,15 +127,12 @@ void	ft_exp_sp_arr(t_proc *proc);
 void    ft_check_errors(t_proc *proc);
 int ft_check_empty_line(char *line_read);
 
-
 ///////// Test //////////////
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
 void    ft_print_val(t_proc *proc);
 
 //////// Free ////////////////
-void	ft_free_nodes(t_proc *proc);
-void	ft_free_args(t_proc *proc, char **args);
-
+void	ft_free(t_proc *proc);
 
 #endif
