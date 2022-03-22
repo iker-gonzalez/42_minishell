@@ -3,28 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/18 11:45:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/22 11:02:58 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <string.h>
-
-void ft_gen_lst(t_proc *proc, char **args, int row_len)
-{
-
-	/*proc->tokens = ft_split(proc->line_read, ' ');
-	i = 0;
-	while (proc->tokens[i])
-		i++;
-	proc->node_count = i;*/
-	proc->lst = malloc(sizeof(t_node) * row_len);
-	ft_memset((proc->lst), 0, sizeof(t_node *));
-	ft_add_node_back(proc->lst, ft_new_node(args));
-}
 
 t_node	*ft_new_node(char **args)
 {

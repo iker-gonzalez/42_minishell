@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/19 12:49:36 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:56:16 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	ft_execute_command(t_proc *proc, char *route, int processid);
 void	ft_read_input(t_proc *proc);
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 
-
 ///// Linked list ////
 t_node	*ft_new_node(char **args);
 void	ft_add_node_back(t_node **node, t_node *new);
@@ -126,6 +125,11 @@ char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k);
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
 
+/////// Errors //////////
+void    ft_check_errors(t_proc *proc);
+int ft_check_empty_line(char *line_read);
+
+
 ///////// Test //////////////
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
@@ -133,5 +137,7 @@ void    ft_print_val(t_proc *proc);
 
 //////// Free ////////////////
 void	ft_free_nodes(t_proc *proc);
+void	ft_free_args(t_proc *proc, char **args);
+
 
 #endif
