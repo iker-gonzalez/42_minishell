@@ -6,27 +6,51 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/22 17:25:39 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:11:19 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	three_brackets_check(char *line, char c, int *i)
+{
+	if (line[*i + 1] && line[*i + 1] == c)
+	{
+		if (line[*i + 2] && line[*i + 2] == c)
+		{
+			ft_putstr_fd("papa$hell:", 2);
+			ft_putstr_fd(" Syntax error near unexpected token 'newline'\n", 2);
+			return (1);
+		}
+		*i += 1;
+	}
+	*i += 1;
+	return (0);
+}
 
 int ft_check_redirections(char *line, char c)
 {
     int i;
 
 	i = 0;
-    while (line[i])
-    {
-        if (line[i+1] && line[i+1] == c && line[i+2] && line[i+2] == c)
+	while (line[i])
+	{
+		if (line[i] == c)
 		{
-			ft_putstr_fd("papa$hell:", 2);
-			ft_putstr_fd(" Syntax error, redirections \n", 2);
-			return (1);
+			if (three_brackets_check(line, c, &i))
+				return (1);
+			while (line[i] && line[i] == ' ' )
+				i++;
+			if (line[i] == '\0' || line[i] == '<' || line[i] == '>'
+				|| line[i] == '|')
+			{
+				ft_putstr_fd("papa$hell:", 2);
+				ft_putstr_fd(" syntax error near unexpected token `newline'\n", 2);
+				return (1);
+			}
 		}
 	i++;
-    }
+	}
 	return (0);
 }
 

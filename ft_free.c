@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/22 20:29:12 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:35:58 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ void	ft_free(t_proc *proc)
 	ft_lstiter(proc, ft_free_args);
 	ft_freelist(proc->lst);
 	//ft_free_paths(proc);
+	//
 }

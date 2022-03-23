@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 12:31:25 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:34:18 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	ft_check_quotes (t_proc *proc, char c, int *i)
 		*i+= 1;
 	else if (c == 34 && proc->quote_scope == 4)
 		*i+= 1;
-	//else if (c == 32 && (!(proc->single_quote)) && (!(proc->double_quote)))
-		//*i+= 1;	
 	else
 	{
 		if (proc->lock)

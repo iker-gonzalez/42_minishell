@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/22 20:29:37 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:50:35 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <signal.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "libft/libft.h"
@@ -31,6 +32,8 @@ typedef struct s_proc
 {
 	char	**process;
 	char	**paths;
+	char	**env;
+	char	*home;
 	char	*prompt;
 	int		process_count;
 	int		token_count;
@@ -77,11 +80,16 @@ typedef struct s_proc
 	t_node	**lst;
 }				t_proc;
 
+int	g_signal;
+
+///// Init ///////
+void	ft_get_env(t_proc *proc, char **env);
+
 //// Set up ////
-void	set_up_shell(t_proc *proc);
+void	set_up_shell(t_proc *proc, char **env);
 void	ft_format_paths(t_proc *proc);
-void	ft_cmd_exist(t_proc *proc, char *token, int processid);
-void	ft_execute_command(t_proc *proc, char *route, int processid);
+void	ft_cmd_exist(t_proc *proc);
+void ft_execute_command(t_proc *proc, char *route, char **args);
 
 ///// Read input ///////
 void	ft_read_input(t_proc *proc);
@@ -131,6 +139,9 @@ int ft_check_empty_line(char *line_read);
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
 void    ft_print_val(t_proc *proc);
+
+///////// Signals ////////////
+void	listen_signals(void);
 
 //////// Free ////////////////
 void	ft_free(t_proc *proc);
