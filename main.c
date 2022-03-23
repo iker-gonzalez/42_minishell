@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/18 12:26:30 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:25:03 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int main (void)
 	ft_memset(&proc, 0, sizeof(t_proc));
 	set_up_shell(&proc);
 	ft_loop(&proc);
-	ft_free_double_char((&proc)->paths);
 	return(0);
 }

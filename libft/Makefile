@@ -6,14 +6,14 @@
 #    By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/12 14:19:09 by ikgonzal          #+#    #+#              #
-#    Updated: 2022/02/21 10:49:32 by ikgonzal         ###   ########.fr        #
+#    Updated: 2022/03/18 12:32:19 by jsolinis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Wno-unused-but-set-variable
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
 

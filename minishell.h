@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/18 12:26:08 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:28:22 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_node
 {
 	char			**args;
+	int				*fd;
 	//int				is_empty;
 	struct s_node	*previous;
 	struct s_node	*next;
