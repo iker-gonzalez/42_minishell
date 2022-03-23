@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:10:57 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/18 12:27:52 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:34:04 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,3 @@ void	ft_quote_pref_open(t_proc *proc)
 	else if (proc->line_read[i] == 34)
 		proc->quote_scope = 2 + (ft_quote_pref_close(proc->line_read, i));
 }
-
-// 

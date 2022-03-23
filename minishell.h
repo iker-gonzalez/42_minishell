@@ -6,7 +6,11 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/23 13:28:22 by jsolinis         ###   ########.fr       */
+=======
+/*   Updated: 2022/03/22 20:29:37 by ikgonzal         ###   ########.fr       */
+>>>>>>> origin/ikgonzal
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +27,7 @@ typedef struct s_node
 {
 	char			**args;
 	int				*fd;
-	//int				is_empty;
+	//int			is_empty;
 	struct s_node	*previous;
 	struct s_node	*next;
 }					t_node;
@@ -31,7 +35,6 @@ typedef struct s_node
 typedef struct s_proc
 {
 	char	**process;
-	char	**tokens;
 	char	**paths;
 	char	*prompt;
 	int		process_count;
@@ -73,6 +76,8 @@ typedef struct s_proc
 	////// other ///////////
 	int		dollar;
 	int		lock;
+	int		row_len;
+	int		col_len;
 	t_node	*head;
 	t_node	**lst;
 }				t_proc;
@@ -85,15 +90,14 @@ void	ft_execute_command(t_proc *proc, char *route, int processid);
 
 ///// Read input ///////
 void	ft_read_input(t_proc *proc);
-
+void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 
 ///// Linked list ////
 t_node	*ft_new_node(char **args);
-void	ft_add_node_back(t_node **node, t_node *new);
-void ft_gen_lst(t_proc *proc, char **args, int row_len);
+void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new);
+void	ft_gen_lst(t_proc *proc, char **args, int row_len);
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
-void 	print_list (t_proc *proc);
-
+void 	print_args (t_proc *proc);
 
 ///// Parse input /////
 void	ft_parse_input(t_proc *proc);
@@ -102,7 +106,6 @@ void	ft_quote_pref_open(t_proc *proc);
 void    ft_count_pipes(t_proc *proc);
 void    ft_count_redirections(t_proc *proc);
 int    	ft_findchar(char *line, char c);
-
 
 ////// Expand input /////
 void	ft_expand_input(t_proc *proc);
@@ -113,14 +116,21 @@ void	ft_expand_red_in(t_proc *proc, char c, int *i);
 void	ft_expand_red_out(t_proc *proc, char c, int *i);
 void	ft_expand_spaces(t_proc *proc, char c, int *i);
 
-////// Tokenizer ////////
+////// Proceniser ////////
 void    ft_process_count(t_proc *proc);
 void    ft_mem_proceniser(t_proc *proc);
 void    ft_proceniser(t_proc *proc);
-void	ft_count_tokens(t_proc *proc, char *process);
-void	ft_arrange_input(t_proc *proc);
 
+///// Tokenizer /////////
+void	ft_tokenizer(t_proc *proc);
+char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k);
 
+//////// Utils ///////////
+void	ft_exp_sp_arr(t_proc *proc);
+
+/////// Errors //////////
+void    ft_check_errors(t_proc *proc);
+int ft_check_empty_line(char *line_read);
 
 ///////// Test //////////////
 void	ft_test(t_proc *proc);
@@ -128,10 +138,14 @@ void	ft_print_line(char **line);
 void    ft_print_val(t_proc *proc);
 
 //////// Free ////////////////
+<<<<<<< HEAD
 void	ft_free_nodes(t_proc *proc);
 
 
 void	ft_exp_sp_arr(t_proc *proc);
 void	ft_tokenizer33(t_proc *proc);
+=======
+void	ft_free(t_proc *proc);
+>>>>>>> origin/ikgonzal
 
 #endif

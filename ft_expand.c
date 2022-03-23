@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/16 11:53:45 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:31:25 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	ft_expand_line_read(t_proc *proc)
 		ft_expand_pipe(proc, proc->line_read[i]);
 		ft_expand_red_in(proc, proc->line_read[i], &i);
 		ft_expand_red_out(proc, proc->line_read[i], &i);
-		if (proc->line_read[i] == 36 && ((!proc->single_quote) || proc->quote_scope == 4) && ++i)
+		if (proc->line_read[i] == 36 && ((!proc->single_quote) || 
+		(proc->quote_scope == 4 && (proc->double_quote))) && ++i)
 			ft_expand_dollar(proc, &i);
 		else
 			ft_check_quotes(proc, proc->line_read[i], &i);

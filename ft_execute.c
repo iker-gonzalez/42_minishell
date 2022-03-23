@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:44 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 12:24:52 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:35:02 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	ft_cmd_exist(t_proc *proc, char *token, int processid)
 		i++;
 	}
 }
-*/
+
 //Creates double char eliminating the nodes that became empty after being transformed. 
-/*
+
 void	ft_test(t_proc *proc)
 {
 	int k;
@@ -69,16 +69,4 @@ void	ft_test(t_proc *proc)
 	proc->line_expanded[k] = NULL;
 	(*proc->lst) = proc->head;
 }
-
-void	ft_print_line(char **line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		printf("token %d:", i);
-		printf("%s \n", line[i]);
-		i++;
-	}
-}*/
+*/

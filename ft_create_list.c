@@ -6,30 +6,21 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/23 19:24:29 by jsolinis         ###   ########.fr       */
+=======
+/*   Updated: 2022/03/22 20:06:30 by ikgonzal         ###   ########.fr       */
+>>>>>>> origin/ikgonzal
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <string.h>
 
-void ft_gen_lst(t_proc *proc, char **args, int row_len)
-{
-
-	/*proc->tokens = ft_split(proc->line_read, ' ');
-	i = 0;
-	while (proc->tokens[i])
-		i++;
-	proc->node_count = i;*/
-	proc->lst = malloc(sizeof(t_node) * row_len);
-	ft_memset((proc->lst), 0, sizeof(t_node *));
-	ft_add_node_back(proc->lst, ft_new_node(args));
-}
-
 t_node	*ft_new_node(char **args)
 {
 	t_node *ret;
-
+	
 	ret = malloc(sizeof (t_node));
 	memset(ret, 0, sizeof(t_node));
 	if (!ret)
@@ -38,18 +29,18 @@ t_node	*ft_new_node(char **args)
 	return (ret);
 }
 
-void	ft_add_node_back(t_node **node, t_node *new)
+void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new)
 {
-	t_node *head;
+	//t_node *head;
 
 	if (*node)
 	{
-		head = *node;
+		proc->head = *node;
 		while((*node)->next)
 			(*node) = (*node)->next;
 		new->previous = *node;
 		(*node)->next = new;
-		(*node) = head;
+		(*node) = proc->head;
 	}
 	else
 		(*node) = new;
