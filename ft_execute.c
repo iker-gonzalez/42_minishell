@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:44 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 17:18:19 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:28:45 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 void ft_execute_command(t_proc *proc, char *route, char **args)
 {
-	char *env;
-	
-	proc = NULL;
-	env = NULL;
-	execve(route, args, &env);
+	execve(route, args, proc->env);
 }
 
 void	ft_cmd_exist(t_proc *proc)
@@ -37,6 +33,27 @@ void	ft_cmd_exist(t_proc *proc)
 		i++;
 	}
 }
+
+void	ft_check_builtins(t_proc *proc)
+{
+	if ((ft_strncmp((*proc->lst)->args[0], "env", 3)) == 0)
+		ft_env(proc);
+	else if ((ft_strncmp((*proc->lst)->args[0], "pwd", 3)) == 0)
+		ft_pwd();
+	else if ((ft_strncmp((*proc->lst)->args[0], "cd", 2)) == 0)
+		ft_cd((*proc->lst)->args, proc);
+	//else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
+		//echo();
+}
+
+void	ft_execute(t_proc *proc)
+{
+	ft_check_builtins(proc);
+	//ft_cmd_exist(proc);
+}
+
+
+
 
 //Creates double char eliminating the nodes that became empty after being transformed. 
 /*

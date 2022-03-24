@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 13:40:31 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/24 11:11:59 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	ft_get_env(t_proc *proc, char **env)
 	proc->env = (char **)ft_calloc(sizeof(char *), i + 1);
 	i = -1;
 	while (env[++i])
-		proc->env[i] = ft_strdup(env[i]);
+	{
+		if ((ft_strncmp(env[i], "OLDPWD", 6)) != 0)
+			proc->env[i] = ft_strdup(env[i]);
+	}
 	proc->env[i] = NULL;
 }
 

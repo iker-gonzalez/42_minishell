@@ -6,20 +6,20 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 19:11:19 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/24 08:25:37 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	three_brackets_check(char *line, char c, int *i)
+static int	ft_check_3redirections(char *line, char c, int *i)
 {
 	if (line[*i + 1] && line[*i + 1] == c)
 	{
 		if (line[*i + 2] && line[*i + 2] == c)
 		{
-			ft_putstr_fd("papa$hell:", 2);
-			ft_putstr_fd(" Syntax error near unexpected token 'newline'\n", 2);
+			ft_putstr_fd("papa$hell: ", 2);
+			ft_putendl_fd("syntax error near unexpected token `newline'", 2);
 			return (1);
 		}
 		*i += 1;
@@ -37,19 +37,18 @@ int ft_check_redirections(char *line, char c)
 	{
 		if (line[i] == c)
 		{
-			if (three_brackets_check(line, c, &i))
+			if (ft_check_3redirections(line, c, &i))
 				return (1);
-			while (line[i] && line[i] == ' ' )
+			while (line[i] && line[i] == 32)
 				i++;
-			if (line[i] == '\0' || line[i] == '<' || line[i] == '>'
-				|| line[i] == '|')
+			if (line[i] == '\0' || line[i] == 60 || line[i] == 62|| line[i] == 124)
 			{
-				ft_putstr_fd("papa$hell:", 2);
-				ft_putstr_fd(" syntax error near unexpected token `newline'\n", 2);
+				ft_putstr_fd("papa$hell: ", 2);
+				ft_putendl_fd("syntax error near unexpected token `newline'", 2);
 				return (1);
 			}
 		}
-	i++;
+		i++;
 	}
 	return (0);
 }

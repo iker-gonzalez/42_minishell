@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 18:50:35 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:18:24 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 typedef struct s_node
 {
 	char			**args;
-	//int			is_empty;
 	struct s_node	*previous;
 	struct s_node	*next;
 }					t_node;
@@ -80,8 +79,6 @@ typedef struct s_proc
 	t_node	**lst;
 }				t_proc;
 
-int	g_signal;
-
 ///// Init ///////
 void	ft_get_env(t_proc *proc, char **env);
 
@@ -89,7 +86,7 @@ void	ft_get_env(t_proc *proc, char **env);
 void	set_up_shell(t_proc *proc, char **env);
 void	ft_format_paths(t_proc *proc);
 void	ft_cmd_exist(t_proc *proc);
-void ft_execute_command(t_proc *proc, char *route, char **args);
+void	ft_execute_command(t_proc *proc, char *route, char **args);
 
 ///// Read input ///////
 void	ft_read_input(t_proc *proc);
@@ -131,9 +128,19 @@ char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k);
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
 
+//////// Builtins /////////
+int		ft_env(t_proc *proc);
+int		echo(int argc, char **argv, int fd);
+int		ft_pwd(void);
+int		ft_cd(char **argv, t_proc *proc);
+char	*ft_get_env_path(t_proc *proc, char *var, int var_len);
+
+///////// Execute ////////////
+void	ft_execute(t_proc *proc);
+
 /////// Errors //////////
 void    ft_check_errors(t_proc *proc);
-int ft_check_empty_line(char *line_read);
+int		ft_check_empty_line(char *line_read);
 
 ///////// Test //////////////
 void	ft_test(t_proc *proc);
