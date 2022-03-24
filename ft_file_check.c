@@ -6,14 +6,14 @@
 /*   By: jsolinis <jsolinis@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 15:55:13 by jsolinis          #+#    #+#             */
-/*   Updated: 2021/12/07 22:56:02 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:57:54 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
-#include "pipex.h"
-
+#include "minishell.h"
+/*
 int	ft_infile_check(int fd, char *arg)
 {
 	fd = open(arg, O_RDONLY);
@@ -33,4 +33,4 @@ int	ft_outfile_check(int fd, char *arg)
 	if (fd < 0)
 		ft_error_mgt(13);
 	return (fd);
-}
+}*/
