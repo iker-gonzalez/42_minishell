@@ -6,7 +6,7 @@
 /*   By: jsolinis <jsolinis@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 15:40:39 by jsolinis          #+#    #+#             */
-/*   Updated: 2021/12/07 22:54:10 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/25 12:44:04 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,15 @@ void	ft_free_array(char **array)
 	free(array);
 }
 
-char	*ft_cmd_exist(char **routes)
+void	ft_cmd_exist(t_proc *proc)
 {
 	int		i;
-	char	*path;
 
 	i = 0;
-	while (routes[i])
+	while (proc->paths[i])
 	{
 		if (access(routes[i], F_OK) == 0)
 			path = routes[i];
 		i++;
 	}
-	return (path);
 }
