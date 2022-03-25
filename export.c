@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 12:36:10 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:11:09 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,43 @@
 //en este caso el export lo haría el hijo, si bien no podriamos ver la variable en env ya que este cambio 
 //muere cuando el hijo deja de ejecutarse.
 
+int ft_varlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '=')
+		i++;
+	return (i);
+}
+
 char	**add_edit_var(t_proc *proc, char *var)
 {
 	int i;
 	char **tmp;
+	int edit;
 
 	i = 0;
+	edit = 0;
 	while (proc->env[i])
 		i++;
 	tmp = (char **)malloc(sizeof(char *) * (i + 2));
 	i = -1;
 	while (proc->env[++i])
 	{
-		if (!(ft_strncmp(proc->env[i], var, ft_strlen(var))))
-			tmp[i] = ft_strdup(proc->env[i]);
+		if (ft_strncmp(proc->env[i], var, ft_varlen(var)) == 0 && ++edit)
+			tmp[i] = ft_strdup(var);
 		else
 			tmp[i] = ft_strdup(proc->env[i]);
 	}
+	if (!edit)
+	{
+		tmp[i] = ft_strdup(var);
+		tmp[i + 1] = NULL;
+	}
+	else
+		tmp[i] = NULL;
 	ft_free_double_char(proc->env);
-	tmp[i+1] = NULL;
 	return (tmp);
 }
 
@@ -44,8 +62,8 @@ void	export(t_proc *proc, char **argv)
 	int i;
 
 	i = 1;
-	ft_env(proc);
 	printf("\n\n");
+	// Check errors.
 	while (argv[i])
 	{
 		proc->env = add_edit_var(proc, argv[i]);
