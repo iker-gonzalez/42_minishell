@@ -6,11 +6,28 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 19:31:59 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:13:29 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_get_env(t_proc *proc, char **env)
+{
+	int		i;
+
+	i = 0;
+	while (env[i])
+		i++ ;
+	proc->env = (char **)ft_calloc(sizeof(char *), i + 1);
+	i = -1;
+	while (env[++i])
+	{
+		if ((ft_strncmp(env[i], "OLDPWD", 6)) != 0)
+			proc->env[i] = ft_strdup(env[i]);
+	}
+	proc->env[i] = NULL;
+}
 
 void	ft_format_paths(t_proc *proc)
 {
@@ -37,7 +54,7 @@ void	ft_format_paths(t_proc *proc)
 	free(paths);
 }
 
-void	set_up_shell(t_proc *proc)
+void	set_up_shell(t_proc *proc, char **env)
 {
 	char *user;
 	char *logo;
@@ -46,5 +63,5 @@ void	set_up_shell(t_proc *proc)
 	logo = "\033[38;2;243;134;48mpapa$hell 🐚\033[0m";
 	proc->prompt = ft_strjoin(user, logo);
 	ft_format_paths(proc);
-
+	ft_get_env(proc, env);
 }

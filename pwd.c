@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cmd_exist.c                                     :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolinis@student.42urduli>       +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 15:40:39 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/03/25 12:44:04 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/25 12:59:56 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "minishell.h"
-#include "libft/libft.h"
+#include <limits.h>
 
-void	ft_free_array(char **array)
+int	ft_pwd(void)
 {
-	int	i;
+	char str[PATH_MAX];
 
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
-void	ft_cmd_exist(t_proc *proc)
-{
-	int		i;
-
-	i = 0;
-	while (proc->paths[i])
-	{
-		if (access(routes[i], F_OK) == 0)
-			path = routes[i];
-		i++;
-	}
+	if (getcwd(str, PATH_MAX) == NULL)
+		return(1);
+	printf("%s\n", str);
+	return(0);
 }

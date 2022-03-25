@@ -6,12 +6,21 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 11:48:51 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:38:02 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+void	ft_free_nodes(t_proc *proc)
+{
+	if (!(*proc->lst))
+		return ;
+    free ((*proc->lst)->content);
+    free ((*proc->lst)->exp_content);
+}
+*/
 
 void  ft_free_process(t_proc *proc)
 {

@@ -3,48 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:44 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 19:35:02 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:18:35 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-void ft_execute_command(t_proc *proc, char *route, int processid)
+
+void ft_execute_command(t_proc *proc, char *route, char **args)
 {
-	char **arg;
-	char *env;
-	
-	if (proc->cmd_count > 1)
-		arg = ft_split(proc->process[processid], ' ');
-	else
-		arg = ft_split(proc->line_read, ' ');
-	env = NULL;
-	execve(route, arg, &env);
+	execve(route, args, proc->env);
 }
 
-void	ft_cmd_exist(t_proc *proc, char *token, int processid)
+void	ft_cmd_exist(t_proc *proc)
 {
 	int		i;
 
 	i = 0;
-	proc->cmd_found = 0;
 	while (proc->paths[i])
 	{
-		proc->paths[i] = ft_strjoin(proc->paths[i], token);
+		proc->paths[i] = ft_strjoin(proc->paths[i], (*proc->lst)->args[0]);
 		if (access(proc->paths[i], F_OK) == 0)
 		{
-			proc->cmd_found = 1;
-			ft_execute_command(proc, proc->paths[i], processid);
+			printf("%s\n", proc->paths[i]);
+			ft_execute_command(proc, proc->paths[i], (*proc->lst)->args);
 		}
 		i++;
 	}
 }
 
-//Creates double char eliminating the nodes that became empty after being transformed. 
+void	ft_check_builtins(t_proc *proc)
+{
+	if ((ft_strncmp((*proc->lst)->args[0], "env", 3)) == 0)
+		ft_env(proc);
+	else if ((ft_strncmp((*proc->lst)->args[0], "pwd", 3)) == 0)
+		ft_pwd();
+	else if ((ft_strncmp((*proc->lst)->args[0], "cd", 2)) == 0)
+		ft_cd((*proc->lst)->args, proc);
+	else if ((ft_strncmp((*proc->lst)->args[0], "export", 6)) == 0)
+	{
+		export(proc, (*proc->lst)->args);
+		ft_env(proc);
+	}
+	
+	//else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
+		//echo();
+}
 
+void	ft_execute(t_proc *proc)
+{
+	ft_check_builtins(proc);
+	//ft_cmd_exist(proc);
+}
+
+
+
+
+//Creates double char eliminating the nodes that became empty after being transformed. 
+/*
 void	ft_test(t_proc *proc)
 {
 	int k;

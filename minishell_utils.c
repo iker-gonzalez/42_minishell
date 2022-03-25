@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:34:04 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 19:47:16 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/25 13:00:26 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
