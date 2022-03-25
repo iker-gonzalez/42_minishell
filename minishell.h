@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 11:38:27 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/25 12:52:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,5 @@ void	listen_signals(void);
 //////// Free ////////////////
 void	ft_free(t_proc *proc);
 void	ft_free_double_char(char **str);
-
 
 #endif

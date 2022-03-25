@@ -13,7 +13,7 @@
 NAME = libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Wno-unused-but-set-variable
 AR = ar rcs
 RM = rm -f
 

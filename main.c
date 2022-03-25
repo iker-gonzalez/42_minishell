@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/24 11:34:05 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/25 12:52:39 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	ft_loop(t_proc *proc)
 {
+	int	ms_on;
 
-	while (1)
+	ms_on = 1;
+	while (ms_on)
 	{
 		ft_read_input(proc);
 		if (!ft_strncmp(proc->line_read, "exit", 4))

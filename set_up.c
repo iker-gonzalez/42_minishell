@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 10:10:42 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/25 12:53:35 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_format_paths(t_proc *proc)
 	i = 0;
 	while (paths[i])
 		i++;
-	proc->paths = malloc(sizeof (char *) * i);
+	proc->paths = malloc(sizeof (char *) * (i + 1));
 	i = 0;
 	while (paths[i])
 	{
@@ -51,6 +51,7 @@ void	ft_format_paths(t_proc *proc)
 		i++;
 	}
 	free(paths);
+	proc->paths[i] = NULL;
 }
 
 void	set_up_shell(t_proc *proc, char **env)
