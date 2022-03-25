@@ -8,7 +8,6 @@ SRC =	main.c \
 		ft_create_list.c \
 		ft_expand.c \
 		ft_expand2.c \
-		ft_free_list.c \
 		ft_parse_input2.c \
 		ft_print.c \
 		ft_proceniser.c \
@@ -20,6 +19,7 @@ SRC =	main.c \
 		pwd.c \
 		echo.c \
 		cd.c \
+		export.c \
 
 OBJ = $(SRC:.c=.o)
 

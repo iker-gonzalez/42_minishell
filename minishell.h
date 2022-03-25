@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/24 13:18:24 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/25 11:38:27 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,9 @@ int		echo(int argc, char **argv, int fd);
 int		ft_pwd(void);
 int		ft_cd(char **argv, t_proc *proc);
 char	*ft_get_env_path(t_proc *proc, char *var, int var_len);
+void	export(t_proc *proc, char **argv);
+char	**add_edit_var(t_proc *proc, char *var);
+
 
 ///////// Execute ////////////
 void	ft_execute(t_proc *proc);
@@ -152,5 +155,7 @@ void	listen_signals(void);
 
 //////// Free ////////////////
 void	ft_free(t_proc *proc);
+void	ft_free_double_char(char **str);
+
 
 #endif

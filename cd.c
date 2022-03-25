@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/24 13:17:41 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/25 09:17:32 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		ft_cd(char **argv, t_proc *proc)
 	// getcwd(OLDPWD) in order to update OLDPWD every time cd is invoked.
 	if (!create_oldpwd)
 	{
-		// Function to create OLDPWD variable
+		// Function to create OLDPWD variable (EXPORT).
 		// create_oldpwd = 1;
 	}
 	s = NULL;
