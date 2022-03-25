@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 12:52:39 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/25 13:10:26 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ft_loop(t_proc *proc)
 		ft_tokenizer(proc);
 		ft_execute(proc);
 		//ft_free(proc);
+		ft_process_fds(proc);
+		ft_free(proc);
 		//ft_print_val(proc);
 	}
 	return(0);
