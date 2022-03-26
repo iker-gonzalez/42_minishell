@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 14:11:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/26 08:31:05 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,25 @@
 //Si no el hijo, si bien los cambios no se verán reflejados (moriran con el hijo). p.e.=> ls | export a=2 
 //en este caso el export lo haría el hijo, si bien no podriamos ver la variable en env ya que este cambio 
 //muere cuando el hijo deja de ejecutarse.
+
+int	ft_export_errors(char *argv)
+{
+	int i;
+
+	if (!ft_isalpha(argv[0]) && argv[0] != '_')
+		return (1);
+	i = 0;
+	while (argv[i] != '=')
+	{
+		if (!ft_isalnum(argv[i]) && argv[i] != '_')
+		{
+			ft_putendl_fd("papa$hell: export: not a valid identifier", 2);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 int ft_varlen(char *str)
 {
@@ -62,11 +81,10 @@ void	export(t_proc *proc, char **argv)
 	int i;
 
 	i = 1;
-	printf("\n\n");
-	// Check errors.
 	while (argv[i])
 	{
-		proc->env = add_edit_var(proc, argv[i]);
+		if (!ft_export_errors(argv[i]))
+			proc->env = add_edit_var(proc, argv[i]);
 		i++;
 	}
 }
