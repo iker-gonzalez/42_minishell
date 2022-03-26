@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 09:20:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/26 13:17:08 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@ typedef struct s_node
 	struct s_node	*previous;
 	struct s_node	*next;
 }					t_node;
+
+typedef struct s_sig
+{
+	int			act_child;
+	int			sigint;
+	int			sigquit;
+	int			status;
+	pid_t		pid;
+}				t_sig;
+
+extern t_sig sig;
 
 typedef struct s_proc
 {
@@ -149,6 +160,12 @@ char	*ft_get_env_path(t_proc *proc, char *var, int var_len);
 void	export(t_proc *proc, char **argv);
 char	**add_edit_var(t_proc *proc, char *var);
 void	unset(t_proc *proc, char **argv);
+
+////////// Signals //////////
+void	listen_signals(void);
+void	handler(int signum);
+void	child_message(int signum);
+
 
 
 ///////// Execute ////////////

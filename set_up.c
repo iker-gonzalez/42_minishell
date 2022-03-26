@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 07:58:02 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/26 13:17:22 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	set_up_shell(t_proc *proc, char **env)
 	char *logo;
 
 	user = getenv("USER");
-	logo = "\033[38;2;243;134;48mpapa$hell 🐚\033[0m";
+	logo = "papa$hell ";
 	proc->prompt = ft_strjoin(user, logo);
 	ft_format_paths(proc);
 	ft_get_env(proc, env);

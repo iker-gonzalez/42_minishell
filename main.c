@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 07:58:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/26 11:16:38 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int main (int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
+	listen_signals();
 	ft_memset(&proc, 0, sizeof(t_proc));
 	set_up_shell(&proc, env);
 	ft_loop(&proc);
