@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 08:31:05 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/26 09:58:55 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,15 @@
 int	ft_export_errors(char *argv)
 {
 	int i;
-
-	if (!ft_isalpha(argv[0]) && argv[0] != '_')
-		return (1);
+	
 	i = 0;
+	if (!ft_isalpha(argv[0]) && argv[0] != '_')
+	{
+		ft_putendl_fd("papa$hell: export: not a valid identifier", 2);
+		return (1);
+	}
+	if (!ft_findchar(argv, '='))
+		return (1);
 	while (argv[i] != '=')
 	{
 		if (!ft_isalnum(argv[i]) && argv[i] != '_')
@@ -80,6 +85,7 @@ void	export(t_proc *proc, char **argv)
 {
 	int i;
 
+	//$ in first position: as long as we expand first, error is not detected.
 	i = 1;
 	while (argv[i])
 	{

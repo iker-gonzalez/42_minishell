@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 07:57:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/26 09:20:56 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ int		ft_cd(char **argv, t_proc *proc);
 char	*ft_get_env_path(t_proc *proc, char *var, int var_len);
 void	export(t_proc *proc, char **argv);
 char	**add_edit_var(t_proc *proc, char *var);
+void	unset(t_proc *proc, char **argv);
 
 
 ///////// Execute ////////////

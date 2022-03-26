@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:44 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 07:57:27 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/26 09:20:11 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ void	ft_check_builtins(t_proc *proc)
 	else if ((ft_strncmp((*proc->lst)->args[0], "cd", 2)) == 0)
 		ft_cd((*proc->lst)->args, proc);
 	else if ((ft_strncmp((*proc->lst)->args[0], "export", 6)) == 0)
-	{
 		export(proc, (*proc->lst)->args);
-		//ft_env(proc);
-	}
-	
+	else if ((ft_strncmp((*proc->lst)->args[0], "unset", 5)) == 0)
+		unset(proc, (*proc->lst)->args);
 	//else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
 		//echo();
 }
