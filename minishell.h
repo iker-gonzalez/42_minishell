@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 13:17:08 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/27 00:24:55 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_node
 {
 	int				pid;
 	char			**args;
-	int				fd[2];
 	char			*route;
 	int				status;
 	//int			is_empty;
@@ -70,6 +69,10 @@ typedef struct s_proc
 	//////// pipes ////////
 	int		*pipe_arr;
 	int		pipe_arr_len;
+	int		p[2][2];
+	int		launched_processes;
+	int		pipe1;
+	int		pipe2;
 	/////// red in ////////
 	int		*red_in_arr;
 	int		red_in_arr_len;
@@ -142,11 +145,15 @@ void	ft_tokenizer(t_proc *proc);
 char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k);
 
 //////// Fds & Processes /////////
-void	ft_process_fds(t_proc *proc);
+void	ft_launch_process(t_proc *proc);
 void	ft_set_route(t_proc *proc);
+void	ft_parental_wait(t_proc *proc);
+void	ft_initialize_pipes(t_proc *proc);
+void	ft_create_children(t_proc *proc);
 void	ft_create_only_child(t_node *node, char **env);
-void	ft_create_first_child(t_node *node, char **env);
-void	ft_create_last_child(t_node *node, char **env);
+void	ft_create_first_child(t_proc *proc, t_node *node, char **env);
+void	ft_create_last_child(t_proc *proc, t_node *node, char **env);
+void	ft_create_child(t_proc *proc, t_node *node, char **env);
 
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
@@ -157,9 +164,10 @@ int		echo(int argc, char **argv, int fd);
 int		ft_pwd(void);
 int		ft_cd(char **argv, t_proc *proc);
 char	*ft_get_env_path(t_proc *proc, char *var, int var_len);
-void	export(t_proc *proc, char **argv);
+//void	export(t_proc *proc, char **argv);
 char	**add_edit_var(t_proc *proc, char *var);
 void	unset(t_proc *proc, char **argv);
+void	ft_check_builtins(t_proc *proc);
 
 ////////// Signals //////////
 void	listen_signals(void);
