@@ -53,3 +53,10 @@ dkms.conf
 
 # Makefile
 Makefile
+.Makefile
+
+#gitignore
+.gitignore
+
+#Libft
+/libft/*
