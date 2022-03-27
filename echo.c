@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:56 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/02/24 13:31:57 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:52:12 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	echo(int argc, char **argv, int fd)
 {
-	int	i;
+	int		i;
 	size_t	cnt;
-	
+
 	if (!fd)
 		fd = 1;
 	i = 1;

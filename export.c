@@ -6,21 +6,23 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 09:58:55 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/27 20:18:15 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// export unset cd exit =>si solo hay un proceso, lo ejecutará en todo caso el padre. 
-//Si no el hijo, si bien los cambios no se verán reflejados (moriran con el hijo). p.e.=> ls | export a=2 
-//en este caso el export lo haría el hijo, si bien no podriamos ver la variable en env ya que este cambio 
-//muere cuando el hijo deja de ejecutarse.
+/* export unset cd exit =>si solo hay un proceso, lo ejecutará
+ *  en todo caso el padre. Si no el hijo, si bien los cambios no
+ *  se verán reflejados (moriran con el hijo). p.e.=> ls | export a=2 
+ *  en este caso el export lo haría el hijo, si bien no podriamos ver 
+ *  la variable en env ya que este cambio muere cuando el hijo deja
+ *  de ejecutarse.*/
 
 int	ft_export_errors(char *argv)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (!ft_isalpha(argv[0]) && argv[0] != '_')
 	{
@@ -41,9 +43,9 @@ int	ft_export_errors(char *argv)
 	return (0);
 }
 
-int ft_varlen(char *str)
+int	ft_varlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '=')
@@ -53,9 +55,9 @@ int ft_varlen(char *str)
 
 char	**add_edit_var(t_proc *proc, char *var)
 {
-	int i;
-	char **tmp;
-	int edit;
+	int		i;
+	char	**tmp;
+	int		edit;
 
 	i = 0;
 	edit = 0;
@@ -83,7 +85,7 @@ char	**add_edit_var(t_proc *proc, char *var)
 
 void	export(t_proc *proc, char **argv)
 {
-	int i;
+	int	i;
 
 	//$ in first position: as long as we expand first, error is not detected.
 	i = 1;

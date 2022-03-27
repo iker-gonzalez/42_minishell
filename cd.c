@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 09:17:32 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:50:34 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 char	*ft_get_env_path(t_proc *proc, char *var, int var_len)
 {
-	int i;
-	char *path;
-	int	path_len;
-	int k;
-	int j;
+	int		i;
+	char	*path;
+	int		path_len;
+	int		k;
+	int		j;
 
 	i = -1;
 	while (proc->env[++i])
@@ -58,7 +58,6 @@ int	ft_go_to_home(t_proc *proc)
 	return (0);
 }
 
-
 int	ft_go_to_oldpwd(t_proc *proc)
 {
 	char	*old_pwd_path;
@@ -75,12 +74,11 @@ int	ft_go_to_oldpwd(t_proc *proc)
 	return (0);
 }
 
-
-int		ft_cd(char **argv, t_proc *proc)
+int	ft_cd(char **argv, t_proc *proc)
 {
-	char *s;
-	static int create_oldpwd;
-	
+	char		*s;
+	static int	create_oldpwd;
+
 	// getcwd(OLDPWD) in order to update OLDPWD every time cd is invoked.
 	if (!create_oldpwd)
 	{

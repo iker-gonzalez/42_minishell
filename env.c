@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:39:23 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 13:08:48 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:53:18 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ft_env(t_proc *proc)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (proc->env[++i])
 		printf("%s\n", proc->env[i]);
-	return(0);
+	return (0);
 }

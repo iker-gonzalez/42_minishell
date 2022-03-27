@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/27 00:24:55 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/27 20:32:24 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,8 @@ typedef struct s_proc
 	//////// pipes ////////
 	int		*pipe_arr;
 	int		pipe_arr_len;
-	int		p[2][2];
-	int		launched_processes;
-	int		pipe1;
-	int		pipe2;
+	int		lpipe[2];
+	int		rpipe[2];
 	/////// red in ////////
 	int		*red_in_arr;
 	int		red_in_arr_len;
@@ -147,13 +145,15 @@ char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k);
 //////// Fds & Processes /////////
 void	ft_launch_process(t_proc *proc);
 void	ft_set_route(t_proc *proc);
-void	ft_parental_wait(t_proc *proc);
-void	ft_initialize_pipes(t_proc *proc);
 void	ft_create_children(t_proc *proc);
-void	ft_create_only_child(t_node *node, char **env);
-void	ft_create_first_child(t_proc *proc, t_node *node, char **env);
-void	ft_create_last_child(t_proc *proc, t_node *node, char **env);
-void	ft_create_child(t_proc *proc, t_node *node, char **env);
+void	ft_create_child(int *lpipe, int *rpipe, t_node *node, char **env);
+
+///////// Pipes ///////////////
+void	ft_parental_wait(t_proc *proc);
+void	ft_close_pipe(int *pipe);
+void	ft_set_read(int *lpipe);
+void	ft_set_write(int *rpipe);
+void	ft_swap_pipes(t_proc *proc);
 
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
@@ -180,6 +180,7 @@ void	child_message(int signum);
 void	ft_execute(t_proc *proc);
 
 /////// Errors //////////
+int		ft_check_redirections(char *line, char c);
 void    ft_check_errors(t_proc *proc);
 int		ft_check_empty_line(char *line_read);
 
