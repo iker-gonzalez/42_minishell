@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:44 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 17:55:28 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/28 10:32:57 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void ft_execute_command(t_proc *proc, char *route, char **args)
 	execve(route, args, proc->env);
 }
 
-/*void	ft_cmd_exist(t_proc *proc)
+void	ft_cmd_exist(t_proc *proc)
 {
 	int		i;
 
@@ -58,7 +58,7 @@ void	ft_execute(t_proc *proc)
 
 
 
-
+/*
 //Creates double char eliminating the nodes that became empty after being transformed. 
 //
 void	ft_test(t_proc *proc)

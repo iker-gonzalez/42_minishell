@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/27 19:50:34 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/28 13:09:39 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,31 @@ int	ft_go_to_oldpwd(t_proc *proc)
 	return (0);
 }
 
+int	ft_update_oldpwd(t_proc *proc)
+{
+	static int	create_oldpwd;
+	char		oldpwd_path[PATH_MAX];
+	char		*var;
+	
+	if (getcwd(oldpwd_path, PATH_MAX) == NULL)
+		return (1);
+	var = ft_strjoin("OLDPWD=", oldpwd_path);
+	if (!create_oldpwd)
+	{
+		proc->env = add_var(proc, var);
+		create_oldpwd = 1;
+	}
+	else
+		edit_var(proc, var);
+	free (var);
+	return (0);
+}
+
 int	ft_cd(char **argv, t_proc *proc)
 {
 	char		*s;
-	static int	create_oldpwd;
 
-	// getcwd(OLDPWD) in order to update OLDPWD every time cd is invoked.
-	if (!create_oldpwd)
-	{
-		// Function to create OLDPWD variable (EXPORT).
-		// create_oldpwd = 1;
-	}
+	ft_update_oldpwd(proc);
 	s = NULL;
 	if (!argv[1])
 		ft_go_to_home(proc);

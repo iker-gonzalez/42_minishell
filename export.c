@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/27 20:18:15 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/28 13:10:04 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,32 +53,34 @@ int	ft_varlen(char *str)
 	return (i);
 }
 
-char	**add_edit_var(t_proc *proc, char *var)
+void	edit_var(t_proc *proc, char *var)
+{
+	int	var_len;
+	int	i;
+
+	var_len = ft_varlen(var);
+	i = -1;
+	while (proc->env[++i])
+	{
+		if ((ft_strncmp(proc->env[i], var, var_len) == 0))
+			proc->env[i] = ft_strdup(var);
+	}
+}
+
+char	**add_var(t_proc *proc, char *var)
 {
 	int		i;
 	char	**tmp;
-	int		edit;
 
 	i = 0;
-	edit = 0;
 	while (proc->env[i])
 		i++;
 	tmp = (char **)malloc(sizeof(char *) * (i + 2));
 	i = -1;
 	while (proc->env[++i])
-	{
-		if (ft_strncmp(proc->env[i], var, ft_varlen(var)) == 0 && ++edit)
-			tmp[i] = ft_strdup(var);
-		else
 			tmp[i] = ft_strdup(proc->env[i]);
-	}
-	if (!edit)
-	{
-		tmp[i] = ft_strdup(var);
-		tmp[i + 1] = NULL;
-	}
-	else
-		tmp[i] = NULL;
+	tmp[i] = ft_strdup(var);
+	tmp[i + 1] = NULL;
 	ft_free_double_char(proc->env);
 	return (tmp);
 }
@@ -86,13 +88,25 @@ char	**add_edit_var(t_proc *proc, char *var)
 void	export(t_proc *proc, char **argv)
 {
 	int	i;
+	int k;
+	int var_len;
+	int edit;
 
-	//$ in first position: as long as we expand first, error is not detected.
-	i = 1;
-	while (argv[i])
+	i = 0;
+	edit = 0;
+	while (argv[++i])
 	{
+		k = -1;
 		if (!ft_export_errors(argv[i]))
-			proc->env = add_edit_var(proc, argv[i]);
-		i++;
+		{
+			var_len = ft_varlen(argv[i]);
+			while (proc->env[++k])
+			{
+				if (((ft_strncmp(proc->env[k], argv[i], var_len)) == 0) && ++edit)
+					edit_var(proc, argv[i]);
+			}
+			if (!edit)
+				proc->env = add_var(proc, argv[i]);
+		}
 	}
 }
