@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/28 12:25:33 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/28 13:44:57 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_proc
 	int		lock;
 	int		row_len;
 	int		col_len;
+	int		old_pwd;
 	t_node	*head;
 	t_node	**lst;
 }				t_proc;
@@ -163,6 +164,7 @@ int		ft_env(t_proc *proc);
 int		echo(int argc, char **argv, int fd);
 int		ft_pwd(void);
 int		ft_cd(char **argv, t_proc *proc);
+int		ft_update_oldpwd(t_proc *proc);
 char	*ft_get_env_path(t_proc *proc, char *var, int var_len);
 void	export(t_proc *proc, char **argv);
 char	**add_var(t_proc *proc, char *var);

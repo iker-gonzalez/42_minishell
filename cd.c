@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/28 13:09:39 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:18:16 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ int	ft_go_to_home(t_proc *proc)
 		return (1);
 	}
 	else
+	{
+		ft_update_oldpwd(proc);
 		chdir(home_path);
+	}
 	free(home_path);
 	return (0);
 }
@@ -69,24 +72,27 @@ int	ft_go_to_oldpwd(t_proc *proc)
 		return (1);
 	}
 	else
+	{
+		ft_update_oldpwd(proc);
 		chdir(old_pwd_path);
+	}
 	free(old_pwd_path);
 	return (0);
 }
 
 int	ft_update_oldpwd(t_proc *proc)
 {
-	static int	create_oldpwd;
 	char		oldpwd_path[PATH_MAX];
 	char		*var;
+	static int	old_pwd;
 	
 	if (getcwd(oldpwd_path, PATH_MAX) == NULL)
 		return (1);
 	var = ft_strjoin("OLDPWD=", oldpwd_path);
-	if (!create_oldpwd)
+	if (!old_pwd)
 	{
 		proc->env = add_var(proc, var);
-		create_oldpwd = 1;
+		old_pwd = 1;
 	}
 	else
 		edit_var(proc, var);
@@ -94,21 +100,18 @@ int	ft_update_oldpwd(t_proc *proc)
 	return (0);
 }
 
+
+
 int	ft_cd(char **argv, t_proc *proc)
 {
-	char		*s;
-
-	ft_update_oldpwd(proc);
-	s = NULL;
-	if (!argv[1])
-		ft_go_to_home(proc);
 	if (argv[1] && (ft_strncmp(argv[1], "-", 1)) == 0)
 		ft_go_to_oldpwd(proc);
+	else if (!argv[1])
+		ft_go_to_home(proc);
 	else
 	{
-		printf("previous directory: %s\n", getcwd(s, PATH_MAX));
+		ft_update_oldpwd(proc);
 		chdir(argv[1]);
-		printf("current directory: %s\n", getcwd(s, PATH_MAX));
 	}
 	return (0);
 }
