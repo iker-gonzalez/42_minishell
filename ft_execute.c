@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:44 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/28 13:55:55 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 09:47:03 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,20 @@ void	ft_cmd_exist(t_proc *proc)
 
 void	ft_check_builtins(t_proc *proc)
 {
-	if ((ft_strncmp((*proc->lst)->args[0], "env", 3)) == 0)
+	if ((ft_strncmp_len((*proc->lst)->args[0], "env", 3)) == 0)
 		ft_env(proc);
-	else if ((ft_strncmp((*proc->lst)->args[0], "pwd", 3)) == 0)
+	else if ((ft_strncmp_len((*proc->lst)->args[0], "pwd", 3)) == 0)
 		ft_pwd();
-	else if ((ft_strncmp((*proc->lst)->args[0], "cd", 2)) == 0)
+	else if ((ft_strncmp_len((*proc->lst)->args[0], "cd", 2)) == 0)
 		ft_cd((*proc->lst)->args, proc);
-	else if ((ft_strncmp((*proc->lst)->args[0], "export", 6)) == 0)
+	else if ((ft_strncmp_len((*proc->lst)->args[0], "export", 6)) == 0)
 		export(proc, (*proc->lst)->args);
-	else if ((ft_strncmp((*proc->lst)->args[0], "unset", 5)) == 0)
+	else if ((ft_strncmp_len((*proc->lst)->args[0], "unset", 5)) == 0)
 		unset(proc, (*proc->lst)->args);
+	else if ((ft_strncmp_len((*proc->lst)->args[0], "exit", 4)) == 0)
+		ft_exit((*proc->lst)->args);
 	//else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
-		//	echo();
+			//echo();
 }
 
 void	ft_execute(t_proc *proc)

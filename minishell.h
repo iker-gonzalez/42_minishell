@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/28 13:44:57 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 09:46:51 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,8 @@ void	ft_swap_pipes(t_proc *proc);
 
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
+int		ft_strncmp_len(const char *s1, const char *s2, size_t n);
+
 
 //////// Builtins /////////
 int		ft_env(t_proc *proc);
@@ -171,13 +173,12 @@ char	**add_var(t_proc *proc, char *var);
 void	edit_var(t_proc *proc, char *var);
 void	unset(t_proc *proc, char **argv);
 void	ft_check_builtins(t_proc *proc);
+void	ft_exit(char **argv);
 
 ////////// Signals //////////
 void	listen_signals(void);
 void	handler(int signum);
 void	child_message(int signum);
-
-
 
 ///////// Execute ////////////
 void	ft_execute(t_proc *proc);

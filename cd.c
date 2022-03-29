@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/28 14:18:16 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:21:01 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ int	ft_update_oldpwd(t_proc *proc)
 	free (var);
 	return (0);
 }
-
-
 
 int	ft_cd(char **argv, t_proc *proc)
 {

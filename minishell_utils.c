@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:34:04 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 13:16:34 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:59:00 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,34 @@ void	ft_exp_sp_arr(t_proc *proc)
 			proc->exp_sp_arr[k++] = proc->space_arr[i];
 	}
 	proc->exp_space_count = k;
+}
+
+int	ft_strncmp_len(const char *s1, const char *s2, size_t n)
+{
+	unsigned int	i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	int				str1_len;
+	int				str2_len;
+
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	str1_len = ft_strlen(s1);
+	str2_len = ft_strlen(s2);
+	if (str1_len != str2_len)
+	{
+		return (1);
+	}
+	i = 0;
+	while (i < n)
+	{
+		if (str1[i] < str2[i])
+			return (-1);
+		else if (str1[i] > str2[i])
+			return (1);
+		if (str1[i] == '\0' || str2 == NULL)
+			break ;
+		i++;
+	}
+	return (0);
 }
