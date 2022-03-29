@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:10:57 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 13:09:16 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:38:09 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 // If proc->quote_scope = 2, preference for single quotes.
 // If proc->quote_scope != 4 && !=2, preference is not applicable.
 
-
 int	ft_quote_pref_close(char *line_read, int i)
 {
-	int ret;
+	int	ret;
 
-	while(line_read[i])
+	while (line_read[i])
 	{
 		if (line_read[i] == 39)
 			ret = 1;
@@ -36,11 +35,12 @@ int	ft_quote_pref_close(char *line_read, int i)
 void	ft_quote_pref_open(t_proc *proc)
 {
 	int	i;
-	int scope;
+	int	scope;
 
 	i = 0;
 	scope = 0;
-	while (proc->line_read[i] && proc->line_read[i] != 34 && proc->line_read[i] != 39)
+	while (proc->line_read[i] && proc->line_read[i] != 34
+		&& proc->line_read[i] != 39)
 		i++;
 	if (proc->line_read[i] == 39)
 		proc->quote_scope = 1 + (ft_quote_pref_close(proc->line_read, i));

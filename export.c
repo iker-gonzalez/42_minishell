@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/28 13:10:04 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:24:43 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ char	**add_var(t_proc *proc, char *var)
 void	export(t_proc *proc, char **argv)
 {
 	int	i;
-	int k;
-	int var_len;
-	int edit;
+	int	k;
+	int	var_len;
+	int	edit;
 
 	i = 0;
 	edit = 0;
@@ -102,7 +102,8 @@ void	export(t_proc *proc, char **argv)
 			var_len = ft_varlen(argv[i]);
 			while (proc->env[++k])
 			{
-				if (((ft_strncmp(proc->env[k], argv[i], var_len)) == 0) && ++edit)
+				if (((ft_strncmp(proc->env[k], argv[i], var_len)) == 0)
+					&& ++edit)
 					edit_var(proc, argv[i]);
 			}
 			if (!edit)

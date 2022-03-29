@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/28 14:21:01 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:22:37 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	ft_update_oldpwd(t_proc *proc)
 	char		oldpwd_path[PATH_MAX];
 	char		*var;
 	static int	old_pwd;
-	
+
 	if (getcwd(oldpwd_path, PATH_MAX) == NULL)
 		return (1);
 	var = ft_strjoin("OLDPWD=", oldpwd_path);

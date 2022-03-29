@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 13:17:22 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:58:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_format_paths(t_proc *proc)
 {
 	char	*path;
 	char	**paths;
-	int	i;
+	int		i;
 
 	path = getenv("PATH");
 	paths = ft_split(path, ':');
@@ -47,7 +47,7 @@ void	ft_format_paths(t_proc *proc)
 		path = ft_strjoin(paths[i], "/");
 		free(paths[i]);
 		paths[i] = path;
-		proc->paths[i] = paths[i]; 
+		proc->paths[i] = paths[i];
 		i++;
 	}
 	proc->paths[i] = NULL;
@@ -56,8 +56,8 @@ void	ft_format_paths(t_proc *proc)
 
 void	set_up_shell(t_proc *proc, char **env)
 {
-	char *user;
-	char *logo;
+	char	*user;
+	char	*logo;
 
 	user = getenv("USER");
 	logo = "papa$hell ";

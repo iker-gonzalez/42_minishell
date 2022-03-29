@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 07:57:33 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:31:29 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void	ft_free_nodes(t_proc *proc)
 }
 */
 
-void  ft_free_process(t_proc *proc)
+void	ft_free_process(t_proc *proc)
 {
-  int row;
+	int	row;
 
-  row = 0;
-  while (row < proc->process_count)
-  {
-    free(proc->process[row]);
-    row++;
-  }
-  free(proc->process);
+	row = 0;
+	while (row < proc->process_count)
+	{
+		free(proc->process[row]);
+		row++;
+	}
+	free(proc->process);
 }
 
 void	ft_free_double_char(char **str)
@@ -65,7 +65,7 @@ void	ft_freelist(t_node **lst)
 
 void	ft_free_args(t_proc *proc)
 {
-	int row;
+	int	row;
 
 	row = -1;
 	while ((*proc->lst)->args[++row])

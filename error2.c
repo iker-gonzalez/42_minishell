@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:10:13 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/03/28 10:20:02 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:23:31 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_check_redirections(char *line, char c)
 			{
 				ft_putstr_fd("papa$hell: ", 2);
 				ft_putendl_fd
-					("syntax error near unexpected token `newline'", 2);
+				("syntax error near unexpected token `newline'", 2);
 				return (1);
 			}
 		}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_process_fds.c                                   :+:      :+:    :+:   */
+/*   ft_launch_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/03/27 20:27:23 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:32:34 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_set_route(t_proc *proc)
 	i = 0;
 	while (proc->paths[i])
 		i++;
-	routes = malloc (i * sizeof(char *)); 
+	routes = malloc (i * sizeof(char *));
 	i = 0;
 	while (proc->paths[i])
 	{
@@ -35,8 +35,8 @@ void	ft_set_route(t_proc *proc)
 }
 
 void	ft_parental_wait(t_proc *proc)
-	{
-		int	stt;
+{
+	int		stt;
 	pid_t	process;
 
 	process = waitpid((*proc->lst)->pid, &stt, 0);
@@ -56,7 +56,3 @@ void	ft_launch_process(t_proc *proc)
 //	ft_lstiter(proc, ft_print_fd);
 //	ft_lstiter(proc, ft_fd_red);
 }
-
-
-
-

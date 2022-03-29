@@ -6,15 +6,15 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 08:33:03 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/26 10:19:18 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:59:09 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		ft_unset_errors(char *argv)
+int	ft_unset_errors(char *argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (argv[i])
@@ -36,9 +36,9 @@ int		ft_unset_errors(char *argv)
 
 char	**rmv_var(t_proc *proc, char *var)
 {
-	int i;
-	char **tmp;
-	int k;
+	int		i;
+	char	**tmp;
+	int		k;
 
 	i = -1;
 	k = 0;
@@ -62,10 +62,10 @@ char	**rmv_var(t_proc *proc, char *var)
 
 void	unset(t_proc *proc, char **argv)
 {
-	int i;
-	
+	int	i;
+
 	i = 1;
-	while(argv[i])
+	while (argv[i])
 	{
 		if (!ft_unset_errors(argv[i]))
 			proc->env = rmv_var(proc, argv[i]);

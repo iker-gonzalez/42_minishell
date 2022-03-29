@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/25 13:13:37 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:25:51 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 
 t_node	*ft_new_node(char **args)
 {
-	t_node *ret;
-	
+	t_node	*ret;
+
 	ret = malloc(sizeof (t_node));
 	memset(ret, 0, sizeof(t_node));
 	if (!ret)
-		return NULL;
+		return (NULL);
 	ret->args = args;
 	return (ret);
 }
 
 void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new)
 {
-	//t_node *head;
-
 	if (*node)
 	{
 		proc->head = *node;
-		while((*node)->next)
+		while ((*node)->next)
 			(*node) = (*node)->next;
 		new->previous = *node;
 		(*node)->next = new;

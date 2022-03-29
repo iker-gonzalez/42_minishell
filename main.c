@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 09:10:20 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:50:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	ft_loop(t_proc *proc)
 		ft_free(proc);
 		//ft_print_val(proc);
 	}
-	return(0);
+	return (0);
 }
 
-int main (int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
-	t_proc proc;
+	t_proc	proc;
 
 	(void)argc;
 	(void)argv;
@@ -44,5 +44,5 @@ int main (int argc, char **argv, char **env)
 	set_up_shell(&proc, env);
 	ft_loop(&proc);
 	free(proc.prompt);
-	return(0);
+	return (0);
 }

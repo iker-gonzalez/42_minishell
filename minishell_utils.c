@@ -6,48 +6,48 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:34:04 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/28 14:59:00 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:53:17 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int    ft_findchar(char *line, char c)
+int	ft_findchar(char *line, char c)
 {
-    int i;
-    int k;
+	int	i;
+	int	k;
 
-    i = 0;
-    k = 0;
-    if (line[i])
-    {
-        while(line[i])
-        {
-            if ((line[i]) == c)
-                k++;
-            i++;
-        }
-    }
-    return (k);
+	i = 0;
+	k = 0;
+	if (line[i])
+	{
+		while (line[i])
+		{
+			if ((line[i]) == c)
+				k++;
+			i++;
+		}
+	}
+	return (k);
 }
 
-int     ft_find_red(t_proc *proc, char *process, int *i)
+int	ft_find_red(t_proc *proc, char *process, int *i)
 {
-    if (process[*i] == 60 && process[*i+1] == 60)
-    {
-        if (proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
-        {
-            *i +=1;
-            return(1);
-        }
-    }
-    return (0);
+	if (process[*i] == 60 && process[*i + 1] == 60)
+	{
+		if (proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
+		{
+			*i += 1;
+			return (1);
+		}
+	}
+	return (0);
 }
 
 void	ft_exp_sp_arr(t_proc *proc)
 {
-	int i;
-	int k;
+	int	i;
+	int	k;
 
 	i = -1;
 	proc->exp_sp_arr_len = 0;
@@ -72,14 +72,10 @@ int	ft_strncmp_len(const char *s1, const char *s2, size_t n)
 	unsigned int	i;
 	unsigned char	*str1;
 	unsigned char	*str2;
-	int				str1_len;
-	int				str2_len;
 
 	str1 = (unsigned char *)s1;
 	str2 = (unsigned char *)s2;
-	str1_len = ft_strlen(s1);
-	str2_len = ft_strlen(s2);
-	if (str1_len != str2_len)
+	if (ft_strlen(s1) != ft_strlen(s2))
 	{
 		return (1);
 	}
@@ -95,4 +91,14 @@ int	ft_strncmp_len(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
+}
+
+int	ft_count_argc(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+		i++;
+	return (i);
 }

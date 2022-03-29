@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/22 20:17:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:49:33 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,27 @@
 int	ft_count_row(t_proc *proc, char *process, int *sp_len)
 {
 	int	count_y;
-	int i;
-	
+	int	i;
+
 	i = -1;
 	count_y = 1;
 	while (process[++i])
 	{
 		if (process[i] == 32)
 		{
-			if (*sp_len < proc->exp_space_count && proc->exp_sp_arr[*sp_len] == 2)
+			if (*sp_len < proc->exp_space_count
+				&& proc->exp_sp_arr[*sp_len] == 2)
 				count_y++;
 			*sp_len += 1;
 		}
 	}
-	return(count_y);
+	return (count_y);
 }
 
 int	ft_count_col(t_proc *proc, char *process, int *i, int *sp_len)
 {
-	int col;
-	int lock;
+	int	col;
+	int	lock;
 
 	col = 0;
 	lock = 0;
@@ -59,11 +60,11 @@ int	ft_count_col(t_proc *proc, char *process, int *i, int *sp_len)
 
 char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k)
 {
-	char **args;
-	int row;
-	int i;
-	int col;
-	int tmp;
+	char	**args;
+	int		row;
+	int		i;
+	int		col;
+	int		tmp;
 
 	tmp = *sp_len;
 	proc->row_len = ft_count_row(proc, process, sp_len);
@@ -76,23 +77,22 @@ char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k)
 	{
 		col = 0;
 		proc->col_len = ft_count_col(proc, process, &i, sp_len);
-		args[row] =  malloc(sizeof(char) * proc->col_len + 1);
+		args[row] = malloc(sizeof(char) * proc->col_len + 1);
 		while (col < proc->col_len)
 			args[row][col++] = process[(*k)++];
-		*k +=1;
+		*k += 1;
 		args[row++][col] = '\0';
 	}
 	args[row] = NULL;
-	return(args);
+	return (args);
 }
-
 
 void	ft_tokenizer(t_proc *proc)
 {
-	int i;
-	char **args;
-	int sp_len;
-	int k;
+	int		i;
+	char	**args;
+	int		sp_len;
+	int		k;
 
 	i = 0;
 	k = 0;

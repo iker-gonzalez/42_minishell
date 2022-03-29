@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/23 12:34:18 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:29:47 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	ft_expand_dollar(t_proc *proc, int *i)
 {
-	char *str;
-	char *env;
-	int k;
-	int j;
+	char	*str;
+	char	*env;
+	int		k;
+	int		j;
 
 	k = 0;
 	str = malloc(sizeof(char) * ft_strlen(proc->line_read) + 1);
-	while (proc->line_read && (ft_isalpha(proc->line_read[*i]) || proc->line_read[*i] == 95))
+	while (proc->line_read && (ft_isalpha(proc->line_read[*i])
+			|| proc->line_read[*i] == 95))
 	{
 		str[k++] = proc->line_read[*i];
 		*i += 1;
@@ -32,11 +33,12 @@ void	ft_expand_dollar(t_proc *proc, int *i)
 	while (proc->lock && env && env[j])
 		proc->line_expanded[proc->line_exp_len++] = env[j++];
 	if (env && !proc->lock)
-		proc->line_exp_len += ft_strlen(env) + ft_strlen(proc->line_read) - k - 1;
+		proc->line_exp_len += ft_strlen(env)
+			+ ft_strlen(proc->line_read) - k - 1;
 	free (str);
 }
 
-void	ft_set_quotes (t_proc *proc, char c)
+void	ft_set_quotes(t_proc *proc, char c)
 {
 	if (c == 39 && (!proc->single_quote))
 		proc->single_quote = 1;
@@ -48,16 +50,16 @@ void	ft_set_quotes (t_proc *proc, char c)
 		proc->double_quote = 0;
 }
 
-void	ft_check_quotes (t_proc *proc, char c, int *i)
+void	ft_check_quotes(t_proc *proc, char c, int *i)
 {
 	if (c == 39 && (!(proc->double_quote)))
-		*i+= 1;
+		*i += 1;
 	else if (c == 39 && proc->quote_scope == 2)
-		*i+= 1;
+		*i += 1;
 	else if (c == 34 && (!(proc->single_quote)))
-		*i+= 1;
+		*i += 1;
 	else if (c == 34 && proc->quote_scope == 4)
-		*i+= 1;
+		*i += 1;
 	else
 	{
 		if (proc->lock)
@@ -70,8 +72,8 @@ void	ft_check_quotes (t_proc *proc, char c, int *i)
 
 void	ft_expand_line_read(t_proc *proc)
 {
-	int i;
-	
+	int	i;
+
 	if (proc->lock)
 		proc->line_expanded = malloc(sizeof(char) * proc->line_exp_len + 1);
 	i = 0;
@@ -83,8 +85,8 @@ void	ft_expand_line_read(t_proc *proc)
 		ft_expand_pipe(proc, proc->line_read[i]);
 		ft_expand_red_in(proc, proc->line_read[i], &i);
 		ft_expand_red_out(proc, proc->line_read[i], &i);
-		if (proc->line_read[i] == 36 && ((!proc->single_quote) || 
-		(proc->quote_scope == 4 && (proc->double_quote))) && ++i)
+		if (proc->line_read[i] == 36 && ((!proc->single_quote)
+				|| (proc->quote_scope == 4 && (proc->double_quote))) && ++i)
 			ft_expand_dollar(proc, &i);
 		else
 			ft_check_quotes(proc, proc->line_read[i], &i);

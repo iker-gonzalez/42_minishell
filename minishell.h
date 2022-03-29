@@ -6,19 +6,19 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 09:46:51 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:56:19 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <signal.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include "libft/libft.h"
 
 typedef struct s_node
 {
@@ -40,7 +40,7 @@ typedef struct s_sig
 	pid_t		pid;
 }				t_sig;
 
-extern t_sig sig;
+extern t_sig	g_sig;
 
 typedef struct s_proc
 {
@@ -115,15 +115,15 @@ t_node	*ft_new_node(char **args);
 void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new);
 void	ft_gen_lst(t_proc *proc, char **args, int row_len);
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
-void 	print_args (t_proc *proc);
+void	print_args(t_proc *proc);
 
 ///// Parse input /////
 void	ft_parse_input(t_proc *proc);
 int		ft_quote_pref_close(char *line_read, int i);
 void	ft_quote_pref_open(t_proc *proc);
-void    ft_count_pipes(t_proc *proc);
-void    ft_count_redirections(t_proc *proc);
-int    	ft_findchar(char *line, char c);
+void	ft_count_pipes(t_proc *proc);
+void	ft_count_redirections(t_proc *proc);
+int		ft_findchar(char *line, char c);
 
 ////// Expand input /////
 void	ft_expand_input(t_proc *proc);
@@ -135,9 +135,9 @@ void	ft_expand_red_out(t_proc *proc, char c, int *i);
 void	ft_expand_spaces(t_proc *proc, char c, int *i);
 
 ////// Proceniser ////////
-void    ft_process_count(t_proc *proc);
-void    ft_mem_proceniser(t_proc *proc);
-void    ft_proceniser(t_proc *proc);
+void	ft_process_count(t_proc *proc);
+void	ft_mem_proceniser(t_proc *proc);
+void	ft_proceniser(t_proc *proc);
 
 ///// Tokenizer /////////
 void	ft_tokenizer(t_proc *proc);
@@ -159,10 +159,10 @@ void	ft_swap_pipes(t_proc *proc);
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
 int		ft_strncmp_len(const char *s1, const char *s2, size_t n);
-
+int		ft_count_argc(char **argv);
 
 //////// Builtins /////////
-int		ft_env(t_proc *proc);
+int		ft_env(t_proc *proc, int cmd_count);
 int		echo(int argc, char **argv, int fd);
 int		ft_pwd(void);
 int		ft_cd(char **argv, t_proc *proc);
@@ -185,13 +185,14 @@ void	ft_execute(t_proc *proc);
 
 /////// Errors //////////
 int		ft_check_redirections(char *line, char c);
-void    ft_check_errors(t_proc *proc);
+int		ft_check_errors(t_proc *proc);
 int		ft_check_empty_line(char *line_read);
+void	print_error(char *str, int err);
 
 ///////// Test //////////////
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
-void    ft_print_val(t_proc *proc);
+void	ft_print_val(t_proc *proc);
 
 ///////// Signals ////////////
 void	listen_signals(void);

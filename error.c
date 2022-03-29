@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/27 20:11:56 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/03/29 10:50:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,27 @@ int	ft_check_empty_pipe(char *line_read)
 	return (0);
 }
 
-void	ft_check_errors(t_proc *proc)
+int	ft_check_errors(t_proc *proc)
 {
 	if (ft_check_empty_line(proc->line_read))
-		printf("Empty line\n");
+		return (1);
 	if (ft_check_empty_pipe(proc->line_read))
-		exit (2);
+		return (1);
 	if (ft_check_unclosed_quotes(proc->line_read, 34))
-		exit (2);
+		return (1);
 	if (ft_check_unclosed_quotes(proc->line_read, 39))
-		exit (2);
+		return (1);
 	if (ft_check_redirections(proc->line_read, 60))
-		exit (2);
+		return (1);
 	if (ft_check_redirections(proc->line_read, 62))
-		exit (2);
+		return (1);
+	return (0);
+}
+
+void	print_error(char *str, int err)
+{
+	ft_putstr_fd("Papa$hell: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);
+	exit(err);
 }

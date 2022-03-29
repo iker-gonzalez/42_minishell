@@ -6,13 +6,13 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:44 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 09:47:03 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:26:21 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_execute_command(t_proc *proc, char *route, char **args)
+void	ft_execute_command(t_proc *proc, char *route, char **args)
 {
 	execve(route, args, proc->env);
 }
@@ -37,7 +37,7 @@ void	ft_cmd_exist(t_proc *proc)
 void	ft_check_builtins(t_proc *proc)
 {
 	if ((ft_strncmp_len((*proc->lst)->args[0], "env", 3)) == 0)
-		ft_env(proc);
+		ft_env(proc, ft_count_argc((*proc->lst)->args));
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "pwd", 3)) == 0)
 		ft_pwd();
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "cd", 2)) == 0)
