@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:39 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 11:37:06 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:13:30 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ void	ft_parse_red_in(t_proc *proc)
 		i++;
 	}
 	if (proc->red_in_count)
+	{
+		printf("Printf: red in allocated\n");
 		proc->red_in_arr = malloc(sizeof(int)
-				* proc->red_in_count + sizeof(int));
+		* proc->red_in_count + sizeof(int));
+	}
 	if (proc->red_in_app_count)
 		proc->red_in_app_arr = malloc (sizeof(int)
 				* proc->red_in_app_count + sizeof(int));
@@ -83,7 +86,10 @@ void	ft_parse_red_out(t_proc *proc)
 		i++;
 	}
 	if (proc->red_out_count)
+	{
+		printf("Printf: red out allocated\n");
 		proc->red_out_arr = malloc(sizeof(int) * proc->red_out_count);
+	}
 	if (proc->red_out_del_count)
 		proc->red_out_del_arr = malloc (sizeof(int) * proc->red_out_del_count);
 }

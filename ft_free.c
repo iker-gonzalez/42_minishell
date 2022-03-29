@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 11:31:29 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:13:45 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,23 @@ void	ft_free_args(t_proc *proc)
 
 void	ft_free_proc(t_proc *proc)
 {
-	if (proc->space_arr_len)
+	if (proc->line_read)
 		free(proc->line_read);
-	if (proc->space_arr_len)
+	if (proc->line_expanded)
 		free(proc->line_expanded);
-	if (proc->space_arr_len)
+	if (proc->space_arr)
 		free(proc->space_arr);
-	if (proc->space_arr_len)
+	if (proc->exp_sp_arr)
 		free(proc->exp_sp_arr);
-	if (proc->pipe_arr_len)
+	if (proc->pipe_arr)
 		free(proc->pipe_arr);
-	if (proc->space_arr_len)
+	if (proc->red_in_arr)
 		free(proc->red_in_arr);
-	if (proc->space_arr_len)
+	if (proc->red_in_app_arr)
 		free(proc->red_in_app_arr);
-	if (proc->space_arr_len)
+	if (proc->red_out_arr)
 		free(proc->red_out_arr);
-	if (proc->space_arr_len)
+	if (proc->red_out_del_arr)
 		free(proc->red_out_del_arr);
 }
 
@@ -101,6 +101,7 @@ void	ft_free(t_proc *proc)
 	ft_free_process(proc);
 	ft_lstiter(proc, ft_free_args);
 	ft_freelist(proc->lst);
+	free(proc->prompt);
 	//ft_free_paths(proc);
 	//
 }

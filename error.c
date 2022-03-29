@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 10:50:10 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:20:01 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int	ft_check_empty_pipe(char *line_read)
 
 int	ft_check_errors(t_proc *proc)
 {
+	if	(ft_check_null_line(proc->line_read))
+		exit (0);
 	if (ft_check_empty_line(proc->line_read))
 		return (1);
 	if (ft_check_empty_pipe(proc->line_read))

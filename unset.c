@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 08:33:03 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 11:59:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:58:22 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_unset_errors(char *argv)
 	return (0);
 }
 
-char	**rmv_var(t_proc *proc, char *var)
+char	**rmv_var(t_set *set, char *var)
 {
 	int		i;
 	char	**tmp;
@@ -42,25 +42,25 @@ char	**rmv_var(t_proc *proc, char *var)
 
 	i = -1;
 	k = 0;
-	while (proc->env[++i])
+	while (set->env[++i])
 	{
-		if (ft_strncmp(proc->env[i], var, ft_strlen(var)) == 0)
+		if (ft_strncmp(set->env[i], var, ft_strlen(var)) == 0)
 			k++;
 	}
 	tmp = (char **)malloc(sizeof(char *) * (i - k + 1));
 	i = -1;
 	k = 0;
-	while (proc->env[++i])
+	while (set->env[++i])
 	{
-		if (ft_strncmp(proc->env[i], var, ft_strlen(var)) != 0)
-			tmp[k++] = ft_strdup(proc->env[i]);
+		if (ft_strncmp(set->env[i], var, ft_strlen(var)) != 0)
+			tmp[k++] = ft_strdup(set->env[i]);
 	}
 	tmp[k] = NULL;
-	ft_free_double_char(proc->env);
+	ft_free_double_char(set->env);
 	return (tmp);
 }
 
-void	unset(t_proc *proc, char **argv)
+void	unset(t_set *set, char **argv)
 {
 	int	i;
 
@@ -68,7 +68,7 @@ void	unset(t_proc *proc, char **argv)
 	while (argv[i])
 	{
 		if (!ft_unset_errors(argv[i]))
-			proc->env = rmv_var(proc, argv[i]);
+			set->env = rmv_var(set, argv[i]);
 		i++;
 	}
 }

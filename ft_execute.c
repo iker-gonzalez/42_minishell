@@ -6,55 +6,55 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:44 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 11:26:21 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:57:45 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_execute_command(t_proc *proc, char *route, char **args)
+void	ft_execute_command(t_set *set, char *route, char **args)
 {
-	execve(route, args, proc->env);
+	execve(route, args, set->env);
 }
 
-void	ft_cmd_exist(t_proc *proc)
+void	ft_cmd_exist(t_proc *proc, t_set *set)
 {
 	int		i;
 
 	i = 0;
-	while (proc->paths[i])
+	while (set->paths[i])
 	{
-		proc->paths[i] = ft_strjoin(proc->paths[i], (*proc->lst)->args[0]);
-		if (access(proc->paths[i], F_OK) == 0)
+		set->paths[i] = ft_strjoin(set->paths[i], (*proc->lst)->args[0]);
+		if (access(set->paths[i], F_OK) == 0)
 		{
-			printf("%s\n", proc->paths[i]);
-			ft_execute_command(proc, proc->paths[i], (*proc->lst)->args);
+			printf("%s\n", set->paths[i]);
+			ft_execute_command(set, set->paths[i], (*proc->lst)->args);
 		}
 		i++;
 	}
 }
 
-void	ft_check_builtins(t_proc *proc)
+void	ft_check_builtins(t_proc *proc, t_set *set)
 {
 	if ((ft_strncmp_len((*proc->lst)->args[0], "env", 3)) == 0)
-		ft_env(proc, ft_count_argc((*proc->lst)->args));
+		ft_env(set, ft_count_argc((*proc->lst)->args));
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "pwd", 3)) == 0)
 		ft_pwd();
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "cd", 2)) == 0)
-		ft_cd((*proc->lst)->args, proc);
+		ft_cd((*proc->lst)->args, set);
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "export", 6)) == 0)
-		export(proc, (*proc->lst)->args);
+		export(set, (*proc->lst)->args);
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "unset", 5)) == 0)
-		unset(proc, (*proc->lst)->args);
+		unset(set, (*proc->lst)->args);
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "exit", 4)) == 0)
 		ft_exit((*proc->lst)->args);
 	//else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
 			//echo();
 }
 
-void	ft_execute(t_proc *proc)
+void	ft_execute(t_proc *proc, t_set *set)
 {
-	ft_check_builtins(proc);
+	ft_check_builtins(proc, set);
 	//ft_cmd_exist(proc);
 }
 

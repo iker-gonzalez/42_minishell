@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:10:13 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/03/29 11:23:31 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:23:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,14 @@ int	ft_check_redirections(char *line, char c)
 	}
 	return (0);
 }
+
+int	ft_check_null_line(char *line_read)
+{
+	if (line_read == NULL)
+	{
+		printf("exit\n");
+		return (1);
+	}
+	return (0);
+}
+

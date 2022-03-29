@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 11:56:19 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:58:09 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,18 @@ typedef struct s_sig
 
 extern t_sig	g_sig;
 
+typedef struct s_set
+{
+	char	**env;
+	char	**paths;
+	//int	exit_status;
+}				t_set;
+
 typedef struct s_proc
 {
 	char	**process;
-	char	**paths;
-	char	**env;
-	char	*home;
+	//char	**paths;
+	//char	**env;
 	char	*prompt;
 	int		process_count;
 	int		token_count;
@@ -97,14 +103,13 @@ typedef struct s_proc
 	t_node	**lst;
 }				t_proc;
 
-///// Init ///////
-void	ft_get_env(t_proc *proc, char **env);
-
 //// Set up ////
-void	set_up_shell(t_proc *proc, char **env);
-void	ft_format_paths(t_proc *proc);
-void	ft_cmd_exist(t_proc *proc);
-void	ft_execute_command(t_proc *proc, char *route, char **args);
+void	set_up_shell(t_set *set, char **env);
+void	ft_get_env(t_set *set, char **env);
+void	ft_format_paths(t_set *set);
+void	ft_create_terminal(t_proc *proc);
+void	ft_cmd_exist(t_proc *proc, t_set *set);
+void	ft_execute_command(t_set *set, char *route, char **args);
 
 ///// Read input ///////
 void	ft_read_input(t_proc *proc);
@@ -162,17 +167,17 @@ int		ft_strncmp_len(const char *s1, const char *s2, size_t n);
 int		ft_count_argc(char **argv);
 
 //////// Builtins /////////
-int		ft_env(t_proc *proc, int cmd_count);
+int		ft_env(t_set *set, int cmd_count);
 int		echo(int argc, char **argv, int fd);
 int		ft_pwd(void);
-int		ft_cd(char **argv, t_proc *proc);
-int		ft_update_oldpwd(t_proc *proc);
-char	*ft_get_env_path(t_proc *proc, char *var, int var_len);
-void	export(t_proc *proc, char **argv);
-char	**add_var(t_proc *proc, char *var);
-void	edit_var(t_proc *proc, char *var);
-void	unset(t_proc *proc, char **argv);
-void	ft_check_builtins(t_proc *proc);
+int		ft_cd(char **argv, t_set *set);
+int		ft_update_oldpwd(t_set *set);
+char	*ft_get_env_path(t_set *set, char *var, int var_len);
+void	export(t_set *set, char **argv);
+char	**add_var(t_set *set, char *var);
+void	edit_var(t_set *set, char *var);
+void	unset(t_set *set, char **argv);
+void	ft_check_builtins(t_proc *proc, t_set *set);
 void	ft_exit(char **argv);
 
 ////////// Signals //////////
@@ -181,13 +186,15 @@ void	handler(int signum);
 void	child_message(int signum);
 
 ///////// Execute ////////////
-void	ft_execute(t_proc *proc);
+void	ft_execute(t_proc *proc, t_set *set);
 
 /////// Errors //////////
 int		ft_check_redirections(char *line, char c);
 int		ft_check_errors(t_proc *proc);
 int		ft_check_empty_line(char *line_read);
 void	print_error(char *str, int err);
+int		ft_check_null_line(char *line_read);
+
 
 ///////// Test //////////////
 void	ft_test(t_proc *proc);

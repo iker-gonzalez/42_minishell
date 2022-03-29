@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:26:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 11:57:19 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:02:02 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	handler(int signum)
 
 void	listen_signals(void)
 {
-	//rl_catch_signals = 0;
+	rl_catch_signals = 0;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, handler);
 }
