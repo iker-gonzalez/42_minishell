@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_launch_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/03/29 11:32:34 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/30 20:24:42 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	ft_set_route(t_proc *proc)
 	char	**routes;
 
 	i = 0;
-	while (proc->paths[i])
+	while (proc->set->paths[i])
 		i++;
 	routes = malloc (i * sizeof(char *));
 	i = 0;
-	while (proc->paths[i])
+	while (proc->set->paths[i])
 	{
-		routes[i] = ft_strjoin(proc->paths[i], (*proc->lst)->args[0]);
+		routes[i] = ft_strjoin(proc->set->paths[i], (*proc->lst)->args[0]);
 		if (access(routes[i], F_OK) == 0)
 			(*proc->lst)->route = routes[i];
 		else
