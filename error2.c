@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   error2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:10:13 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/03/29 12:23:10 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:27:34 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 static int	ft_check_3redirections(char *line, char c, int *i)
 {
@@ -47,6 +48,7 @@ int	ft_check_redirections(char *line, char c)
 				ft_putstr_fd("papa$hell: ", 2);
 				ft_putendl_fd
 				("syntax error near unexpected token `newline'", 2);
+				errno = 2;
 				return (1);
 			}
 		}

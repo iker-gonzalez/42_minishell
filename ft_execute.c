@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:44 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 13:57:45 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:34:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 void	ft_execute_command(t_set *set, char *route, char **args)
 {
@@ -48,6 +49,8 @@ void	ft_check_builtins(t_proc *proc, t_set *set)
 		unset(set, (*proc->lst)->args);
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "exit", 4)) == 0)
 		ft_exit((*proc->lst)->args);
+	else if ((ft_strncmp_len((*proc->lst)->args[0], "?", 1)) == 0)
+		printf("%d", errno);
 	//else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
 			//echo();
 }

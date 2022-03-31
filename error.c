@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 12:20:01 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:27:11 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 int	ft_check_unclosed_quotes(char *line_read, char c)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 14:13:45 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:18:19 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void	ft_free(t_proc *proc)
 	ft_free_proc(proc);
 	ft_free_process(proc);
 	ft_lstiter(proc, ft_free_args);
-	ft_freelist(proc->lst);
+	if (proc->lst)
+		ft_freelist(proc->lst);
 	free(proc->prompt);
 	//ft_free_paths(proc);
 	//

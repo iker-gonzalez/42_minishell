@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 11:25:51 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:14:56 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new)
 
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *))
 {
-	if (!f)
+	if (!f || proc->lst == NULL)
 		return ;
 	while ((*proc->lst))
 	{
