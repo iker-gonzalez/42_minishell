@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 13:50:37 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 10:31:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	**add_var(t_set *set, char *var)
 	return (tmp);
 }
 
-void	export(t_set *set, char **argv)
+int	export(t_set *set, char **argv, int child)
 {
 	int	i;
 	int	k;
@@ -110,4 +110,7 @@ void	export(t_set *set, char **argv)
 				set->env = add_var(set, argv[i]);
 		}
 	}
+	if (child)
+		exit (0);
+	return (0);
 }

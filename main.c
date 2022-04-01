@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/31 18:29:46 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 10:54:55 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_loop(t_set *set)
 			ft_parse_input(&proc);
 			ft_expand_input(&proc);
 			ft_tokenizer(&proc);
-			//ft_execute(&proc, set);
 			ft_launch_process(&proc);
 		}
 		ft_free(&proc);

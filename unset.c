@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 08:33:03 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 13:58:22 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 10:33:02 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**rmv_var(t_set *set, char *var)
 	return (tmp);
 }
 
-void	unset(t_set *set, char **argv)
+int	unset(t_set *set, char **argv, int child)
 {
 	int	i;
 
@@ -71,4 +71,7 @@ void	unset(t_set *set, char **argv)
 			set->env = rmv_var(set, argv[i]);
 		i++;
 	}
+	if (child)
+		exit (0);
+	return (0);
 }

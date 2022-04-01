@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/30 20:23:06 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 11:07:23 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k);
 void	ft_launch_process(t_proc *proc);
 void	ft_set_route(t_proc *proc);
 void	ft_create_children(t_proc *proc);
-void	ft_create_child(int *lpipe, int *rpipe, t_node *node, char **env);
+void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc);
 
 ///////// Pipes ///////////////
 void	ft_parental_wait(t_proc *proc);
@@ -168,26 +168,23 @@ int		ft_strncmp_len(const char *s1, const char *s2, size_t n);
 int		ft_count_argc(char **argv);
 
 //////// Builtins /////////
-int		ft_env(t_set *set, int cmd_count);
+int		ft_env(t_set *set, int cmd_count, int child);
 int		echo(int argc, char **argv, int fd);
 int		ft_pwd(void);
-int		ft_cd(char **argv, t_set *set);
+int		ft_cd(char **argv, t_set *set, int child);
 int		ft_update_oldpwd(t_set *set);
 char	*ft_get_env_path(t_set *set, char *var, int var_len);
-void	export(t_set *set, char **argv);
+int		export(t_set *set, char **argv, int child);
 char	**add_var(t_set *set, char *var);
 void	edit_var(t_set *set, char *var);
-void	unset(t_set *set, char **argv);
-void	ft_check_builtins(t_proc *proc, t_set *set);
+int		unset(t_set *set, char **argv, int child);
 void	ft_exit(char **argv);
+void	ft_check_builtins(t_proc *proc, int child);
 
 ////////// Signals //////////
 void	listen_signals(void);
 void	handler(int signum);
 void	child_message(int signum);
-
-///////// Execute ////////////
-void	ft_execute(t_proc *proc, t_set *set);
 
 /////// Errors //////////
 int		ft_check_redirections(char *line, char c);
@@ -195,7 +192,6 @@ int		ft_check_errors(t_proc *proc);
 int		ft_check_empty_line(char *line_read);
 void	print_error(char *str, int err);
 int		ft_check_null_line(char *line_read);
-
 
 ///////// Test //////////////
 void	ft_test(t_proc *proc);

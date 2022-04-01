@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 13:55:12 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 10:40:51 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ int	ft_update_oldpwd(t_set *set)
 	return (0);
 }
 
-int	ft_cd(char **argv, t_set *set)
+int	ft_cd(char **argv, t_set *set, int child)
 {
-	if (argv[1] && (ft_strncmp(argv[1], "-", 1)) == 0)
+	if (argv[1] && (ft_strncmp(argv[1], "-", 1)) == 0) // check 
 		ft_go_to_oldpwd(set);
 	else if (!argv[1])
 		ft_go_to_home(set);
@@ -111,5 +111,7 @@ int	ft_cd(char **argv, t_set *set)
 		ft_update_oldpwd(set);
 		chdir(argv[1]);
 	}
+	if (child)
+		exit (0);
 	return (0);
 }
