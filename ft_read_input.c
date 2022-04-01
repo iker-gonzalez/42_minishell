@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:33 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/30 20:34:15 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 11:30:39 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

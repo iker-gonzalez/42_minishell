@@ -6,11 +6,12 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/01 11:12:42 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 12:51:35 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 {
@@ -24,6 +25,8 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 		if (rpipe)
 			ft_set_write(rpipe);
 		ft_check_builtins(proc, 1);
+		if (node->route == NULL)
+			print_error(": command not found", 127, node->args[0], 1);
 		execve(node->route, node->args, proc->set->env);
 		exit(0);
 	}
@@ -60,7 +63,7 @@ void	ft_create_children(t_proc *proc)
 void	ft_check_builtins(t_proc *proc, int child)
 {
 	if ((ft_strncmp_len((*proc->lst)->args[0], "env", 3)) == 0)
-		ft_env(proc->set, ft_count_argc((*proc->lst)->args), child);
+		ft_env(proc, ft_count_argc((*proc->lst)->args), child);
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "pwd", 3)) == 0)
 		ft_pwd();
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "cd", 2)) == 0)

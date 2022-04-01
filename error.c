@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/31 18:27:11 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:18:41 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,15 @@ int	ft_check_errors(t_proc *proc)
 	return (0);
 }
 
-void	print_error(char *str, int err)
+void	print_error(char *str, int err, char *cmd, int child)
 {
 	ft_putstr_fd("Papa$hell: ", 2);
+	if (cmd)
+		ft_putstr_fd(cmd, 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n", 2);
-	exit(err);
+	if (child)
+		exit(err);
+	// exit status
+	//return (err);
 }

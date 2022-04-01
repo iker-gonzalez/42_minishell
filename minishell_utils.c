@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:34:04 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/01 10:57:20 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 11:29:30 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,3 @@ void	ft_test(t_proc *proc)
 	(*proc->lst) = proc->head;
 }
 */
-

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:39 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 13:13:30 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 11:36:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@ void	ft_parse_red_in(t_proc *proc)
 	int	i;
 
 	i = 0;
-	proc->red_in_arr_len = 0;
-	proc->red_in_app_arr_len = 0;
-	proc->red_in_count = 0;
-	proc->red_in_app_count = 0;
 	while (proc->line_read[i])
 	{
 		if (proc->line_read[i] == 60 && proc->line_read[i + 1] == 60)
@@ -70,10 +66,6 @@ void	ft_parse_red_out(t_proc *proc)
 	int	i;
 
 	i = 0;
-	proc->red_out_count = 0;
-	proc->red_out_del_count = 0;
-	proc->red_out_arr_len = 0;
-	proc->red_out_del_arr_len = 0;
 	while (proc->line_read[i])
 	{
 		if (proc->line_read[i] == 62 && proc->line_read[i + 1] == 62)
@@ -100,8 +92,6 @@ void	ft_parse_spaces(t_proc *proc)
 	int	i;
 
 	i = 0;
-	proc->space_count = 0;
-	proc->space_arr_len = 0;
 	while (proc->line_read[i])
 	{
 		if (proc->line_read[i] == 32)

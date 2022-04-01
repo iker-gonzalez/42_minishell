@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 17:41:39 by ikgonzal          #+#    #+#             */
-/*   Updated: 2021/07/15 17:47:03 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 11:30:05 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*fill_str(long num, char *tmp, int j)
 		tmp[0] = '0';
 		return (tmp);
 	}
-	while (num > 0 )
+	while (num > 0)
 	{
 		tmp[--j] = (num % 10) + '0';
 		num /= 10;

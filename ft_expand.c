@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 11:29:47 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:13:32 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	ft_expand_dollar(t_proc *proc, int *i)
 		*i += 1;
 	}
 	str[k] = '\0';
-	env = getenv(str);
+	env = getenv(str); // Expandir de nuestro entorno. No usar getenv.
+	// $? -> expandir aqui. Usar ft_get_env
 	j = 0;
 	while (proc->lock && env && env[j])
 		proc->line_expanded[proc->line_exp_len++] = env[j++];

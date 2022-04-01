@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/01 10:54:55 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:17:47 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,8 @@ int	main(int argc, char **argv, char **env)
 	ft_loop(&set);
 	return (0);
 }
+
+// caso a mirar:
+
+//export a='>out'
+//ls $a

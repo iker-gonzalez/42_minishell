@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_launch_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/03/30 20:24:42 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:21:22 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_parental_wait(t_proc *proc)
 //	printf("ANTES: %d, DESPUES: %d\n", (*proc->lst)->pid, process);
 	if (WIFEXITED(stt))
 		(*proc->lst)->status = WEXITSTATUS(stt);
+		//proc->exit_status = WEXITSTATUS(stt);
+		//la var exit_status no puede ser reseteada en cada loop, por lo que debería de ir en la struct set.
 }
 
 /*void	ft_print_fd(t_proc *proc)

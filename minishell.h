@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/01 11:07:23 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:00:41 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_set
 {
 	char	**env;
 	char	**paths;
-	//int	exit_status;
+	int		exit_status;
 }				t_set;
 
 typedef struct s_proc
@@ -168,7 +168,7 @@ int		ft_strncmp_len(const char *s1, const char *s2, size_t n);
 int		ft_count_argc(char **argv);
 
 //////// Builtins /////////
-int		ft_env(t_set *set, int cmd_count, int child);
+int		ft_env(t_proc *proc, int cmd_count, int child);
 int		echo(int argc, char **argv, int fd);
 int		ft_pwd(void);
 int		ft_cd(char **argv, t_set *set, int child);
@@ -190,7 +190,7 @@ void	child_message(int signum);
 int		ft_check_redirections(char *line, char c);
 int		ft_check_errors(t_proc *proc);
 int		ft_check_empty_line(char *line_read);
-void	print_error(char *str, int err);
+void	print_error(char *str, int err, char *cmd, int child);
 int		ft_check_null_line(char *line_read);
 
 ///////// Test //////////////
