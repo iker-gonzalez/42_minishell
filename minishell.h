@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/01 13:00:41 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 00:55:25 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_node
 	int				pid;
 	char			**args;
 	char			*route;
+	int				outfd;
 	int				status;
 	//int			is_empty;
 	struct s_node	*previous;
@@ -162,6 +163,10 @@ void	ft_set_read(int *lpipe);
 void	ft_set_write(int *rpipe);
 void	ft_swap_pipes(t_proc *proc);
 
+/////// Redirections ///////////
+void	ft_check_red_type(t_node *node);
+void	ft_set_red_write(int fd);
+
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
 int		ft_strncmp_len(const char *s1, const char *s2, size_t n);
@@ -179,7 +184,7 @@ char	**add_var(t_set *set, char *var);
 void	edit_var(t_set *set, char *var);
 int		unset(t_set *set, char **argv, int child);
 void	ft_exit(char **argv);
-void	ft_check_builtins(t_proc *proc, int child);
+void	ft_check_builtins(t_proc *proc, t_node *node, int child);
 
 ////////// Signals //////////
 void	listen_signals(void);

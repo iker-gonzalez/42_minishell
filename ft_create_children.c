@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/01 12:51:35 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 00:55:19 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 			ft_set_read(lpipe);
 		if (rpipe)
 			ft_set_write(rpipe);
-		ft_check_builtins(proc, 1);
+		if (node->outfd)
+			ft_set_red_write(node->outfd);
+		ft_check_builtins(proc, node, 1);
 		if (node->route == NULL)
 			print_error(": command not found", 127, node->args[0], 1);
-		execve(node->route, node->args, proc->set->env);
+		//execve(node->route, node->args, proc->set->env);
 		exit(0);
 	}
 }
@@ -35,9 +37,10 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 void	ft_create_children(t_proc *proc)
 {
 	ft_set_route(proc);
+	ft_check_red_type(*proc->lst);
 	if ((*proc->lst)->previous == NULL && (*proc->lst)->next == NULL)
 	{
-		ft_check_builtins(proc, 0);
+		ft_check_builtins(proc, (*proc->lst), 0);
 		ft_create_child(NULL, NULL, (*proc->lst), proc);
 	}
 	else if ((*proc->lst)->previous == NULL && (*proc->lst)->next != NULL)
@@ -60,7 +63,7 @@ void	ft_create_children(t_proc *proc)
 	}
 }
 
-void	ft_check_builtins(t_proc *proc, int child)
+void	ft_check_builtins(t_proc *proc, t_node *node, int child)
 {
 	if ((ft_strncmp_len((*proc->lst)->args[0], "env", 3)) == 0)
 		ft_env(proc, ft_count_argc((*proc->lst)->args), child);
@@ -76,6 +79,6 @@ void	ft_check_builtins(t_proc *proc, int child)
 		ft_exit((*proc->lst)->args);
 	//else if ((ft_strncmp_len((*proc->lst)->args[0], "$?", 1)) == 0)
 		//printf("%d", errno);
-	//else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
-			//echo();
+	else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
+			echo(proc->token_count, node->args, node->outfd);
 }
