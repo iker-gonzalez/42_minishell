@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_proceniser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:40:25 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 11:47:19 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 12:53:32 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_mem_proceniser(t_proc *proc)
 	}
 }
 
-void	ft_proceniser(t_proc *proc)
+void	ft_fill_proceniser(t_proc *proc)
 {
 	int	row;
 	int	col;
@@ -85,4 +85,11 @@ void	ft_proceniser(t_proc *proc)
 		proc->process[row][col] = '\0';
 		row++;
 	}
+}
+
+void	ft_proceniser(t_proc *proc)
+{
+	ft_process_count(proc);
+	ft_mem_proceniser(proc);
+	ft_fill_proceniser(proc);
 }

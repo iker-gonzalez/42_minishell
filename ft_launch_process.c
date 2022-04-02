@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_launch_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/02 00:55:17 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/02 13:37:38 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_set_route(t_proc *proc)
 	int		i;
 	char	**routes;
 
+	ft_format_paths(proc->set);
 	i = 0;
 	while (proc->set->paths[i])
 		i++;
@@ -40,11 +41,8 @@ void	ft_parental_wait(t_proc *proc)
 	pid_t	process;
 
 	process = waitpid((*proc->lst)->pid, &stt, 0);
-//	printf("ANTES: %d, DESPUES: %d\n", (*proc->lst)->pid, process);
 	if (WIFEXITED(stt))
-		(*proc->lst)->status = WEXITSTATUS(stt);
-		//proc->exit_status = WEXITSTATUS(stt);
-		//la var exit_status no puede ser reseteada en cada loop, por lo que debería de ir en la struct set.
+		proc->set->exit_status = WEXITSTATUS(stt);
 }
 
 /*void	ft_print_fd(t_proc *proc)

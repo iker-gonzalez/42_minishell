@@ -6,12 +6,11 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:10:13 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/01 23:30:02 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/02 10:19:29 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <errno.h>
 
 static int	ft_check_3redirections(char *line, char c, int *i)
 {
@@ -20,7 +19,7 @@ static int	ft_check_3redirections(char *line, char c, int *i)
 		if (line[*i + 2] && line[*i + 2] == c)
 		{
 			ft_putstr_fd("papa$hell: ", 2);
-			ft_putendl_fd("syntax error near unexpected token `newline'", 2);
+			ft_putendl_fd("syntax error near unexpected token `>'", 2);
 			return (1);
 		}
 		*i += 1;
@@ -48,7 +47,6 @@ int	ft_check_redirections(char *line, char c)
 				ft_putstr_fd("papa$hell: ", 2);
 				ft_putendl_fd
 				("syntax error near unexpected token `newline'", 2);
-				errno = 2;
 				return (1);
 			}
 		}

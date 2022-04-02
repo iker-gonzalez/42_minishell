@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_children.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/02 00:55:19 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/02 13:44:53 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <errno.h>
 
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 {
@@ -28,8 +27,8 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 			ft_set_red_write(node->outfd);
 		ft_check_builtins(proc, node, 1);
 		if (node->route == NULL)
-			print_error(": command not found", 127, node->args[0], 1);
-		//execve(node->route, node->args, proc->set->env);
+			print_error(": command not found", 127, node->args[0], proc->set);
+		execve(node->route, node->args, proc->set->env);
 		exit(0);
 	}
 }
@@ -76,9 +75,7 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child)
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "unset", 5)) == 0)
 		unset(proc->set, (*proc->lst)->args, child);
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "exit", 4)) == 0)
-		ft_exit((*proc->lst)->args);
-	//else if ((ft_strncmp_len((*proc->lst)->args[0], "$?", 1)) == 0)
-		//printf("%d", errno);
+		ft_exit((*proc->lst)->args, proc->set);
 	else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
 			echo(proc->token_count, node->args, node->outfd);
 }

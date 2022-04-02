@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/01 23:27:08 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/02 10:43:18 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,29 +85,27 @@ int	ft_check_errors(t_proc *proc)
 	if	(ft_check_null_line(proc->line_read))
 		exit (0);
 	if (ft_check_empty_line(proc->line_read))
-		return (1);
+		return (127);
 	if (ft_check_empty_pipe(proc->line_read))
-		return (1);
+		return (258);
 	if (ft_check_unclosed_quotes(proc->line_read, 34))
 		return (1);
 	if (ft_check_unclosed_quotes(proc->line_read, 39))
 		return (1);
 	if (ft_check_redirections(proc->line_read, 60))
-		return (1);
+		return (258);
 	if (ft_check_redirections(proc->line_read, 62))
-		return (1);
+		return (258);
 	return (0);
 }
 
-void	print_error(char *str, int err, char *cmd, int child)
+void	print_error(char *str, int err, char *cmd, t_set *set)
 {
 	ft_putstr_fd("Papa$hell: ", 2);
 	if (cmd)
 		ft_putstr_fd(cmd, 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n", 2);
-	if (child)
-		exit(err);
-	// exit status
-	//return (err);
+	set->exit_status = err;
+	exit(err);
 }
