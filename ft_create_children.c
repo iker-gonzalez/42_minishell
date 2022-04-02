@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/02 13:44:53 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 16:37:55 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 void	ft_create_children(t_proc *proc)
 {
 	ft_set_route(proc);
-	ft_check_red_type(*proc->lst);
+	ft_check_red_type(proc);
 	if ((*proc->lst)->previous == NULL && (*proc->lst)->next == NULL)
 	{
 		ft_check_builtins(proc, (*proc->lst), 0);

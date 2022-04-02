@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 12:00:00 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 16:40:36 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void	ft_set_write(int *rpipe);
 void	ft_swap_pipes(t_proc *proc);
 
 /////// Redirections ///////////
-void	ft_check_red_type(t_node *node);
+void	ft_check_red_type(t_proc *proc);
 void	ft_set_red_write(int fd);
 
 //////// Utils ///////////
