@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/01 13:17:47 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 12:57:06 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_loop(t_set *set)
 {
 	t_proc	proc;
 	int	ms_on;
+	int err;
 
 	ms_on = 1;
 	while (ms_on)
@@ -23,10 +24,12 @@ int	ft_loop(t_set *set)
 		ft_memset(&proc, 0, sizeof(t_proc));
 		proc.set = set;
 		ft_create_terminal(&proc);
-		if (ft_check_errors(&proc) == 0)
+		err = ft_check_errors(&proc);
+		ft_parse_input(&proc);
+		ft_expand_input(&proc);
+		if (!err)
 		{
-			ft_parse_input(&proc);
-			ft_expand_input(&proc);
+			ft_proceniser(&proc);
 			ft_tokenizer(&proc);
 			ft_launch_process(&proc);
 		}

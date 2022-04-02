@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/01 13:13:32 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 12:53:13 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	ft_expand_dollar(t_proc *proc, int *i)
 		*i += 1;
 	}
 	str[k] = '\0';
-	env = getenv(str); // Expandir de nuestro entorno. No usar getenv.
-	// $? -> expandir aqui. Usar ft_get_env
+	env = ft_get_env_path(proc->set, str, ft_strlen(str));
 	j = 0;
 	while (proc->lock && env && env[j])
 		proc->line_expanded[proc->line_exp_len++] = env[j++];
@@ -86,9 +85,10 @@ void	ft_expand_line_read(t_proc *proc)
 		ft_expand_pipe(proc, proc->line_read[i]);
 		ft_expand_red_in(proc, proc->line_read[i], &i);
 		ft_expand_red_out(proc, proc->line_read[i], &i);
-		if (proc->line_read[i] == 36 && ((!proc->single_quote)
-				|| (proc->quote_scope == 4 && (proc->double_quote))) && ++i)
-			ft_expand_dollar(proc, &i);
+		ft_expand_dollar2(proc, &i);
+		//if (proc->line_read[i] == 36 && ((!proc->single_quote)
+		//		|| (proc->quote_scope == 4 && (proc->double_quote))) && ++i)
+		if (ft_expand_dollar2(proc, &i));
 		else
 			ft_check_quotes(proc, proc->line_read[i], &i);
 	}
@@ -109,9 +109,5 @@ void	ft_expand_input(t_proc *proc)
 	ft_expand_line_read(proc);
 	proc->lock = 1;
 	ft_expand_line_read(proc);
-	ft_process_count(proc);
-	ft_mem_proceniser(proc);
-	ft_proceniser(proc);
-	//ft_print_val(proc);
 	proc->line_exp_len = 0;
 }

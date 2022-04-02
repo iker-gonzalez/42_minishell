@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_up.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/03/29 13:39:22 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 13:36:02 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_format_paths(t_set *set)
 	char	**paths;
 	int		i;
 
-	path = getenv("PATH");
+	path = ft_get_env_path(set, "PATH", 4);
 	paths = ft_split(path, ':');
 	i = 0;
 	while (paths[i])

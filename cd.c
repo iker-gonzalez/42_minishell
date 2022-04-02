@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/01 10:40:51 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 10:57:21 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_get_env_path(t_set *set, char *var, int var_len)
 		if (ft_strncmp(set->env[i], var, var_len) == 0)
 		{
 			path_len = ft_strlen(set->env[i]) - var_len;
-			path = malloc(sizeof(char) * path_len +1);
+			path = malloc(sizeof(char) * path_len + 1);
 			j = 0;
 			k = 0;
 			while (set->env[i][j++])

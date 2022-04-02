@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirection_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/02 00:55:22 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/02 16:47:40 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,29 @@ char	*ft_outfile_red(char *arg, int j)
 	return (ret);
 }
 
-void	ft_check_red_type(t_node *node)
+void	ft_check_red_type(t_proc *proc)
 {
 	int	i;
 	int	j;
 	char *arg;
 
 	i = 0;
-	while (node->args[i])
+	proc->red_out_arr_len = 0;
+	while ((*proc->lst)->args[i])
 	{
 		j = 0;
-		while (node->args[i][j])
+		while ((*proc->lst)->args[i][j])
 		{
-			if (node->args[i][j] == 62)
+			if ((*proc->lst)->args[i][j] == 62 && proc->red_out_arr[proc->red_out_arr_len++] == 1)
 			{
-			   	if (node->args[i][j + 1])
-					arg = ft_outfile_red(node->args[i], j);
+			   	if ((*proc->lst)->args[i][j + 1])
+					arg = ft_outfile_red((*proc->lst)->args[i], j);
 				else
-					arg = node->args[i + 1];
-				if (node->outfd)
-					close(node->outfd);
-				node->outfd = open(arg, O_WRONLY | O_TRUNC | O_CREAT, 0777);
-				if (node->outfd < 0)
+					arg = (*proc->lst)->args[i + 1];
+				if ((*proc->lst)->outfd)
+					close((*proc->lst)->outfd);
+				(*proc->lst)->outfd = open(arg, O_WRONLY | O_TRUNC | O_CREAT, 0777);
+				if ((*proc->lst)->outfd < 0)
 					printf("Error al crear el fd para outfile");	
 			}
 			j++;

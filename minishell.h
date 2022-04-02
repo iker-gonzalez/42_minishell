@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 00:55:25 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/02 16:40:36 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int		ft_findchar(char *line, char c);
 void	ft_expand_input(t_proc *proc);
 void	ft_expand_line_read(t_proc *proc);
 void	ft_expand_dollar(t_proc *proc, int *i);
+int		ft_expand_dollar2(t_proc *proc, int *i);
 void	ft_expand_pipe(t_proc *proc, char c);
 void	ft_expand_red_in(t_proc *proc, char c, int *i);
 void	ft_expand_red_out(t_proc *proc, char c, int *i);
@@ -165,7 +166,7 @@ void	ft_set_write(int *rpipe);
 void	ft_swap_pipes(t_proc *proc);
 
 /////// Redirections ///////////
-void	ft_check_red_type(t_node *node);
+void	ft_check_red_type(t_proc *proc);
 void	ft_set_red_write(int fd);
 
 //////// Utils ///////////
@@ -184,7 +185,7 @@ int		export(t_set *set, char **argv, int child);
 char	**add_var(t_set *set, char *var);
 void	edit_var(t_set *set, char *var);
 int		unset(t_set *set, char **argv, int child);
-void	ft_exit(char **argv);
+void	ft_exit(char **argv, t_set *set);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child);
 
 ////////// Signals //////////
@@ -196,7 +197,7 @@ void	child_message(int signum);
 int		ft_check_redirections(char *line, char c);
 int		ft_check_errors(t_proc *proc);
 int		ft_check_empty_line(char *line_read);
-void	print_error(char *str, int err, char *cmd, int child);
+void	print_error(char *str, int err, char *cmd, t_set *set);
 int		ft_check_null_line(char *line_read);
 
 ///////// Test //////////////
