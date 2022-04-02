@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/02 18:19:01 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/03 00:21:42 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 		{
 			ft_check_builtins(proc, node, 1);
 			if (node->route == NULL)
-				print_error(": command not found", 127, node->args[0], 1);
+				print_error(": command not found", 127, node->args[0], proc->set);
 		}
 		else
-			//execve(node->route, node->args, proc->set->env);
+			execve(node->route, node->args, proc->set->env);
 		exit(0);
 	}
 }
@@ -70,7 +70,6 @@ void	ft_create_children(t_proc *proc)
 
 void	ft_check_builtins(t_proc *proc, t_node *node, int child)
 {
-	node->is_built_in = 1;
 	if ((ft_strncmp_len((*proc->lst)->args[0], "env", 3)) == 0)
 		ft_env(proc, ft_count_argc((*proc->lst)->args), child);
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "pwd", 3)) == 0)
@@ -84,7 +83,5 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child)
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "exit", 4)) == 0)
 		ft_exit((*proc->lst)->args, proc->set);
 	else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
-		ft_echo(proc->token_count, node->args, node->outfd);
-	else
-		node->is_built_in = 0;
+		ft_echo(node->args, node->outfd);
 }

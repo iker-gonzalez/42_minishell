@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/02 13:37:38 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/02 23:13:56 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,37 @@ void	ft_parental_wait(t_proc *proc)
 		proc->set->exit_status = WEXITSTATUS(stt);
 }
 
-/*void	ft_print_fd(t_proc *proc)
+void	ft_is_built_in(t_node *node, int index)
 {
-}*/
+	if ((ft_strncmp_len(node->args[index], "env", 3)) == 0)
+		node->is_built_in = 1;
+	else if ((ft_strncmp_len(node->args[index], "pwd", 3)) == 0)
+		node->is_built_in = 1;
+	else if ((ft_strncmp_len(node->args[index], "cd", 2)) == 0)
+		node->is_built_in = 1;
+	else if ((ft_strncmp_len(node->args[index], "export", 6)) == 0)
+		node->is_built_in = 1;
+	else if ((ft_strncmp_len(node->args[index], "unset", 5)) == 0)
+		node->is_built_in = 1;
+	else if ((ft_strncmp_len(node->args[index], "exit", 4)) == 0)
+		node->is_built_in = 1;
+	else if ((ft_strncmp(node->args[index], "echo", 4)) == 0)
+		node->is_built_in = 1;
+	else
+		node->is_built_in = 0;
+}
+
+void	ft_set_process_type(t_proc *proc)
+{
+	if ((*proc->lst)->args[0][0] != 60 || (*proc->lst)->args[0][0] != 62)
+		ft_is_built_in((*proc->lst), 0);
+	else
+		ft_is_built_in((*proc->lst), 3);
+}
 
 void	ft_launch_process(t_proc *proc)
 {
+	ft_lstiter(proc, ft_set_process_type);
 	ft_lstiter(proc, ft_create_children);
 	ft_lstiter(proc, ft_parental_wait);
-//	ft_lstiter(proc, ft_print_fd);
-//	ft_lstiter(proc, ft_fd_red);
 }

@@ -6,14 +6,15 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:56 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 00:50:03 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/03 00:13:20 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include <unistd.h>
 #include <string.h>
 
-int	ft_echo(int argc, char **argv, int fd)
+int	ft_echo(char **argv, int fd)
 {
 	int		i;
 	size_t	cnt;
@@ -23,11 +24,11 @@ int	ft_echo(int argc, char **argv, int fd)
 	i = 1;
 	if (strcmp(argv[i], "-n") == 0)
 		i++;
-	while (i < argc)
+	while (argv[i])
 	{
-		cnt = strlen(argv[i]);
+		cnt = ft_strlen(argv[i]) + 1;
 		write(fd, argv[i], cnt);
-		if (i != argc - 1)
+		if (argv)
 			write(fd, " ", 1);
 		i++;
 	}

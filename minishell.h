@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 16:40:36 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/03 00:22:20 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_node
 	char			**args;
 	char			*route;
 	int				outfd;
+	int				infd;
 	int				status;
 	//int			is_empty;
 	int				is_built_in;
@@ -167,6 +168,9 @@ void	ft_swap_pipes(t_proc *proc);
 
 /////// Redirections ///////////
 void	ft_check_red_type(t_proc *proc);
+void	ft_set_red_out(t_proc *proc, int i, int j);
+void	ft_set_red_out_app(t_proc *proc, int i, int j);
+void	ft_set_red_in(t_proc *proc, int i, int j);
 void	ft_set_red_write(int fd);
 
 //////// Utils ///////////
@@ -176,7 +180,7 @@ int		ft_count_argc(char **argv);
 
 //////// Builtins /////////
 int		ft_env(t_proc *proc, int cmd_count, int child);
-int		ft_echo(int argc, char **argv, int fd);
+int		ft_echo(char **argv, int fd);
 int		ft_pwd(void);
 int		ft_cd(char **argv, t_set *set, int child);
 int		ft_update_oldpwd(t_set *set);
