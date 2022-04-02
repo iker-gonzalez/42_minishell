@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include <string.h>
 
-int	echo(int argc, char **argv, int fd)
+int	ft_echo(int argc, char **argv, int fd)
 {
 	int		i;
 	size_t	cnt;

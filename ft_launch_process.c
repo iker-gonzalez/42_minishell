@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <sys/wait.h>
 #include <stdio.h>
 
 void	ft_set_route(t_proc *proc)

@@ -28,6 +28,7 @@ typedef struct s_node
 	int				outfd;
 	int				status;
 	//int			is_empty;
+	int				is_built_in;
 	struct s_node	*previous;
 	struct s_node	*next;
 }					t_node;
@@ -174,7 +175,7 @@ int		ft_count_argc(char **argv);
 
 //////// Builtins /////////
 int		ft_env(t_proc *proc, int cmd_count, int child);
-int		echo(int argc, char **argv, int fd);
+int		ft_echo(int argc, char **argv, int fd);
 int		ft_pwd(void);
 int		ft_cd(char **argv, t_set *set, int child);
 int		ft_update_oldpwd(t_set *set);

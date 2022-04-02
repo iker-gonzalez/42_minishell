@@ -26,10 +26,14 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 			ft_set_write(rpipe);
 		if (node->outfd)
 			ft_set_red_write(node->outfd);
-		ft_check_builtins(proc, node, 1);
-		if (node->route == NULL)
-			print_error(": command not found", 127, node->args[0], 1);
-		//execve(node->route, node->args, proc->set->env);
+		if (node->is_built_in)
+		{
+			ft_check_builtins(proc, node, 1);
+			if (node->route == NULL)
+				print_error(": command not found", 127, node->args[0], 1);
+		}
+		else
+			//execve(node->route, node->args, proc->set->env);
 		exit(0);
 	}
 }
@@ -40,8 +44,10 @@ void	ft_create_children(t_proc *proc)
 	ft_check_red_type(*proc->lst);
 	if ((*proc->lst)->previous == NULL && (*proc->lst)->next == NULL)
 	{
-		ft_check_builtins(proc, (*proc->lst), 0);
-		ft_create_child(NULL, NULL, (*proc->lst), proc);
+		if ((*proc->lst)->is_built_in)
+			ft_check_builtins(proc, (*proc->lst), 0);
+		else
+			ft_create_child(NULL, NULL, (*proc->lst), proc);
 	}
 	else if ((*proc->lst)->previous == NULL && (*proc->lst)->next != NULL)
 	{
@@ -65,6 +71,7 @@ void	ft_create_children(t_proc *proc)
 
 void	ft_check_builtins(t_proc *proc, t_node *node, int child)
 {
+	node->is_built_in = 1;
 	if ((ft_strncmp_len((*proc->lst)->args[0], "env", 3)) == 0)
 		ft_env(proc, ft_count_argc((*proc->lst)->args), child);
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "pwd", 3)) == 0)
@@ -80,5 +87,7 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child)
 	//else if ((ft_strncmp_len((*proc->lst)->args[0], "$?", 1)) == 0)
 		//printf("%d", errno);
 	else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
-			echo(proc->token_count, node->args, node->outfd);
+		ft_echo(proc->token_count, node->args, node->outfd);
+	else
+		node->is_built_in = 0;
 }
