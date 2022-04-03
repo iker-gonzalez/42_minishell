@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:56 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/03 00:13:20 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:19:15 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ int	ft_echo(char **argv, int fd)
 		i++;
 	while (argv[i])
 	{
-		cnt = ft_strlen(argv[i]) + 1;
+		cnt = ft_strlen(argv[i]);
 		write(fd, argv[i], cnt);
 		if (argv)
 			write(fd, " ", 1);
 		i++;
 	}
+	if (fd != 1)
+		write(fd, "\n", 1);
 	if (fd == 1 && (strcmp(argv[1], "-n") != 0))
 		write(fd, "\n", 1);
 	return (0);

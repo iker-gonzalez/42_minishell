@@ -6,11 +6,20 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/02 22:27:10 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:22:59 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_redirection_set_up(t_proc *proc)
+{
+	(*proc->lst)->has_red = 0;
+	proc->red_out_arr_len = 0;
+	proc->red_in_arr_len = 0;
+	proc->red_out_del_arr_len = 0;
+	proc->red_in_app_arr_len = 0;
+}
 
 void	ft_check_red_out_type(t_proc *proc, int i, int j)
 {
@@ -23,25 +32,33 @@ void	ft_check_red_out_type(t_proc *proc, int i, int j)
 			if (proc->red_out_arr[proc->red_out_arr_len++] == 1)
 				ft_set_red_out(proc, i, j);
 		}
-		(*proc->lst)->is_red = 1;
+		(*proc->lst)->has_red = 1;
 	}
 }
 
-/*void	ft_check_red_in_type(t_proc *proc, int i, int j)
+void	ft_check_red_in_type(t_proc *proc, int i, int j)
 {
-
+	if (ft_strlen((*proc->lst)->args[i]) > j)
+	{
+		if (((*proc->lst)->args[i][j + 1]) == 60 && proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
+			//ft_set_red_in_del(proc, i, j++); //here there will be the heredoc ft
+			printf("heredoc");
+		else
+		{
+			if (proc->red_in_arr[proc->red_in_arr_len++] == 1)
+				ft_set_red_in(proc, i, j);
+		}
+		(*proc->lst)->has_red = 1;
+	}
 }
-*/
+
 void	ft_check_red_type(t_proc *proc)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	(*proc->lst)->is_red = 0;
-	proc->red_out_arr_len = 0;
-	proc->red_in_arr_len = 0;
-	proc->red_out_del_arr_len = 0;
+	ft_redirection_set_up(proc);
 	while ((*proc->lst)->args[i])
 	{
 		j = 0;
@@ -49,11 +66,8 @@ void	ft_check_red_type(t_proc *proc)
 		{
 			if ((*proc->lst)->args[i][j] == 62)
 				ft_check_red_out_type(proc, i, j);
-			else if ((*proc->lst)->args[i][j] == 60 && proc->red_in_arr[proc->red_in_arr_len++] == 1)
-			{
-				ft_set_red_in(proc, i, j);
-				(*proc->lst)->is_red = 1;
-			}
+			else if ((*proc->lst)->args[i][j] == 60)
+				ft_check_red_in_type(proc, i, j);
 			j++;
 		}
 		i++;

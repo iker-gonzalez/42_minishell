@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/03 00:22:20 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:22:47 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_node
 	char			**args;
 	char			**args_red;
 	char			*route;
-	int			is_red;
+	int				has_red;
 	int				outfd;
 	int				infd;
 	int				status;

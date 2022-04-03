@@ -6,11 +6,50 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/03 00:21:42 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:22:44 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_contain_red(char *arg)
+{
+	int	j;
+	int	ret;
+
+	j = 0;
+	ret = 0;
+	while (arg[j])
+	{
+		if (arg[j] == 62 || arg[j] == 60)
+			ret = 1;
+		j++;
+	}
+	return (ret);
+}
+
+void	ft_set_args_red(t_proc *proc)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	while ((*proc->lst)->args[i])
+		i++;
+	(*proc->lst)->args_red = malloc (sizeof(char *) * i);
+	i = 0;
+	while ((*proc->lst)->args[i])
+	{
+		if (!ft_contain_red((*proc->lst)->args[i]))
+			(*proc->lst)->args_red[k++] = (*proc->lst)->args[i];
+		i++;
+	}
+	(*proc->lst)->args_red[k] = NULL;
+	i = 0;
+	while ((*proc->lst)->args_red[i])
+		printf("ARGS RED: %s\n", (*proc->lst)->args[i++]);
+}
 
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 {
@@ -32,7 +71,12 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 				print_error(": command not found", 127, node->args[0], proc->set);
 		}
 		else
-			execve(node->route, node->args, proc->set->env);
+		{
+			if (node->has_red)
+				execve(node->route, node->args_red, proc->set->env);
+			else
+				execve(node->route, node->args, proc->set->env);
+		}
 		exit(0);
 	}
 }
@@ -41,6 +85,8 @@ void	ft_create_children(t_proc *proc)
 {
 	ft_set_route(proc);
 	ft_check_red_type(proc);
+	if ((*proc->lst)->has_red)
+		ft_set_args_red(proc);
 	if ((*proc->lst)->previous == NULL && (*proc->lst)->next == NULL)
 	{
 		if ((*proc->lst)->is_built_in)
