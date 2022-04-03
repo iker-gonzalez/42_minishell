@@ -37,7 +37,10 @@ void	ft_set_red_out(t_proc *proc, int i, int j)
 	char	*arg;
 
  	if ((*proc->lst)->args[i][j + 1])
+	{
 		arg = ft_outfile_red((*proc->lst)->args[i], j);
+		
+	}
 	else
 		arg = (*proc->lst)->args[i + 1];
 	if ((*proc->lst)->outfd)

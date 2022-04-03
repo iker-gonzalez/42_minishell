@@ -12,12 +12,33 @@
 
 #include "minishell.h"
 
+void	ft_check_red_out_type(t_proc *proc, int i, int j)
+{
+	if (ft_strlen((*proc->lst)->args[i]) > j)
+	{
+		if (((*proc->lst)->args[i][j + 1]) == 62 && proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
+			ft_set_red_out_app(proc, i, j++);
+		else
+		{
+			if (proc->red_out_arr[proc->red_out_arr_len++] == 1)
+				ft_set_red_out(proc, i, j);
+		}
+		(*proc->lst)->is_red = 1;
+	}
+}
+
+/*void	ft_check_red_in_type(t_proc *proc, int i, int j)
+{
+
+}
+*/
 void	ft_check_red_type(t_proc *proc)
 {
 	int	i;
 	int	j;
 
 	i = 0;
+	(*proc->lst)->is_red = 0;
 	proc->red_out_arr_len = 0;
 	proc->red_in_arr_len = 0;
 	proc->red_out_del_arr_len = 0;
@@ -27,22 +48,12 @@ void	ft_check_red_type(t_proc *proc)
 		while ((*proc->lst)->args[i][j])
 		{
 			if ((*proc->lst)->args[i][j] == 62)
-			{
-				if (ft_strlen((*proc->lst)->args[i]) > j)
-				{
-					if (((*proc->lst)->args[i][j + 1]) == 62 && proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
-				
-					ft_set_red_out_app(proc, i, j);
-					j++;
-				}
-				else
-				{
-					if (proc->red_out_arr[proc->red_out_arr_len++] == 1)
-						ft_set_red_out(proc, i, j);
-				}
-			}
+				ft_check_red_out_type(proc, i, j);
 			else if ((*proc->lst)->args[i][j] == 60 && proc->red_in_arr[proc->red_in_arr_len++] == 1)
+			{
 				ft_set_red_in(proc, i, j);
+				(*proc->lst)->is_red = 1;
+			}
 			j++;
 		}
 		i++;

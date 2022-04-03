@@ -24,7 +24,9 @@ typedef struct s_node
 {
 	int				pid;
 	char			**args;
+	char			**args_red;
 	char			*route;
+	int			is_red;
 	int				outfd;
 	int				infd;
 	int				status;
