@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/04 16:28:30 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:47:28 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,17 @@ void	ft_set_args_red(t_proc *proc)
 	{
 		if (!ft_contain_red((*proc->lst)->args[i]))
 			(*proc->lst)->args_red[k++] = (*proc->lst)->args[i];
+		else
+		{
+			if (ft_strlen((*proc->lst)->args[i]) == 1)
+				i++;
+		}
 		i++;
 	}
 	(*proc->lst)->args_red[k] = NULL;
 	i = 0;
 	while ((*proc->lst)->args_red[i])
-		printf("ARGS RED: %s\n", (*proc->lst)->args[i++]);
+		printf("ARGS RED: %s\n", (*proc->lst)->args_red[i++]);
 }
 
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
@@ -66,6 +71,8 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 			ft_set_red_write(node->outfd);
 		if (node->route == NULL)
 				print_error(": command not found", 127, node->args[0], proc->set);
+		if (node->infd)
+			ft_set_red_read(node->infd);
 		if (node->is_built_in)
 			ft_check_builtins(proc, node, 1);
 		else
