@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/03 20:22:50 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/04 17:56:59 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_format_paths(t_set *set)
 	char	**paths;
 	int		i;
 
-	path = ft_get_env_path(set, "PATH", 4);
+	path = getenv("PATH");
 	paths = ft_split(path, ':');
 	i = 0;
 	while (paths[i])

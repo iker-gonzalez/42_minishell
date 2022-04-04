@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/03 20:22:59 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:24:27 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,18 @@ void	ft_check_red_out_type(t_proc *proc, int i, int j)
 	if (ft_strlen((*proc->lst)->args[i]) > j)
 	{
 		if (((*proc->lst)->args[i][j + 1]) == 62 && proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
+		{
 			ft_set_red_out_app(proc, i, j++);
+			(*proc->lst)->has_red = 1;
+		}
 		else
 		{
 			if (proc->red_out_arr[proc->red_out_arr_len++] == 1)
+			{
 				ft_set_red_out(proc, i, j);
+				(*proc->lst)->has_red = 1;
+			}
 		}
-		(*proc->lst)->has_red = 1;
 	}
 }
 
@@ -41,14 +46,19 @@ void	ft_check_red_in_type(t_proc *proc, int i, int j)
 	if (ft_strlen((*proc->lst)->args[i]) > j)
 	{
 		if (((*proc->lst)->args[i][j + 1]) == 60 && proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
+		{
 			//ft_set_red_in_del(proc, i, j++); //here there will be the heredoc ft
 			printf("heredoc");
+			(*proc->lst)->has_red = 1;
+		}
 		else
 		{
 			if (proc->red_in_arr[proc->red_in_arr_len++] == 1)
+			{
 				ft_set_red_in(proc, i, j);
+				(*proc->lst)->has_red = 1;
+			}
 		}
-		(*proc->lst)->has_red = 1;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/03 20:22:44 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:25:04 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,17 @@ void	ft_set_args_red(t_proc *proc)
 	{
 		if (!ft_contain_red((*proc->lst)->args[i]))
 			(*proc->lst)->args_red[k++] = (*proc->lst)->args[i];
+		else
+		{
+			if (ft_strlen((*proc->lst)->args[i]) == 1)
+				i++;
+		}
 		i++;
 	}
 	(*proc->lst)->args_red[k] = NULL;
 	i = 0;
 	while ((*proc->lst)->args_red[i])
-		printf("ARGS RED: %s\n", (*proc->lst)->args[i++]);
+		printf("ARGS RED: %s\n", (*proc->lst)->args_red[i++]);
 }
 
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
@@ -64,6 +69,8 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 			ft_set_write(rpipe);
 		if (node->outfd)
 			ft_set_red_write(node->outfd);
+		if (node->infd)
+			ft_set_red_read(node->infd);
 		if (node->is_built_in)
 		{
 			ft_check_builtins(proc, node, 1);

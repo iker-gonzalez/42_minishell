@@ -6,7 +6,7 @@
 /*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:33:38 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/02 22:06:55 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:19:43 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	ft_set_red_out(t_proc *proc, int i, int j)
 
  	if ((*proc->lst)->args[i][j + 1])
 	{
-		arg = ft_outfile_red((*proc->lst)->args[i], j);
-		
+		arg = ft_outfile_red((*proc->lst)->args[i], j);		
 	}
 	else
 		arg = (*proc->lst)->args[i + 1];
