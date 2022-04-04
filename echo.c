@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:56 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/03 18:19:15 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:50:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_echo(char **argv, int fd)
 	if (!fd)
 		fd = 1;
 	i = 1;
-	if (strcmp(argv[i], "-n") == 0)
+	if (strcmp(argv[i], "-n") == 0) //cambiar
 		i++;
 	while (argv[i])
 	{

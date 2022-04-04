@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/03 00:21:52 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:22:05 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,14 @@ int	export(t_set *set, char **argv, int child)
 	int	k;
 	int	var_len;
 	int	edit;
+	int	cmd_count;
 
 	i = 0;
 	edit = 0;
+
+	cmd_count = ft_count_argc(argv);
+	if (cmd_count == 1)
+		print_sorted_env(set);
 	while (argv[++i])
 	{
 		k = -1;

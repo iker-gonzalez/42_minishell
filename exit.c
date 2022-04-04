@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 09:00:37 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 10:42:36 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:08:06 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_exit(char **argv, t_set *set)
 	int	cmd_count;
 
 	cmd_count = ft_count_argc(argv);
+	printf("exit\n");
 	if (cmd_count == 1)
 		exit (0);
 	if (cmd_count > 2)

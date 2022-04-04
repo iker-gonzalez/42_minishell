@@ -6,14 +6,14 @@
 #    By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/12 14:19:09 by ikgonzal          #+#    #+#              #
-#    Updated: 2022/04/03 17:41:50 by jsolinis         ###   ########.fr        #
+#    Updated: 2022/04/04 20:22:50 by ikgonzal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 AR = ar rcs
 RM = rm -f
 

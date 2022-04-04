@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_children.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/03 20:22:44 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:28:30 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,10 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 			ft_set_write(rpipe);
 		if (node->outfd)
 			ft_set_red_write(node->outfd);
-		if (node->is_built_in)
-		{
-			ft_check_builtins(proc, node, 1);
-			if (node->route == NULL)
+		if (node->route == NULL)
 				print_error(": command not found", 127, node->args[0], proc->set);
-		}
+		if (node->is_built_in)
+			ft_check_builtins(proc, node, 1);
 		else
 		{
 			if (node->has_red)

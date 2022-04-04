@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/03 20:22:47 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:22:28 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ char	*ft_get_env_path(t_set *set, char *var, int var_len);
 int		export(t_set *set, char **argv, int child);
 char	**add_var(t_set *set, char *var);
 void	edit_var(t_set *set, char *var);
+void	print_sorted_env(t_set *set);
 int		unset(t_set *set, char **argv, int child);
 void	ft_exit(char **argv, t_set *set);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child);

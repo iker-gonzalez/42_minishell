@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 20:49:44 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:41:52 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ void	ft_check_quotes(t_proc *proc, char c, int *i)
 void	ft_expand_line_read(t_proc *proc)
 {
 	int	i;
-
+	int ret;
+	
 	if (proc->lock)
 		proc->line_expanded = malloc(sizeof(char) * proc->line_exp_len + 1);
 	i = 0;
 	proc->line_exp_len = 0;
-	while (proc->line_read[i])
+	while (i < ft_strlen(proc->line_read) && proc->line_read[i])
 	{
 		ft_set_quotes(proc, proc->line_read[i]);
 		ft_expand_spaces(proc, proc->line_read[i], &i);
@@ -86,9 +87,8 @@ void	ft_expand_line_read(t_proc *proc)
 		ft_expand_red_in(proc, proc->line_read[i], &i);
 		ft_expand_red_out(proc, proc->line_read[i], &i);
 		ft_expand_dollar2(proc, &i);
-		//if (proc->line_read[i] == 36 && ((!proc->single_quote)
-		//		|| (proc->quote_scope == 4 && (proc->double_quote))) && ++i)
-		if (ft_expand_dollar2(proc, &i));
+		if (ft_expand_dollar2(proc, &i) == 1)
+			ret = 1;
 		else
 			ft_check_quotes(proc, proc->line_read[i], &i);
 	}
