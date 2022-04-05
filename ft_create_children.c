@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/05 14:37:34 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:26:03 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 		perror("fork failed");
 	if (node->pid == 0)
 	{
-		//rl_catch_signals = 1;
-		//g_sig.pid = node->pid;
 		if (lpipe)
 			ft_set_read(lpipe);
 		if (rpipe)
@@ -77,18 +75,21 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 		if (node->infd)
 			ft_set_red_read(node->infd);
 		if (node->is_built_in)
-			ft_check_builtins(proc, node, 1);
+		{
+			if (node->has_red)
+				ft_check_builtins(proc, node, 1, node->args_red);
+			else
+				ft_check_builtins(proc, node, 1, node->args);
+		}
 		else
 		{
 			if (node->has_red)
 				execve(node->route, node->args_red, proc->set->env);
 			else
 				execve(node->route, node->args, proc->set->env);
+			exit(0);
 		}
-		exit(0);
 	}
-	//else
-		//g_sig.pid = 1;
 }
 
 void	ft_create_children(t_proc *proc)
@@ -100,7 +101,12 @@ void	ft_create_children(t_proc *proc)
 	if ((*proc->lst)->previous == NULL && (*proc->lst)->next == NULL)
 	{
 		if ((*proc->lst)->is_built_in)
-			ft_check_builtins(proc, (*proc->lst), 0);
+		{
+			if ((*proc->lst)->has_red)
+				ft_check_builtins(proc, (*proc->lst), 0, (*proc->lst)->args_red);
+			else
+				ft_check_builtins(proc, (*proc->lst), 0, (*proc->lst)->args);
+		}
 		else
 			ft_create_child(NULL, NULL, (*proc->lst), proc);
 	}
@@ -124,20 +130,20 @@ void	ft_create_children(t_proc *proc)
 	}
 }
 
-void	ft_check_builtins(t_proc *proc, t_node *node, int child)
+void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args)
 {
-	if ((ft_strncmp_len((*proc->lst)->args[0], "env", 3)) == 0)
-		ft_env(proc, ft_count_argc((*proc->lst)->args), child);
-	else if ((ft_strncmp_len((*proc->lst)->args[0], "pwd", 3)) == 0)
+	if ((ft_strncmp_len(args[0], "env", 3)) == 0)
+		ft_env(proc, ft_count_argc(args), child);
+	else if ((ft_strncmp_len(args[0], "pwd", 3)) == 0)
 		ft_pwd();
-	else if ((ft_strncmp_len((*proc->lst)->args[0], "cd", 2)) == 0)
-		ft_cd((*proc->lst)->args, proc->set, child);
-	else if ((ft_strncmp_len((*proc->lst)->args[0], "export", 6)) == 0)
-		export(proc->set, (*proc->lst)->args, child);
-	else if ((ft_strncmp_len((*proc->lst)->args[0], "unset", 5)) == 0)
-		unset(proc->set, (*proc->lst)->args, child);
-	else if ((ft_strncmp_len((*proc->lst)->args[0], "exit", 4)) == 0)
-		ft_exit((*proc->lst)->args);
-	else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
-		ft_echo(node->args, node->outfd);
+	else if ((ft_strncmp_len(args[0], "cd", 2)) == 0)
+		ft_cd(args, proc->set, child);
+	else if ((ft_strncmp_len(args[0], "export", 6)) == 0)
+		export(proc->set, args, child);
+	else if ((ft_strncmp_len(args[0], "unset", 5)) == 0)
+		unset(proc->set, args, child);
+	else if ((ft_strncmp_len(args[0], "exit", 4)) == 0)
+		ft_exit(args);
+	else if ((ft_strncmp(args[0], "echo", 4)) == 0)
+		ft_echo(args, node->outfd);
 }
