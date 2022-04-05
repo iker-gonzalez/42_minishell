@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:33 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 12:05:03 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:27:19 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_read_input(t_proc *proc)
 {
 	proc->line_read = readline(proc->prompt);
+	g_sig.act_child = 0;
 	add_history(proc->line_read);
 }
 
@@ -29,6 +30,14 @@ void	get_prompt(t_proc *proc)
 	logo = "@papa$hell: ";
 	proc->prompt = ft_strjoin(user, logo);
 }
+void	ft_create_terminal(t_proc *proc)
+{
+	
+	get_prompt(proc);
+	ft_read_input(proc);
+	//ft_exit_status(proc);
+}
+
 /*
 void	ft_exit_status(t_proc *proc)
 {
@@ -55,12 +64,4 @@ void	ft_exit_status(t_proc *proc)
 		proc->set->env = add_var(proc->set, var);
 }
 */
-void	ft_create_terminal(t_proc *proc)
-{
-	
-	get_prompt(proc);
-	ft_read_input(proc);
-	//ft_exit_status(proc);
-}
-
 

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/04 20:47:28 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:47:19 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,14 @@ void	ft_set_args_red(t_proc *proc)
 
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 {
+	g_sig.act_child = 1;
 	node->pid = fork();
 	if (node->pid < 0)
 		perror("fork failed");
 	if (node->pid == 0)
 	{
+		rl_catch_signals = 1;
+		g_sig.pid = node->pid;
 		if (lpipe)
 			ft_set_read(lpipe);
 		if (rpipe)
@@ -82,8 +85,10 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 			else
 				execve(node->route, node->args, proc->set->env);
 		}
-		exit(0);
+		//exit(0);
 	}
+	else
+		g_sig.pid = 1;
 }
 
 void	ft_create_children(t_proc *proc)

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/04 20:47:42 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:10:51 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_sig
 	pid_t		pid;
 }				t_sig;
 
-extern t_sig	g_sig;
+t_sig	g_sig;
 
 typedef struct s_set
 {
@@ -212,9 +212,6 @@ int		ft_check_null_line(char *line_read);
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
 void	ft_print_val(t_proc *proc);
-
-///////// Signals ////////////
-void	listen_signals(void);
 
 //////// Free ////////////////
 void	ft_free(t_proc *proc);
