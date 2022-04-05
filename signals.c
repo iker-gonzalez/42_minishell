@@ -6,14 +6,12 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:26:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 14:33:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:19:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <signal.h>
-
-
 
 void	child_message(int signum)
 {
@@ -46,7 +44,7 @@ void	handler(int signum)
 		}
 		return ;
 	}
-	child_message(signum);
+	child_message(signum); 
 }
 
 void	listen_signals(void)
