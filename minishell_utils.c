@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:34:04 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/01 11:29:30 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:25:07 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,32 +102,3 @@ int	ft_count_argc(char **argv)
 		i++;
 	return (i);
 }
-
-/*
-//Creates double char eliminating the nodes that became empty after being transformed. 
-//
-void	ft_test(t_proc *proc)
-{
-	int k;
-
-	k = 0;
-	while(*proc->lst)
-	{
-		if((*proc->lst)->is_empty)
-			k++;
-		(*proc->lst) = (*proc->lst)->next;
-	}
-	(*proc->lst) = proc->head;
-	proc->line_expanded = malloc(sizeof(char *) * (proc->node_count - k + 1));
-	k = 0;
-	while(*proc->lst)
-	{
-		proc->line_expanded[k] = malloc(sizeof(char) * ft_strlen((*proc->lst)->content) + 1);
-		if(!(*proc->lst)->is_empty)
-			proc->line_expanded[k++] = (*proc->lst)->content;
-		(*proc->lst) = (*proc->lst)->next;
-	}
-	proc->line_expanded[k] = NULL;
-	(*proc->lst) = proc->head;
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:39 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 12:55:50 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:50:59 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_parse_red_in(t_proc *proc)
 	}
 	if (proc->red_in_count)
 		proc->red_in_arr = malloc(sizeof(int)
-		* proc->red_in_count + sizeof(int));
+			* proc->red_in_count + sizeof(int));
 	if (proc->red_in_app_count)
 		proc->red_in_app_arr = malloc (sizeof(int)
 				* proc->red_in_app_count + sizeof(int));

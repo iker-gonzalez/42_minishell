@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:20:11 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 14:16:55 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:49:58 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ void	ft_expand_spaces(t_proc *proc, char c, int *i)
 	}
 }
 
-void	ft_expand_ex_st(t_proc *proc)
+void	ft_expand_exit(t_proc *proc)
 {
-	char *exit_status;
-	int j;
+	char	*exit_status;
+	int		j;
 
 	exit_status = ft_itoa(g_sig.exit_status);
 	j = 0;
@@ -93,27 +93,6 @@ void	ft_expand_ex_st(t_proc *proc)
 		proc->line_exp_len += ft_strlen(exit_status)
 			+ ft_strlen(proc->line_read) - 2;
 	free (exit_status);
-
-}
-
-int	ft_expand_dollar2(t_proc *proc, int *i)
-{
-	if ((!proc->single_quote) || (proc->quote_scope == 4 && (proc->double_quote)))
-	{
-		if (proc->line_read[*i] == '$' && proc->line_read[*i + 1] == '?')
-		{
-			ft_expand_ex_st(proc);
-			*i += 2;
-			return (1);
-		}
-		else if (proc->line_read[*i] == '$')
-		{
-			*i += 1;
-			ft_expand_dollar(proc, i);
-			return(1);
-		}
-	}
-	return (0);
 }
 
 void	ft_expand_pipe(t_proc *proc, char c)

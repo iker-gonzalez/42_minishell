@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 14:19:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:47:59 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,8 @@ int		ft_findchar(char *line, char c);
 ////// Expand input /////
 void	ft_expand_input(t_proc *proc);
 void	ft_expand_line_read(t_proc *proc);
-void	ft_expand_dollar(t_proc *proc, int *i);
-int		ft_expand_dollar2(t_proc *proc, int *i);
+int		ft_expand_dollar(t_proc *proc, int *i);
+void	ft_expand_env(t_proc *proc, int *i);
 void	ft_expand_pipe(t_proc *proc, char c);
 void	ft_expand_red_in(t_proc *proc, char c, int *i);
 void	ft_expand_red_out(t_proc *proc, char c, int *i);

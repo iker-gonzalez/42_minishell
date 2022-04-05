@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 13:58:33 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:27:43 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	ft_loop(t_set *set)
 {
 	t_proc	proc;
-	int	ms_on;
-	int err;
+	int		ms_on;
+	int		err;
 
 	listen_signals();
 	ms_on = 1;
@@ -35,7 +35,6 @@ int	ft_loop(t_set *set)
 			ft_launch_process(&proc);
 		}
 		ft_free(&proc);
-		//ft_print_val(proc);
 	}
 	return (0);
 }
@@ -43,6 +42,7 @@ int	ft_loop(t_set *set)
 int	main(int argc, char **argv, char **env)
 {
 	t_set	set;
+
 	(void)argc;
 	(void)argv;
 	ft_memset(&set, 0, sizeof(t_set));

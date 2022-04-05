@@ -6,21 +6,11 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 20:14:49 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/04 20:31:43 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:26:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ft_env_strlen(char **env)
-{
-	int i;
-
-	i = 0;
-	while(env[i])
-		i++;
-	return (i);
-}
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -36,7 +26,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void		sort_env(char **tab, int env_len)
+void	sort_env(char **tab, int env_len)
 {
 	int		ordered;
 	int		i;
@@ -66,7 +56,7 @@ void	print_sorted_env(t_set *set)
 {
 	int		i;
 
-	sort_env(set->env, ft_env_strlen(set->env));
+	sort_env(set->env, ft_count_argc(set->env));
 	i = 0;
 	while (set->env[i])
 	{
