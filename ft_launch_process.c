@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_launch_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/04 20:24:47 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:17:40 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	ft_parental_wait(t_proc *proc)
 
 	process = waitpid((*proc->lst)->pid, &stt, 0);
 	if (WIFEXITED(stt))
-		proc->set->exit_status = WEXITSTATUS(stt);
+	{
+		g_sig.act_child = 0;
+		g_sig.exit_status = WEXITSTATUS(stt);
+	}
 }
 
 void	ft_is_built_in(t_node *node, int index)

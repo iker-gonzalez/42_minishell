@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:20:11 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 13:45:41 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:16:55 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_expand_ex_st(t_proc *proc)
 	char *exit_status;
 	int j;
 
-	exit_status = ft_itoa(proc->set->exit_status);
+	exit_status = ft_itoa(g_sig.exit_status);
 	j = 0;
 	while (proc->lock && exit_status && exit_status[j])
 		proc->line_expanded[proc->line_exp_len++] = exit_status[j++];

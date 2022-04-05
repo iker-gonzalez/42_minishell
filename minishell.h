@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 11:10:51 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:19:56 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_sig
 	int			act_child;
 	int			sigint;
 	int			sigquit;
-	int			status;
+	int			exit_status;
 	pid_t		pid;
 }				t_sig;
 
@@ -51,7 +51,7 @@ typedef struct s_set
 {
 	char	**env;
 	char	**paths;
-	int		exit_status;
+//	int		exit_status;
 }				t_set;
 
 typedef struct s_proc
@@ -193,19 +193,18 @@ char	**add_var(t_set *set, char *var);
 void	edit_var(t_set *set, char *var);
 void	print_sorted_env(t_set *set);
 int		unset(t_set *set, char **argv, int child);
-void	ft_exit(char **argv, t_set *set);
+void	ft_exit(char **argv);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child);
 
 ////////// Signals //////////
 void	listen_signals(void);
-void	handler(int signum);
 void	child_message(int signum);
 
 /////// Errors //////////
 int		ft_check_redirections(char *line, char c);
 int		ft_check_errors(t_proc *proc);
 int		ft_check_empty_line(char *line_read);
-void	print_error(char *str, int err, char *cmd, t_set *set);
+void	print_error(char *str, int err, char *cmd);
 int		ft_check_null_line(char *line_read);
 
 ///////// Test //////////////

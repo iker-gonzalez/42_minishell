@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/05 11:47:19 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:37:34 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 		perror("fork failed");
 	if (node->pid == 0)
 	{
-		rl_catch_signals = 1;
-		g_sig.pid = node->pid;
+		//rl_catch_signals = 1;
+		//g_sig.pid = node->pid;
 		if (lpipe)
 			ft_set_read(lpipe);
 		if (rpipe)
@@ -73,7 +73,7 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 		if (node->outfd)
 			ft_set_red_write(node->outfd);
 		if (node->route == NULL)
-				print_error(": command not found", 127, node->args[0], proc->set);
+				print_error(": command not found", 127, node->args[0]);
 		if (node->infd)
 			ft_set_red_read(node->infd);
 		if (node->is_built_in)
@@ -85,10 +85,10 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 			else
 				execve(node->route, node->args, proc->set->env);
 		}
-		//exit(0);
+		exit(0);
 	}
-	else
-		g_sig.pid = 1;
+	//else
+		//g_sig.pid = 1;
 }
 
 void	ft_create_children(t_proc *proc)
@@ -137,7 +137,7 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child)
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "unset", 5)) == 0)
 		unset(proc->set, (*proc->lst)->args, child);
 	else if ((ft_strncmp_len((*proc->lst)->args[0], "exit", 4)) == 0)
-		ft_exit((*proc->lst)->args, proc->set);
+		ft_exit((*proc->lst)->args);
 	else if ((ft_strncmp((*proc->lst)->args[0], "echo", 4)) == 0)
 		ft_echo(node->args, node->outfd);
 }

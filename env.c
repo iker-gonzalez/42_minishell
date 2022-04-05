@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:39:23 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 23:09:34 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:19:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_env(t_proc *proc, int cmd_count, int child)
 	int	i;
 
 	if (cmd_count > 1)
-		print_error(": No such file or directory", 127, (*proc->lst)->args[1], proc->set);
+		print_error(": No such file or directory", 127, (*proc->lst)->args[1]);
 	i = -1;
 	while (proc->set->env[++i])
 		printf("%s\n", proc->set->env[i]);
