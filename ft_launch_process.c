@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/05 14:17:40 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 20:59:51 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
-void	ft_set_route(t_proc *proc)
+void	ft_set_route(t_proc *proc, char *arg)
 {
 	int		i;
 	char	**routes;
@@ -27,7 +27,7 @@ void	ft_set_route(t_proc *proc)
 	i = 0;
 	while (proc->set->paths[i])
 	{
-		routes[i] = ft_strjoin(proc->set->paths[i], (*proc->lst)->args[0]);
+		routes[i] = ft_strjoin(proc->set->paths[i], arg);
 		if (access(routes[i], F_OK) == 0)
 			(*proc->lst)->route = routes[i];
 		else

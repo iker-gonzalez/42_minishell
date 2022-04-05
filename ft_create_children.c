@@ -6,55 +6,11 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/05 14:37:34 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:06:36 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ft_contain_red(char *arg)
-{
-	int	j;
-	int	ret;
-
-	j = 0;
-	ret = 0;
-	while (arg[j])
-	{
-		if (arg[j] == 62 || arg[j] == 60)
-			ret = 1;
-		j++;
-	}
-	return (ret);
-}
-
-void	ft_set_args_red(t_proc *proc)
-{
-	int	i;
-	int	k;
-
-	i = 0;
-	k = 0;
-	while ((*proc->lst)->args[i])
-		i++;
-	(*proc->lst)->args_red = malloc (sizeof(char *) * i);
-	i = 0;
-	while ((*proc->lst)->args[i])
-	{
-		if (!ft_contain_red((*proc->lst)->args[i]))
-			(*proc->lst)->args_red[k++] = (*proc->lst)->args[i];
-		else
-		{
-			if (ft_strlen((*proc->lst)->args[i]) == 1)
-				i++;
-		}
-		i++;
-	}
-	(*proc->lst)->args_red[k] = NULL;
-	i = 0;
-	while ((*proc->lst)->args_red[i])
-		printf("ARGS RED: %s\n", (*proc->lst)->args_red[i++]);
-}
 
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 {
@@ -93,7 +49,7 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 
 void	ft_create_children(t_proc *proc)
 {
-	ft_set_route(proc);
+	ft_set_route(proc, (*proc->lst)->args[0]);
 	ft_check_red_type(proc);
 	if ((*proc->lst)->has_red)
 		ft_set_args_red(proc);

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 16:57:30 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/05 20:52:11 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k);
 
 //////// Fds & Processes /////////
 void	ft_launch_process(t_proc *proc);
-void	ft_set_route(t_proc *proc);
+void	ft_set_route(t_proc *proc, char *arg);
 void	ft_create_children(t_proc *proc);
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc);
 
@@ -174,6 +174,7 @@ void	ft_check_red_type(t_proc *proc);
 void	ft_set_red_out(t_proc *proc, int i, int j);
 void	ft_set_red_out_app(t_proc *proc, int i, int j);
 void	ft_set_red_in(t_proc *proc, int i, int j);
+void	ft_set_args_red(t_proc *proc);
 void	ft_set_red_write(int fd);
 void	ft_set_red_read(int fd);
 
