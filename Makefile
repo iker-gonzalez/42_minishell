@@ -28,6 +28,7 @@ SRC =	main.c \
 		ft_red_in_utils.c \
 		ft_red_out_app_utils.c \
 		ft_red_out_utils.c \
+		ft_set_args_red.c \
 		ft_redirection_utils.c \
 		ft_redirections.c \
 		echo.c \
