@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 10:57:21 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:38:17 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*ft_get_env_path(t_set *set, char *var, int var_len)
 int	ft_go_to_home(t_set *set)
 {
 	char	*home_path;
+	int		cd_ret;
 
 	home_path = ft_get_env_path(set, "HOME", 4);
 	if (!home_path)
@@ -55,15 +56,16 @@ int	ft_go_to_home(t_set *set)
 	else
 	{
 		ft_update_oldpwd(set);
-		chdir(home_path);
+		cd_ret = chdir(home_path);
 	}
 	free(home_path);
-	return (0);
+	return (cd_ret);
 }
 
 int	ft_go_to_oldpwd(t_set *set)
 {
 	char	*old_pwd_path;
+	int		cd_ret;
 
 	old_pwd_path = ft_get_env_path(set, "OLDPWD", 6);
 	if (!old_pwd_path)
@@ -74,10 +76,10 @@ int	ft_go_to_oldpwd(t_set *set)
 	else
 	{
 		ft_update_oldpwd(set);
-		chdir(old_pwd_path);
+		cd_ret = chdir(old_pwd_path);
 	}
 	free(old_pwd_path);
-	return (0);
+	return (cd_ret);
 }
 
 int	ft_update_oldpwd(t_set *set)
@@ -102,16 +104,22 @@ int	ft_update_oldpwd(t_set *set)
 
 int	ft_cd(char **argv, t_set *set, int child)
 {
+	int cd_ret;
+	
 	if (argv[1] && (ft_strncmp(argv[1], "-", 1)) == 0) // check 
-		ft_go_to_oldpwd(set);
+		cd_ret = ft_go_to_oldpwd(set);
 	else if (!argv[1])
-		ft_go_to_home(set);
+		cd_ret = ft_go_to_home(set);
 	else
 	{
 		ft_update_oldpwd(set);
-		chdir(argv[1]);
+		cd_ret = chdir(argv[1]);
 	}
-	if (child)
+	if (cd_ret == -1 && child)
+		print_error(": No such file or directory", 1, argv[1], 1);
+	else if (cd_ret == -1 && !child)
+		print_error(": No such file or directory", 1, argv[1], 0);
+	else if (cd_ret == 0 && child)
 		exit (0);
 	return (0);
 }

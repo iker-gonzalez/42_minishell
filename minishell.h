@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/06 11:09:47 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:36:27 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_node
 typedef struct s_sig
 {
 	int			act_child;
-	int			sigint;
-	int			sigquit;
+	//int			sigint;
+	//int			sigquit;
 	int			exit_status;
 	pid_t		pid;
 }				t_sig;
@@ -206,7 +206,7 @@ void	child_message(int signum);
 int		ft_check_redirections(char *line, char c);
 int		ft_check_errors(t_proc *proc);
 int		ft_check_empty_line(char *line_read);
-void	print_error(char *str, int err, char *cmd);
+int		print_error(char *str, int err, char *cmd, int child);
 int		ft_check_null_line(char *line_read);
 
 ///////// Test //////////////

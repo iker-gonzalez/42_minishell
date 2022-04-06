@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:39:23 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 14:19:15 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:47:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,20 @@
 int	ft_env(t_proc *proc, int cmd_count, int child)
 {
 	int	i;
+	int err;
 
-	if (cmd_count > 1)
-		print_error(": No such file or directory", 127, (*proc->lst)->args[1]);
-	i = -1;
-	while (proc->set->env[++i])
-		printf("%s\n", proc->set->env[i]);
+	err = 0;
+	if (cmd_count > 1 && child && ++err)
+		err = print_error(": No such file or directory", 127, (*proc->lst)->args[1], 1);
+	else if (cmd_count > 1 && !child && ++err)
+		err = print_error(": No such file or directory", 127, (*proc->lst)->args[1], 0);
+	if (!err)
+	{
+		i = -1;
+		while (proc->set->env[++i])
+			printf("%s\n", proc->set->env[i]);
+	}
 	if (child)
-		exit (0);
-	return (0);
+		exit (err);
+	return (err);
 }

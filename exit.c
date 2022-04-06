@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 09:00:37 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 14:19:45 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:51:52 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	ft_exit(char **argv)
 	if (cmd_count == 1)
 		exit (0);
 	if (cmd_count > 2)
-		print_error(": too many arguments.", 1, argv[1]);
+		print_error(": too many arguments.", 1, argv[1], 1);
 	if (cmd_count == 2)
 	{
 		i = -1;
 		while (argv[1][++i])
 		{
 			if (!ft_isdigit(argv[1][i]))
-				print_error(": numeric argument required", 255, argv[1]);
+				print_error(": numeric argument required", 255, argv[1], 1);
 		}
 		exit (ft_atoi(argv[1]));
 	}

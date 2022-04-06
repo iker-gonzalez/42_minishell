@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 16:29:34 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:36:18 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	ft_check_errors(t_proc *proc)
 	return (0);
 }
 
-void	print_error(char *str, int err, char *cmd)
+int	print_error(char *str, int err, char *cmd, int child)
 {
 	ft_putstr_fd("Papa$hell: ", 2);
 	if (cmd)
@@ -107,5 +107,8 @@ void	print_error(char *str, int err, char *cmd)
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n", 2);
 	g_sig.exit_status = err;
-	exit(err);
+	if (child)
+		exit(err);
+	else
+		return(err);
 }

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 20:36:08 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:16:48 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,21 @@
 void	ft_get_env(t_set *set, char **env)
 {
 	int		i;
+	int		k;
 
 	i = 0;
 	while (env[i])
 		i++ ;
 	set->env = (char **)ft_calloc(sizeof(char *), i + 1);
 	i = -1;
+	k = 0;
 	while (env[++i])
 	{
-		if ((ft_strncmp(env[i], "OLDPWD", 6)) != 0)
-			set->env[i] = ft_strdup(env[i]);
+		if ((ft_strncmp(env[i], "OLDPWD", 6)) == 0 && ++i)
+			set->env[k++] = ft_strdup(env[i]);
+		else
+			set->env[k++] = ft_strdup(env[i]);
+
 	}
 	set->env[i] = NULL;
 }
