@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/06 12:36:27 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/06 22:15:12 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void	ft_set_red_in(t_proc *proc, int i, int j);
 void	ft_set_args_red(t_proc *proc);
 void	ft_set_red_write(int fd);
 void	ft_set_red_read(int fd);
+int		ft_red_count(char **args);
 
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);

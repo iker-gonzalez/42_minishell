@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:26:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 16:24:19 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:27:48 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	handler(int signum)
 			g_sig.exit_status = 1;
 			printf("\n");
 			rl_on_new_line();
-			rl_replace_line("", 0);
+	//		rl_replace_line("", 0);
 			rl_redisplay();
 			return ;
 		}
@@ -49,7 +49,7 @@ void	handler(int signum)
 
 void	listen_signals(void)
 {
-	rl_catch_signals = 0;
+	//rl_catch_signals = 0;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, handler);
 }

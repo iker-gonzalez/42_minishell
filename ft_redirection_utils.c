@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/05 20:59:55 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/06 20:59:01 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	ft_check_red_type(t_proc *proc)
 
 	i = 0;
 	ft_redirection_set_up(proc);
+	ft_red_count((*proc->lst)->args);
 	while ((*proc->lst)->args[i])
 	{
 		j = 0;
@@ -82,4 +83,25 @@ void	ft_check_red_type(t_proc *proc)
 		}
 		i++;
 	}
+}
+
+int	ft_red_count(char **args)
+{
+	int i;
+	int k;
+	int red;
+
+	i = -1;
+	red = 0;
+	while (args[++i])
+	{
+		k = 0;
+		while (args[i][k])
+		{
+			if (args[i][k] == '>' || args[i][k] == '<')
+				red++;
+			k++;
+		}
+	}
+	return (red);
 }

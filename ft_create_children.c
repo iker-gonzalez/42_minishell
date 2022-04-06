@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/06 13:30:40 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/06 20:38:51 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 			ft_set_red_write(node->outfd);
 		if (node->infd)
 			ft_set_red_read(node->infd);
-			printf("node route: %s\n", node->route);
 		if (node->is_built_in)
 		{
 			if (node->has_red)
@@ -42,8 +41,8 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 				execve(node->route, node->args_red, proc->set->env);
 			else
 				execve(node->route, node->args, proc->set->env);
-			if (node->route == NULL)
-				print_error(": command not found", 127, node->args[0], 1);
+			//if (node->route == NULL)
+			//	print_error(": command not found", 127, node->args[0], 1);
 			exit(0);
 		}
 	}

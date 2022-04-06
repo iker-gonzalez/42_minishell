@@ -6,7 +6,7 @@
 /*   By: jsolinis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:39:34 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/05 21:06:31 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/06 22:15:15 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,27 @@ void	ft_set_args_red(t_proc *proc)
 		{
 			if (ft_strlen((*proc->lst)->args[i]) == 1)
 				i++;
-			else if (ft_find_red_proc((*proc->lst)->args[i]) != 0)
+			else if (ft_find_red_proc((*proc->lst)->args[i]) == (ft_strlen((*proc->lst)->args[i]) - 1))
 			{
+				printf("Entro\n");
 				(*proc->lst)->args_red[k++] = ft_set_alltogether((*proc->lst)->args[i], ft_find_red_proc((*proc->lst)->args[i]));
 				ft_set_route(proc, (*proc->lst)->args_red[0]);
+				i++;
+			}
+			else if (ft_find_red_proc((*proc->lst)->args[i]) != 0)
+			{
+				printf("Entro1\n");
+				(*proc->lst)->args_red[k++] = ft_set_alltogether((*proc->lst)->args[i], ft_find_red_proc((*proc->lst)->args[i]));
+				ft_set_route(proc, (*proc->lst)->args_red[0]);
+				printf("ARGS0 : %s\n", (*proc->lst)->args_red[0]);
+			}
+			else
+			{
+				printf("Entro2\n");
+				ft_set_route(proc, (*proc->lst)->args[0]);
 			}
 		}
 		i++;
 	}
 	(*proc->lst)->args_red[k] = NULL;
-	i = 0; 
 }
