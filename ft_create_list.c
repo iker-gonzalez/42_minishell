@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 20:46:51 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/08 20:24:58 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,20 @@
 t_node	*ft_new_node(char **args)
 {
 	t_node	*ret;
+	int		i;
 
 	ret = malloc(sizeof (t_node));
 	memset(ret, 0, sizeof(t_node));
 	if (!ret)
 		return (NULL);
-	ret->args = args;
+	i = 0;
+	while (args[i])
+		i++;
+	ret->args = malloc(sizeof(char *) * (i + 1));
+	i = -1;
+	while (args[++i])
+		ret->args[i] = ft_strdup(args[i]);
+	ret->args[i] = NULL;
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/08 14:23:30 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/08 20:05:59 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	ft_update_oldpwd(t_set *set)
 	}
 	else
 		edit_var(set, var);
-	free (var);
 	return (0);
 }
 

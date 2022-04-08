@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 16:31:35 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/08 20:37:08 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	edit_var(t_set *set, char *var)
 	while (set->env[++i])
 	{
 		if ((ft_strncmp(set->env[i], var, var_len) == 0))
+		{
 			set->env[i] = ft_strdup(var);
+			free (var);
+		}
 	}
 }
 
@@ -81,6 +84,7 @@ char	**add_var(t_set *set, char *var)
 			tmp[i] = ft_strdup(set->env[i]);
 	tmp[i] = ft_strdup(var);
 	tmp[i + 1] = NULL;
+	free(var);
 	ft_free_double_char(set->env);
 	return (tmp);
 }
