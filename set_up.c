@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/08 14:58:14 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:04:47 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void	ft_format_paths(t_set *set)
 void	set_up_shell(t_set *set, char **env)
 {
 	ft_get_env(set, env);
-	ft_format_paths(set);
+	//ft_format_paths(set);
 }
