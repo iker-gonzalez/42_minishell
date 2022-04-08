@@ -6,19 +6,21 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 09:00:37 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/06 12:51:52 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:47:28 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exit(char **argv)
+void	ft_exit(char **argv, int child/*, t_set *set*/)
 {
 	int	i;
 	int	cmd_count;
-
+	
+	//ft_free_set(set);
 	cmd_count = ft_count_argc(argv);
-	printf("exit\n");
+	if (!child)
+		printf("exit\n");
 	if (cmd_count == 1)
 		exit (0);
 	if (cmd_count > 2)

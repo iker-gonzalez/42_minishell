@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/07 19:49:48 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:47:36 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 				execve(node->route, node->args_red, proc->set->env);
 			else
 				execve(node->route, node->args, proc->set->env);
-			//if (node->route == NULL)
-			//	print_error(": command not found", 127, node->args[0], 1);
+			if (node->route == NULL)
+				print_error(": command not found", 127, node->args[0], 1);
 			exit(0);
 		}
 	}
@@ -99,7 +99,7 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args)
 	else if ((ft_strncmp_len(args[0], "unset", 5)) == 0)
 		unset(proc->set, args, child);
 	else if ((ft_strncmp_len(args[0], "exit", 4)) == 0)
-		ft_exit(args);
+		ft_exit(args, child/*, proc->set*/);
 	else if ((ft_strncmp(args[0], "echo", 4)) == 0)
 		ft_echo(args, node->outfd);
 }

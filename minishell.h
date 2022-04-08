@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/07 19:49:50 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:47:41 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ typedef struct s_node
 typedef struct s_sig
 {
 	int			act_child;
-	//int			sigint;
-	//int			sigquit;
 	int			exit_status;
 	pid_t		pid;
 }				t_sig;
@@ -52,7 +50,6 @@ typedef struct s_set
 {
 	char	**env;
 	char	**paths;
-//	int		exit_status;
 }				t_set;
 
 typedef struct s_proc
@@ -197,7 +194,7 @@ char	**add_var(t_set *set, char *var);
 void	edit_var(t_set *set, char *var);
 void	print_sorted_env(t_set *set);
 int		unset(t_set *set, char **argv, int child);
-void	ft_exit(char **argv);
+void	ft_exit(char **argv, int child/*, t_set *set*/);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args);
 
 ////////// Signals //////////
@@ -219,5 +216,7 @@ void	ft_print_val(t_proc *proc);
 //////// Free ////////////////
 void	ft_free(t_proc *proc);
 void	ft_free_double_char(char **str);
+void	ft_free_set(t_set *set);
+
 
 #endif

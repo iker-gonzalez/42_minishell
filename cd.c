@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/06 12:38:17 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:23:30 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_go_to_home(t_set *set)
 	home_path = ft_get_env_path(set, "HOME", 4);
 	if (!home_path)
 	{
+		free(home_path);
 		ft_putendl_fd("papa$hell: cd: HOME not set", 2);
 		return (1);
 	}
@@ -70,6 +71,7 @@ int	ft_go_to_oldpwd(t_set *set)
 	old_pwd_path = ft_get_env_path(set, "OLDPWD", 6);
 	if (!old_pwd_path)
 	{
+		free(old_pwd_path);
 		ft_putendl_fd("papa$shell: cd: OLDPWD not set", 2);
 		return (1);
 	}

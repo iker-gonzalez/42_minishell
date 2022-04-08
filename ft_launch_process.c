@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/06 18:20:02 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:58:53 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_set_route(t_proc *proc, char *arg)
 	int		i;
 	char	**routes;
 
-	ft_format_paths(proc->set);
+	//ft_format_paths(proc->set);
 	i = 0;
 	while (proc->set->paths[i])
 		i++;
@@ -34,6 +34,7 @@ void	ft_set_route(t_proc *proc, char *arg)
 			free(routes[i]);
 		i++;
 	}
+	free (routes);
 }
 
 void	ft_parental_wait(t_proc *proc)
