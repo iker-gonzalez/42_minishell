@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/06 20:59:01 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 00:54:01 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	ft_redirection_set_up(t_proc *proc)
 {
-	(*proc->lst)->has_red = 0;
+//	(*proc->lst)->has_red = 0;
 	proc->red_out_arr_len = 0;
 	proc->red_in_arr_len = 0;
 	proc->red_out_del_arr_len = 0;
 	proc->red_in_app_arr_len = 0;
+	proc->added_spc = 0;
 }
 
 void	ft_check_red_out_type(t_proc *proc, int i, int j)
@@ -65,12 +66,12 @@ void	ft_check_red_in_type(t_proc *proc, int i, int j)
 void	ft_check_red_type(t_proc *proc)
 {
 	int	i;
-	int	j;
+//	int	j;
 
 	i = 0;
 	ft_redirection_set_up(proc);
 	ft_red_count((*proc->lst)->args);
-	while ((*proc->lst)->args[i])
+	/*while ((*proc->lst)->args[i])
 	{
 		j = 0;
 		while ((*proc->lst)->args[i][j])
@@ -82,7 +83,7 @@ void	ft_check_red_type(t_proc *proc)
 			j++;
 		}
 		i++;
-	}
+	}*/
 }
 
 int	ft_red_count(char **args)

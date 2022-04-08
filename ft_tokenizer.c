@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 12:19:18 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/09 00:54:03 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	ft_tokenizer(t_proc *proc)
 	ft_exp_sp_arr(proc);
 	proc->lst = malloc(sizeof(t_node) * proc->process_count);
 	ft_memset((proc->lst), 0, sizeof(t_node *));
+	ft_redirection_parse(proc);
 	while (i < proc->process_count)
 	{
 		args = ft_split_sp(proc, proc->process[i], &sp_len, &k);

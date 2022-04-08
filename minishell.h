@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/08 14:47:41 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/09 00:54:06 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_proc
 	//char	**paths;
 	//char	**env;
 	char	*prompt;
+	char	*aux;
 	int		process_count;
 	int		token_count;
 	//////// line /////////
@@ -97,6 +98,7 @@ typedef struct s_proc
 	int		red_out_del_arr_len;
 	int		red_out_del_count;
 	////// other ///////////
+	int		added_spc;
 	int		dollar;
 	int		lock;
 	int		row_len;
@@ -168,6 +170,9 @@ void	ft_set_write(int *rpipe);
 void	ft_swap_pipes(t_proc *proc);
 
 /////// Redirections ///////////
+void	ft_redirection_parse(t_proc *proc);
+int		ft_contain_red(char *arg);
+void	ft_redirection_set_up(t_proc *proc);
 void	ft_check_red_type(t_proc *proc);
 void	ft_set_red_out(t_proc *proc, int i, int j);
 void	ft_set_red_out_app(t_proc *proc, int i, int j);
