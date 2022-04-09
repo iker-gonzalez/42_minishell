@@ -6,7 +6,11 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/04/09 10:36:44 by ikgonzal         ###   ########.fr       */
+=======
+/*   Updated: 2022/04/09 16:54:43 by jsolinis         ###   ########.fr       */
+>>>>>>> 665ae66a054333ce09a8670ddb36405dec0bcb87
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +104,8 @@ typedef struct s_proc
 	int		red_out_del_count;
 	////// other ///////////
 	int		added_spc;
+	int		**added_spc_arr;
+	int		added_spc_arr_len;
 	int		dollar;
 	int		lock;
 	int		row_len;
@@ -157,7 +163,7 @@ void	ft_proceniser(t_proc *proc);
 
 ///// Tokenizer /////////
 void	ft_tokenizer(t_proc *proc);
-char	**ft_split_sp(t_proc *proc, char *process, int *sp_len, int *k);
+char	**ft_split_sp(t_proc *proc, int i, int *sp_len, int *k);
 
 //////// Fds & Processes /////////
 void	ft_launch_process(t_proc *proc);
