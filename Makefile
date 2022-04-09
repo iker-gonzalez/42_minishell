@@ -25,6 +25,7 @@ SRC =	main.c \
 		ft_launch_process.c \
 		ft_create_children.c \
 		ft_pipes_utils.c \
+		ft_redirection_parse.c \
 		ft_red_in_utils.c \
 		ft_red_out_app_utils.c \
 		ft_red_out_utils.c \
@@ -51,7 +52,7 @@ $(NAME): $(OBJ)
 	@$(MAKE) -s -C ./Libft
 	@$(MAKE) -s -C ./Libft bonus
 	@ echo "libft compiled 🔋"
-	@$(CC) $(CFLAGS) $(RLFLAGS) $(LIB) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(RLFLAGS) $(LIB) $(OBJ) -o $(NAME) -g3 -fsanitize=address
 	@ echo "minishell compiled ☘︎"
 
 %.o: %.c 
