@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/09 12:21:57 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 18:15:42 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ void	ft_free_process(t_proc *proc)
 	row = 0;
 	while (row < proc->process_count)
 	{
-		free(proc->process[row]);
+		if (proc->process[row])
+			free(proc->process[row]);
 		row++;
 	}
-	free(proc->process);
+	if (proc->process)
+		free(proc->process);
 }
 
 void	ft_free_double_char(char **str)
@@ -127,7 +129,7 @@ void	ft_free_set(t_set *set)
 void	ft_free(t_proc *proc)
 {
 	ft_free_proc(proc);
-	ft_free_process(proc);
+	//ft_free_process(proc);
 	ft_lstiter(proc, ft_free_args);
 	ft_lstiter(proc, ft_free_node_routes);
 	if (proc->lst)
