@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/09 00:54:03 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 09:56:36 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,11 @@ void	ft_tokenizer(t_proc *proc)
 	{
 		args = ft_split_sp(proc, proc->process[i], &sp_len, &k);
 		ft_add_node_back(proc, proc->lst, ft_new_node(args));
+		ft_free_double_char(args);
 		i++;
 	}
+	//proc->head = (*proc->lst);
+	//(*proc->lst) = proc->head;
+
 	print_args(proc);
 }

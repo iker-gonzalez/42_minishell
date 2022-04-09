@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirection_parse.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolini@student.42urduliz.com>   +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:20:51 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/09 12:15:08 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:21:18 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,8 @@ void	ft_redirection_parse(t_proc *proc)
 					ft_check_double_in(proc, i, &j);
 				j++;
 			}
-			proc->aux = malloc(ft_strlen(proc->process[i])
-					+ proc->added_spc + 1);
+			proc->aux = malloc(sizeof(char) * (ft_strlen(proc->process[i])
+					+ proc->added_spc + 1));
 			ft_redirection_set_up(proc);
 			ft_memset(proc->aux, 0, ft_strlen(proc->process[i])
 				+ proc->added_spc + 1);

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/09 00:54:06 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 09:30:00 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ char	**add_var(t_set *set, char *var);
 void	edit_var(t_set *set, char *var);
 void	print_sorted_env(t_set *set);
 int		unset(t_set *set, char **argv, int child);
-void	ft_exit(char **argv, int child/*, t_set *set*/);
+void	ft_exit(char **argv, int child, t_set *set);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args);
 
 ////////// Signals //////////

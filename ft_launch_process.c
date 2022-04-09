@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/08 17:25:27 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/08 20:32:51 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,62 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
+char	*ft_get_abs_path(char *arg)
+{
+	int		bars;
+	int		k;
+	int		i;
+	char	*path;
+	
+	bars = ft_findchar(arg, '/');
+	i = 0;
+	k = 0;
+	while (arg[i] && k < bars)
+	{
+		if (arg[i] == '/')
+			k++;
+		i++;
+	}
+	path = malloc(sizeof(char) * i + 1);
+	i = 0;
+	k = 0;
+	while (arg[i] && k < bars)
+	{
+		if (arg[i] == '/')
+			k++;
+		path[i] = arg[i];
+		i++;
+	}
+	path[i] = '\0';
+	return(path);
+}
+
+char	*ft_set_abs_path(t_proc *proc, char *arg)
+{
+	char	*cmd;
+	char	*var;
+	char	*path;
+	
+	cmd = NULL;
+	path = ft_get_abs_path(arg);
+	if (arg[0] == '/')
+	{
+		cmd = ft_strrchr(arg, '/');
+		var = ft_strjoin("PATH=", path);
+		free(path);
+		edit_var(proc->set, var);
+		free(var);
+	}
+	return (cmd);	
+}
+
 void	ft_set_route(t_proc *proc, char *arg)
 {
 	int		i;
 	char	**routes;
 
+	if (arg[0] == '/' || arg[0] == '.')
+		arg = ft_set_abs_path(proc, arg);
 	ft_format_paths(proc->set);
 	i = 0;
 	while (proc->set->paths[i])
@@ -45,6 +96,7 @@ void	ft_parental_wait(t_proc *proc)
 	int		stt;
 	pid_t	process;
 
+	stt = 0;
 	process = waitpid((*proc->lst)->pid, &stt, 0);
 	if (WIFEXITED(stt))
 	{
