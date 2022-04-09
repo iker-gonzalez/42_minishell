@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/08 17:34:30 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:16:52 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,12 @@ void	ft_free_double_char(char **str)
 
 	i = -1;
 	while (str[++i])
-		free(str[i]);
-	free(str);
+	{
+		if (str[i])
+			free(str[i]);
+	}
+	if (str)
+		free(str);
 }
 
 void	ft_freelist(t_node **lst)
