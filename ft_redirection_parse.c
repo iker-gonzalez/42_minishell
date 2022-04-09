@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirection_parse.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolini@student.42urduliz.com>   +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:20:51 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/09 00:53:58 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 10:09:16 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,8 @@ void	ft_redirection_parse(t_proc *proc)
 				j++;
 			}
 			ft_redirection_set_up(proc);
-			proc->aux = malloc(ft_strlen(proc->process[i])
-					+ proc->added_spc + 1);
+			proc->aux = malloc(sizeof(char) * (ft_strlen(proc->process[i])
+					+ proc->added_spc + 1));
 			ft_memset(proc->aux, 0, ft_strlen(proc->process[i])
 				+ proc->added_spc + 1);
 			j = 0;
@@ -195,6 +195,7 @@ void	ft_redirection_parse(t_proc *proc)
 			free(proc->process[i]);
 			proc->process[i] = malloc(ft_strlen(proc->aux) + 1);
 			proc->process[i] = proc->aux;
+			printf("AUX: %s\n", proc->aux);
 		}
 		i++;
 	}

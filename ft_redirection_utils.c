@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirection_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/09 00:54:01 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 10:04:44 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_redirection_set_up(t_proc *proc)
 	proc->red_in_arr_len = 0;
 	proc->red_out_del_arr_len = 0;
 	proc->red_in_app_arr_len = 0;
-	proc->added_spc = 0;
+	//proc->added_spc = 0;
 }
 
 void	ft_check_red_out_type(t_proc *proc, int i, int j)
