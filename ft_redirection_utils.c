@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/09 12:23:56 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:10:46 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_redirection_set_up(t_proc *proc)
 	proc->red_in_arr_len = 0;
 	proc->red_out_del_arr_len = 0;
 	proc->red_in_app_arr_len = 0;
-	//proc->added_spc = 0;
+	proc->added_spc = 0;
+	proc->added_spc_arr_len = 0;
 }
 
 void	ft_check_red_out_type(t_proc *proc, int i, int j)

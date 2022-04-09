@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:20:51 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/09 15:48:45 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:25:05 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,28 +76,29 @@ void    ft_fill_single(t_proc *proc, int i, int j, int *k)
     {
         if (proc->process[i][j - 1] != 32 && proc->process[i][j + 1] == 32)
         {
-            //donde esta el espacio
             proc->aux[*k] = 32;
+			proc->added_spc_arr[i][proc->added_spc_arr_len++] = 1;
             *k += 1;
             proc->aux[*k] = proc->process[i][j];
         }
         else if (proc->process[i][j + 1] != 32
                 && proc->process[i][j - 1] == 32)
         {
-            //donde
             proc->aux[*k] = proc->process[i][j];
             *k += 1;
             proc->aux[*k] = 32;
+			proc->added_spc_arr[i][proc->added_spc_arr_len++] = 1;
         }
         else if (proc->process[i][j - 1] != 32
                 && proc->process[i][j + 1] != 32)
         {
-            //donde
             proc->aux[*k] = 32;
+			proc->added_spc_arr[i][proc->added_spc_arr_len++] = 1;
             *k += 1;
             proc->aux[*k] = proc->process[i][j];
             *k += 1;
             proc->aux[*k] = 32;
+			proc->added_spc_arr[i][proc->added_spc_arr_len++] = 1;
         }
         else
             proc->aux[*k] = proc->process[i][j];
@@ -111,6 +112,7 @@ void    ft_fill_double(t_proc *proc, int i, int j, int *k)
         if (proc->process[i][j - 1] != 32 && proc->process[i][j + 2] == 32)
         {
             proc->aux[*k] = 32;
+			proc->added_spc_arr[i][proc->added_spc_arr_len++] = 1;
             *k += 1;
             proc->aux[*k] = proc->process[i][j];
             *k += 1;
@@ -124,17 +126,20 @@ void    ft_fill_double(t_proc *proc, int i, int j, int *k)
             proc->aux[*k] = proc->process[i][j];
             *k += 1;
             proc->aux[*k] = 32;
+			proc->added_spc_arr[i][proc->added_spc_arr_len++] = 1;
         }
         else if (proc->process[i][j - 1] != 32
                 && proc->process[i][j + 2] != 32)
         {
             proc->aux[*k] = 32;
+			proc->added_spc_arr[i][proc->added_spc_arr_len++] = 1;
             *k += 1;
             proc->aux[*k] = proc->process[i][j];
             *k += 1;
             proc->aux[*k] = proc->process[i][j];
             *k += 1;
             proc->aux[*k] = 32;
+			proc->added_spc_arr[i][proc->added_spc_arr_len++] = 1;
         }
         else
         {
@@ -152,7 +157,6 @@ void    ft_redirection_parse(t_proc *proc)
     int     k;
 
     i = 0;
-    printf("proc count: %d\n", proc->process_count);
     while (i < proc->process_count)
     {
         ft_redirection_set_up(proc);
@@ -171,12 +175,15 @@ void    ft_redirection_parse(t_proc *proc)
         i++;
     }
     i = 0;
+	proc->added_spc_arr = (int **) malloc (proc->process_count * sizeof(int *));
     while (i < proc->process_count)
     {
         j = 0;
         k = 0;
-        ft_redirection_set_up(proc);
+		proc->added_spc_arr[i] = (int *) malloc (proc->added_spc * sizeof(int));
+		ft_memset(proc->added_spc_arr[i], 0, sizeof(int *));
         proc->aux = malloc(sizeof(char) * (ft_strlen(proc->process[i]) + proc->added_spc + 1));
+        ft_redirection_set_up(proc);
         ft_memset(proc->aux, 0, ft_strlen(proc->process[i]) + proc->added_spc + 1);
         while (proc->process[i][j] && ft_strlen(proc->process[i]) > j)
         {
