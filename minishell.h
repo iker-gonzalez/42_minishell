@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/09 09:30:00 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/09 10:36:44 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_proc
 	//char	**env;
 	char	*prompt;
 	char	*aux;
+	int		**red_spc;
 	int		process_count;
 	int		token_count;
 	//////// line /////////
@@ -135,6 +136,8 @@ void	ft_quote_pref_open(t_proc *proc);
 void	ft_count_pipes(t_proc *proc);
 void	ft_count_redirections(t_proc *proc);
 int		ft_findchar(char *line, char c);
+void    ft_red_spc(t_proc *proc);
+
 
 ////// Expand input /////
 void	ft_expand_input(t_proc *proc);

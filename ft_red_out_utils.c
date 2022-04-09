@@ -3,15 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_red_out_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:33:38 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/07 17:32:22 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/09 10:37:44 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "minishell.h"
+
+void    ft_red_spc(t_proc *proc)
+{
+    int i;
+
+    proc->red_spc = malloc(sizeof(int *) * (proc->added_spc));
+    i = 0;
+	printf("added spac: %d\n", proc->added_spc);
+    while (i < proc->added_spc)
+    {
+        proc->red_spc[i] = malloc(sizeof(int));
+        i++;
+    }
+}
 
 void	ft_set_red_write(int fd)
 {

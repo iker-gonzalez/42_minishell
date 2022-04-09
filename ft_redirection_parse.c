@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:20:51 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/09 10:09:16 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:07:58 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_check_double_out(t_proc *proc, int i, int *j)
 				if (proc->process[i][*j + 1] != 32)
 					proc->added_spc++;
 			}
+			else
+				proc->red_out_arr_len--;
 		}
 	}
 }
@@ -60,6 +62,8 @@ void	ft_check_double_in(t_proc *proc, int i, int *j)
 				if (proc->process[i][*j + 1] != 32)
 					proc->added_spc++;
 			}
+			else
+				proc->red_in_arr_len--;
 		}
 	}
 }
@@ -68,7 +72,7 @@ void	ft_fill_single(t_proc *proc, int i, int j, int *k)
 {
 	if (ft_strlen(proc->process[i]) - j > 1)
 	{
-		if (proc->red_out_arr[proc->red_out_arr_len++] == 1)
+		if (proc->red_out_arr[proc->red_out_arr_len] == 1 || proc->red_in_app_arr[proc->red_in_app_arr_len] == 1)
 		{
 			if (proc->process[i][j - 1] != 32 && proc->process[i][j + 1] == 32)
 			{
@@ -95,6 +99,8 @@ void	ft_fill_single(t_proc *proc, int i, int j, int *k)
 			else
 				proc->aux[*k] = proc->process[i][j];
 		}
+		else 
+			proc->red_out_arr_len--;
 	}
 }
 
@@ -139,6 +145,8 @@ void	ft_fill_double(t_proc *proc, int i, int j, int *k)
 				proc->aux[*k] = proc->process[i][j];
 			}
 		}
+		else
+			proc->red_out_del_arr_len--;
 	}
 }
 
@@ -168,6 +176,7 @@ void	ft_redirection_parse(t_proc *proc)
 					+ proc->added_spc + 1));
 			ft_memset(proc->aux, 0, ft_strlen(proc->process[i])
 				+ proc->added_spc + 1);
+			ft_red_spc(proc);
 			j = 0;
 			k = 0;
 			while (proc->process[i][j] && ft_strlen(proc->process[i]) > j)
