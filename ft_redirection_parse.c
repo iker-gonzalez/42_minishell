@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:20:51 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/10 08:26:01 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/10 14:43:25 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void    ft_fill_single(t_proc *proc, int i, int j, int *k)
 {
+	printf("PROCI: %s\n", proc->process[i]);
     if (ft_strlen(proc->process[i]) - j > 1)
     {
         if (proc->process[i][j - 1] != 32 && proc->process[i][j + 1] == 32)

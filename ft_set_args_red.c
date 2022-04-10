@@ -6,7 +6,7 @@
 /*   By: jsolinis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:39:34 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/08 22:50:13 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/10 14:43:30 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	ft_set_args_red(t_proc *proc)
 
 	i = 0;
 	k = 0;
-	(*proc->lst)->reds = 0;
 	while ((*proc->lst)->args[i])
 		i++;
 	(*proc->lst)->args_red = malloc (sizeof(char *) * (i + 1));
@@ -76,28 +75,12 @@ void	ft_set_args_red(t_proc *proc)
 			(*proc->lst)->args_red[k++] = (*proc->lst)->args[i];
 		else
 		{
-			(*proc->lst)->reds = k;
-			if (ft_strlen((*proc->lst)->args[i]) == 1)
+			if ((*proc->lst)->args[i][0] == 62 || (*proc->lst)->args[i][0] == 60)
 				i++;
-			else if (ft_find_red_proc((*proc->lst)->args[i]) == (ft_strlen((*proc->lst)->args[i]) - 1))
-			{
-				(*proc->lst)->args_red[k++] = ft_set_alltogether((*proc->lst)->args[i], ft_find_red_proc((*proc->lst)->args[i]));
-				
-				ft_set_route(proc, (*proc->lst)->args_red[0]);
-				i++;
-			}
-			else if (ft_find_red_proc((*proc->lst)->args[i]) != 0)
-			{
-				(*proc->lst)->args_red[k++] = ft_set_alltogether((*proc->lst)->args[i], ft_find_red_proc((*proc->lst)->args[i]));
-				ft_set_route(proc, (*proc->lst)->args_red[0]);
-			}
 			else
-				ft_set_route(proc, (*proc->lst)->args[0]);
+				(*proc->lst)->args_red[k++] = (*proc->lst)->args[i];
 		}
 		i++;
 	}
-	if ((*proc->lst)->reds == 0)
-		(*proc->lst)->args_red[k] = NULL;
-	else
-		(*proc->lst)->args_red[(*proc->lst)->reds] = NULL;
+	(*proc->lst)->args_red[k] = NULL;
 }
