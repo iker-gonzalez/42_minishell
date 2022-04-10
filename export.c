@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/08 20:37:08 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/10 12:04:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/* export unset cd exit =>si solo hay un proceso, lo ejecutará
- *  en todo caso el padre. Si no el hijo, si bien los cambios no
- *  se verán reflejados (moriran con el hijo). p.e.=> ls | export a=2 
- *  en este caso el export lo haría el hijo, si bien no podriamos ver 
- *  la variable en env ya que este cambio muere cuando el hijo deja
- *  de ejecutarse.*/
 
 int	ft_export_errors(char *argv)
 {
@@ -65,7 +58,7 @@ void	edit_var(t_set *set, char *var)
 		if ((ft_strncmp(set->env[i], var, var_len) == 0))
 		{
 			set->env[i] = ft_strdup(var);
-			free (var);
+			//free (var);
 		}
 	}
 }
@@ -84,7 +77,7 @@ char	**add_var(t_set *set, char *var)
 			tmp[i] = ft_strdup(set->env[i]);
 	tmp[i] = ft_strdup(var);
 	tmp[i + 1] = NULL;
-	free(var);
+	//free(var);
 	ft_free_double_char(set->env);
 	return (tmp);
 }
