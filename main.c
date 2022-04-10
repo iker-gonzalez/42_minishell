@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/09 16:01:33 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/10 11:33:05 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,17 @@ int	ft_loop(t_set *set)
 		proc.set = set;
 		ft_create_terminal(&proc);
 		err = ft_check_errors(&proc);
-		ft_parse_input(&proc);
-		ft_expand_input(&proc);
 		if (!err)
 		{
+			ft_parse_input(&proc);
+			ft_expand_input(&proc);
 			ft_proceniser(&proc);
 			ft_tokenizer(&proc);
 			ft_launch_process(&proc);
+			ft_free(&proc);
 		}
-		ft_free(&proc);
+		else
+			free(proc.line_read);
 	}
 	return (0);
 }
