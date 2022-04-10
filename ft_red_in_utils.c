@@ -6,7 +6,7 @@
 /*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:37:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/10 14:20:03 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:52:02 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@ char	*ft_infile_red(char *arg, int j)
 
 void	ft_set_red_in(t_proc *proc, int i)
 {
+	proc->infile = 0;
 	if ((*proc->lst)->infd)
 		close((*proc->lst)->infd);
 	(*proc->lst)->infd = open((*proc->lst)->args[i + 1], O_RDONLY);
 	if ((*proc->lst)->infd < 0)
 	{
 		if (access((*proc->lst)->args[i + 1], F_OK) != 0)
-			printf("Archivo no existe");
+			proc->infile = print_error(": No such file or directory", 1, (*proc->lst)->args[i + 1], 0);
 		else
 			printf("Error de acceso");
+		(*proc->lst)->infd = 0;
 	}
 }

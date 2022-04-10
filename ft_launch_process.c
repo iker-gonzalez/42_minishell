@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/10 12:57:25 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:34:42 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	ft_set_route(t_proc *proc, char *arg)
 	int		i;
 	char	**routes;
 
+	if (!arg)
+		return ;
 	if (arg[0] == '/' || arg[0] == '.')
 		arg = ft_set_abs_path(proc, arg);
 	ft_format_paths(proc->set);
@@ -119,7 +121,8 @@ void	ft_is_built_in(t_node *node, int index)
 		node->is_built_in = 1;
 	else if ((ft_strncmp_len(node->args[index], "exit", 4)) == 0)
 		node->is_built_in = 1;
-	else if ((ft_strncmp(node->args[index], "echo", 4)) == 0)
+	else if ((ft_strncmp(node->args[index], "echo", 4)) == 0
+			&& ft_strlen(node->args[index]) == 4)
 		node->is_built_in = 1;
 	else
 		node->is_built_in = 0;

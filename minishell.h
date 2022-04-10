@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/10 14:31:30 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:34:48 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_proc
 	int		added_spc;
 	int		**added_spc_arr;
 	int		added_spc_arr_len;
+	int		infile;
 	int		dollar;
 	int		lock;
 	int		row_len;
@@ -128,7 +129,6 @@ void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 t_node	*ft_new_node(char **args);
 void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new);
 void	ft_gen_lst(t_proc *proc, char **args, int row_len);
-void	ft_lstiter(t_proc *proc, void (*f)(t_proc *));
 void	print_args(t_proc *proc);
 
 ///// Parse input /////
@@ -180,7 +180,7 @@ void	ft_swap_pipes(t_proc *proc);
 void	ft_redirection_parse(t_proc *proc);
 int		ft_contain_red(char *arg);
 void	ft_redirection_set_up(t_proc *proc);
-void	ft_check_red_type(t_proc *proc);
+void 	ft_check_red_type(t_proc *proc);
 void	ft_set_red_out(t_proc *proc, int i);
 void	ft_set_red_out_app(t_proc *proc, int i);
 void	ft_set_red_in(t_proc *proc, int i);
