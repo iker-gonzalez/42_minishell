@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/09 17:21:25 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/10 08:26:12 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ void	ft_count_pipes(t_proc *proc);
 void	ft_count_redirections(t_proc *proc);
 int		ft_findchar(char *line, char c);
 void    ft_red_spc(t_proc *proc);
+void    ft_count_added_spaces(t_proc *proc, int i);
+
 
 
 ////// Expand input /////

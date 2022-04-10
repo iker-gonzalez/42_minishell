@@ -34,6 +34,7 @@ SRC =	main.c \
 		ft_redirections.c \
 		echo.c \
 		sorted_env.c \
+		redirection_parse_utils.c \
 
 OBJ = $(SRC:.c=.o)
 
