@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/10 11:31:57 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/10 18:13:53 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,14 @@ void	ft_free_args(t_proc *proc)
 	int	row;
 
 	row = -1;
-	while ((*proc->lst)->args[++row])
-		free((*proc->lst)->args[row]);
-	free((*proc->lst)->args);
+	//comentado el 10.04; "export x=2" nos da un double free
+/*	while ((*proc->lst)->args[++row])
+	{
+		if ((*proc->lst)->args[row])
+			free((*proc->lst)->args[row]);
+	}*/
+	if ((*proc->lst)->args)
+		free((*proc->lst)->args);
 }
 
 void	ft_free_node_routes(t_proc *proc)

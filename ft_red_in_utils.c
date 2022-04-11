@@ -6,7 +6,7 @@
 /*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:37:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/04 20:23:00 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:52:02 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,18 @@ char	*ft_infile_red(char *arg, int j)
 	return (ret);
 }
 
-void	ft_set_red_in(t_proc *proc, int i, int j)
+void	ft_set_red_in(t_proc *proc, int i)
 {
-	char	*arg;
-
- 	if ((*proc->lst)->args[i][j + 1])
-		arg = ft_infile_red((*proc->lst)->args[i], j);
-	else
-		arg = (*proc->lst)->args[i + 1];
+	proc->infile = 0;
 	if ((*proc->lst)->infd)
 		close((*proc->lst)->infd);
-	(*proc->lst)->infd = open(arg, O_RDONLY);
+	(*proc->lst)->infd = open((*proc->lst)->args[i + 1], O_RDONLY);
 	if ((*proc->lst)->infd < 0)
 	{
-		if (access(arg, F_OK) != 0)
-			printf("Archivo no existe");
+		if (access((*proc->lst)->args[i + 1], F_OK) != 0)
+			proc->infile = print_error(": No such file or directory", 1, (*proc->lst)->args[i + 1], 0);
 		else
 			printf("Error de acceso");
+		(*proc->lst)->infd = 0;
 	}
 }
