@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/10 21:52:37 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:45:49 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_check_red_out_type(t_proc *proc, int i, int j)
 			}
 			j++;
 		}
-		else
+		else if (ft_strlen((*proc->lst)->args[i]) == 1)
 		{
 			if (proc->red_out_arr[proc->red_out_arr_len++] == 1)
 			{
@@ -48,19 +48,20 @@ void	ft_check_red_out_type(t_proc *proc, int i, int j)
 
 void	ft_check_red_in_type(t_proc *proc, int i, int j)
 {
+	(*proc->lst)->heredoc_line = malloc(500000);
 	if (ft_strlen((*proc->lst)->args[i]) > j)
 	{
 		if (ft_strlen((*proc->lst)->args[i]) == 2)
 		{
 			if ((*proc->lst)->args[i][j + 1] == 60 && proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
 			{
-				//ft_set_red_in_del(proc, i, j++); //here there will be the heredoc ft
-				printf("heredoc");
+				printf("entro");
+				ft_set_red_in_del(proc, i);
 				(*proc->lst)->has_red = 1;
 			}
 			j++;
 		}
-		else
+		else if (ft_strlen((*proc->lst)->args[i]) == 1)
 		{
 			if (proc->red_in_arr[proc->red_in_arr_len++] == 1)
 			{

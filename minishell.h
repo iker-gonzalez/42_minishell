@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 15:04:39 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:51:35 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_node
 	char			**args;
 	char			**args_red;
 	char			*route;
+	char			*heredoc_line;
 	int				reds;
 	int				has_red;
 	int				outfd;
@@ -181,6 +182,7 @@ void 	ft_check_red_type(t_proc *proc);
 void	ft_set_red_out(t_proc *proc, int i);
 void	ft_set_red_out_app(t_proc *proc, int i);
 void	ft_set_red_in(t_proc *proc, int i);
+void	ft_set_red_in_del(t_proc *proc, int i);
 void	ft_set_args_red(t_proc *proc);
 void	ft_set_red_write(int fd);
 void	ft_set_red_read(int fd);
