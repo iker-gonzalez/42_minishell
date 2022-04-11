@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 12:01:27 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:01:56 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_free_double_char(char **str)
 {
 	int	i;
 
+	printf("HOLA\n");
 	if (!str)
 		return ;
 	i = -1;
@@ -124,8 +125,8 @@ void	ft_free_proc(t_proc *proc)
 		free(proc->red_out_del_arr);
 	if (proc->set->paths)
 		ft_free_double_char(proc->set->paths);
-	if (proc->process)
-		ft_free_double_char(proc->process);
+	//if (proc->process)
+	//	ft_free_double_char(proc->process);
 }
 
 void	ft_free_set(t_set *set)
@@ -139,7 +140,7 @@ void	ft_free_set(t_set *set)
 void	ft_free(t_proc *proc)
 {
 	ft_free_proc(proc);
-	//ft_free_process(proc);
+	ft_free_process(proc);
 	ft_lstiter(proc, ft_free_args);
 	ft_lstiter(proc, ft_free_node_routes);
 	//ft_free_double_char(proc->process);
