@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 10:50:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/11 20:32:07 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,18 @@ void	ft_set_quotes(t_proc *proc, char c)
 
 void	ft_check_quotes(t_proc *proc, char c, int *i)
 {
-	if (c == 39 && (!proc->double_quote))
-		*i += 1;
-	else if (c == 34 && (!proc->single_quote))
-		*i += 1;
+	if (c == 39 && (!proc->double_quote) && proc->lock)
+		proc->line_expanded[proc->line_exp_len++] = 126;
+	else if (c == 34 && (!proc->single_quote) && proc->lock)
+		proc->line_expanded[proc->line_exp_len++] = 126;
 	else
 	{
 		if (proc->lock)
 			proc->line_expanded[proc->line_exp_len++] = proc->line_read[*i];
 		else
 			proc->line_exp_len++;
-		*i += 1;
 	}
+	*i += 1;
 }
 
 void	ft_expand_line_read(t_proc *proc)
@@ -104,4 +104,5 @@ void	ft_expand_input(t_proc *proc)
 	proc->lock = 1;
 	ft_expand_line_read(proc);
 	proc->line_exp_len = 0;
+	printf("line exp: %s\n", proc->line_expanded);
 }

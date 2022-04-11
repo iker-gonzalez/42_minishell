@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_parse_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 08:12:10 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 15:44:21 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/11 22:41:58 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,25 @@ void    ft_check_double_out(t_proc *proc, int i, int *j)
     if ((proc->process[i][*j + 1]) == 62)
     {
         *j += 1;
-        if (proc->red_out_del_arr[proc->red_out_del_arr_len] == 1)
+        if (proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
         {
-            proc->red_out_del_arr_len++;
             if (proc->process[i][*j - 1] != 32)
                 proc->added_spc++;
             if (proc->process[i][*j + 2] != 32)
                 proc->added_spc++;
         }
     }
-    else
+    //else if (*j -1 >= 0 && ((proc->process[i][*j + 1]) == 126 || (proc->process[i][*j -1]) == 126))
+      //  proc->added_spc++;
+    else if (proc->red_out_arr[proc->red_out_arr_len++] == 1)
     {
-        if (proc->red_out_arr[proc->red_out_arr_len] == 1)
-        {
-            proc->red_out_arr_len++;
-            if (proc->process[i][*j - 1] != 32)
-                proc->added_spc++;
-            if (proc->process[i][*j + 1] != 32)
-                proc->added_spc++;
-        }
+        if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] == 126)
+            proc->added_spc++;
+        if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] != 126)
+            proc->added_spc++;
     }
 }
+
 
 void    ft_check_double_in(t_proc *proc, int i, int *j)
 {
@@ -53,14 +51,15 @@ void    ft_check_double_in(t_proc *proc, int i, int *j)
                 proc->added_spc++;
         }
     }
+    //else if (*j -1 >= 0 && ((proc->process[i][*j + 1]) == 126 || (proc->process[i][*j -1]) == 126))
+      //  proc->added_spc++;
     else
     {
-        if (proc->red_in_arr[proc->red_in_arr_len] == 1)
+        if (proc->red_in_arr[proc->red_in_arr_len++] == 1)
         {
-            proc->red_in_arr_len++;
-            if (proc->process[i][*j - 1] != 32)
+            if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] != 126)
                 proc->added_spc++;
-            if (proc->process[i][*j + 1] != 32)
+            if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] != 126)
                 proc->added_spc++;
         }
     }
