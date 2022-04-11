@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 11:58:39 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/11 15:04:39 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_proc
 	////// other ///////////
 	int		added_spc;
 	int		**added_spc_arr;
+	int		**added_spc_arr_length;
 	int		added_spc_arr_len;
 	int		infile;
 	int		dollar;
