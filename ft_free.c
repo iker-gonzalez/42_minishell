@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/10 18:13:53 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:01:27 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ void	ft_free_double_char(char **str)
 {
 	int	i;
 
+	if (!str)
+		return ;
 	i = -1;
 	while (str[++i])
 	{
+		if (!str[i])
+			return ;
 		if (str[i])
 			free(str[i]);
 	}
@@ -74,12 +78,11 @@ void	ft_free_args(t_proc *proc)
 	int	row;
 
 	row = -1;
-	//comentado el 10.04; "export x=2" nos da un double free
-/*	while ((*proc->lst)->args[++row])
+	while ((*proc->lst)->args[++row])
 	{
 		if ((*proc->lst)->args[row])
 			free((*proc->lst)->args[row]);
-	}*/
+	}
 	if ((*proc->lst)->args)
 		free((*proc->lst)->args);
 }
@@ -121,6 +124,8 @@ void	ft_free_proc(t_proc *proc)
 		free(proc->red_out_del_arr);
 	if (proc->set->paths)
 		ft_free_double_char(proc->set->paths);
+	if (proc->process)
+		ft_free_double_char(proc->process);
 }
 
 void	ft_free_set(t_set *set)
@@ -137,6 +142,7 @@ void	ft_free(t_proc *proc)
 	//ft_free_process(proc);
 	ft_lstiter(proc, ft_free_args);
 	ft_lstiter(proc, ft_free_node_routes);
+	//ft_free_double_char(proc->process);
 	if (proc->lst)
 		ft_freelist(proc->lst);
 	//free(proc->prompt);

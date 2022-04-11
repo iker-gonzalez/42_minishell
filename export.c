@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/10 12:04:15 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:32:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_varlen(char *str)
 	return (i);
 }
 
-void	edit_var(t_set *set, char *var)
+char	**edit_var(t_set *set, char *var)
 {
 	int	var_len;
 	int	i;
@@ -57,10 +57,12 @@ void	edit_var(t_set *set, char *var)
 	{
 		if ((ft_strncmp(set->env[i], var, var_len) == 0))
 		{
+			free(set->env[i]);
 			set->env[i] = ft_strdup(var);
 			//free (var);
 		}
 	}
+	return (set->env);
 }
 
 char	**add_var(t_set *set, char *var)
@@ -90,7 +92,6 @@ int	export(t_set *set, char **argv, int child)
 	int	cmd_count;
 
 	i = 0;
-	edit = 0;
 	cmd_count = ft_count_argc(argv);
 	if (cmd_count == 1)
 		print_sorted_env(set);
@@ -99,11 +100,12 @@ int	export(t_set *set, char **argv, int child)
 		k = -1;
 		if (!ft_export_errors(argv[i]))
 		{
+			edit = 0;
 			while (set->env[++k])
 			{
 				if (((ft_strncmp(set->env[k], argv[i], ft_varlen(argv[i]))) == 0)
 					&& ++edit)
-					edit_var(set, argv[i]);
+					set->env = edit_var(set, argv[i]);
 			}
 			if (!edit)
 				set->env = add_var(set, argv[i]);

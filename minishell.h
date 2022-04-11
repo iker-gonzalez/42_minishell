@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 10:50:27 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:58:39 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_node
 	int				outfd;
 	int				infd;
 	int				status;
-	//int			is_empty;
 	int				is_built_in;
 	struct s_node	*previous;
 	struct s_node	*next;
@@ -140,8 +139,6 @@ int		ft_findchar(char *line, char c);
 void    ft_red_spc(t_proc *proc);
 void    ft_count_added_spaces(t_proc *proc, int i);
 
-
-
 ////// Expand input /////
 void	ft_expand_input(t_proc *proc);
 void	ft_expand_line_read(t_proc *proc);
@@ -202,7 +199,7 @@ int		ft_update_oldpwd(t_set *set);
 char	*ft_get_env_path(t_set *set, char *var, int var_len);
 int		export(t_set *set, char **argv, int child);
 char	**add_var(t_set *set, char *var);
-void	edit_var(t_set *set, char *var);
+char	**edit_var(t_set *set, char *var);
 void	print_sorted_env(t_set *set);
 int		unset(t_set *set, char **argv, int child);
 void	ft_exit(char **argv, int child, t_set *set);

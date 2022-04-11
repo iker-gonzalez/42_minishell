@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_launch_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/10 21:34:42 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:07:46 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*ft_set_abs_path(t_proc *proc, char *arg)
 		edit_var(proc->set, var);
 		free(var);
 	}
-	return (cmd);	
+	return (cmd);
 }
 
 void	ft_set_route(t_proc *proc, char *arg)

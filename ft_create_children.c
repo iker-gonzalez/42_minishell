@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_children.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/10 21:54:46 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:10:47 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 		}
 		else
 		{
+			ft_set_route(proc, (*proc->lst)->args[0]);
 			if (proc->infile)
 				exit(proc->infile);
 			if (node->route == NULL)
@@ -52,7 +53,6 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 
 void	ft_create_children(t_proc *proc)
 {
-	ft_set_route(proc, (*proc->lst)->args[0]);
 	ft_check_red_type(proc);
 	if ((*proc->lst)->has_red)
 		ft_set_args_red(proc);

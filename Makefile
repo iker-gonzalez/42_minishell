@@ -53,7 +53,7 @@ $(NAME): $(OBJ)
 	@$(MAKE) -s -C ./Libft
 	@$(MAKE) -s -C ./Libft bonus
 	@ echo "libft compiled 🔋"
-	@$(CC) $(CFLAGS) $(RLFLAGS) $(LIB) $(OBJ) -o $(NAME) -g3 -fsanitize=address
+	@$(CC) $(CFLAGS) $(RLFLAGS) $(LIB) $(OBJ) -o $(NAME)
 	@ echo "minishell compiled ☘︎"
 
 %.o: %.c 

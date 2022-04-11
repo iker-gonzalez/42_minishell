@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:20:51 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/10 14:43:25 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:55:27 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void    ft_fill_single(t_proc *proc, int i, int j, int *k)
 {
-	printf("PROCI: %s\n", proc->process[i]);
     if (ft_strlen(proc->process[i]) - j > 1)
     {
         if (proc->process[i][j - 1] != 32 && proc->process[i][j + 1] == 32)
@@ -106,7 +105,6 @@ void    ft_redirection_parse(t_proc *proc)
         j = 0;
         k = 0;
         ft_count_added_spaces(proc , i);
-        printf("process %d: added spaces %d\n", i, proc->added_spc);
 		proc->added_spc_arr[i] = (int *) malloc (proc->added_spc * sizeof(int));
 		ft_memset(proc->added_spc_arr[i], 0, sizeof(int *));
         proc->aux = malloc(sizeof(char) * (ft_strlen(proc->process[i]) + proc->added_spc + 1));
