@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/10 21:34:48 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/11 10:50:27 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_proc
 	char	*line_expanded;
 	int		line_exp_len;
 	////// quotes ///////////
-	int		quote_scope;
 	int		single_quote;
 	int		double_quote;
 	////// spaces /////////

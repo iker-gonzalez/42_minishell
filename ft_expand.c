@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/08 17:40:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/11 10:50:56 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	ft_expand_env(t_proc *proc, int *i)
 
 void	ft_set_quotes(t_proc *proc, char c)
 {
-	if (c == 39 && (!proc->single_quote))
+	if (c == 39 && (!proc->single_quote) && (!proc->double_quote))
 		proc->single_quote = 1;
 	else if (c == 39 && proc->single_quote)
 		proc->single_quote = 0;
-	else if (c == 34 && (!proc->double_quote))
+	else if (c == 34 && (!proc->double_quote) && (!proc->single_quote))
 		proc->double_quote = 1;
 	else if (c == 34 && proc->double_quote)
 		proc->double_quote = 0;
@@ -52,13 +52,9 @@ void	ft_set_quotes(t_proc *proc, char c)
 
 void	ft_check_quotes(t_proc *proc, char c, int *i)
 {
-	if (c == 39 && (!(proc->double_quote)))
+	if (c == 39 && (!proc->double_quote))
 		*i += 1;
-	else if (c == 39 && proc->quote_scope == 2)
-		*i += 1;
-	else if (c == 34 && (!(proc->single_quote)))
-		*i += 1;
-	else if (c == 34 && proc->quote_scope == 4)
+	else if (c == 34 && (!proc->single_quote))
 		*i += 1;
 	else
 	{
@@ -103,7 +99,6 @@ void	ft_expand_input(t_proc *proc)
 	proc->red_out_del_arr_len = 0;
 	proc->red_out_arr_len = 0;
 	proc->space_arr_len = 0;
-	ft_quote_pref_open(proc);
 	proc->lock = 0;
 	ft_expand_line_read(proc);
 	proc->lock = 1;
