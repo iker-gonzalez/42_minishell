@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/11 11:10:47 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 09:03:02 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 {
-	g_sig.act_child = 1;
+	signal(SIGINT, child_message);
+	signal(SIGQUIT, child_message);
 	node->pid = fork();
 	if (node->pid < 0)
 		perror("fork failed");

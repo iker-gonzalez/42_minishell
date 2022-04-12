@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 15:04:39 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 09:04:08 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,7 @@ typedef struct s_node
 	struct s_node	*next;
 }					t_node;
 
-typedef struct s_sig
-{
-	int			act_child;
-	int			exit_status;
-	pid_t		pid;
-}				t_sig;
-
-t_sig	g_sig;
+int	exit_status;
 
 typedef struct s_set
 {

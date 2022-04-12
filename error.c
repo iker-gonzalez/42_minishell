@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/10 21:20:01 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/12 09:04:27 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	print_error(char *str, int err, char *cmd, int child)
 		ft_putstr_fd(cmd, 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n", 2);
-	g_sig.exit_status = err;
+	exit_status = err;
 	if (child)
 		exit(err);
 	else

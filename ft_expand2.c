@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:20:11 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/05 16:49:58 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 09:06:22 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,17 @@ void	ft_expand_spaces(t_proc *proc, char c, int *i)
 
 void	ft_expand_exit(t_proc *proc)
 {
-	char	*exit_status;
+	char	*exit_status_arr;
 	int		j;
 
-	exit_status = ft_itoa(g_sig.exit_status);
+	exit_status_arr = ft_itoa(exit_status);
 	j = 0;
-	while (proc->lock && exit_status && exit_status[j])
-		proc->line_expanded[proc->line_exp_len++] = exit_status[j++];
-	if (exit_status && !proc->lock)
-		proc->line_exp_len += ft_strlen(exit_status)
+	while (proc->lock && exit_status_arr && exit_status_arr[j])
+		proc->line_expanded[proc->line_exp_len++] = exit_status_arr[j++];
+	if (exit_status_arr && !proc->lock)
+		proc->line_exp_len += ft_strlen(exit_status_arr)
 			+ ft_strlen(proc->line_read) - 2;
-	free (exit_status);
+	free (exit_status_arr);
 }
 
 void	ft_expand_pipe(t_proc *proc, char c)
