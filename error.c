@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 09:04:27 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:48:45 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,5 @@ int	print_error(char *str, int err, char *cmd, int child)
 	if (child)
 		exit(err);
 	else
-		return(err);
+		return (err);
 }

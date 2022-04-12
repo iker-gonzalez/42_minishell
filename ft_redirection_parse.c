@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 10:22:30 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:33:27 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_redirection_parse_set_up(t_proc *proc, int i)
     proc->added_spc_arr_length[i][0] = proc->added_spc;
     quote_count = ft_findchar(proc->process[i], 126);
     proc->aux = malloc(sizeof(char) * (ft_strlen(proc->process[i]) + proc->added_spc - quote_count + 1));
-    ft_redirection_set_up(proc);
+    //ft_redirection_set_up(proc);
     ft_memset(proc->aux, 0, ft_strlen(proc->process[i]) + proc->added_spc + 1);
 	
 }
@@ -32,7 +32,8 @@ void	ft_check_red_condition2(t_proc *proc, int i, int *j, int *k)
 {
 	if (proc->process[i][*j] == 60 && proc->process[i][(*j) + 1] == 60)
     {
-        if(proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
+        if(proc->red_in_app_arr_len < proc->red_in_app_count
+        && proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
         {
             ft_fill_double(proc, i, *j, k);
             (*j)++;
@@ -52,14 +53,17 @@ void	ft_check_red_condition2(t_proc *proc, int i, int *j, int *k)
 void	ft_check_red_condition(t_proc *proc, int i, int *j, int *k)
 {	
 	if (proc->process[i][*j] == 62 && proc->process[i][(*j) + 1] != 62
+        && proc->red_out_arr_len < proc->red_out_count
         && proc->red_out_arr[proc->red_out_arr_len++] == 1)
         ft_fill_single(proc, i, *j, k);
     else if (proc->process[i][*j] == 60 && proc->process[i][(*j) + 1] != 60
-        && proc->red_in_arr[proc->red_in_arr_len++] == 1)
+        && proc->red_in_arr_len < proc->red_in_count &&
+        proc->red_in_arr[proc->red_in_arr_len++] == 1)
         ft_fill_single(proc, i, *j, k);
     else if (proc->process[i][*j] == 62 && proc->process[i][(*j) + 1] == 62)
     {
-        if(proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
+        if(proc->red_out_del_arr_len < proc->red_out_del_count
+        && proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
         {
             ft_fill_double(proc, i, *j, k);
             (*j)++;
@@ -93,6 +97,7 @@ void    ft_redirection_parse(t_proc *proc)
     i = -1;
 	proc->added_spc_arr = (int **) malloc (proc->process_count * sizeof(int *));
     proc->added_spc_arr_length = (int **) malloc (proc->process_count * sizeof(int *));
+    ft_redirection_set_up(proc);
     while (++i < proc->process_count)
     {
         j = -1;

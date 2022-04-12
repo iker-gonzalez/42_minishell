@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 11:32:10 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:50:18 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ int	export(t_set *set, char **argv, int child)
 			edit = 0;
 			while (set->env[++k])
 			{
-				if (((ft_strncmp(set->env[k], argv[i], ft_varlen(argv[i]))) == 0)
-					&& ++edit)
+				if (((ft_strncmp(set->env[k], argv[i],
+								ft_varlen(argv[i]))) == 0) && ++edit)
 					set->env = edit_var(set, argv[i]);
 			}
 			if (!edit)

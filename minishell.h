@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 10:19:01 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:53:29 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,8 +202,8 @@ void	ft_exit(char **argv, int child, t_set *set);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args);
 
 ////////// Signals //////////
-void	listen_signals(void);
-void	child_message(int signum);
+void	listen_signals_daddy(void);
+void	listen_signals_child(void);
 
 /////// Errors //////////
 int		ft_check_redirections(char *line, char c);

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 11:47:04 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:45:55 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ int	ft_update_oldpwd(t_set *set)
 
 int	ft_cd(char **argv, t_set *set, int child)
 {
-	int cd_ret;
-	
-	if (argv[1] && (ft_strncmp(argv[1], "-", 1)) == 0) // check 
+	int	cd_ret;
+
+	if (argv[1] && (ft_strncmp(argv[1], "-", 1)) == 0)
 		cd_ret = ft_go_to_oldpwd(set);
 	else if (!argv[1])
 		cd_ret = ft_go_to_home(set);

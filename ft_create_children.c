@@ -6,50 +6,57 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/12 09:03:02 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 11:00:35 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	ft_exec_system(t_node *node, t_proc *proc)
+{
+	ft_set_route(proc, (*proc->lst)->args[0]);
+	if (proc->infile)
+		exit(proc->infile);
+	if (node->route == NULL)
+		print_error(": command not found", 127, node->args[0], 1);
+	if (node->has_red)
+		execve(node->route, node->args_red, proc->set->env);
+	else
+		execve(node->route, node->args, proc->set->env);
+	exit(0);
+	
+}
+
+void	ft_child_conditions(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
+{
+	if (lpipe)
+		ft_set_read(lpipe);
+	if (rpipe)
+		ft_set_write(rpipe);
+	if (node->outfd)
+		ft_set_red_write(node->outfd);
+	if (node->infd)
+		ft_set_red_read(node->infd);
+	if (node->is_built_in)
+	{
+		if (node->has_red)
+			ft_check_builtins(proc, node, 1, node->args_red);
+		else
+			ft_check_builtins(proc, node, 1, node->args);
+	}
+	else
+		ft_exec_system(node, proc);
+	
+}
+
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 {
-	signal(SIGINT, child_message);
-	signal(SIGQUIT, child_message);
+	listen_signals_child();
 	node->pid = fork();
 	if (node->pid < 0)
 		perror("fork failed");
 	if (node->pid == 0)
-	{
-		if (lpipe)
-			ft_set_read(lpipe);
-		if (rpipe)
-			ft_set_write(rpipe);
-		if (node->outfd)
-			ft_set_red_write(node->outfd);
-		if (node->infd)
-			ft_set_red_read(node->infd);
-		if (node->is_built_in)
-		{
-			if (node->has_red)
-				ft_check_builtins(proc, node, 1, node->args_red);
-			else
-				ft_check_builtins(proc, node, 1, node->args);
-		}
-		else
-		{
-			ft_set_route(proc, (*proc->lst)->args[0]);
-			if (proc->infile)
-				exit(proc->infile);
-			if (node->route == NULL)
-				print_error(": command not found", 127, node->args[0], 1);
-			if (node->has_red)
-				execve(node->route, node->args_red, proc->set->env);
-			else
-				execve(node->route, node->args, proc->set->env);
-			exit(0);
-		}
-	}
+		ft_child_conditions(lpipe, rpipe, node, proc);
 }
 
 void	ft_create_children(t_proc *proc)

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:33 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 08:46:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:51:35 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_read_input(t_proc *proc)
 {
 	proc->line_read = readline(proc->prompt);
-	listen_signals();
+	listen_signals_daddy();
 	add_history(proc->line_read);
 }
 

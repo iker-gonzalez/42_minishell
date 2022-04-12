@@ -32,7 +32,6 @@ SRC =	main.c \
 		ft_red_out_utils.c \
 		ft_set_args_red.c \
 		ft_redirection_utils.c \
-		ft_redirections.c \
 		echo.c \
 		sorted_env.c \
 		redirection_parse_utils.c \

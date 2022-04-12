@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 09:15:01 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 11:03:58 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_loop(t_set *set)
 	int		ms_on;
 	int		err;
 
-	listen_signals();
+	listen_signals_daddy();
 	ms_on = 1;
 	while (ms_on)
 	{
