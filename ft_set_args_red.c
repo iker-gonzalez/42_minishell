@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:39:34 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/12 13:26:50 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:28:26 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_set_args_red(t_proc *proc)
 	while ((*proc->lst)->args[i])
 	{
 		if (!ft_contain_red((*proc->lst)->args[i]))
-			(*proc->lst)->args_red[k++] = (*proc->lst)->args[i];
+			(*proc->lst)->args_red[k++] = ft_strdup((*proc->lst)->args[i]);
 		else
 		{
 			if ((*proc->lst)->args[i][0] == 62

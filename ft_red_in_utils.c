@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_red_in_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:37:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/11 21:42:42 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:45:02 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ void	ft_set_red_in(t_proc *proc, int i)
 void	ft_set_red_in_del(t_proc *proc, int i)
 {
 	(*proc->lst)->infd = open("test", O_WRONLY | O_TRUNC | O_CREAT, 0777);
-	while (ft_strncmp((*proc->lst)->heredoc_line, (*proc->lst)->args[i + 1], ft_strlen((*proc->lst)->args[i + 1])) != 0)
+	(*proc->lst)->heredoc_line = malloc(1);
+	while (ft_strncmp_len((*proc->lst)->heredoc_line, (*proc->lst)->args[i + 1], ft_strlen((*proc->lst)->args[i + 1])) != 0)
 	{
 		(*proc->lst)->heredoc_line = readline("> ");
-		if (ft_strncmp((*proc->lst)->heredoc_line, (*proc->lst)->args[i + 1], ft_strlen((*proc->lst)->args[i + 1])) != 0)
+		if (ft_strncmp_len((*proc->lst)->heredoc_line, (*proc->lst)->args[i + 1], ft_strlen((*proc->lst)->args[i + 1])) != 0)
 		{
 			write((*proc->lst)->infd, (*proc->lst)->heredoc_line, ft_strlen((*proc->lst)->heredoc_line));
 			write((*proc->lst)->infd, "\n", 1);

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/12 18:09:01 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:35:26 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ft_check_red_out_type(t_proc *proc, int i, int j)
 
 void	ft_check_red_in_type(t_proc *proc, int i, int j)
 {
-	(*proc->lst)->heredoc_line = malloc(500000);
 	if (ft_strlen((*proc->lst)->args[i]) > j)
 	{
 		if (ft_strlen((*proc->lst)->args[i]) == 2)
@@ -55,7 +54,6 @@ void	ft_check_red_in_type(t_proc *proc, int i, int j)
 			if ((*proc->lst)->args[i][j + 1] == 60
 				&& proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
 			{
-				printf("entro");
 				ft_set_red_in_del(proc, i);
 				(*proc->lst)->has_red = 1;
 			}

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:33 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 18:08:45 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:37:08 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	get_prompt(t_proc *proc)
 }
 void	ft_create_terminal(t_proc *proc)
 {
-	
 	get_prompt(proc);
 	ft_read_input(proc);
 }

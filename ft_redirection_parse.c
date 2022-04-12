@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 18:08:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:59:34 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_redirection_parse_set_up(t_proc *proc, int i)
 
 	ft_count_added_spaces(proc, i);
 	proc->added_spc_arr[i] = (int *) malloc (proc->added_spc * sizeof(int));
-	ft_memset(proc->added_spc_arr[i], 0, sizeof(int *));
+	//ft_memset(proc->added_spc_arr[i], 0, sizeof(int *));
 	proc->added_spc_arr_length[i] = (int *) malloc(sizeof (int));
 	proc->added_spc_arr_length[i][0] = proc->added_spc;
 	quote_count = ft_findchar(proc->process[i], 126);
@@ -82,7 +82,7 @@ void	ft_check_red_condition(t_proc *proc, int i, int *j, int *k)
 void	ft_aux_copy(t_proc *proc, int i)
 {
 	free(proc->process[i]);
-	proc->process[i] = malloc(ft_strlen(proc->aux) + 1);
+	proc->process[i] = NULL;
 	proc->process[i] = ft_strdup(proc->aux);
 }
 
@@ -110,6 +110,8 @@ void	ft_redirection_parse(t_proc *proc)
 		}
 		proc->aux[k] = '\0';
 		ft_aux_copy(proc, i);
+		if (proc->aux)
+			free (proc->aux);
 		printf("FRASE: %s\n", proc->process[i]);
 	}
 }
