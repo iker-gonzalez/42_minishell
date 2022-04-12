@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_up.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/09 16:01:13 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:25:04 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_get_env(t_set *set, char **env)
 			set->env[k++] = ft_strdup(env[i]);
 		else
 			set->env[k++] = ft_strdup(env[i]);
-
 	}
 	set->env[i] = NULL;
 }
@@ -39,7 +38,7 @@ void	ft_format_paths(t_set *set)
 	char	*path;
 	char	**paths;
 	int		i;
-	
+
 	path = ft_get_env_path(set, "PATH", 4);
 	paths = ft_split(path, ':');
 	free(path);
@@ -63,5 +62,4 @@ void	ft_format_paths(t_set *set)
 void	set_up_shell(t_set *set, char **env)
 {
 	ft_get_env(set, env);
-	//ft_format_paths(set);
 }

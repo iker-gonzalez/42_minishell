@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/12 11:48:55 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:28:43 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ft_check_red_out_type(t_proc *proc, int i, int j)
 	{
 		if (ft_strlen((*proc->lst)->args[i]) == 2)
 		{
-			if ((*proc->lst)->args[i][j + 1] == 62 && proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
+			if ((*proc->lst)->args[i][j + 1] == 62
+				&& proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
 			{
 				ft_set_red_out_app(proc, i);
 				(*proc->lst)->has_red = 1;
@@ -50,7 +51,8 @@ void	ft_check_red_in_type(t_proc *proc, int i, int j)
 	{
 		if (ft_strlen((*proc->lst)->args[i]) == 2)
 		{
-			if ((*proc->lst)->args[i][j + 1] == 60 && proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
+			if ((*proc->lst)->args[i][j + 1] == 60
+				&& proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
 			{
 				//ft_set_red_in_del(proc, i, j++); //here there will be the heredoc ft
 				printf("heredoc");
@@ -95,9 +97,9 @@ void	ft_check_red_type(t_proc *proc)
 
 int	ft_red_count(char **args)
 {
-	int i;
-	int k;
-	int red;
+	int	i;
+	int	k;
+	int	red;
 
 	i = -1;
 	red = 0;

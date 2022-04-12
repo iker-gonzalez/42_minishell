@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/12 11:00:35 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:34:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_exec_system(t_node *node, t_proc *proc)
 	else
 		execve(node->route, node->args, proc->set->env);
 	exit(0);
-	
 }
 
 void	ft_child_conditions(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
@@ -46,7 +45,6 @@ void	ft_child_conditions(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 	}
 	else
 		ft_exec_system(node, proc);
-	
 }
 
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
@@ -111,6 +109,6 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args)
 	else if ((ft_strncmp_len(args[0], "exit", 4)) == 0)
 		ft_exit(args, child, proc->set);
 	else if (((ft_strncmp(args[0], "echo", 4)) == 0
-		   	&& ft_strlen(args[0]) == 4))
+			&& ft_strlen(args[0]) == 4))
 		ft_echo(args, node->outfd);
 }

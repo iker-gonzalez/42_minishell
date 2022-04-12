@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 15:58:25 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:26:09 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_count_row(t_proc *proc, int *sp_len, int i)
 	{
 		if (proc->process[i][j] == 32)
 		{
-			if (proc->added_spc_arr_len < proc->added_spc_arr_length[i][0] 
+			if (proc->added_spc_arr_len < proc->added_spc_arr_length[i][0]
 			&& proc->added_spc_arr[i][proc->added_spc_arr_len] == j)
 			{
 				proc->added_spc_arr_len++;

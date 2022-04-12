@@ -6,12 +6,11 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:10:57 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 10:50:22 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:31:22 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 int	ft_expand_dollar(t_proc *proc, int *i)
 {

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:26:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 10:53:20 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:25:14 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	handler(int signum)
 		return ;
 	}
 	return ;
-
 }
 
 void	listen_signals_daddy(void)

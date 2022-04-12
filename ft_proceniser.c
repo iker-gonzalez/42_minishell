@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_proceniser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:40:25 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/02 20:47:49 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:31:11 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Counts number of processes, by identifying the 1's on the array of pipes (pipes which are not quoted)
 void	ft_process_count(t_proc *proc)
 {
 	int	i;

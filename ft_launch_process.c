@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/12 09:06:40 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:35:27 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_get_abs_path(char *arg)
 	int		k;
 	int		i;
 	char	*path;
-	
+
 	bars = ft_findchar(arg, '/');
 	i = 0;
 	k = 0;
@@ -41,7 +41,7 @@ char	*ft_get_abs_path(char *arg)
 		i++;
 	}
 	path[i] = '\0';
-	return(path);
+	return (path);
 }
 
 char	*ft_set_abs_path(t_proc *proc, char *arg)
@@ -49,7 +49,7 @@ char	*ft_set_abs_path(t_proc *proc, char *arg)
 	char	*cmd;
 	char	*var;
 	char	*path;
-	
+
 	cmd = NULL;
 	path = ft_get_abs_path(arg);
 	if (arg[0] == '/')
@@ -119,7 +119,7 @@ void	ft_is_built_in(t_node *node, int index)
 	else if ((ft_strncmp_len(node->args[index], "exit", 4)) == 0)
 		node->is_built_in = 1;
 	else if ((ft_strncmp(node->args[index], "echo", 4)) == 0
-			&& ft_strlen(node->args[index]) == 4)
+		&& ft_strlen(node->args[index]) == 4)
 		node->is_built_in = 1;
 	else
 		node->is_built_in = 0;
