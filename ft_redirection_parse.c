@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nedved.c                                           :+:      :+:    :+:   */
+/*   ft_redirection_parse.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 09:52:19 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:03:04 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,13 @@ void	ft_check_red_condition2(t_proc *proc, int i, int *j, int *k)
         proc->aux[*k] = proc->process[i][*j];
 }
 
+void    ft_aux_copy(t_proc *proc, int i)
+{
+	free(proc->process[i]);
+    proc->process[i] = malloc(ft_strlen(proc->aux) + 1);
+    proc->process[i] = ft_strdup(proc->aux);
+}
+
 
 void    ft_redirection_parse(t_proc *proc)
 {
@@ -175,15 +182,15 @@ void    ft_redirection_parse(t_proc *proc)
     int     k;
     int     ret;
 
-    i = 0;
+    i = -1;
 	proc->added_spc_arr = (int **) malloc (proc->process_count * sizeof(int *));
     proc->added_spc_arr_length = (int **) malloc (proc->process_count * sizeof(int *));
-    while (i < proc->process_count)
+    while (++i < proc->process_count)
     {
-        j = 0;
+        j = -1;
         k = 0;
 		ft_redirection_parse_set_up(proc, i);
-		while (proc->process[i][j] && ft_strlen(proc->process[i]) > j)
+		while (proc->process[i][++j] && ft_strlen(proc->process[i]) > j)
 		{
 			ret = 0;
 			ret = ft_check_red_condition(proc, i, &j, &k);
@@ -191,13 +198,9 @@ void    ft_redirection_parse(t_proc *proc)
 				ft_check_red_condition2(proc, i, &j, &k);
 			if (proc->process[i][j] != 126)
                 k++;
-            j++;
 		}
 		proc->aux[k] = '\0';
-		free(proc->process[i]);
-        proc->process[i] = malloc(ft_strlen(proc->aux) + 1);
-        proc->process[i] = ft_strdup(proc->aux);
+        ft_aux_copy(proc, i);
         printf("FRASE: %s\n", proc->process[i]);
-        i++;
 	}
 }
