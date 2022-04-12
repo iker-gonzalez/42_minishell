@@ -26,6 +26,7 @@ SRC =	main.c \
 		ft_create_children.c \
 		ft_pipes_utils.c \
 		ft_redirection_parse.c \
+		ft_redirection_parse2.c \
 		ft_red_in_utils.c \
 		ft_red_out_app_utils.c \
 		ft_red_out_utils.c \
