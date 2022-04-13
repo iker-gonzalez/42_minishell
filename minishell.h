@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 18:09:12 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 10:52:27 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,8 @@ int		ft_check_errors(t_proc *proc);
 int		ft_check_empty_line(char *line_read);
 int		print_error(char *str, int err, char *cmd, int child);
 int		ft_check_null_line(char *line_read);
+int		ft_check_pipe(char *line_read);
+
 
 ///////// Test //////////////
 void	ft_test(t_proc *proc);

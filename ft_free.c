@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 20:30:00 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 11:23:30 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	ft_free_args_red(t_proc *proc)
 	row = -1;
 	while ((*proc->lst)->args_red && (*proc->lst)->args_red[++row])
 	{
-		printf("HOLA\n");
 		if ((*proc->lst)->has_red)
 			free((*proc->lst)->args_red[row]);
 	}

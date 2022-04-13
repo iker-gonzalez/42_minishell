@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 19:59:34 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 10:12:07 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ void	ft_redirection_parse(t_proc *proc)
 		ft_aux_copy(proc, i);
 		if (proc->aux)
 			free (proc->aux);
-		printf("FRASE: %s\n", proc->process[i]);
+		//printf("FRASE: %s\n", proc->process[i]);
 	}
 }

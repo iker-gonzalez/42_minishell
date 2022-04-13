@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/11 20:32:07 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 10:12:00 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,5 @@ void	ft_expand_input(t_proc *proc)
 	proc->lock = 1;
 	ft_expand_line_read(proc);
 	proc->line_exp_len = 0;
-	printf("line exp: %s\n", proc->line_expanded);
+	//printf("line exp: %s\n", proc->line_expanded);
 }
