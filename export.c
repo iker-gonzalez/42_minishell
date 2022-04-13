@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 10:50:18 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 22:11:35 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ char	**edit_var(t_set *set, char *var)
 		{
 			free(set->env[i]);
 			set->env[i] = ft_strdup(var);
-			//free (var);
 		}
 	}
 	return (set->env);
@@ -79,7 +78,6 @@ char	**add_var(t_set *set, char *var)
 			tmp[i] = ft_strdup(set->env[i]);
 	tmp[i] = ft_strdup(var);
 	tmp[i + 1] = NULL;
-	//free(var);
 	ft_free_double_char(set->env);
 	return (tmp);
 }
@@ -99,17 +97,15 @@ int	export(t_set *set, char **argv, int child)
 	{
 		k = -1;
 		if (!ft_export_errors(argv[i]))
-		{
 			edit = 0;
-			while (set->env[++k])
-			{
-				if (((ft_strncmp(set->env[k], argv[i],
-								ft_varlen(argv[i]))) == 0) && ++edit)
-					set->env = edit_var(set, argv[i]);
-			}
-			if (!edit)
-				set->env = add_var(set, argv[i]);
+		while (set->env[++k])
+		{
+			if (((ft_strncmp(set->env[k], argv[i], ft_varlen(argv[i]))) == 0)
+				&& ++edit)
+				set->env = edit_var(set, argv[i]);
 		}
+		if (!edit)
+			set->env = add_var(set, argv[i]);
 	}
 	if (child)
 		exit (0);
