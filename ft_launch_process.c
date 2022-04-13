@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/12 20:25:02 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 13:46:56 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	ft_set_route(t_proc *proc, char *arg)
 		arg = ft_set_abs_path(proc, arg);
 	ft_format_paths(proc->set);
 	i = 0;
+	if (!proc->set->paths)
+		return ;
 	while (proc->set->paths[i])
 		i++;
 	routes = malloc (i * sizeof(char *));

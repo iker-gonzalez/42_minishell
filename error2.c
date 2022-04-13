@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:10:13 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 10:52:19 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 13:41:17 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,14 @@ int	ft_check_pipe(char *line_read)
 		if (line_read[i] == '|')
 		{
 			i++;
+			while (line_read[i] == 32)
+				i++;
+			if (line_read[i] == '|')
+			{
+				ft_putstr_fd("papa$hell:", 2);
+				ft_putstr_fd(" Syntax error near unexpected token '|'\n", 2);
+				return (1);
+			}
 			while (line_read[i] == 32)
 			{
 				i++;

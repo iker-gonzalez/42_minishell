@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 12:12:16 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 12:44:00 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_loop(t_set *set)
 			ft_expand_input(&proc);
 			ft_proceniser(&proc);
 			ft_tokenizer(&proc);
-			//ft_launch_process(&proc);
+			ft_launch_process(&proc);
 			ft_free(&proc);
 		}
 		else
@@ -52,8 +52,3 @@ int	main(int argc, char **argv, char **env)
 	ft_loop(&set);
 	return (0);
 }
-
-// caso a mirar:
-
-//export a='>out'
-//ls $a

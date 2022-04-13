@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 11:23:30 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 13:24:54 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,8 @@ void	ft_free_proc(t_proc *proc)
 		free(proc->red_out_arr);
 	if (proc->red_out_del_arr)
 		free(proc->red_out_del_arr);
-	if (proc->set->paths)
-		ft_free_double_char(proc->set->paths);
+	//if (proc->set->paths)
+	//	ft_free_double_char(proc->set->paths);
 	//if (proc->aux)
 	//	free(proc->aux);
 }

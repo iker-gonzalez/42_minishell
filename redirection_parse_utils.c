@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 08:12:10 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 12:29:31 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 12:41:03 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	ft_check_red_in_app(t_proc *proc, int i, int *j, int *red_in_app_arr_len)
 		}
 	}
 }
-
 
 void	ft_count_added_spaces(t_proc *proc, int i)
 {

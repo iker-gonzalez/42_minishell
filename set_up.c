@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 18:10:12 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 13:45:26 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_get_env(t_set *set, char **env)
 	k = 0;
 	while (env[++i])
 	{
-		if ((ft_strncmp(env[i], "OLDPWD", 6)) == 0 && ++i)
+		//setear a PWD.
+		if ((ft_strncmp_len(env[i], "OLDPWD=", 7)) == 0 && ++i)
 			set->env[k++] = ft_strdup(env[i]);
 		else
 			set->env[k++] = ft_strdup(env[i]);
@@ -41,7 +42,10 @@ void	ft_format_paths(t_set *set)
 
 	path = ft_get_env_path(set, "PATH", 4);
 	paths = ft_split(path, ':');
-	free(path);
+	if (!paths)
+		return ;
+	if (path)
+		free(path);
 	i = 0;
 	while (paths[i])
 		i++;
@@ -62,4 +66,5 @@ void	ft_format_paths(t_set *set)
 void	set_up_shell(t_set *set, char **env)
 {
 	ft_get_env(set, env);
+	//ft_format_paths(set);
 }

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 10:52:27 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 14:29:03 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,8 +190,8 @@ int		ft_count_argc(char **argv);
 
 //////// Builtins /////////
 int		ft_env(t_proc *proc, int cmd_count, int child);
-int		ft_echo(char **argv, int fd);
-int		ft_pwd(void);
+int		ft_echo(char **argv, int fd, int child);
+int		ft_pwd(int child);
 int		ft_cd(char **argv, t_set *set, int child);
 int		ft_update_oldpwd(t_set *set);
 char	*ft_get_env_path(t_set *set, char *var, int var_len);

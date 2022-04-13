@@ -95,16 +95,16 @@ void print_args (t_proc *proc)
 		while ((*proc->lst)->args[i])
 		{
 			k = 0;
-			printf ("token %d:\n", i);
+			//printf ("token %d:\n", i);
 			while ((*proc->lst)->args[i][k])
 			{
-				printf("%c", (*proc->lst)->args[i][k]);
+				//printf("%c", (*proc->lst)->args[i][k]);
 				k++;
 			}
 			i++;
-			printf("\n");
+			//printf("\n");
 		}
-		printf("==============================\n");
+		//printf("==============================\n");
 		(*proc->lst) = (*proc->lst)->next;
 	}
 	(*proc->lst) = proc->head;
