@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 10:12:07 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 18:08:59 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_check_red_condition2(t_proc *proc, int i, int *j, int *k)
 	}
 	else if (proc->process[i][*j] != 126)
 		proc->aux[*k] = proc->process[i][*j];
-}
+ }
 
 void	ft_check_red_condition(t_proc *proc, int i, int *j, int *k)
 {	

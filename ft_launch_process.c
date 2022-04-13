@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 13:46:56 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 17:45:07 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,10 @@ void	ft_is_built_in(t_node *node, int index)
 
 void	ft_set_process_type(t_proc *proc)
 {
-	if ((*proc->lst)->args[0][0] != 60 || (*proc->lst)->args[0][0] != 62)
+	if ((*proc->lst)->args[0][0] != 60 && (*proc->lst)->args[0][0] != 62)
 		ft_is_built_in((*proc->lst), 0);
 	else
-		ft_is_built_in((*proc->lst), 3);
+		ft_is_built_in((*proc->lst), 2);
 }
 
 void	ft_launch_process(t_proc *proc)

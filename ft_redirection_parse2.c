@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 10:05:15 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 12:26:28 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 18:09:03 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ void	ft_fill_double(t_proc *proc, int i, int j, int *k)
 	{
 		if (proc->process[i][j + 2] != 32)
 		{
+			if (proc->process[i][j] != 126)
+				proc->aux[(*k)++] = proc->process[i][j];
+			if (proc->process[i][j] != 126)
+				proc->aux[(*k)++] = proc->process[i][j];
 			proc->aux[*k] = 32;
 			if (proc->added_spc_arr_len < proc->added_spc)
 				proc->added_spc_arr[i][proc->added_spc_arr_len++] = *k;
-			*k += 1;
-			if (proc->process[i][j] != 126)
-				proc->aux[*k] = proc->process[i][j];
+			//*k += 1;
 		}
 		else
 		{

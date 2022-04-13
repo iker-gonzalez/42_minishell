@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 14:28:37 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 17:55:04 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 void	ft_exec_system(t_node *node, t_proc *proc)
 {
-	ft_set_route(proc, (*proc->lst)->args[0]);
+	int index;
+	
+	index = 0;
+	if ((*proc->lst)->args[0][0] == 60 || (*proc->lst)->args[0][0] == 62)
+		index = 2;
+	ft_set_route(proc, (*proc->lst)->args[index]);
 	if (proc->infile)
 		exit(proc->infile);
 	if (node->route == NULL)
-		print_error(": command not found", 127, node->args[0], 1);
+		print_error(": command not found", 127, node->args[index], 1);
 	if (node->has_red)
 		execve(node->route, node->args_red, proc->set->env);
 	else
