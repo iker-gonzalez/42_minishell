@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 13:24:54 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:22:28 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void	ft_free(t_proc *proc)
 	ft_free_proc(proc);
 	ft_free_process(proc);
 	ft_lstiter(proc, ft_free_args);
-	ft_lstiter(proc, ft_free_args_red);
+	//ft_lstiter(proc, ft_free_args_red);
 	ft_lstiter(proc, ft_free_node_routes);
 	//ft_free_double_char(proc->process);
 	if (proc->lst)

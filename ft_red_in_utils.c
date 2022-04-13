@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:37:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/12 18:45:02 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 20:27:08 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,18 @@ void	ft_set_red_in(t_proc *proc, int i)
 
 void	ft_set_red_in_del(t_proc *proc, int i)
 {
+	int index;
+	
+	i = 0;
+	index = 2;
+	if ((*proc->lst)->args[0][0] == 60)
+		index = 1;
 	(*proc->lst)->infd = open("test", O_WRONLY | O_TRUNC | O_CREAT, 0777);
 	(*proc->lst)->heredoc_line = malloc(1);
-	while (ft_strncmp_len((*proc->lst)->heredoc_line, (*proc->lst)->args[i + 1], ft_strlen((*proc->lst)->args[i + 1])) != 0)
+	while (ft_strncmp_len((*proc->lst)->heredoc_line, (*proc->lst)->args[index], ft_strlen((*proc->lst)->args[index])) != 0)
 	{
 		(*proc->lst)->heredoc_line = readline("> ");
-		if (ft_strncmp_len((*proc->lst)->heredoc_line, (*proc->lst)->args[i + 1], ft_strlen((*proc->lst)->args[i + 1])) != 0)
+		if (ft_strncmp_len((*proc->lst)->heredoc_line, (*proc->lst)->args[index], ft_strlen((*proc->lst)->args[index])) != 0)
 		{
 			write((*proc->lst)->infd, (*proc->lst)->heredoc_line, ft_strlen((*proc->lst)->heredoc_line));
 			write((*proc->lst)->infd, "\n", 1);
@@ -68,7 +74,7 @@ void	ft_set_red_in_del(t_proc *proc, int i)
 	if ((*proc->lst)->infd < 0)
 	{
 		if (access("test", F_OK) != 0)
-			proc->infile = print_error(": No such file or directory", 1, (*proc->lst)->args[i + 1], 0);
+			proc->infile = print_error(": No such file or directory", 1, "test", 0);
 		else
 			printf("Error de acceso");
 		(*proc->lst)->infd = 0;

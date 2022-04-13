@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 17:45:07 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:56:33 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,11 @@ void	ft_set_process_type(t_proc *proc)
 
 void	ft_launch_process(t_proc *proc)
 {
+	ft_redirection_set_up(proc);
+	ft_lstiter(proc, ft_check_if_red);
 	ft_lstiter(proc, ft_set_process_type);
+	ft_redirection_set_up(proc);
+	ft_lstiter(proc, ft_set_args_red);
 	ft_lstiter(proc, ft_create_children);
 	ft_lstiter(proc, ft_parental_wait);
 }

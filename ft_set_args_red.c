@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:39:34 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 17:48:07 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:55:06 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,14 @@ char	*ft_set_alltogether(char *arg, int i)
 	return (ret);
 }
 
+
 void	ft_set_args_red(t_proc *proc)
 {
 	int	i;
 	int	k;
 
+	if (!(*proc->lst)->has_red)
+		return ;
 	i = 0;
 	k = 0;
 	while ((*proc->lst)->args[i])
@@ -71,18 +74,24 @@ void	ft_set_args_red(t_proc *proc)
 	i = 0;
 	while ((*proc->lst)->args[i])
 	{
-		if (!ft_contain_red((*proc->lst)->args[i]))
+		if ((*proc->lst)->args[i][0] == 62 && proc->red_out_arr_len < proc->red_out_count 
+		&& proc->red_out_arr[proc->red_out_arr_len++] == 1)
+			i++;
+		else if ((*proc->lst)->args[i][0] == 60 && proc->red_in_arr_len < proc->red_in_count 
+		&& proc->red_in_arr[proc->red_in_arr_len++] == 1)
+			i++;
+		else if ((*proc->lst)->args[i][0] == 62 && (*proc->lst)->args[i][1] == 62 &&
+		proc->red_out_del_arr_len < proc->red_out_del_count 
+			&& proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
+			i++;
+		else if ((*proc->lst)->args[i][0] == 60 && (*proc->lst)->args[i][1] == 60 &&
+		proc->red_in_app_arr_len < proc->red_in_app_count 
+		&& proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
+			i++;
+		else
 		{
 			(*proc->lst)->args_red[k] = ft_strdup((*proc->lst)->args[i]);
 			printf("ARGS RED: %s\n", (*proc->lst)->args_red[k++]);
-		}
-		else
-		{
-			if ((*proc->lst)->args[i][0] == 62
-				|| (*proc->lst)->args[i][0] == 60)
-				i++;
-			else
-				(*proc->lst)->args_red[k] = (*proc->lst)->args[i];
 		}
 		i++;
 	}
