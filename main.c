@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 12:44:00 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 12:59:05 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	ft_loop(t_set *set)
 	int		ms_on;
 	int		err;
 
-	listen_signals_daddy();
 	ms_on = 1;
 	while (ms_on)
 	{
+		listen_signals_daddy();
 		ft_memset(&proc, 0, sizeof(t_proc));
 		proc.set = set;
 		ft_create_terminal(&proc);
