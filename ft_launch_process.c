@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 19:56:33 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 11:44:10 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,7 @@ void	ft_is_built_in(t_node *node, int index)
 		node->is_built_in = 1;
 	else if ((ft_strncmp_len(node->args[index], "exit", 4)) == 0)
 		node->is_built_in = 1;
-	else if ((ft_strncmp(node->args[index], "echo", 4)) == 0
-		&& ft_strlen(node->args[index]) == 4)
+	else if ((ft_strncmp_len(node->args[index], "echo", 4)) == 0)
 		node->is_built_in = 1;
 	else
 		node->is_built_in = 0;

@@ -43,7 +43,7 @@ RLFLAGS =   -I $(PWD)/include\
             -lreadline\
             -L $(PWD)/lib\
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
 LIB = Libft/libft.a
 

@@ -6,13 +6,13 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 10:53:39 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 11:49:29 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <errno.h>
-
+/*
 int	ft_check_unclosed_quotes(char *line_read, char c)
 {
 	int	i;
@@ -39,7 +39,7 @@ int	ft_check_unclosed_quotes(char *line_read, char c)
 	}
 	return (0);
 }
-
+*/
 int	ft_check_empty_line(char *line_read)
 {
 	char	*line;
@@ -90,10 +90,10 @@ int	ft_check_errors(t_proc *proc)
 		return (258);
 	if (ft_check_pipe(proc->line_read))
 		return (258);
-	if (ft_check_unclosed_quotes(proc->line_read, 34))
-		return (1);
-	if (ft_check_unclosed_quotes(proc->line_read, 39))
-		return (1);
+	//if (ft_check_unclosed_quotes(proc->line_read, 34))
+	//	return (1);
+	//if (ft_check_unclosed_quotes(proc->line_read, 39))
+	//	return (1);
 	if (ft_check_redirections(proc->line_read, 60))
 		return (258);
 	if (ft_check_redirections(proc->line_read, 62))

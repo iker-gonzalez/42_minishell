@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:40:25 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 13:31:11 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 11:15:37 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_mem_proceniser(t_proc *proc)
 				&& proc->space_arr[proc->space_arr_len++] == 1)
 				j++;
 		}
-		proc->process[row] = malloc(sizeof(char) * (col - j + 1));
+		proc->process[row] = malloc(sizeof(char) * (col + 1));
 		row++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 20:14:03 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/13 20:45:35 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	ft_check_if_red(t_proc *proc)
 		}
 		i++;
 	}
-	printf("has red: %d\n", (*proc->lst)->has_red);
+	//printf("has red: %d\n", (*proc->lst)->has_red);
 }
 

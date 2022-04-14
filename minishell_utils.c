@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:34:04 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/10 21:51:33 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/14 11:42:39 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ int	ft_strncmp_len(const char *s1, const char *s2, size_t n)
 
 	str1 = (unsigned char *)s1;
 	str2 = (unsigned char *)s2;
-	if (ft_strlen(s1) != ft_strlen(s2))
-	{
+	if (!s1 || !s2)
 		return (1);
-	}
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (1);
 	i = 0;
 	while (i < n)
 	{
