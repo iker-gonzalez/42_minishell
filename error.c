@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 11:49:29 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:14:00 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	print_error(char *str, int err, char *cmd, int child)
 		ft_putstr_fd(cmd, 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n", 2);
-	exit_status = err;
+	g_exit_status = err;
 	if (child)
 		exit(err);
 	else

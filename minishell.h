@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 19:17:38 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 19:40:37 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_node
 	struct s_node	*next;
 }					t_node;
 
-int	exit_status;
+int	g_exit_status;
 
 typedef struct s_set
 {
@@ -202,7 +202,7 @@ char	**add_var(t_set *set, char *var);
 char	**edit_var(t_set *set, char *var);
 void	print_sorted_env(t_set *set);
 int		unset(t_set *set, char **argv, int child);
-void	ft_exit(char **argv, int child, t_set *set);
+void	ft_exit(char **argv, int child, t_set *set, t_proc *proc);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args);
 
 ////////// Signals //////////

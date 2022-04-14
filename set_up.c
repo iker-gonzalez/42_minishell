@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 13:45:26 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:19:11 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_get_env(t_set *set, char **env)
 	k = 0;
 	while (env[++i])
 	{
-		//setear a PWD.
 		if ((ft_strncmp_len(env[i], "OLDPWD=", 7)) == 0 && ++i)
 			set->env[k++] = ft_strdup(env[i]);
 		else

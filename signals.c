@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:26:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 12:58:22 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:14:00 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	child_message(int signum)
 {
 	if (signum == SIGQUIT)
 	{
-		exit_status = 131;
+		g_exit_status = 131;
 		printf("Quit 3\n");
 	}
 	else if (signum == SIGINT)
 	{
-		exit_status = 130;
+		g_exit_status = 130;
 		printf("\n");
 	}
 }
@@ -31,7 +31,7 @@ void	handler(int signum)
 {
 	if (signum == SIGINT)
 	{
-		exit_status = 1;
+		g_exit_status = 1;
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);

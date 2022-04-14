@@ -1,0 +1,26 @@
+{
+   readline_errors
+   Memcheck:Param
+   sendmsg(msg.msg_name)
+   fun:__sendmsg_nocancel
+   fun:readline
+   ...
+}
+
+{
+    readline_leaks
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:readline
+    ...
+}
+
+{
+    history_leaks 
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:add_history
+    ...
+}

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/14 11:44:10 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:14:00 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_parental_wait(t_proc *proc)
 	stt = 0;
 	process = waitpid((*proc->lst)->pid, &stt, 0);
 	if (WIFEXITED(stt))
-		exit_status = WEXITSTATUS(stt);
+		g_exit_status = WEXITSTATUS(stt);
 }
 
 void	ft_is_built_in(t_node *node, int index)

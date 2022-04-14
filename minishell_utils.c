@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:34:04 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 11:42:39 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 17:39:12 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ft_exp_sp_arr(t_proc *proc)
 		if (proc->space_arr[i] != 1)
 			proc->exp_sp_arr_len++;
 	}
+	if (!proc->exp_sp_arr_len)
+		return ;
 	proc->exp_sp_arr = malloc(sizeof(int) * proc->exp_sp_arr_len);
 	i = -1;
 	k = 0;
@@ -73,10 +75,10 @@ int	ft_strncmp_len(const char *s1, const char *s2, size_t n)
 	unsigned char	*str1;
 	unsigned char	*str2;
 
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
 	if (!s1 || !s2)
 		return (1);
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	if (ft_strlen(s1) != ft_strlen(s2))
 		return (1);
 	i = 0;

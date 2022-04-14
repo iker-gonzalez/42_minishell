@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:40:25 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 11:15:37 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 19:38:37 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	ft_fill_proceniser(t_proc *proc)
 		proc->process[row][col] = '\0';
 		row++;
 	}
+	proc->process[row] = NULL;
 }
 
 void	ft_proceniser(t_proc *proc)

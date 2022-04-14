@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 13:26:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 19:25:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	ft_tokenizer(t_proc *proc)
 	char	**args;
 	int		sp_len;
 	int		k;
+	t_node	*new;
 
 	i = 0;
 	k = 0;
@@ -127,7 +128,8 @@ void	ft_tokenizer(t_proc *proc)
 	{
 		proc->added_spc_arr_len = 0;
 		args = ft_split_sp(proc, i, &sp_len, &k);
-		ft_add_node_back(proc, proc->lst, ft_new_node(args));
+		new = ft_new_node(args);
+		ft_add_node_back(proc, proc->lst, new);
 		ft_free_double_char(args);
 		i++;
 	}

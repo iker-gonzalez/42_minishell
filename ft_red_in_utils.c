@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:37:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 20:27:08 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 13:29:47 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_set_red_in_del(t_proc *proc, int i)
 	if ((*proc->lst)->args[0][0] == 60)
 		index = 1;
 	(*proc->lst)->infd = open("test", O_WRONLY | O_TRUNC | O_CREAT, 0777);
-	(*proc->lst)->heredoc_line = malloc(1);
 	while (ft_strncmp_len((*proc->lst)->heredoc_line, (*proc->lst)->args[index], ft_strlen((*proc->lst)->args[index])) != 0)
 	{
 		(*proc->lst)->heredoc_line = readline("> ");
@@ -67,6 +66,7 @@ void	ft_set_red_in_del(t_proc *proc, int i)
 			write((*proc->lst)->infd, (*proc->lst)->heredoc_line, ft_strlen((*proc->lst)->heredoc_line));
 			write((*proc->lst)->infd, "\n", 1);
 		}
+		rl_clear_history();
 	}
 	if ((*proc->lst)->infd)
 		close((*proc->lst)->infd);
@@ -80,5 +80,6 @@ void	ft_set_red_in_del(t_proc *proc, int i)
 		(*proc->lst)->infd = 0;
 	}
 	unlink("test");
+	free ((*proc->lst)->heredoc_line);
 }
 

@@ -6,21 +6,11 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 11:34:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 19:34:30 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-void	ft_free_nodes(t_proc *proc)
-{
-	if (!(*proc->lst))
-		return ;
-    free ((*proc->lst)->content);
-    free ((*proc->lst)->exp_content);
-}
-*/
 
 void	ft_free_double_int2(t_proc *proc)
 {
@@ -35,17 +25,18 @@ void	ft_free_double_int2(t_proc *proc)
 	free(proc->added_spc_arr_length);
 }
 
-void	ft_free_double_int(t_proc *proc)
+void	ft_free_double_int(t_proc *proc, int **str)
 {
 	int i;
 	
 	i = -1;
+	printf("proc count: %d\n", proc->process_count);
 	while (++i < proc->process_count)
 	{
-		if (proc->added_spc_arr[i])
-			free(proc->added_spc_arr[i]);
+		printf("MARIO\n");
+		free(str[i]);
 	}
-	free(proc->added_spc_arr);
+	free(str);
 }
 
 void	ft_free_process(t_proc *proc)
@@ -53,7 +44,7 @@ void	ft_free_process(t_proc *proc)
 	int	row;
 
 	row = -1;
-	while (++row < proc->process_count)
+	while (++row <= proc->process_count)
 	{
 		if (proc->process[row])
 			free(proc->process[row]);
@@ -79,22 +70,18 @@ void	ft_free_double_char(char **str)
 		free(str);
 }
 
-void	ft_freelist(t_node **lst)
+void	ft_freelist(t_node *lst)
 {
-	t_node	*temp;
+   t_node* tmp;
 
-	if (!*lst)
-	{
-		return ;
-	}
-	while (*lst)
-	{
-		temp = *lst;
-		*lst = (*lst)->next;
-		free (temp);
-	}
-	*lst = NULL;
-	free (lst);
+   while (lst != NULL)
+    {
+		printf("PEPEI\n");
+       tmp = lst;
+       lst = lst->next;
+       free(tmp);
+    }
+
 }
 
 void	ft_free_args_red(t_proc *proc)
@@ -160,6 +147,13 @@ void	ft_free_proc(t_proc *proc)
 		free(proc->red_out_arr);
 	if (proc->red_out_del_arr)
 		free(proc->red_out_del_arr);
+	if (proc->added_spc_arr_length)
+		ft_free_double_int(proc, proc->added_spc_arr_length);
+	if (proc->added_spc_arr)
+		ft_free_double_int(proc, proc->added_spc_arr);
+	//ft_free_process(proc);
+	if (proc->process)
+		ft_free_double_char(proc->process);
 	//if (proc->set->paths)
 	//	ft_free_double_char(proc->set->paths);
 	//if (proc->aux)
@@ -177,16 +171,12 @@ void	ft_free_set(t_set *set)
 void	ft_free(t_proc *proc)
 {
 	ft_free_proc(proc);
-	ft_free_process(proc);
 	ft_lstiter(proc, ft_free_args);
 	ft_lstiter(proc, ft_free_args_red);
 	ft_lstiter(proc, ft_free_node_routes);
-	//ft_free_double_char(proc->process);
-	if (proc->lst)
-		ft_freelist(proc->lst);
-	ft_free_double_int(proc);
-	ft_free_double_int2(proc);
-	//free(proc->prompt);
+	//if (proc->lst)
+	ft_freelist((*proc->lst));
+	free(proc->lst);
 	//ft_free_paths(proc);
 	//
 }

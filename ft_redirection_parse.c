@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 18:08:59 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 18:03:20 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	ft_redirection_parse_set_up(t_proc *proc, int i)
 
 	ft_count_added_spaces(proc, i);
 	proc->added_spc_arr[i] = (int *) malloc (proc->added_spc * sizeof(int));
-	//ft_memset(proc->added_spc_arr[i], 0, sizeof(int *));
+	printf("proc added spc: %d\n", proc->added_spc);
+	//	ft_memset(proc->added_spc_arr_length[i], 0, sizeof(int *));
 	proc->added_spc_arr_length[i] = (int *) malloc(sizeof (int));
 	proc->added_spc_arr_length[i][0] = proc->added_spc;
 	quote_count = ft_findchar(proc->process[i], 126);

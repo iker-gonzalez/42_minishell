@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikgonzal <ikgonzal@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/10 21:08:20 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/14 19:24:18 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,35 @@
 
 t_node	*ft_new_node(char **args)
 {
-	t_node	*ret;
+	t_node	*node;
 	int		i;
 
-	ret = malloc(sizeof (t_node));
-	memset(ret, 0, sizeof(t_node));
-	if (!ret)
-		return (NULL);
+	node = malloc(sizeof (t_node));
+	memset(node, 0, sizeof(t_node));
 	i = 0;
 	while (args[i])
 		i++;
-	ret->args = malloc(sizeof(char *) * (i + 1));
+	node->args = malloc(sizeof(char *) * (i + 1));
 	i = -1;
 	while (args[++i])
-		ret->args[i] = ft_strdup(args[i]);
-	ret->args[i] = NULL;
-	return (ret);
+		node->args[i] = ft_strdup(args[i]);
+	node->args[i] = NULL;
+	return(node);
 }
 
-void	ft_add_node_back(t_proc *proc, t_node **node, t_node *new)
+void	ft_add_node_back(t_proc *proc, t_node **lst, t_node *new)
 {
-	if (*node)
+	if (*lst)
 	{
-		proc->head = *node;
-		while ((*node)->next)
-			(*node) = (*node)->next;
-		new->previous = *node;
-		(*node)->next = new;
-		(*node) = proc->head;
+		proc->head = *lst;
+		while ((*lst)->next)
+			(*lst) = (*lst)->next;
+		new->previous = *lst;
+		(*lst)->next = new;
+		(*lst) = proc->head;
 	}
 	else
-		(*node) = new;
+		(*lst) = new;
 }
 
 void	ft_lstiter(t_proc *proc, void (*f)(t_proc *))

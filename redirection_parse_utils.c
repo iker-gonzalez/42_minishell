@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 08:12:10 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 12:41:03 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 18:15:06 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_check_red_out(t_proc *proc, int i, int *j, int *red_out_arr_len)
 		{
 			if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] == 126)
 				proc->added_spc++;
-			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] != 126)
+			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] == 126)
 				proc->added_spc++;
 		}
 	}
@@ -34,23 +34,23 @@ void	ft_check_red_out(t_proc *proc, int i, int *j, int *red_out_arr_len)
 
 void	ft_check_red_out_del(t_proc *proc, int i, int *j, int *red_out_del_arr_l)
 {
-	*j += 1;
 	if (*red_out_del_arr_l < proc->red_out_del_count
 		&& proc->red_out_del_arr[(*red_out_del_arr_l)++] == 1)
 	{
 		if (*j == 0)
 		{
-			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] == 126)
+			if (proc->process[i][*j + 2] != 32 || proc->process[i][*j + 2] == 126)
 				proc->added_spc++;
 		}
 		else
 		{
-			if (proc->process[i][*j - 1] != 32)
+			if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] == 126)
 				proc->added_spc++;
-			if (proc->process[i][*j + 2] != 32)
+			if (proc->process[i][*j + 2] != 32 || proc->process[i][*j - 1] == 126)
 				proc->added_spc++;
 		}
 	}
+	*j += 1;
 }
 
 void	ft_check_red_in(t_proc *proc, int i, int *j, int *red_in_arr_len)
@@ -65,9 +65,9 @@ void	ft_check_red_in(t_proc *proc, int i, int *j, int *red_in_arr_len)
 		}
 		else
 		{
-			if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] != 126)
+			if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] == 126)
 				proc->added_spc++;
-			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] != 126)
+			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] == 126)
 				proc->added_spc++;
 		}
 	}
@@ -75,7 +75,6 @@ void	ft_check_red_in(t_proc *proc, int i, int *j, int *red_in_arr_len)
 
 void	ft_check_red_in_app(t_proc *proc, int i, int *j, int *red_in_app_arr_len)
 {
-	*j += 1;
 	if (*red_in_app_arr_len < proc->red_in_app_count
 		&& proc->red_in_app_arr[(*red_in_app_arr_len)++] == 1)
 	{
@@ -86,12 +85,13 @@ void	ft_check_red_in_app(t_proc *proc, int i, int *j, int *red_in_app_arr_len)
 		}
 		else
 		{
-			if (proc->process[i][*j - 1] != 32)
+			if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] == 126)
 				proc->added_spc++;
-			if (proc->process[i][*j + 2] != 32)
+			if (proc->process[i][*j + 2] != 32 || proc->process[i][*j + 2] == 126)
 				proc->added_spc++;
 		}
 	}
+	*j += 1;
 }
 
 void	ft_count_added_spaces(t_proc *proc, int i)
