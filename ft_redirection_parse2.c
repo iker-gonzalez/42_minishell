@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 10:05:15 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 18:09:03 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:46:05 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	ft_fill_double(t_proc *proc, int i, int j, int *k)
 			proc->aux[*k] = 32;
 			if (proc->added_spc_arr_len < proc->added_spc)
 				proc->added_spc_arr[i][proc->added_spc_arr_len++] = *k;
-			//*k += 1;
 		}
 		else
 		{
@@ -125,7 +124,6 @@ void	ft_fill_single(t_proc *proc, int i, int j, int *k)
 		}
 		else
 			proc->aux[*k] = proc->process[i][j];
-
 	}
 	else if (proc->process[i][j - 1] != 32 && proc->process[i][j + 1] == 32)
 	{

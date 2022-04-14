@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 08:12:10 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 12:41:03 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:24:40 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,24 @@ void	ft_check_red_out(t_proc *proc, int i, int *j, int *red_out_arr_len)
 	{
 		if (*j == 0)
 		{
-			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] == 126)
+			if (proc->process[i][*j + 1] != 32
+				|| proc->process[i][*j + 1] == 126)
 				proc->added_spc++;
-		} 
+		}
 		else
 		{
-			if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] == 126)
+			if (proc->process[i][*j - 1] != 32
+				|| proc->process[i][*j - 1] == 126)
 				proc->added_spc++;
-			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] != 126)
+			if (proc->process[i][*j + 1] != 32
+				|| proc->process[i][*j + 1] != 126)
 				proc->added_spc++;
 		}
 	}
 }
 
-void	ft_check_red_out_del(t_proc *proc, int i, int *j, int *red_out_del_arr_l)
+void	ft_check_red_out_del(t_proc *proc, int i, int *j,
+		int *red_out_del_arr_l)
 {
 	*j += 1;
 	if (*red_out_del_arr_l < proc->red_out_del_count
@@ -40,7 +44,8 @@ void	ft_check_red_out_del(t_proc *proc, int i, int *j, int *red_out_del_arr_l)
 	{
 		if (*j == 0)
 		{
-			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] == 126)
+			if (proc->process[i][*j + 1] != 32
+				|| proc->process[i][*j + 1] == 126)
 				proc->added_spc++;
 		}
 		else
@@ -60,20 +65,24 @@ void	ft_check_red_in(t_proc *proc, int i, int *j, int *red_in_arr_len)
 	{
 		if (*j == 0)
 		{
-			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] == 126)
+			if (proc->process[i][*j + 1] != 32
+				|| proc->process[i][*j + 1] == 126)
 				proc->added_spc++;
 		}
 		else
 		{
-			if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] != 126)
+			if (proc->process[i][*j - 1] != 32
+				|| proc->process[i][*j - 1] != 126)
 				proc->added_spc++;
-			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] != 126)
+			if (proc->process[i][*j + 1] != 32
+				|| proc->process[i][*j + 1] != 126)
 				proc->added_spc++;
 		}
 	}
 }
 
-void	ft_check_red_in_app(t_proc *proc, int i, int *j, int *red_in_app_arr_len)
+void	ft_check_red_in_app(t_proc *proc, int i, int *j,
+		int *red_in_app_arr_len)
 {
 	*j += 1;
 	if (*red_in_app_arr_len < proc->red_in_app_count
@@ -81,7 +90,8 @@ void	ft_check_red_in_app(t_proc *proc, int i, int *j, int *red_in_app_arr_len)
 	{
 		if (*j == 0)
 		{
-			if (proc->process[i][*j + 1] != 32 || proc->process[i][*j + 1] == 126)
+			if (proc->process[i][*j + 1] != 32
+				|| proc->process[i][*j + 1] == 126)
 				proc->added_spc++;
 		}
 		else

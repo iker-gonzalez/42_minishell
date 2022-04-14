@@ -13,13 +13,18 @@
 #include "minishell.h"
 #include <limits.h>
 
-int	ft_pwd(int child)
+int	ft_pwd(int child, int fd)
 {
+	size_t	cnt;
 	char	str[PATH_MAX];
 
+	if (!fd)
+		fd = 1;
 	if (getcwd(str, PATH_MAX) == NULL)
 		return (1);
-	printf("%s\n", str);
+	cnt = ft_strlen(str);
+	write(fd, str, cnt);
+	write(fd, "\n", 1);
 	if (child)
 		exit (0);
 	return (0);

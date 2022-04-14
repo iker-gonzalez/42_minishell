@@ -12,12 +12,15 @@
 
 #include "minishell.h"
 
-int	ft_env(t_proc *proc, int cmd_count, int child)
+int	ft_env(t_proc *proc, int cmd_count, int child, int fd)
 {
-	int	i;
-	int	err;
+	size_t	cnt;
+	int		i;
+	int		err;
 
 	err = 0;
+	if (!fd)
+		fd = 1;
 	if (cmd_count > 1 && child && ++err)
 		err = print_error(": No such file or directory",
 				127, (*proc->lst)->args[1], 1);
@@ -28,7 +31,11 @@ int	ft_env(t_proc *proc, int cmd_count, int child)
 	{
 		i = -1;
 		while (proc->set->env[++i])
-			printf("%s\n", proc->set->env[i]);
+		{
+			cnt = ft_strlen(proc->set->env[i]);
+			write(fd, proc->set->env[i], cnt);
+			write(fd, "\n", 1);
+		}
 	}
 	if (child)
 		exit (err);

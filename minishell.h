@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 22:10:40 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:17:09 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,11 @@ void	ft_format_paths(t_set *set);
 void	ft_create_terminal(t_proc *proc);
 void	ft_cmd_exist(t_proc *proc, t_set *set);
 void	ft_execute_command(t_set *set, char *route, char **args);
+int		ft_char_match(char c, char match);
+char	*ft_get_abs_path(char *arg);
+char	*ft_set_abs_path(t_proc *proc, char *arg);
+void	ft_is_route(char *route, t_proc *proc, char *path, char *arg);
+void	ft_set_route(t_proc *proc, char *arg);
 
 ///// Read input ///////
 void	ft_read_input(t_proc *proc);
@@ -131,8 +136,8 @@ void	ft_quote_pref_open(t_proc *proc);
 void	ft_count_pipes(t_proc *proc);
 void	ft_count_redirections(t_proc *proc);
 int		ft_findchar(char *line, char c);
-void    ft_red_spc(t_proc *proc);
-void    ft_count_added_spaces(t_proc *proc, int i);
+void	ft_red_spc(t_proc *proc);
+void	ft_count_added_spaces(t_proc *proc, int i);
 
 ////// Expand input /////
 void	ft_expand_input(t_proc *proc);
@@ -161,6 +166,10 @@ void	ft_create_children(t_proc *proc);
 void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc);
 
 ///////// Pipes ///////////////
+void	ft_case_only_child(t_proc *proc);
+void	ft_case_first_of_many(t_proc *proc);
+void	ft_case_middle_guy(t_proc *proc);
+void	ft_case_last_of_many(t_proc *proc);
 void	ft_parental_wait(t_proc *proc);
 void	ft_close_pipe(int *pipe);
 void	ft_set_read(int *lpipe);
@@ -171,7 +180,7 @@ void	ft_swap_pipes(t_proc *proc);
 void	ft_redirection_parse(t_proc *proc);
 int		ft_contain_red(char *arg);
 void	ft_redirection_set_up(t_proc *proc);
-void 	ft_check_red_type(t_proc *proc);
+void	ft_check_red_type(t_proc *proc);
 void	ft_set_red_out(t_proc *proc, int i);
 void	ft_set_red_out_app(t_proc *proc, int i);
 void	ft_set_red_in(t_proc *proc, int i);
@@ -184,23 +193,22 @@ void	ft_fill_single(t_proc *proc, int i, int j, int *k);
 void	ft_fill_double(t_proc *proc, int i, int j, int *k);
 void	ft_check_if_red(t_proc *proc);
 
-
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
 int		ft_strncmp_len(const char *s1, const char *s2, size_t n);
 int		ft_count_argc(char **argv);
 
 //////// Builtins /////////
-int		ft_env(t_proc *proc, int cmd_count, int child);
+int		ft_env(t_proc *proc, int cmd_count, int child, int fd);
 int		ft_echo(char **argv, int fd, int child);
-int		ft_pwd(int child);
+int		ft_pwd(int child, int fd);
 int		ft_cd(char **argv, t_set *set, int child);
 int		ft_update_oldpwd(t_set *set);
 char	*ft_get_env_path(t_set *set, char *var, int var_len);
-int		export(t_set *set, char **argv, int child);
+int		export(t_set *set, char **argv, int child, int fd);
 char	**add_var(t_set *set, char *var);
 char	**edit_var(t_set *set, char *var);
-void	print_sorted_env(t_set *set);
+void	print_sorted_env(t_set *set, int fd);
 int		unset(t_set *set, char **argv, int child);
 void	ft_exit(char **argv, int child, t_set *set);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args);
@@ -217,7 +225,6 @@ int		print_error(char *str, int err, char *cmd, int child);
 int		ft_check_null_line(char *line_read);
 int		ft_check_pipe(char *line_read);
 
-
 ///////// Test //////////////
 void	ft_test(t_proc *proc);
 void	ft_print_line(char **line);
@@ -227,6 +234,11 @@ void	ft_print_val(t_proc *proc);
 void	ft_free(t_proc *proc);
 void	ft_free_double_char(char **str);
 void	ft_free_set(t_set *set);
-
+void	ft_free_process(t_proc *proc);
+void	ft_free_args(t_proc *proc);
+void	ft_free_node_routes(t_proc *proc);
+void	ft_freelist(t_node **lst);
+void	ft_free_double_int(t_proc *proc);
+void	ft_free_double_int2(t_proc *proc);
 
 #endif

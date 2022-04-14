@@ -52,16 +52,21 @@ void	sort_env(char **tab, int env_len)
 	}
 }
 
-void	print_sorted_env(t_set *set)
+void	print_sorted_env(t_set *set, int fd)
 {
 	int		i;
-
+	size_t	cnt;
+	
+	if (!fd)
+		fd = 1;
 	sort_env(set->env, ft_count_argc(set->env));
 	i = 0;
 	while (set->env[i])
 	{
-		printf("declare -x ");
-		printf("%s\n", set->env[i]);
+		cnt = ft_strlen(set->env[i]);
+		write(fd, "declare -x ", 11);
+		write(fd, set->env[i], cnt);
+		write(fd, "\n", 1);
 		i++;
 	}
 }

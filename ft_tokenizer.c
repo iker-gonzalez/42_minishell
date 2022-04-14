@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 13:26:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:08:36 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_count_col(t_proc *proc, int i, int *j, int *sp_len)
 	{
 		if (proc->process[i][*j] == 32)
 		{
-			if (proc->added_spc_arr_len < proc->added_spc_arr_length[i][0] 
+			if (proc->added_spc_arr_len < proc->added_spc_arr_length[i][0]
 			&& proc->added_spc_arr[i][proc->added_spc_arr_len] == *j)
 			{
 				proc->added_spc_arr_len++;
@@ -93,7 +93,7 @@ char	**ft_split_sp(t_proc *proc, int i, int *sp_len, int *k)
 	row = 0;
 	j = 0;
 	*k = 0;
-	proc->added_spc_arr_len	= 0;
+	proc->added_spc_arr_len = 0;
 	while (row < proc->row_len)
 	{
 		col = 0;

@@ -6,94 +6,12 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:21:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 19:56:33 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 13:24:31 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <sys/wait.h>
-#include <stdio.h>
-
-char	*ft_get_abs_path(char *arg)
-{
-	int		bars;
-	int		k;
-	int		i;
-	char	*path;
-
-	bars = ft_findchar(arg, '/');
-	i = 0;
-	k = 0;
-	while (arg[i] && k < bars)
-	{
-		if (arg[i] == '/')
-			k++;
-		i++;
-	}
-	path = malloc(sizeof(char) * i + 1);
-	i = 0;
-	k = 0;
-	while (arg[i] && k < bars)
-	{
-		if (arg[i] == '/')
-			k++;
-		path[i] = arg[i];
-		i++;
-	}
-	path[i] = '\0';
-	return (path);
-}
-
-char	*ft_set_abs_path(t_proc *proc, char *arg)
-{
-	char	*cmd;
-	char	*var;
-	char	*path;
-
-	cmd = NULL;
-	path = ft_get_abs_path(arg);
-	if (arg[0] == '/')
-	{
-		cmd = ft_strrchr(arg, '/');
-		var = ft_strjoin("PATH=", path);
-		free(path);
-		edit_var(proc->set, var);
-		free(var);
-	}
-	return (cmd);
-}
-
-void	ft_set_route(t_proc *proc, char *arg)
-{
-	int		i;
-	char	**routes;
-
-	if (!arg)
-		return ;
-	if (arg[0] == '/' || arg[0] == '.')
-		arg = ft_set_abs_path(proc, arg);
-	ft_format_paths(proc->set);
-	i = 0;
-	if (!proc->set->paths)
-		return ;
-	while (proc->set->paths[i])
-		i++;
-	routes = malloc (i * sizeof(char *));
-	i = 0;
-	while (proc->set->paths[i])
-	{
-		routes[i] = ft_strjoin(proc->set->paths[i], arg);
-		if (access(routes[i], F_OK) == 0)
-		{
-			(*proc->lst)->route = ft_strdup(routes[i]);
-			free (routes[i]);
-		}
-		else
-			free(routes[i]);
-		i++;
-	}
-	free (routes);
-}
 
 void	ft_parental_wait(t_proc *proc)
 {

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/13 22:11:35 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/14 16:36:23 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**add_var(t_set *set, char *var)
 	return (tmp);
 }
 
-int	export(t_set *set, char **argv, int child)
+int	export(t_set *set, char **argv, int child, int fd)
 {
 	int	i;
 	int	k;
@@ -92,7 +92,9 @@ int	export(t_set *set, char **argv, int child)
 	i = 0;
 	cmd_count = ft_count_argc(argv);
 	if (cmd_count == 1)
-		print_sorted_env(set);
+		print_sorted_env(set, fd);
+	else if (argv[1][0] == 62)
+		print_sorted_env(set, fd);
 	while (argv[++i])
 	{
 		k = -1;

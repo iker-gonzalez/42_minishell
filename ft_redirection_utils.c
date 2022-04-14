@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 20:14:03 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:48:37 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	ft_check_red_out_type(t_proc *proc, int i, int j)
 	}
 	else
 	{
-		if (proc->red_out_arr_len < proc->red_out_count && proc->red_out_arr[proc->red_out_arr_len++] == 1)
+		if (proc->red_out_arr_len < proc->red_out_count
+			&& proc->red_out_arr[proc->red_out_arr_len++] == 1)
 		{
 			ft_set_red_out(proc, i);
 			(*proc->lst)->has_red = 1;
@@ -43,14 +44,16 @@ void	ft_check_red_out_type(t_proc *proc, int i, int j)
 void	ft_check_red_in_type(t_proc *proc, int i, int j)
 {
 	if ((*proc->lst)->args[i][j + 1] == 60
-		&& proc->red_in_app_arr_len < proc->red_in_app_count && proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
+		&& proc->red_in_app_arr_len < proc->red_in_app_count
+		&& proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
 	{
 		ft_set_red_in_del(proc, i);
 		(*proc->lst)->has_red = 1;
 	}
 	else
 	{
-		if (proc->red_in_arr_len < proc->red_in_count && proc->red_in_arr[proc->red_in_arr_len++] == 1)
+		if (proc->red_in_arr_len < proc->red_in_count
+			&& proc->red_in_arr[proc->red_in_arr_len++] == 1)
 		{
 			ft_set_red_in(proc, i);
 			(*proc->lst)->has_red = 1;
@@ -81,4 +84,3 @@ void	ft_check_if_red(t_proc *proc)
 	}
 	printf("has red: %d\n", (*proc->lst)->has_red);
 }
-
