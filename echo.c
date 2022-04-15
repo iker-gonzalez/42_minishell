@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:56 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 16:32:31 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:25:22 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_write_arg(int fd, char **argv)
 
 	i = 1;
 	if (ft_strncmp_len(argv[i], "-n", 2) == 0)
+		i++;
+	while (ft_strncmp_len(argv[i], "-n", 2) == 0)
 		i++;
 	while (argv[i])
 	{
