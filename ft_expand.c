@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 17:28:52 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 21:07:18 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void	ft_expand_input(t_proc *proc)
 	proc->space_arr_len = 0;
 	proc->lock = 0;
 	ft_expand_line_read(proc);
+	proc->single_quote = 0;
+	proc->double_quote = 0;
 	proc->lock = 1;
 	ft_expand_line_read(proc);
 	proc->line_exp_len = 0;

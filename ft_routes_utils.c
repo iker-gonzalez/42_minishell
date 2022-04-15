@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_routes_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 13:11:23 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/14 14:04:29 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/15 21:54:17 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 int	ft_char_match(char c, char match)
 {
 	int	ret;
@@ -46,24 +46,26 @@ char	*ft_get_abs_path(char *arg)
 	path[i] = '\0';
 	return (path);
 }
-
-char	*ft_set_abs_path(t_proc *proc, char *arg)
+*/
+void	ft_set_abs_path(t_proc *proc, char *arg)
 {
-	char	*cmd;
-	char	*var;
-	char	*path;
+	//char	*cmd;
+	//char	*var;
+	//char	*path;
 
-	cmd = NULL;
-	path = ft_get_abs_path(arg);
+	//cmd = NULL;
+	//printf("ARGSS: %s\n", (*proc->lst)->args);
+	//path = ft_get_abs_path(arg);
 	if (arg[0] == '/')
-	{
-		cmd = ft_strrchr(arg, '/');
-		var = ft_strjoin("PATH=", path);
-		free(path);
-		edit_var(proc->set, var);
-		free(var);
-	}
-	return (cmd);
+		(*proc->lst)->route = arg;
+	//	cmd = ft_strrchr(arg, '/');
+	//	var = ft_strjoin("PATH=", path);
+	//	free(path);
+	//	()
+	//	edit_var(proc->set, var);
+	//	free(var);
+	//}
+	//return (cmd);
 }
 
 void	ft_is_route(char *route, t_proc *proc, char *path, char *arg)
@@ -85,8 +87,8 @@ void	ft_set_route(t_proc *proc, char *arg)
 
 	if (!arg)
 		return ;
-	if (arg[0] == '/' || arg[0] == '.')
-		arg = ft_set_abs_path(proc, arg);
+	if (arg[0] == '/')
+		(*proc->lst)->route = arg;
 	ft_format_paths(proc->set);
 	i = 0;
 	if (!proc->set->paths)

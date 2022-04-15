@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 20:54:36 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 21:52:46 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_cmd_exist(t_proc *proc, t_set *set);
 void	ft_execute_command(t_set *set, char *route, char **args);
 int		ft_char_match(char c, char match);
 char	*ft_get_abs_path(char *arg);
-char	*ft_set_abs_path(t_proc *proc, char *arg);
+void	ft_set_abs_path(t_proc *proc, char *arg);
 void	ft_is_route(char *route, t_proc *proc, char *path, char *arg);
 void	ft_set_route(t_proc *proc, char *arg);
 
