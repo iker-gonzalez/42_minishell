@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 13:23:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:50:16 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ void	ft_free_path(t_set *set)
 	while (set->paths[++i])
 		free(set->paths[i]);
 	free(set->paths);
+}
+
+void	ft_free_double_int(t_proc *proc, int **str)
+{
+	int i;
+	
+	i = -1;
+	while (++i < proc->process_count)
+	{
+		free(str[i]);
+	}
+	free(str);
 }
 
 void	ft_free_proc(t_proc *proc)
@@ -42,6 +54,12 @@ void	ft_free_proc(t_proc *proc)
 		free(proc->red_out_arr);
 	if (proc->red_out_del_arr)
 		free(proc->red_out_del_arr);
+	if (proc->added_spc_arr_length)
+		ft_free_double_int(proc, proc->added_spc_arr_length);
+	if (proc->added_spc_arr)
+		ft_free_double_int(proc, proc->added_spc_arr);
+	if (proc->process)
+		ft_free_double_char(proc->process);
 }
 
 void	ft_free_set(t_set *set)
@@ -56,9 +74,8 @@ void	ft_free(t_proc *proc)
 {
 	ft_free_proc(proc);
 	ft_lstiter(proc, ft_free_args);
+	ft_lstiter(proc, ft_free_args_red);
 	ft_lstiter(proc, ft_free_node_routes);
-	if (proc->lst)
-		ft_freelist(proc->lst);
-	ft_free_double_int(proc);
-	ft_free_double_int2(proc);
+	ft_freelist((*proc->lst));
+	free(proc->lst);
 }

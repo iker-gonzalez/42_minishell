@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 17:14:17 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:02:14 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ void	ft_swap_pipes(t_proc *proc);
 
 /////// Redirections ///////////
 void	ft_redirection_parse(t_proc *proc);
-int		ft_contain_red(char *arg);
 void	ft_redirection_set_up(t_proc *proc);
 void	ft_check_red_type(t_proc *proc);
 void	ft_set_red_out(t_proc *proc, int i);
@@ -237,9 +236,9 @@ void	ft_free_double_char(char **str);
 void	ft_free_set(t_set *set);
 void	ft_free_process(t_proc *proc);
 void	ft_free_args(t_proc *proc);
+void	ft_free_args_red(t_proc *proc);
 void	ft_free_node_routes(t_proc *proc);
-void	ft_freelist(t_node **lst);
-void	ft_free_double_int(t_proc *proc);
-void	ft_free_double_int2(t_proc *proc);
+void	ft_free_double_int(t_proc *proc, int **str);
+void	ft_freelist(t_node *lst);
 
 #endif

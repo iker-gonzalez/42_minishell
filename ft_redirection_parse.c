@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 13:53:33 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:37:54 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_redirection_parse_set_up(t_proc *proc, int i)
 	quote_count = ft_findchar(proc->process[i], 126);
 	proc->aux = malloc(sizeof(char) * (ft_strlen(proc->process[i])
 				+ proc->added_spc - quote_count + 1));
-	ft_memset(proc->aux, 0, ft_strlen(proc->process[i]) + proc->added_spc + 1);
+	//ft_memset(proc->aux, 0, ft_strlen(proc->process[i]) + proc->added_spc + 1);
 }
 
 void	ft_check_red_condition2(t_proc *proc, int i, int *j, int *k)

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:03:22 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 12:22:58 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:28:52 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	ft_expand_env(t_proc *proc, int *i)
 		*i += 1;
 	}
 	str[k] = '\0';
-	printf("STR: %s\n", str);
 	env = ft_get_env_path(proc->set, str, ft_strlen(str));
-	printf("ENV: %s\n", env);
 	j = 0;
 	while (proc->lock && env && env[j])
 		proc->line_expanded[proc->line_exp_len++] = env[j++];

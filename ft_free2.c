@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:09:57 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/14 13:01:02 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:52:37 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_free_double_int2(t_proc *proc)
-{
-	int	i;
-
-	i = -1;
-	while (++i < proc->process_count)
-	{
-		if (proc->added_spc_arr_length[i])
-			free(proc->added_spc_arr_length[i]);
-	}
-	free(proc->added_spc_arr_length);
-}
-
-void	ft_free_double_int(t_proc *proc)
-{
-	int	i;
-
-	i = -1;
-	while (++i < proc->process_count)
-	{
-		if (proc->added_spc_arr[i])
-			free(proc->added_spc_arr[i]);
-	}
-	free(proc->added_spc_arr);
-}
 
 void	ft_free_process(t_proc *proc)
 {
@@ -69,20 +43,20 @@ void	ft_free_double_char(char **str)
 		free(str);
 }
 
-void	ft_freelist(t_node **lst)
+void	ft_freelist(t_node *lst)
 {
 	t_node	*temp;
 
-	if (!*lst)
+	if (!lst)
 	{
 		return ;
 	}
-	while (*lst)
+	while (lst)
 	{
-		temp = *lst;
-		*lst = (*lst)->next;
+		temp = lst;
+		lst = lst->next;
 		free (temp);
 	}
-	*lst = NULL;
+	lst = NULL;
 	free (lst);
 }
