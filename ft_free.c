@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:45:53 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 17:50:16 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:16:49 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_free_path(t_set *set)
 
 void	ft_free_double_int(t_proc *proc, int **str)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	while (++i < proc->process_count)
 	{
