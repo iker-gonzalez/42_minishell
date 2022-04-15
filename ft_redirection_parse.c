@@ -6,17 +6,11 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 12:43:31 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:46:17 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_copy_on_aux(t_proc *proc, int i, int j, int k)
-{
-	if (proc->process[i][j] != 126)
-		proc->aux[k] = proc->process[i][j];
-}
 
 void	ft_redirection_parse_set_up(t_proc *proc, int i)
 {
