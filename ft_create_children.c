@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/15 20:30:26 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:51:09 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args)
 	if ((ft_strncmp_len(args[0], "env", 3)) == 0)
 		ft_env(proc, ft_count_argc(args), child, node->outfd);
 	else if ((ft_strncmp_len(args[0], "pwd", 3)) == 0)
-		ft_pwd(child, node->outfd);
+		ft_pwd(proc, child, node->outfd);
 	else if ((ft_strncmp_len(args[0], "cd", 2)) == 0)
 		ft_cd(args, proc->set, child);
 	else if ((ft_strncmp_len(args[0], "export", 6)) == 0)
@@ -89,5 +89,5 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args)
 	else if ((ft_strncmp_len(args[0], "exit", 4)) == 0)
 		ft_exit(args, child, proc->set, proc);
 	else if ((ft_strncmp_len(args[0], "echo", 4)) == 0)
-		ft_echo(args, (*proc->lst)->outfd, child);
+		ft_echo(proc, args, (*proc->lst)->outfd, child);
 }

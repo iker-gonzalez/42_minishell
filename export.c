@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:45:08 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 16:34:07 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:54:20 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	export(t_proc *proc, char **argv, int child, int fd)
 
 	i = 0;
 	if ((ft_count_argc(argv)) == 1)
-		print_sorted_env(proc->set, fd);
+		print_sorted_env(proc, proc->set, fd);
 	while (argv[++i])
 	{
 		k = -1;

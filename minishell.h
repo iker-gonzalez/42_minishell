@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 20:29:21 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:54:36 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,15 +200,15 @@ int		ft_count_argc(char **argv);
 
 //////// Builtins /////////
 int		ft_env(t_proc *proc, int cmd_count, int child, int fd);
-int		ft_echo(char **argv, int fd, int child);
-int		ft_pwd(int child, int fd);
+int		ft_echo(t_proc *proc, char **argv, int fd, int child);
+int		ft_pwd(t_proc *proc, int child, int fd);
 int		ft_cd(char **argv, t_set *set, int child);
 int		ft_update_oldpwd(t_set *set);
 char	*ft_get_env_path(t_set *set, char *var, int var_len);
 int		export(t_proc *proc, char **argv, int child, int fd);
 char	**add_var(t_set *set, char *var);
 char	**edit_var(t_set *set, char *var);
-void	print_sorted_env(t_set *set, int fd);
+void	print_sorted_env(t_proc *proc, t_set *set, int fd);
 int		unset(t_set *set, char **argv, int child);
 void	ft_exit(char **argv, int child, t_set *set, t_proc *proc);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args);

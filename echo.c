@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:56 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 20:16:36 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:53:41 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ void	ft_write_arg(int fd, char **argv)
 	}
 }
 
-int	ft_echo(char **argv, int fd, int child)
+int	ft_echo(t_proc *proc, char **argv, int fd, int child)
 {
-	fd = 1;
+	if (proc->process_count != 1)
+		fd = 1;
 	if (!argv[1])
 	{
 		write(fd, "\n", 1);
