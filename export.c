@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:45:08 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 13:46:15 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:34:07 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ char	**edit_var(t_set *set, char *var)
 		{
 			free(set->env[i]);
 			set->env[i] = ft_strdup(var);
-			//free (var);
 		}
 	}
 	return (set->env);
@@ -79,36 +78,32 @@ char	**add_var(t_set *set, char *var)
 			tmp[i] = ft_strdup(set->env[i]);
 	tmp[i] = ft_strdup(var);
 	tmp[i + 1] = NULL;
-	//free(var);
 	ft_free_double_char(set->env);
 	return (tmp);
 }
 
-int	export(t_set *set, char **argv, int child/*, int fd*/)
+int	export(t_proc *proc, char **argv, int child, int fd)
 {
 	int	i;
 	int	k;
-	int	edit;
-	int	cmd_count;
 
 	i = 0;
-	cmd_count = ft_count_argc(argv);
-	if (cmd_count == 1)
-		print_sorted_env(set);
+	if ((ft_count_argc(argv)) == 1)
+		print_sorted_env(proc->set, fd);
 	while (argv[++i])
 	{
 		k = -1;
 		if (!ft_export_errors(argv[i]))
 		{
-			edit = 0;
-			while (set->env[++k])
+			proc->ex = 0;
+			while (proc->set->env[++k])
 			{
-				if (((ft_strncmp(set->env[k], argv[i],
-								ft_varlen(argv[i]))) == 0) && ++edit)
-					set->env = edit_var(set, argv[i]);
+				if (((ft_strncmp(proc->set->env[k], argv[i],
+								ft_varlen(argv[i]))) == 0) && ++proc->ex)
+					proc->set->env = edit_var(proc->set, argv[i]);
 			}
-			if (!edit)
-				set->env = add_var(set, argv[i]);
+			if (!proc->ex)
+				proc->set->env = add_var(proc->set, argv[i]);
 		}
 	}
 	if (child)

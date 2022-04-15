@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:10:57 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 12:11:46 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:36:21 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int	ft_expand_dollar(t_proc *proc, int *i)
 			*i += 2;
 			return (1);
 		}
-		else if (proc->line_read[*i] == '$' && (ft_isalpha(proc->line_read[*i + 1])
-			|| proc->line_read[*i + 1] == 95))
+		else if (proc->line_read[*i] == '$'
+			&& (ft_isalpha(proc->line_read[*i + 1])
+				|| proc->line_read[*i + 1] == 95))
 		{
 			*i += 1;
 			ft_expand_env(proc, i);

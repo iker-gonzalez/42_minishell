@@ -20,7 +20,6 @@ SRC =   main.c \
         pwd.c \
         ft_proceniser.c \
         ft_tokenizer.c \
-        ft_print.c \
         unset.c \
         signals.c \
         exit.c \

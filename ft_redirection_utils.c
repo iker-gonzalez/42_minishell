@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/15 13:24:38 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:42:12 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_check_red_out_type(t_proc *proc, int i, int *j)
 			(*proc->lst)->has_red = 1;
 		}
 	}
-
 }
 
 void	ft_check_red_in_type(t_proc *proc, int i, int *j)
@@ -89,5 +88,4 @@ void	ft_check_if_red(t_proc *proc)
 		}
 		i++;
 	}
-	//printf("has red: %d\n", (*proc->lst)->has_red);
 }

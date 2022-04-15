@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 08:12:10 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 13:27:41 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:43:12 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ void	ft_check_red_out_del(t_proc *proc, int i, int *j,
 		}
 		else
 		{
-			if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] == 126)
+			if (proc->process[i][*j - 1] != 32
+				|| proc->process[i][*j - 1] == 126)
 				proc->added_spc++;
-			if (proc->process[i][*j + 2] != 32 || proc->process[i][*j - 1] == 126)
+			if (proc->process[i][*j + 2] != 32
+				|| proc->process[i][*j - 1] == 126)
 				proc->added_spc++;
 		}
 	}
@@ -95,9 +97,11 @@ void	ft_check_red_in_app(t_proc *proc, int i, int *j,
 		}
 		else
 		{
-			if (proc->process[i][*j - 1] != 32 || proc->process[i][*j - 1] == 126)
+			if (proc->process[i][*j - 1] != 32
+				|| proc->process[i][*j - 1] == 126)
 				proc->added_spc++;
-			if (proc->process[i][*j + 2] != 32 || proc->process[i][*j + 2] == 126)
+			if (proc->process[i][*j + 2] != 32
+				|| proc->process[i][*j + 2] == 126)
 				proc->added_spc++;
 		}
 	}

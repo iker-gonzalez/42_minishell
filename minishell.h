@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 14:21:44 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:14:17 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,49 +48,38 @@ typedef struct s_set
 typedef struct s_proc
 {
 	char	**process;
-	//char	**paths;
-	//char	**env;
 	char	*prompt;
 	char	*aux;
 	int		**red_spc;
 	int		process_count;
 	int		token_count;
-	//////// line /////////
 	char	*line_read;
 	char	*line_expanded;
 	int		line_exp_len;
-	////// quotes ///////////
 	int		single_quote;
 	int		double_quote;
-	////// spaces /////////
 	int		*space_arr;
 	int		*exp_sp_arr;
 	int		exp_sp_arr_len;
 	int		space_arr_len;
 	int		space_count;
 	int		exp_space_count;
-	//////// pipes ////////
 	int		*pipe_arr;
 	int		pipe_arr_len;
 	int		lpipe[2];
 	int		rpipe[2];
-	/////// red in ////////
 	int		*red_in_arr;
 	int		red_in_arr_len;
 	int		red_in_count;
-	/////// red in app /////
 	int		*red_in_app_arr;
 	int		red_in_app_arr_len;
 	int		red_in_app_count;
-	////// red out /////////
 	int		*red_out_arr;
 	int		red_out_arr_len;
 	int		red_out_count;
-	////// red out del ///////
 	int		*red_out_del_arr;
 	int		red_out_del_arr_len;
 	int		red_out_del_count;
-	////// other ///////////
 	int		added_spc;
 	int		**added_spc_arr;
 	int		**added_spc_arr_length;
@@ -101,6 +90,10 @@ typedef struct s_proc
 	int		row_len;
 	int		col_len;
 	int		old_pwd;
+	int		ex;
+	int		count_y;
+	int		lock_col;
+	int		row_tok;
 	t_node	*head;
 	t_node	**lst;
 	t_set	*set;
@@ -200,7 +193,6 @@ void	ft_no_space_bfr_aftr(t_proc *proc, int i, int j, int *k);
 void	ft_no_space_after_single(t_proc *proc, int i, int j, int *k);
 void	ft_no_space_bfr_aftr_single(t_proc *proc, int i, int j, int *k);
 
-
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
 int		ft_strncmp_len(const char *s1, const char *s2, size_t n);
@@ -213,10 +205,10 @@ int		ft_pwd(int child, int fd);
 int		ft_cd(char **argv, t_set *set, int child);
 int		ft_update_oldpwd(t_set *set);
 char	*ft_get_env_path(t_set *set, char *var, int var_len);
-int		export(t_set *set, char **argv, int child/*, int fd*/);
+int		export(t_proc *proc, char **argv, int child, int fd);
 char	**add_var(t_set *set, char *var);
 char	**edit_var(t_set *set, char *var);
-void	print_sorted_env(t_set *set/*, int fd*/);
+void	print_sorted_env(t_set *set, int fd);
 int		unset(t_set *set, char **argv, int child);
 void	ft_exit(char **argv, int child, t_set *set, t_proc *proc);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args);

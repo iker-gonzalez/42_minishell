@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:48 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 19:24:18 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:35:47 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_node	*ft_new_node(char **args)
 	while (args[++i])
 		node->args[i] = ft_strdup(args[i]);
 	node->args[i] = NULL;
-	return(node);
+	return (node);
 }
 
 void	ft_add_node_back(t_proc *proc, t_node **lst, t_node *new)

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 20:14:49 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 13:47:41 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:21:09 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,21 @@ void	sort_env(char **tab, int env_len)
 	}
 }
 
-void	print_sorted_env(t_set *set/*, int fd*/)
+void	print_sorted_env(t_set *set, int fd)
 {
 	int		i;
 	size_t	cnt;
 
-	//if (!fd)
-	//	fd = 1;
+	if (!fd)
+		fd = 1;
 	sort_env(set->env, ft_count_argc(set->env));
 	i = 0;
 	while (set->env[i])
 	{
 		cnt = ft_strlen(set->env[i]);
-	//	write(fd, "declare -x ", 11);
-	//	write(fd, set->env[i], cnt);
-	//	write(fd, "\n", 1);
+		write(fd, "declare -x ", 11);
+		write(fd, set->env[i], cnt);
+		write(fd, "\n", 1);
 		i++;
 	}
 }

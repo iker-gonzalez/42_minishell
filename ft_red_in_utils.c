@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:37:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/15 13:23:36 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:41:48 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ void	ft_set_red_in_del(t_proc *proc, int i)
 	if ((*proc->lst)->args[i][0] == 60 && (*proc->lst)->args[i][1] == 60)
 		index = 1;
 	if ((*proc->lst)->infd)
-		 close((*proc->lst)->infd);
+		close((*proc->lst)->infd);
 	(*proc->lst)->infd = open("test", O_WRONLY | O_TRUNC | O_CREAT, 0777);
 	(*proc->lst)->heredoc_line = malloc(1);
-	while (ft_strncmp_len((*proc->lst)->heredoc_line, (*proc->lst)->args[i + index],
+	while (ft_strncmp_len((*proc->lst)->heredoc_line,
+			(*proc->lst)->args[i + index],
 			ft_strlen((*proc->lst)->args[i + index])) != 0)
 	{
 		(*proc->lst)->heredoc_line = readline("> ");

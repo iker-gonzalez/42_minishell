@@ -6,19 +6,39 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 13:25:25 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:20:08 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void ft_set_head (t_proc *proc)
+{
+		int i;
+		int k;
+
+	proc->head = (*proc->lst);
+	while ((*proc->lst))
+	{
+		i = 0;
+		while ((*proc->lst)->args[i])
+		{
+			k = 0;
+			while ((*proc->lst)->args[i][k])
+				k++;
+			i++;
+		}
+		(*proc->lst) = (*proc->lst)->next;
+	}
+	(*proc->lst) = proc->head;
+}
+
 int	ft_count_row(t_proc *proc, int *sp_len, int i)
 {
-	int	count_y;
 	int	j;
 
 	j = -1;
-	count_y = 1;
+	proc->count_y = 1;
 	while (proc->process[i][++j])
 	{
 		if (proc->process[i][j] == 32)
@@ -27,28 +47,25 @@ int	ft_count_row(t_proc *proc, int *sp_len, int i)
 			&& proc->added_spc_arr[i][proc->added_spc_arr_len] == j)
 			{
 				proc->added_spc_arr_len++;
-				count_y++;
+				proc->count_y++;
 			}
 			else if (*sp_len < proc->exp_space_count
 				&& proc->exp_sp_arr[*sp_len] == 2)
 			{
-				count_y++;
+				proc->count_y++;
 				*sp_len += 1;
 			}
 			else
 				*sp_len += 1;
 		}
 	}
-	return (count_y);
+	return (proc->count_y);
 }
 
-int	ft_count_col(t_proc *proc, int i, int *j, int *sp_len)
+void	ft_count_col(t_proc *proc, int i, int *j, int *sp_len)
 {
-	int	col;
-	int	lock;
-
-	col = 0;
-	lock = 0;
+	proc->col_len = 0;
+	proc->lock_col = 0;
 	while (proc->process[i][*j])
 	{
 		if (proc->process[i][*j] == 32)
@@ -57,28 +74,26 @@ int	ft_count_col(t_proc *proc, int i, int *j, int *sp_len)
 			&& proc->added_spc_arr[i][proc->added_spc_arr_len] == *j)
 			{
 				proc->added_spc_arr_len++;
-				lock = 1;
+				proc->lock_col = 1;
 			}
 			else if (proc->exp_sp_arr[*sp_len] == 2)
 			{
 				*sp_len += 1;
-				lock = 1;
+				proc->lock_col = 1;
 			}
 			else
 				*sp_len += 1;
-			if (lock == 1 && (*j)++)
+			if (proc->lock_col == 1 && (*j)++)
 				break ;
 		}
-		col++;
+		proc->col_len++;
 		*j += 1;
 	}
-	return (col);
 }
 
 char	**ft_split_sp(t_proc *proc, int i, int *sp_len, int *k)
 {
 	char	**args;
-	int		row;
 	int		j;
 	int		col;
 	int		tmp;
@@ -87,21 +102,21 @@ char	**ft_split_sp(t_proc *proc, int i, int *sp_len, int *k)
 	proc->row_len = ft_count_row(proc, sp_len, i);
 	*sp_len = tmp;
 	args = (char **)malloc(sizeof(char *) * (proc->row_len + 1));
-	row = 0;
+	proc->row_tok = 0;
 	j = 0;
 	*k = 0;
 	proc->added_spc_arr_len = 0;
-	while (row < proc->row_len)
+	while (proc->row_tok < proc->row_len)
 	{
 		col = 0;
-		proc->col_len = ft_count_col(proc, i, &j, sp_len);
-		args[row] = malloc(sizeof(char) * proc->col_len + 1);
+		ft_count_col(proc, i, &j, sp_len);
+		args[proc->row_tok] = malloc(sizeof(char) * proc->col_len + 1);
 		while (col < proc->col_len)
-			args[row][col++] = proc->process[i][(*k)++];
+			args[proc->row_tok][col++] = proc->process[i][(*k)++];
 		*k += 1;
-		args[row++][col] = '\0';
+		args[proc->row_tok++][col] = '\0';
 	}
-	args[row] = NULL;
+	args[proc->row_tok] = NULL;
 	return (args);
 }
 
@@ -130,5 +145,5 @@ void	ft_tokenizer(t_proc *proc)
 		ft_free_double_char(args);
 		i++;
 	}
-	print_args(proc);
+	ft_set_head(proc);
 }

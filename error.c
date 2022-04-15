@@ -6,40 +6,13 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:41:05 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 14:02:24 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:19:46 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <errno.h>
-/*
-int	ft_check_unclosed_quotes(char *line_read, char c)
-{
-	int	i;
-	int	ret;
 
-	i = 0;
-	ret = 0;
-	while (line_read[i])
-	{
-		if (line_read[i] == c)
-		{
-			if (!ret)
-				ret = 1;
-			else
-				ret = 0;
-		}
-		i++;
-	}
-	if (ret)
-	{
-		ft_putstr_fd("papa$hell:", 2);
-		ft_putstr_fd(" Syntax error, unclosed quotes\n", 2);
-		return (1);
-	}
-	return (0);
-}
-*/
 int	ft_check_empty_line(char *line_read)
 {
 	char	*line;
@@ -90,10 +63,6 @@ int	ft_check_errors(t_proc *proc)
 		return (258);
 	if (ft_check_pipe(proc->line_read))
 		return (258);
-	//if (ft_check_unclosed_quotes(proc->line_read, 34))
-	//	return (1);
-	//if (ft_check_unclosed_quotes(proc->line_read, 39))
-	//	return (1);
 	if (ft_check_redirections(proc->line_read, 60))
 		return (258);
 	if (ft_check_redirections(proc->line_read, 62))

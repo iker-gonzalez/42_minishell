@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/15 13:47:21 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:32:47 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args)
 	else if ((ft_strncmp_len(args[0], "cd", 2)) == 0)
 		ft_cd(args, proc->set, child);
 	else if ((ft_strncmp_len(args[0], "export", 6)) == 0)
-		export(proc->set, args, child/*, node->outfd*/);
+		export(proc, args, child, node->outfd);
 	else if ((ft_strncmp_len(args[0], "unset", 5)) == 0)
 		unset(proc->set, args, child);
 	else if ((ft_strncmp_len(args[0], "exit", 4)) == 0)

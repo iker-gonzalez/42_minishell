@@ -6,34 +6,32 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:57:14 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 12:31:12 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:17:26 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <limits.h>
 
-char	*ft_get_env_path(t_set *set, char *var, int var_len)
+char	*ft_get_env_path(t_set *set, char *var, int v_l)
 {
 	int		i;
 	char	*path;
-	int		path_len;
 	int		k;
 	int		j;
 
 	i = -1;
 	while (set->env[++i])
 	{
-		if (ft_strncmp(set->env[i], var, var_len) == 0
-			&& set->env[i][var_len] == '=')
+		if (ft_strncmp(set->env[i], var, v_l) == 0
+			&& set->env[i][v_l] == '=')
 		{
-			path_len = ft_strlen(set->env[i]) - var_len;
-			path = malloc(sizeof(char) * path_len + 1);
+			path = malloc(sizeof(char) * (ft_strlen(set->env[i])) - v_l + 1);
 			j = 0;
 			k = 0;
 			while (set->env[i][j++])
 			{
-				if (j > var_len)
+				if (j > v_l)
 					path[k++] = set->env[i][j];
 			}
 			path[k] = '\0';

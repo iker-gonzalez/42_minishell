@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:40:25 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 19:38:37 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:39:26 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	ft_mem_proceniser(t_proc *proc)
 	int	j;
 	int	i;
 
-	proc->pipe_arr_len = 0;
-	proc->space_arr_len = 0;
 	proc->process = (char **)malloc(sizeof(char *) * (proc->process_count + 1));
 	row = 0;
 	i = 0;
@@ -63,8 +61,6 @@ void	ft_fill_proceniser(t_proc *proc)
 	int	col;
 	int	i;
 
-	proc->pipe_arr_len = 0;
-	proc->space_arr_len = 0;
 	row = 0;
 	i = 0;
 	while (row < proc->process_count)
@@ -90,6 +86,10 @@ void	ft_fill_proceniser(t_proc *proc)
 void	ft_proceniser(t_proc *proc)
 {
 	ft_process_count(proc);
+	proc->pipe_arr_len = 0;
+	proc->space_arr_len = 0;
 	ft_mem_proceniser(proc);
+	proc->pipe_arr_len = 0;
+	proc->space_arr_len = 0;
 	ft_fill_proceniser(proc);
 }
