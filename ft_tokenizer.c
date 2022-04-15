@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 19:25:15 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 21:11:25 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,8 @@ int	ft_count_col(t_proc *proc, int i, int *j, int *sp_len)
 			}
 			else
 				*sp_len += 1;
-			if (lock == 1)
-			{
-				*j += 1;
+			if (lock == 1 && (*j)++)
 				break ;
-			}
 		}
 		col++;
 		*j += 1;

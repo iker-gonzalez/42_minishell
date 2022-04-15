@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 19:40:37 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 11:02:05 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,8 @@ int		ft_red_count(char **args);
 void	ft_fill_single(t_proc *proc, int i, int j, int *k);
 void	ft_fill_double(t_proc *proc, int i, int j, int *k);
 void	ft_check_if_red(t_proc *proc);
+void	ft_copy_on_aux(t_proc *proc, int i, int j, int k);
+
 
 
 //////// Utils ///////////
