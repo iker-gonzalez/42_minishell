@@ -6,16 +6,16 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:07:29 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 17:20:08 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:24:13 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_set_head (t_proc *proc)
+void	ft_set_head(t_proc *proc)
 {
-		int i;
-		int k;
+	int	i;
+	int	k;
 
 	proc->head = (*proc->lst);
 	while ((*proc->lst))
