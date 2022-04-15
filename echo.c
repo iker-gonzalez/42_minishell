@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:56 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 18:25:22 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:16:36 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void	ft_write_arg(int fd, char **argv)
 
 int	ft_echo(char **argv, int fd, int child)
 {
-	if (!fd)
-		fd = 1;
+	fd = 1;
 	if (!argv[1])
 	{
 		write(fd, "\n", 1);

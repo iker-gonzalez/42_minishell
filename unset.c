@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 08:33:03 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 19:00:10 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:39:47 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,12 @@ char	**rmv_var(t_set *set, char *var)
 int	unset(t_set *set, char **argv, int child)
 {
 	int	i;
-	int k;
+	int	k;
 
 	i = 1;
 	k = 0;
 	while (argv[i])
 	{
-		
 		if (argv[i][0] == '\0')
 			ft_putendl_fd("papa$hell: unset: not a valid identifier", 2);
 		else if (!ft_unset_errors(argv[i]))

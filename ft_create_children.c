@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/15 16:32:47 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:30:26 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_exec_system(t_node *node, t_proc *proc)
 	ft_set_route(proc, (*proc->lst)->args[index]);
 	if (proc->infile)
 		exit(proc->infile);
-	if (node->route == NULL)
+	if (node->route == NULL && !proc->no_cmd)
 		print_error(": command not found", 127, node->args[index], 1);
 	if (node->has_red)
 		execve(node->route, node->args_red, proc->set->env);
@@ -89,5 +89,5 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args)
 	else if ((ft_strncmp_len(args[0], "exit", 4)) == 0)
 		ft_exit(args, child, proc->set, proc);
 	else if ((ft_strncmp_len(args[0], "echo", 4)) == 0)
-		ft_echo(args, node->outfd, child);
+		ft_echo(args, (*proc->lst)->outfd, child);
 }

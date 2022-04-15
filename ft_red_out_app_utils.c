@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_red_out_app_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 22:01:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/14 14:33:47 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/15 19:24:00 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

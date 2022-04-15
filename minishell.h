@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 18:02:14 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:29:21 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_proc
 	int		count_y;
 	int		lock_col;
 	int		row_tok;
+	int		no_cmd;
 	t_node	*head;
 	t_node	**lst;
 	t_set	*set;

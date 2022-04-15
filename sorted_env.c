@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 20:14:49 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 16:21:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:18:07 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void	print_sorted_env(t_set *set, int fd)
 	int		i;
 	size_t	cnt;
 
-	if (!fd)
-		fd = 1;
+	fd = 1;
 	sort_env(set->env, ft_count_argc(set->env));
 	i = 0;
 	while (set->env[i])

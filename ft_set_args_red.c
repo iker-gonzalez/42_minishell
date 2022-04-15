@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:39:34 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/15 18:09:30 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:30:39 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,6 @@ void	ft_set_args_red(t_proc *proc)
 		i++;
 	}
 	(*proc->lst)->args_red[k] = NULL;
+	if (!(*proc->lst)->args_red[k])
+		proc->no_cmd = 1;
 }
