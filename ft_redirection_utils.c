@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:54:47 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/14 14:48:37 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:19:51 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ void	ft_redirection_set_up(t_proc *proc)
 	proc->red_in_app_arr_len = 0;
 }
 
-void	ft_check_red_out_type(t_proc *proc, int i, int j)
+void	ft_check_red_out_type(t_proc *proc, int i, int *j)
 {
-	if ((*proc->lst)->args[i][j + 1] == 62
+	if ((*proc->lst)->args[i][*j + 1] == 62
 		&& proc->red_out_del_arr_len < proc->red_out_del_count
 		&& proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
 	{
 		ft_set_red_out_app(proc, i);
 		(*proc->lst)->has_red = 1;
+		(*j)++;
 	}
 	else
 	{
@@ -38,17 +39,18 @@ void	ft_check_red_out_type(t_proc *proc, int i, int j)
 			(*proc->lst)->has_red = 1;
 		}
 	}
-	j++;
+
 }
 
-void	ft_check_red_in_type(t_proc *proc, int i, int j)
+void	ft_check_red_in_type(t_proc *proc, int i, int *j)
 {
-	if ((*proc->lst)->args[i][j + 1] == 60
+	if ((*proc->lst)->args[i][*j + 1] == 60
 		&& proc->red_in_app_arr_len < proc->red_in_app_count
 		&& proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
 	{
 		ft_set_red_in_del(proc, i);
 		(*proc->lst)->has_red = 1;
+		(*j)++;
 	}
 	else
 	{
@@ -59,7 +61,6 @@ void	ft_check_red_in_type(t_proc *proc, int i, int j)
 			(*proc->lst)->has_red = 1;
 		}
 	}
-	j++;
 }
 
 void	ft_check_if_red(t_proc *proc)
@@ -75,9 +76,9 @@ void	ft_check_if_red(t_proc *proc)
 		while ((*proc->lst)->args[i][j])
 		{
 			if ((*proc->lst)->args[i][j] == 62)
-				ft_check_red_out_type(proc, i, j);
+				ft_check_red_out_type(proc, i, &j);
 			else if ((*proc->lst)->args[i][j] == 60)
-				ft_check_red_in_type(proc, i, j);
+				ft_check_red_in_type(proc, i, &j);
 			j++;
 		}
 		i++;

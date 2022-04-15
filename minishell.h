@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 15:17:09 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:14:55 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,12 @@ int		ft_red_count(char **args);
 void	ft_fill_single(t_proc *proc, int i, int j, int *k);
 void	ft_fill_double(t_proc *proc, int i, int j, int *k);
 void	ft_check_if_red(t_proc *proc);
+void	ft_check_red_condition_aux(t_proc *proc, int i, int *j, int *k);
+void	ft_no_space_after(t_proc *proc, int i, int j, int *k);
+void	ft_no_space_before(t_proc *proc, int i, int j, int *k);
+void	ft_no_space_bfr_aftr(t_proc *proc, int i, int j, int *k);
+void	ft_no_space_after_single(t_proc *proc, int i, int j, int *k);
+void	ft_no_space_bfr_aftr_single(t_proc *proc, int i, int j, int *k);
 
 //////// Utils ///////////
 void	ft_exp_sp_arr(t_proc *proc);
@@ -212,6 +218,7 @@ void	print_sorted_env(t_set *set, int fd);
 int		unset(t_set *set, char **argv, int child);
 void	ft_exit(char **argv, int child, t_set *set);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args);
+int		ft_varlen(char *str);
 
 ////////// Signals //////////
 void	listen_signals_daddy(void);

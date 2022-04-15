@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:39:34 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/14 15:07:07 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:19:48 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_args_red(t_proc *proc, char *arg, int *i, int *k)
 		&& proc->red_out_arr_len < proc->red_out_count
 		&& proc->red_out_arr[proc->red_out_arr_len++] == 1)
 		*i = *i + 1;
-	else if (arg[0] == 60
+	else if (arg[0] == 60 && arg[1] != 60
 		&& proc->red_in_arr_len < proc->red_in_count
 		&& proc->red_in_arr[proc->red_in_arr_len++] == 1)
 		*i = *i + 1;
@@ -102,4 +102,10 @@ void	ft_set_args_red(t_proc *proc)
 		i++;
 	}
 	(*proc->lst)->args_red[k] = NULL;
+	k = 0;
+	while ((*proc->lst)->args_red[k])
+	{
+		printf("RED : %d - %s\n", k, (*proc->lst)->args_red[k]);
+		k++;
+	}
 }

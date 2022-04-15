@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 16:36:23 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/14 21:20:42 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,47 +46,27 @@ int	ft_varlen(char *str)
 	return (i);
 }
 
-char	**edit_var(t_set *set, char *var)
+void	ft_set_env(t_set *set, char *arg)
 {
-	int	var_len;
-	int	i;
+	int	k;
+	int	edit;
 
-	var_len = ft_varlen(var);
-	i = -1;
-	while (set->env[++i])
+	k = -1;
+	if (!ft_export_errors(arg))
+		edit = 0;
+	while (set->env[++k])
 	{
-		if ((ft_strncmp(set->env[i], var, var_len) == 0))
-		{
-			free(set->env[i]);
-			set->env[i] = ft_strdup(var);
-		}
+		if (((ft_strncmp(set->env[k], arg, ft_varlen(arg))) == 0)
+			&& ++edit)
+			set->env = edit_var(set, arg);
 	}
-	return (set->env);
-}
-
-char	**add_var(t_set *set, char *var)
-{
-	int		i;
-	char	**tmp;
-
-	i = 0;
-	while (set->env[i])
-		i++;
-	tmp = (char **)malloc(sizeof(char *) * (i + 2));
-	i = -1;
-	while (set->env[++i])
-			tmp[i] = ft_strdup(set->env[i]);
-	tmp[i] = ft_strdup(var);
-	tmp[i + 1] = NULL;
-	ft_free_double_char(set->env);
-	return (tmp);
+	if (!edit)
+		set->env = add_var(set, arg);
 }
 
 int	export(t_set *set, char **argv, int child, int fd)
 {
 	int	i;
-	int	k;
-	int	edit;
 	int	cmd_count;
 
 	i = 0;
@@ -96,19 +76,7 @@ int	export(t_set *set, char **argv, int child, int fd)
 	else if (argv[1][0] == 62)
 		print_sorted_env(set, fd);
 	while (argv[++i])
-	{
-		k = -1;
-		if (!ft_export_errors(argv[i]))
-			edit = 0;
-		while (set->env[++k])
-		{
-			if (((ft_strncmp(set->env[k], argv[i], ft_varlen(argv[i]))) == 0)
-				&& ++edit)
-				set->env = edit_var(set, argv[i]);
-		}
-		if (!edit)
-			set->env = add_var(set, argv[i]);
-	}
+		ft_set_env(set, argv[i]);
 	if (child)
 		exit (0);
 	return (0);
