@@ -6,11 +6,17 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/14 18:03:20 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:21:49 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_copy_on_aux(t_proc *proc, int i, int j, int k)
+{
+	if (proc->process[i][j] != 126)
+		proc->aux[k] = proc->process[i][j];
+}
 
 void	ft_redirection_parse_set_up(t_proc *proc, int i)
 {
@@ -18,8 +24,6 @@ void	ft_redirection_parse_set_up(t_proc *proc, int i)
 
 	ft_count_added_spaces(proc, i);
 	proc->added_spc_arr[i] = (int *) malloc (proc->added_spc * sizeof(int));
-	printf("proc added spc: %d\n", proc->added_spc);
-	//	ft_memset(proc->added_spc_arr_length[i], 0, sizeof(int *));
 	proc->added_spc_arr_length[i] = (int *) malloc(sizeof (int));
 	proc->added_spc_arr_length[i][0] = proc->added_spc;
 	quote_count = ft_findchar(proc->process[i], 126);
@@ -34,21 +38,16 @@ void	ft_check_red_condition2(t_proc *proc, int i, int *j, int *k)
 	{
 		if (proc->red_in_app_arr_len < proc->red_in_app_count
 			&& proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
-		{
-			ft_fill_double(proc, i, *j, k);
-			(*j)++;
-		}
+			ft_fill_double(proc, i, (*j)++, k);
 		else
 		{
-			proc->aux[*k] = proc->process[i][*j];
-			proc->aux[(*k) + 1] = proc->process[i][(*j) + 1];
-			(*j)++;
-			(*k)++;
+			ft_copy_on_aux(proc, i, (*j)++, (*k)++);
+			ft_copy_on_aux(proc, i, *j, *k);
 		}
 	}
-	else if (proc->process[i][*j] != 126)
-		proc->aux[*k] = proc->process[i][*j];
- }
+	else
+		ft_copy_on_aux(proc, i, *j, *k);
+}
 
 void	ft_check_red_condition(t_proc *proc, int i, int *j, int *k)
 {	
@@ -64,16 +63,11 @@ void	ft_check_red_condition(t_proc *proc, int i, int *j, int *k)
 	{
 		if (proc->red_out_del_arr_len < proc->red_out_del_count
 			&& proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
-		{
-			ft_fill_double(proc, i, *j, k);
-			(*j)++;
-		}
+			ft_fill_double(proc, i, (*j)++, k);
 		else
 		{
-			proc->aux[*k] = proc->process[i][*j];
-			proc->aux[(*k) + 1] = proc->process[i][(*j) + 1];
-			(*j)++;
-			(*k)++;
+			ft_copy_on_aux(proc, i, (*j)++, (*k)++);
+			ft_copy_on_aux(proc, i, *j, *k);
 		}
 	}
 	else
@@ -87,7 +81,6 @@ void	ft_aux_copy(t_proc *proc, int i)
 	proc->process[i] = ft_strdup(proc->aux);
 }
 
-
 void	ft_redirection_parse(t_proc *proc)
 {
 	int	i;
@@ -95,8 +88,8 @@ void	ft_redirection_parse(t_proc *proc)
 	int	k;
 
 	i = -1;
-	proc->added_spc_arr = (int **) malloc (proc->process_count * sizeof(int *));
-	proc->added_spc_arr_length = (int **) malloc (proc->process_count * sizeof(int *));
+	proc->added_spc_arr = malloc (proc->process_count * sizeof(int *));
+	proc->added_spc_arr_length = malloc (proc->process_count * sizeof(int *));
 	ft_redirection_set_up(proc);
 	while (++i < proc->process_count)
 	{
@@ -113,6 +106,5 @@ void	ft_redirection_parse(t_proc *proc)
 		ft_aux_copy(proc, i);
 		if (proc->aux)
 			free (proc->aux);
-		//printf("FRASE: %s\n", proc->process[i]);
 	}
 }
