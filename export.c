@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 09:17:46 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 10:50:18 by ikgonzal         ###   ########.fr       */
+/*   Created: 2022/04/15 13:45:08 by ikgonzal          #+#    #+#             */
+/*   Updated: 2022/04/15 13:46:15 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	**add_var(t_set *set, char *var)
 	return (tmp);
 }
 
-int	export(t_set *set, char **argv, int child)
+int	export(t_set *set, char **argv, int child/*, int fd*/)
 {
 	int	i;
 	int	k;

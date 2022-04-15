@@ -6,18 +6,29 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 07:39:23 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/12 10:48:12 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/14 21:21:40 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_env(t_proc *proc, int cmd_count, int child)
+void	ft_write(int fd, char *arg)
 {
-	int	i;
-	int	err;
+	size_t	cnt;
+
+	cnt = ft_strlen(arg);
+	write(fd, arg, cnt);
+	write(fd, "\n", 1);
+}
+
+int	ft_env(t_proc *proc, int cmd_count, int child, int fd)
+{
+	int		i;
+	int		err;
 
 	err = 0;
+	if (!fd)
+		fd = 1;
 	if (cmd_count > 1 && child && ++err)
 		err = print_error(": No such file or directory",
 				127, (*proc->lst)->args[1], 1);
@@ -28,7 +39,7 @@ int	ft_env(t_proc *proc, int cmd_count, int child)
 	{
 		i = -1;
 		while (proc->set->env[++i])
-			printf("%s\n", proc->set->env[i]);
+			ft_write(fd, proc->set->env[i]);
 	}
 	if (child)
 		exit (err);

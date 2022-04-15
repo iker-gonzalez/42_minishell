@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:10:13 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/13 13:41:17 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 14:02:17 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,20 @@ int	ft_check_null_line(char *line_read)
 	return (0);
 }
 
+int	ft_error_pipe(void)
+{
+	ft_putstr_fd("papa$hell:", 2);
+	ft_putstr_fd(" Syntax error near unexpected token '|'\n", 2);
+	return (1);
+}
+
 int	ft_check_pipe(char *line_read)
 {
-	int i;
-	
+	int	i;
+	int	ret;
+
 	i = -1;
+	ret = 0;
 	while (line_read[++i])
 	{
 		if (line_read[i] == '|')
@@ -78,22 +87,14 @@ int	ft_check_pipe(char *line_read)
 			while (line_read[i] == 32)
 				i++;
 			if (line_read[i] == '|')
-			{
-				ft_putstr_fd("papa$hell:", 2);
-				ft_putstr_fd(" Syntax error near unexpected token '|'\n", 2);
-				return (1);
-			}
+				ret = ft_error_pipe();
 			while (line_read[i] == 32)
 			{
 				i++;
 				if (line_read[i] == '\0')
-				{
-					ft_putstr_fd("papa$hell:", 2);
-					ft_putstr_fd(" Syntax error near unexpected token '|'\n", 2);
-					return (1);
-				}
+					ret = ft_error_pipe();
 			}
 		}
 	}
-	return (0);
+	return (ret);
 }

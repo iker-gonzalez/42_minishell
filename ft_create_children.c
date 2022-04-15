@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/14 19:40:12 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:47:21 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_exec_system(t_node *node, t_proc *proc)
 {
-	int index;
-	
+	int	index;
+
 	index = 0;
 	if ((*proc->lst)->args[0][0] == 60 || (*proc->lst)->args[0][0] == 62)
 		index = 2;
@@ -65,47 +65,25 @@ void	ft_create_child(int *lpipe, int *rpipe, t_node *node, t_proc *proc)
 void	ft_create_children(t_proc *proc)
 {
 	if ((*proc->lst)->previous == NULL && (*proc->lst)->next == NULL)
-	{
-		if ((*proc->lst)->is_built_in)
-		{
-			if ((*proc->lst)->has_red)
-				ft_check_builtins(proc, (*proc->lst), 0, (*proc->lst)->args_red);
-			else
-				ft_check_builtins(proc, (*proc->lst), 0, (*proc->lst)->args);
-		}
-		else
-			ft_create_child(NULL, NULL, (*proc->lst), proc);
-	}
+		ft_case_only_child(proc);
 	else if ((*proc->lst)->previous == NULL && (*proc->lst)->next != NULL)
-	{
-		pipe(proc->rpipe);
-		ft_create_child(NULL, proc->rpipe, (*proc->lst), proc);
-		ft_swap_pipes(proc);
-	}
+		ft_case_first_of_many(proc);
 	else if ((*proc->lst)->previous != NULL && (*proc->lst)->next == NULL)
-	{
-		ft_create_child(proc->lpipe, NULL, (*proc->lst), proc);
-		ft_close_pipe(proc->lpipe);
-	}
+		ft_case_last_of_many(proc);
 	else
-	{
-		pipe(proc->rpipe);
-		ft_create_child(proc->lpipe, proc->rpipe, (*proc->lst), proc);
-		ft_close_pipe(proc->lpipe);
-		ft_swap_pipes(proc);
-	}
+		ft_case_middle_guy(proc);
 }
 
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args)
 {
 	if ((ft_strncmp_len(args[0], "env", 3)) == 0)
-		ft_env(proc, ft_count_argc(args), child);
+		ft_env(proc, ft_count_argc(args), child, node->outfd);
 	else if ((ft_strncmp_len(args[0], "pwd", 3)) == 0)
-		ft_pwd(child);
+		ft_pwd(child, node->outfd);
 	else if ((ft_strncmp_len(args[0], "cd", 2)) == 0)
 		ft_cd(args, proc->set, child);
 	else if ((ft_strncmp_len(args[0], "export", 6)) == 0)
-		export(proc->set, args, child);
+		export(proc->set, args, child/*, node->outfd*/);
 	else if ((ft_strncmp_len(args[0], "unset", 5)) == 0)
 		unset(proc->set, args, child);
 	else if ((ft_strncmp_len(args[0], "exit", 4)) == 0)

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:18:30 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 12:46:17 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:53:33 by jsolinis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,20 @@ void	ft_check_red_condition2(t_proc *proc, int i, int *j, int *k)
 	{
 		if (proc->red_in_app_arr_len < proc->red_in_app_count
 			&& proc->red_in_app_arr[proc->red_in_app_arr_len++] == 1)
-			ft_fill_double(proc, i, (*j)++, k);
+		{
+			ft_fill_double(proc, i, *j, k);
+			(*j)++;
+		}
 		else
 		{
-			ft_copy_on_aux(proc, i, (*j)++, (*k)++);
-			ft_copy_on_aux(proc, i, *j, *k);
+			proc->aux[*k] = proc->process[i][*j];
+			proc->aux[(*k) + 1] = proc->process[i][(*j) + 1];
+			(*j)++;
+			(*k)++;
 		}
 	}
-	else
-		ft_copy_on_aux(proc, i, *j, *k);
+	else if (proc->process[i][*j] != 126)
+		proc->aux[*k] = proc->process[i][*j];
 }
 
 void	ft_check_red_condition(t_proc *proc, int i, int *j, int *k)
@@ -54,16 +59,7 @@ void	ft_check_red_condition(t_proc *proc, int i, int *j, int *k)
 		proc->red_in_arr[proc->red_in_arr_len++] == 1)
 		ft_fill_single(proc, i, *j, k);
 	else if (proc->process[i][*j] == 62 && proc->process[i][(*j) + 1] == 62)
-	{
-		if (proc->red_out_del_arr_len < proc->red_out_del_count
-			&& proc->red_out_del_arr[proc->red_out_del_arr_len++] == 1)
-			ft_fill_double(proc, i, (*j)++, k);
-		else
-		{
-			ft_copy_on_aux(proc, i, (*j)++, (*k)++);
-			ft_copy_on_aux(proc, i, *j, *k);
-		}
-	}
+		ft_check_red_condition_aux(proc, i, j, k);
 	else
 		ft_check_red_condition2(proc, i, j, k);
 }
@@ -82,8 +78,9 @@ void	ft_redirection_parse(t_proc *proc)
 	int	k;
 
 	i = -1;
-	proc->added_spc_arr = malloc (proc->process_count * sizeof(int *));
-	proc->added_spc_arr_length = malloc (proc->process_count * sizeof(int *));
+	proc->added_spc_arr = (int **) malloc (proc->process_count * sizeof(int *));
+	proc->added_spc_arr_length = (int **) malloc (proc->process_count
+			* sizeof(int *));
 	ft_redirection_set_up(proc);
 	while (++i < proc->process_count)
 	{
