@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/16 13:23:43 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:33:06 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,5 +244,6 @@ void	ft_free_args_red(t_proc *proc);
 void	ft_free_node_routes(t_proc *proc);
 void	ft_free_double_int(t_proc *proc, int **str);
 void	ft_freelist(t_node *lst);
+void	ft_free_safe_path(t_set *set);
 
 #endif
