@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:21 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 16:43:38 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:17:17 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,33 @@ void	ft_get_env(t_set *set, char **env)
 			set->env[k++] = ft_strdup(env[i]);
 	}
 	set->env[i] = NULL;
+}
+
+void	ft_format_safe_paths(t_set *set)
+{
+	char	*path;
+	char	**paths;
+	int		i;
+
+	path = getenv("PATH");
+	paths = ft_split(path, ':');
+	if (!paths)
+		return ;
+	i = 0;
+	while (paths[i])
+		i++;
+	set->safe_paths = (char **)malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (paths[i])
+	{
+		path = ft_strjoin(paths[i], "/");
+		free(paths[i]);
+		paths[i] = path;
+		set->safe_paths[i] = paths[i];
+		i++;
+	}
+	set->safe_paths[i] = NULL;
+	free(paths);
 }
 
 void	ft_format_paths(t_set *set)

@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/15 20:51:09 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:19:12 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	ft_exec_system(t_node *node, t_proc *proc)
 	if (node->has_red)
 		execve(node->route, node->args_red, proc->set->env);
 	else
+	{
+		printf("route: %s\n", node->route);
 		execve(node->route, node->args, proc->set->env);
+	}
 	exit(0);
 }
 
@@ -87,7 +90,10 @@ void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args)
 	else if ((ft_strncmp_len(args[0], "unset", 5)) == 0)
 		unset(proc->set, args, child);
 	else if ((ft_strncmp_len(args[0], "exit", 4)) == 0)
-		ft_exit(args, child, proc->set, proc);
+	{
+		ft_free_double_char(proc->set->env);
+		ft_exit(args, child, proc);
+	}
 	else if ((ft_strncmp_len(args[0], "echo", 4)) == 0)
 		ft_echo(proc, args, (*proc->lst)->outfd, child);
 }

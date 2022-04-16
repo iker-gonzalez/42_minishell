@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:13 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 21:52:46 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:23:43 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_set
 {
 	char	**env;
 	char	**paths;
+	char	**safe_paths;
 }				t_set;
 
 typedef struct s_proc
@@ -109,7 +110,7 @@ void	ft_cmd_exist(t_proc *proc, t_set *set);
 void	ft_execute_command(t_set *set, char *route, char **args);
 int		ft_char_match(char c, char match);
 char	*ft_get_abs_path(char *arg);
-void	ft_set_abs_path(t_proc *proc, char *arg);
+char	*ft_set_abs_path(t_proc *proc, char *arg);
 void	ft_is_route(char *route, t_proc *proc, char *path, char *arg);
 void	ft_set_route(t_proc *proc, char *arg);
 
@@ -132,6 +133,7 @@ void	ft_count_redirections(t_proc *proc);
 int		ft_findchar(char *line, char c);
 void	ft_red_spc(t_proc *proc);
 void	ft_count_added_spaces(t_proc *proc, int i);
+void	ft_format_safe_paths(t_set *set);
 
 ////// Expand input /////
 void	ft_expand_input(t_proc *proc);
@@ -143,6 +145,7 @@ void	ft_expand_pipe(t_proc *proc, char c);
 void	ft_expand_red_in(t_proc *proc, char c, int *i);
 void	ft_expand_red_out(t_proc *proc, char c, int *i);
 void	ft_expand_spaces(t_proc *proc, char c, int *i);
+int		ft_char_match(char c, char match);
 
 ////// Proceniser ////////
 void	ft_process_count(t_proc *proc);
@@ -210,7 +213,7 @@ char	**add_var(t_set *set, char *var);
 char	**edit_var(t_set *set, char *var);
 void	print_sorted_env(t_proc *proc, t_set *set, int fd);
 int		unset(t_set *set, char **argv, int child);
-void	ft_exit(char **argv, int child, t_set *set, t_proc *proc);
+void	ft_exit(char **argv, int child, t_proc *proc);
 void	ft_check_builtins(t_proc *proc, t_node *node, int child, char **args);
 int		ft_varlen(char *str);
 

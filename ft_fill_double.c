@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fill_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsolinis <jsolinis@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:45:38 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/14 18:49:25 by jsolinis         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:22:38 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,14 @@ void	ft_no_space_bfr_aftr(t_proc *proc, int i, int j, int *k)
 	proc->aux[*k] = 32;
 	if (proc->added_spc_arr_len < proc->added_spc)
 		proc->added_spc_arr[i][proc->added_spc_arr_len++] = *k;
+}
+
+int	ft_char_match(char c, char match)
+{
+	int	ret;
+
+	ret = 0;
+	if (c == match)
+		ret++;
+	return (ret);
 }

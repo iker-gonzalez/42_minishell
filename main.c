@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:31:06 by ikgonzal          #+#    #+#             */
-/*   Updated: 2022/04/15 17:16:58 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:19:42 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	ft_memset(&set, 0, sizeof(t_set));
 	set_up_shell(&set, env);
+	ft_format_safe_paths(&set);
 	ft_loop(&set);
 	return (0);
 }
