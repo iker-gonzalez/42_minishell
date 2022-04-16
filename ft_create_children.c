@@ -6,7 +6,7 @@
 /*   By: ikgonzal <ikgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:06:50 by jsolinis          #+#    #+#             */
-/*   Updated: 2022/04/16 13:33:33 by ikgonzal         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:36:37 by ikgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ void	ft_exec_system(t_node *node, t_proc *proc)
 	if (node->has_red)
 		execve(node->route, node->args_red, proc->set->env);
 	else
-	{
-		printf("route: %s\n", node->route);
 		execve(node->route, node->args, proc->set->env);
-	}
 	exit(0);
 }
 
